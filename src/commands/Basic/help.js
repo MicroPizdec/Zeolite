@@ -7,7 +7,6 @@ module.exports = {
   helpCommand: true,
   async run(client, msg, args, prefix, language) {
     let embed = {
-      title: client.i18n.getTranslation(language, "HELP_EMBED_TITLE"),
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
         text: "Zeolite © 2019-2020 ZariBros",
@@ -40,10 +39,12 @@ module.exports = {
     let pageNumber = 0;
     embed.fields = [ pages[0] ];
 
+    embed.title = _(language, "HELP_EMBED_TITLE", pageNumber + 1, pages.length);
+
     const message = await msg.channel.createMessage({ embed });
     await message.addReaction("◀");
     await message.addReaction("▶");
-    await message.addReaction("❌");
+    // await message.addReaction("❌");
 
     const reactionListener = new ReactionHandler.continuousReactionStream(
       message,
@@ -64,7 +65,8 @@ module.exports = {
           break;
         default: return;
       }
-      
+
+      embed.title = _(language, "HELP_EMBED_TITLE", pageNumber + 1, pages.length);
       embed.fields = [ pages[pageNumber] ];
       await message.edit({ embed });
       await message.removeReaction(event.emoji.name, msg.author.id);
