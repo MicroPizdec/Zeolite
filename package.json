@@ -1,12 +1,12 @@
 {
-  "name": "zarichbot",
+  "name": "zeolite",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "",
+  "author": "ZariBros, 1z3ngero",
   "license": "ISC",
   "dependencies": {
     "bufferutil": "^4.0.1",
