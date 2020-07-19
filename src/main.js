@@ -11,13 +11,6 @@ const client = new CmdClient(config.token, {
   prefix1: config.prefix1,
   prefix2: config.prefix2,
   owners: config.owners,
-  ws: {
-    properties: { 
-      $browser: "Discord iOS",
-      $os: process.platform,
-      $device: "Apple iPhone 7",
-    },
-  },
   supportChannelID: config.supportChannelID,
 });
 
@@ -31,19 +24,6 @@ global.sequelize = new Sequelize({
   logging: (...msg) => sequelizeLogger.debug(msg),
 });
 initDB(sequelize, Sequelize.DataTypes);
-
-/* function sleep(ms) {
-  return new Promise(resolve => setTimeout(resolve, ms));
-}
-
-async function chp() {
-  while (true) {
-    await client.editStatus("online", { name: `${client.guilds.size} servers | ${client.prefix1}help`, type: 3 });
-    await sleep(20000);
-    await client.editStatus("online", { name: `${client.users.size} users | ${client.prefix1}help`, type: 3 });
-    await sleep(20000);
-  }
-} */
 
 client.loadGroups([
   "Basic",
@@ -71,9 +51,6 @@ client.on("messageCreate", async msg => {
     await msg.delete();
   }
 });
-
-// и это тоже
-// client.on("guildMemberAdd", (guild, member) => autorole(client, guild, member));
 
 client.on("commandError", async (commandName, msg, error, language) => {
   if (error instanceof CmdClient.PermissionError) {
