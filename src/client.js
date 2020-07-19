@@ -158,6 +158,8 @@ class CmdClient extends Eris.Client {
         this.groups.set(command.group, new Group(this, command.group));
       else this.groups.set("Uncategorized", new Group(this, "Uncategorized"));
     }
+    
+    command.path = path;
 
     this.commands.set(command.name, command);
     this.logger.debug(`successfully loaded ${command.name} command.`);
@@ -178,7 +180,7 @@ class CmdClient extends Eris.Client {
     if (!command)
       throw new Error("command does not exist.");
 
-    const pathToCommand = require.resolve(`./commands/${command.group}/${commandName}`);
+    const pathToCommand = require.resolve(command.path);
     delete require.cache[pathToCommand];
 
     this.commands.delete(commandName);
