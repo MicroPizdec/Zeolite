@@ -1,5 +1,5 @@
 
-rts = {
+module.exports = {
   GUILD_ONLY_COMMAND: "> :x: You cannot use this command in DM.",
   INVALID_USER_PROVIDED: "> :x: Invalid user provided.",
   BASIC_GROUP: "Basic commands",
