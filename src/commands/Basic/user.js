@@ -18,6 +18,11 @@ module.exports = {
     const userBalance = (await zetCoins.findOrCreate({ where: { user: member.id } }))[0];
 
     const createdDaysAgo = Math.floor((Date.now() - member.createdAt) / (1000 * 86400));
+    
+    const roleList = Array.from(member.roleObjects.values())
+      .sort((a, b) => b.position - a.position)
+      .map(r => r.mention)
+      .join(", ");
 
     const embed = {
       title: member.username + "#" + member.discriminator,
@@ -42,7 +47,7 @@ module.exports = {
         },
         {
           name: client.i18n.getTranslation(language, "USERINFO_ROLES"),
-          value: member.roles.map(r => "<@&" + r + ">").join(", ") || "None",
+          value: roleList || "None",
         },
         {
           name: client.i18n.getTranslation(language, "USERINFO_BOT_TITLE"),
