@@ -1,4 +1,5 @@
-module.exports = {
+
+rts = {
   GUILD_ONLY_COMMAND: "> :x: You cannot use this command in DM.",
   INVALID_USER_PROVIDED: "> :x: Invalid user provided.",
   BASIC_GROUP: "Basic commands",
@@ -10,7 +11,7 @@ module.exports = {
   PING_EMBED_TITLE: "Bot ping:",
   PING_EMBED_DESCRIPTION: latency => `${latency} ms.`,
   HELP_COMMAND_DESCRIPTION: "bot commands",
-  HELP_EMBED_TITLE: "Bot commands",
+  HELP_EMBED_TITLE: (page, max) => `Bot commands (Page ${page} of ${max})`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Bot commands (Owner only)",
   SERVERINFO_COMMAND_DESCRIPTION: "server information",
   SERVERINFO_CREATION_DATE: "Creation date",
@@ -155,12 +156,12 @@ module.exports = {
   NOTE_DELETE_SUCCESS: name => `> :white_check_mark: Deleted note \`${name}\`.`,
   NOTES_USAGE_EMBED: "Notes help",
   NOTES_USAGE_EMBED_DESCRIPTION: prefix => {
-    return `\`${prefix}notes <name>\` - get a note\n` +
-      `\`${prefix}notes add <name> <content>\` - add a note\n` +
-      `\`${prefix}notes edit <name> <newcontent>\` - edit a existing note\n` +
-      `\`${prefix}notes delete <name>\` - delete a note\n` +
-      `\`${prefix}notes list\` - your notes list`;
-  },
+      return `\`${prefix}notes <name>\` - get a note\n` +
+        `\`${prefix}notes add <name> <content>\` - add a note\n` +
+        `\`${prefix}notes edit <name> <newcontent>\` - edit a existing note\n` +
+        `\`${prefix}notes delete <name>\` - delete a note\n` +
+        `\`${prefix}notes list\` - your notes list`;
+    },
   NOTES_NO_NOTES: "> You don't have any notes.",
   LIMITCMD_DESCRIPTION: "limit the specified command",
   LIMITCMD_USAGE: "<command>",
