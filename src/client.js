@@ -50,11 +50,11 @@ class CmdClient extends Eris.Client {
       if (msg.content.startsWith(this.prefix2)) prefixLength = this.prefix2.length;
 
       const args = this._parseArgs(msg.content.slice(prefixLength));
-      const commandName = args.shift();
+      const cmdName = args.shift();
 
-      if (!this.commands.has(commandName)) return;
+      const command = this.commands.find(cmd => cmd.name === cmdName || (cmd.aliases && cmd.aliases.includes(cmdName)));
+      if (!command) return;
 
-      const command = this.commands.get(commandName);
       let disabled = await disabledCmds.findOne({ where: { name: command.name } });
       if (disabled && disabled.disabled) return;
 
@@ -92,7 +92,7 @@ class CmdClient extends Eris.Client {
         await command.run(this, msg, args, prefixLength == this.prefix1.length ? this.prefix1 : this.prefix2, language.language);
 
         const embed = {
-          title: `Command \`${commandName}\` used`,
+          title: `Command \`${command.name}\` used`,
           color: 0x9f00ff,
           fields: [
             {
@@ -127,7 +127,7 @@ class CmdClient extends Eris.Client {
           embeds: [ embed ],
         });
       } catch (err) {
-        this.emit("commandError", commandName, msg, err, language.language);
+        this.emit("commandError", cmdName, msg, err, language.language);
       }
     });
   }
@@ -175,15 +175,15 @@ class CmdClient extends Eris.Client {
     this.logger.info(`successfully loaded all commands.`);
   }
 
-  reloadCommand(commandName) {
-    const command = this.commands.get(commandName);
+  reloadCommand(cmdName) {
+    const command = this.commands.get(cmdName);
     if (!command)
       throw new Error("command does not exist.");
 
     const pathToCommand = require.resolve(command.path);
     delete require.cache[pathToCommand];
 
-    this.commands.delete(commandName);
+    this.commands.delete(cmdName);
     this.loadCommand(pathToCommand);
   }
 

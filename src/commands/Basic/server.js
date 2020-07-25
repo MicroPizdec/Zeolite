@@ -5,6 +5,7 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "SERVERINFO_COMMAND_DESCRIPTION",
   guildOnly: true,
+  aliases: [ "s", "serverinfo" ],
   async run(client, msg, args, prefix, language) {
     const createdDaysAgo = Math.floor((Date.now() - msg.guild.createdAt) / (86400 * 1000));
     const joinedDaysAgo = Math.floor((Date.now() - msg.member.joinedAt) / (86400 * 1000));

@@ -5,6 +5,7 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "USERINFO_COMMAND_DESCRIPTION",
   usage: "USERINFO_COMMAND_USAGE",
+  aliases: [ "u", "userinfo" ],
   async run(client, msg, args, prefix, language) {
     let member;
     let userID = args[0];
