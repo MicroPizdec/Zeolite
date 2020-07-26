@@ -4,8 +4,7 @@ const config = require("../config");
 
 const initDB = require("./modules/initDB");
 
-// это с codename_yey
-// const autorole = require("./modules/autorole");
+const SDC = require("@megavasiliy007/sdc-api");
 
 const client = new CmdClient(config.token, {
   prefix1: config.prefix1,
@@ -13,6 +12,8 @@ const client = new CmdClient(config.token, {
   owners: config.owners,
   supportChannelID: config.supportChannelID,
 });
+
+const sdcClient = new SDC(config.sdcApiKey);
 
 global._ = (lang, str, ...args) => client.i18n.getTranslation.call(client.i18n, lang, str, ...args);
 
@@ -39,6 +40,10 @@ client.once("ready", () => {
     .then(() => client.logger.info("successfully connected to the database."));
   
   client.editStatus("online", { name: `${client.prefix1}help`, type: 3 });
+
+  if (config.sdcApiKey) {
+    sdcClient.setAutoPost(client);
+  }
 });
 
 client.on("messageCreate", async msg => {
