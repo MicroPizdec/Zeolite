@@ -94,11 +94,8 @@ class CmdClient extends Eris.Client {
         const embed = {
           title: `Command \`${command.name}\` used`,
           color: 0x9f00ff,
+          description: msg.cleanContent,
           fields: [
-            {
-              name: "Message",
-              value: msg.cleanContent,
-            },
             {
               name: "User",
               value: `${msg.author.tag} (ID: ${msg.author.id})`,
@@ -109,7 +106,7 @@ class CmdClient extends Eris.Client {
             },
             {
               name: "Guild",
-              value: `${msg.guild.name} (ID: ${msg.guild.id})`,
+              value: msg.guild ? `${msg.guild.name} (ID: ${msg.guild.id})` : "None",
             },
           ],
         };

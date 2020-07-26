@@ -4,7 +4,7 @@ const answers = {
     'Это будет успехом!',
     'Хм... впринципе можно попробовать только без пятого не начинай.',
     'Это может вызвать сердечный приступ так что лучше не надо...',
-    'блять у меня чет с башки слетело попробуй позже.',
+    'Я даже не знаю, как ответить.',
     'С помощью KCAS на 1000 ват. не забудь это сделать',
   ],
   en: [
@@ -12,7 +12,7 @@ const answers = {
     'It will be successful!',
     'Hmm... you can try it, but don\'t start without fifth.',
     'Don\'t do it, because it may cause heart attack.',
-    'oh fuck, something flew off my head, try again later.',
+    'I don\'t know what to answer.',
     'Don\'t forget to do it with 1000 watt KCAS.'
   ],
 };
