@@ -5,6 +5,7 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "HELP_COMMAND_DESCRIPTION",
   helpCommand: true,
+  aliases: [ "h" ],
   async run(client, msg, args, prefix, language) {
     let embed = {
       color: Math.round(Math.random() * 16777216) + 1,
