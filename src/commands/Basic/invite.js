@@ -2,7 +2,7 @@ function isCorrectInvite(invite) {
   const inviteArray = invite.split("/");
   inviteArray.pop();
 
-  const link = invite.join('/');
+  const link = inviteArray.join('/');
 
   return inviteArray.length ? link == "https://discord.gg" || link == "https://discord.com/invite"
     || link == "https://discordapp.com/invite" : true // убрать в будущем
@@ -51,12 +51,33 @@ module.exports = {
         {
           name: _(lang, "INVITE_MEMBERS"),
           value: inviteInfo.memberCount,
+          inline: true,
+        },
+        {
+          name: _(lang, "INVITE_VERIFICATION_LEVEL"),
+          value: _(lang, "INVITE_VERIFICATION_LEVELS")[inviteInfo.guild.verificationLevel],
+          inline: true,
+        },
+        {
+          name: "ID:",
+          value: inviteInfo.guild.id,
           inline: false,
         },
         {
-          name: _(lang, "INVITE_")
-        }
-      ]
+          name: _(lang, "INVITE_CHANNEL"),
+          value: `#${inviteInfo.channel.name} (ID: ${inviteInfo.channel.id})`,
+        },
+      ],
+      footer: { text: _(lang, "INVITE_CODE", inviteInfo.code) },
+    };
+
+    if (inviteInfo.inviter) {
+      embed.fields.push({
+        name: _(lang, "INVITE_INVITER"),
+        value: `${inviteInfo.inviter.tag} (ID: ${inviteInfo.inviter.id})`,
+      });
     }
+
+    await msg.channel.createMessage({ embed });
   }
 }
