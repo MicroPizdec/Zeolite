@@ -45,12 +45,12 @@ class CmdClient extends Eris.Client {
     this.supportChannelID = options.supportChannelID;
 
     this.on("messageCreate", async msg => {
-      if ((!msg.content.startsWith(this.prefix1) && !msg.content.startsWith(this.prefix2)) || msg.author.bot) return;
+      if ((!msg.content.toLowerCase().startsWith(this.prefix1) && !msg.content.toLowerCase().startsWith(this.prefix2)) || msg.author.bot) return;
       let prefixLength = this.prefix1.length;
-      if (msg.content.startsWith(this.prefix2)) prefixLength = this.prefix2.length;
+      if (msg.content.toLowerCase().startsWith(this.prefix2)) prefixLength = this.prefix2.length;
 
       const args = this._parseArgs(msg.content.slice(prefixLength));
-      const cmdName = args.shift();
+      const cmdName = args.shift().toLowerCase();
 
       const command = this.commands.find(cmd => cmd.name === cmdName || (cmd.aliases && cmd.aliases.includes(cmdName)));
       if (!command) return;
@@ -187,6 +187,16 @@ class CmdClient extends Eris.Client {
   async connect() {
     this.logger.info("trying to login now...");
     return super.connect();
+  }
+
+  async fetchUser(id) {
+    if (!this.users.has(id)) {
+      const user = await this.requestHandler.request("GET", `/users/${user.id}`, true);
+      this.users.add(user);
+      return new Eris.User(user, this);
+    } else {
+      return this.users.get(id);
+    }
   }
 }
 
