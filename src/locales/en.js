@@ -72,6 +72,7 @@ module.exports = {
   SENDCOINS_SUCCESSFULLY_SENT: (amount, user) => `:white_check_mark: Successfully sent ${amount} ZetCoins to **${user.username + "#" + user.discriminator}**.`,
   SENDCOINS_CANCELLED_TRANSACTION: `:x: You cancelled the transaction.`,
   SENDCOINS_NOT_ENOUGH_MONEY: amount => `> :x: You don't have enough money. Your balance: ${amount} ZetCoins.`,
+  CANNOT_SEND_COINS_TO_SELF: "> :x: You can't send ZetCoins to self.",
   SETBALANCE_COMMAND_DESCRIPTION: "sets the provided user's balance",
   SETBALANCE_COMMAND_USAGE: "<user> <amount>",
   SETBALANCE_NO_ARGS_PROMPT: prefix => `> Which user do you want to change the balance? Use ${prefix}setbalance <user> <amount>`,

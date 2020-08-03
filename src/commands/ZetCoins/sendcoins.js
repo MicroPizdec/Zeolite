@@ -21,6 +21,8 @@ module.exports = {
 
     if (!user) return msg.channel.createMessage(client.i18n.getTranslation(language, "INVALID_USER_PROVIDED"));
 
+    if (user.id === msg.author.id) return msg.channel.createMessage(_(language, "CANNOT_SEND_COINS_TO_SELF"));
+
     const authorBalance = (await zetCoins.findOrCreate({ where: { user: msg.author.id } }))[0];
     const userBalance = (await zetCoins.findOrCreate({ where: { user: user.id } }))[0];
     

@@ -71,6 +71,7 @@ module.exports = {
   SENDCOINS_SUCCESSFULLY_SENT: (amount, user) => `:white_check_mark: Успешно передано ${amount} ZetCoin'ов пользователю **${user.username + "#" + user.discriminator}**.`,
   SENDCOINS_CANCELLED_TRANSACTION: `:x: Вы отменили перевод.`,
   SENDCOINS_NOT_ENOUGH_MONEY: amount => `> :x: Недостаточно средств на счету. Ваш баланс: ${amount} ZetCoin'ов.`,
+  CANNOT_SEND_COINS_TO_SELF: "> :x: Вы не можете передать ZetCoin'ы самому себе.",
   SETBALANCE_COMMAND_DESCRIPTION: "задает кол-во ZetCoin'ов пользователю",
   SETBALANCE_COMMAND_USAGE: "<пользователь> <кол-во>",
   SETBALANCE_NO_ARGS_PROMPT: prefix => `> Кому вы хотите изменить баланс? Используйте ${prefix}setbalance <пользователь> <кол-во>`,
