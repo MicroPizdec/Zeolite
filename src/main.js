@@ -11,6 +11,7 @@ const client = new CmdClient(config.token, {
   prefix2: config.prefix2,
   owners: config.owners,
   supportChannelID: config.supportChannelID,
+  defaultImageSize: 1024,
 });
 
 const sdcClient = new SDC(config.sdcApiKey);
