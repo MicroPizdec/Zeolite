@@ -10,6 +10,7 @@ module.exports = {
   PING_EMBED_TITLE: "Bot ping:",
   PING_EMBED_DESCRIPTION: latency => `${latency} ms.`,
   HELP_COMMAND_DESCRIPTION: "bot commands",
+  HELP_COMMAND_USAGE: "[command]",
   HELP_EMBED_TITLE: (page, max) => `Bot commands (Page ${page} of ${max})`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Bot commands (Owner only)",
   HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `Command \`${prefix}${name}\` does not exist.`,

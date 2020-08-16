@@ -9,6 +9,7 @@ module.exports = {
   PING_EMBED_TITLE: "Пинг бота:",
   PING_EMBED_DESCRIPTION: latency => `${latency} мс.`,
   HELP_COMMAND_DESCRIPTION: "команды бота",
+  HELP_COMMAND_USAGE: "[команда]",
   HELP_EMBED_TITLE: (page, max) => `Команды бота (Страница ${page} из ${max})`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Команды бота (Только для владельцев)",
   HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `Команда \`${prefix}${name}\` не существует.`,
