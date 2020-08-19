@@ -230,4 +230,11 @@ module.exports = {
   INVITE_CHANNEL: "Канал:",
   INVITE_INVITER: "Приглашающий:",
   INVITE_CODE: code => `Код инвайта: ${code}`,
+  INFO_DESCRIPTION: "информация о боте",
+  INFO_EMBED_DESC: "Простой в плане экономики многофункциональный бот, написанный на JavaScript",
+  INFO_DEVS: "Разработчики",
+  INFO_LINKS: "Ссылки",
+  INFO_INVITE: "Добавить бота на свой сервер",
+  INFO_SUPPORT_SERVER: "Сервер поддержки",
+  INFO_DONATE: "Поддержать проект",
 };

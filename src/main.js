@@ -17,6 +17,7 @@ const client = new CmdClient(config.token, {
 const sdcClient = new SDC(config.sdcApiKey);
 
 global._ = (lang, str, ...args) => client.i18n.getTranslation.call(client.i18n, lang, str, ...args);
+global.t = global._;
 
 const sequelizeLogger = new CmdClient.Logger(client.debugMode ? CmdClient.Logger.TRACE : CmdClient.Logger.INFO, "sequelize");
 
