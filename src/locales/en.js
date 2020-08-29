@@ -34,6 +34,8 @@ module.exports = {
   STATUS_USERS: "Users",
   STATUS_LIBRARIES: "Used libraries",
   STATUS_PLATFORM: "Platform",
+  STATUS_RAM_USAGE: "RAM used",
+  STATUS_MEGABYTES: "MB",
   USERINFO_COMMAND_DESCRIPTION: "information about user (or you, if no user provided)",
   USERINFO_COMMAND_USAGE: "[user]",
   USERINFO_STATUS: "Status",

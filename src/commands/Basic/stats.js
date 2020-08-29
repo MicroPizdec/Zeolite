@@ -38,6 +38,8 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "STATUS_COMMAND_DESCRIPTION",
   async run(client, msg, args, prefix, language) {
+    const ramUsage = process.memoryUsage().heapUsed / 1048576;
+
     const embed = {
       title: client.i18n.getTranslation(language, "STATUS_EMBED_TITLE"),
       color: Math.round(Math.random() * 16777216) + 1,
@@ -53,6 +55,10 @@ module.exports = {
         {
           name: _(language, "STATUS_PLATFORM"),
           value: getPlatform(),
+        },
+        {
+          name: t(language, "STATUS_RAM_USAGE"),
+          value: ramUsage.toFixed(1) + " " + t(language, "STATUS_MEGABYTES"),
         },
         {
           name: client.i18n.getTranslation(language, "STATUS_SERVERS"),

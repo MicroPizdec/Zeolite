@@ -5,7 +5,7 @@ module.exports = {
     ZETCOINS_GROUP: "ZetCoins",
     DEV_GROUP: "Команды для разработчиков",
     SETTINGS_GROUP: "Настройки",
-  OTHER_GROUP: "Прочие команды"
+  OTHER_GROUP: "Прочие команды",
     PING_COMMAND_DESCRIPTION: "пинг бота",
   PING_EMBED_TITLE: "Пинг бота:",
   PING_EMBED_DESCRIPTION: latency => `${latency} мс.`,
@@ -33,6 +33,8 @@ module.exports = {
   STATUS_USERS: "Пользователей",
   STATUS_LIBRARIES: "Используемые библиотеки",
   STATUS_PLATFORM: "Платформа",
+  STATUS_RAM_USAGE: "ОЗУ используется",
+  STATUS_MEGABYTES: "МБ",
   USERINFO_COMMAND_DESCRIPTION: "информация о пользователе (или о вас, если пользователь не предоставлен)",
   USERINFO_COMMAND_USAGE: "[пользователь]",
   USERINFO_STATUS: "Статус",
