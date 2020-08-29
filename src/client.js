@@ -52,6 +52,9 @@ class CmdClient extends Eris.Client {
       const args = this._parseArgs(msg.content.slice(prefixLength));
       const cmdName = args.shift().toLowerCase();
 
+      args.raw = msg.content.split(/ +/g);
+      args.raw.shift();
+
       const command = this.commands.find(cmd => cmd.name === cmdName || (cmd.aliases && cmd.aliases.includes(cmdName)));
       if (!command) return;
 

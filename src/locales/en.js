@@ -6,6 +6,7 @@ module.exports = {
   ZETCOINS_GROUP: "ZetCoins",
   DEV_GROUP: "Dev commands",
   SETTINGS_GROUP: "Settings",
+  OTHER_GROUP: "Other commands",
   PING_COMMAND_DESCRIPTION: "bot ping",
   PING_EMBED_TITLE: "Bot ping:",
   PING_EMBED_DESCRIPTION: latency => `${latency} ms.`,
@@ -238,4 +239,9 @@ module.exports = {
   INFO_INVITE: "Add bot to your server",
   INFO_SUPPORT_SERVER: "Support server",
   INFO_DONATE: "Support the project",
+  EMBED_DESCRIPTION: "sends the embed from JSON data. You can use [Discohook](https://discohook.org) or other embed generator to generate the embed",
+  EMBED_USAGE: "<json>",
+  EMBED_NO_ARGS: prefix => `> :x: What embed you want to send? Use \`${prefix}embed <json>\``,
+  EMBED_PARSE_ERROR: ":x: An error occurred while parsing JSON:",
+  EMBED_INVALID: "> :x: Invalid embed object.",
 };

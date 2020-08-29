@@ -5,6 +5,7 @@ module.exports = {
     ZETCOINS_GROUP: "ZetCoins",
     DEV_GROUP: "Команды для разработчиков",
     SETTINGS_GROUP: "Настройки",
+  OTHER_GROUP: "Прочие команды"
     PING_COMMAND_DESCRIPTION: "пинг бота",
   PING_EMBED_TITLE: "Пинг бота:",
   PING_EMBED_DESCRIPTION: latency => `${latency} мс.`,
@@ -237,4 +238,9 @@ module.exports = {
   INFO_INVITE: "Добавить бота на свой сервер",
   INFO_SUPPORT_SERVER: "Сервер поддержки",
   INFO_DONATE: "Поддержать проект",
+  EMBED_DESCRIPTION: "шлет эмбед из JSON. Вы можете использовать [Discohook](https://discohook.org) или другой генератор эмбедов",
+  EMBED_USAGE: "<json>",
+  EMBED_NO_ARGS: prefix => `> :x: Какой эмбед вы хотите послать? Используйте \`${prefix}embed <json>\``,
+  EMBED_PARSE_ERROR: ":x: Произошла ошибка при обработке JSON",
+  EMBED_INVALID: "> :x: Неправильный объект эмбеда.",
 };

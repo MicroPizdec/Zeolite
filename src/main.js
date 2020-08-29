@@ -37,6 +37,7 @@ client.loadGroups([
   "Basic",
   "Fun",
   "ZetCoins",
+  "Other",
   "Settings",
   "Dev",
 ]);
