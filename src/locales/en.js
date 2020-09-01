@@ -257,4 +257,9 @@ module.exports = {
   BOT_ROLE_HIGHER: "This member's role is higher than my role.",
   KICK_DONT_HAVE_PERMS: "I don't have the \"Kick Members\" permission to do this.",
   KICK_FAILED: ":x: Kick failed.",
+  BAN_DESCRIPTION: "bans the specified user",
+  BAN_NO_ARGS: prefix => `> :x: What user do you want to ban? Use \`${prefix}ban <user> [reason]\``,
+  BAN_SUCCESS: user => `:white_check_mark: Successfully banned ${user}`,
+  BAN_DONT_HAVE_PERMS: "I don't have the \"Ban Members\" permission to do this.",
+  BAN_FAILED: ":x: Ban failed."
 };
