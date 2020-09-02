@@ -18,6 +18,12 @@ module.exports = {
       return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));
     }
 
+    if (member.id === msg.author.id) {
+      return msg.channel.createMessage(t(lang, "CANT_BAN_YOURSELF"));
+    } else if (member.id === client.user.id) {
+      return msg.channel.createMessage(t(lang, "CANT_BAN_BOT"));
+    }
+
     if (member.bannable && msg.member.highestRole.position > member.highestRole.position) {
       await member.ban(0, encodeURI(`${reason.join(" ")} (banned by: ${msg.author.tag})`));
 

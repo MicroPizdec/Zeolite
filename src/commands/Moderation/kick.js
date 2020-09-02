@@ -18,6 +18,12 @@ module.exports = {
       return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));
     }
 
+    if (member.id === msg.author.id) {
+      return msg.channel.createMessage(t(lang, "CANT_KICK_YOURSELF"));
+    } else if (member.id === client.user.id) {
+      return msg.channel.createMessage(t(lang, "CANT_KICK_BOT"));
+    }
+
     if (member.kickable && msg.member.highestRole.position > member.highestRole.position) {
       await member.kick(encodeURI(`${reason.join(" ")} (kicked by: ${msg.author.tag})`));
 
