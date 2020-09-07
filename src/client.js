@@ -45,7 +45,7 @@ class CmdClient extends Eris.Client {
     this.supportChannelID = options.supportChannelID;
 
     this.on("messageCreate", async msg => {
-      if ((!msg.content.toLowerCase().startsWith(this.prefix1) && !msg.content.toLowerCase().startsWith(this.prefix2)) || msg.author.bot) return;
+      if ((!msg.content.toLowerCase().startsWith(this.prefix1) && !msg.content.toLowerCase().startsWith(this.prefix2)) || msg.author.bot || !msg.guild) return;
       let prefixLength = this.prefix1.length;
       if (msg.content.toLowerCase().startsWith(this.prefix2)) prefixLength = this.prefix2.length;
 
@@ -77,8 +77,8 @@ class CmdClient extends Eris.Client {
         return msg.channel.createEmbed(embed);
       }
 
-      if (command.guildOnly && !msg.channel.guild)
-        return msg.channel.createMessage(this.i18n.getTranslation(language.language, "GUILD_ONLY_COMMAND"));
+      // if (command.guildOnly && !msg.channel.guild)
+      //  return msg.channel.createMessage(this.i18n.getTranslation(language.language, "GUILD_ONLY_COMMAND"));
 
       if (command.ownerOnly && this.owners.indexOf(msg.author.id) === -1)
         return;
