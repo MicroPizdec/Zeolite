@@ -274,4 +274,10 @@ module.exports = {
   PURGE_AMOUNT_MORE_THAN_100: "> :x: Amount must be not more than 100.",
   PURGE_SUCCESS: amount => `:white_check_mark: Successfully deleted ${amount} messages.`,
   PURGE_EMBED_DESC: "This message will be deleted in 5 seconds.",
+  SOFTBAN_DESCRIPTION: "softbans the specified user",
+  SOFTBAN_NO_ARGS: prefix => `> :x: What user do you want to softban? Use \`${prefix}softban <user> [reason]\``,
+  CANT_SOFTBAN_YOURSELF: "> :x: You can't softban yourself.",
+  CANT_SOFTBAN_BOT: "> :x: You can't softban a bot.",
+  SOFTBAN_SUCCESS: user => `:white_check_mark: Successfully softbanned ${user}`,
+  SOFTBAN_FAILED: ":x: Softban failed.",
 };

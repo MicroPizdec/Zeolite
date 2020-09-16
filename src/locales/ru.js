@@ -273,4 +273,10 @@ module.exports = {
   PURGE_AMOUNT_MORE_THAN_100: "> :x: Кол-во не должно быть больше 100.",
   PURGE_SUCCESS: amount => `:white_check_mark: Успешно удалено ${amount} сообщений.`,
   PURGE_EMBED_DESC: "Это сооьщение удалится через 5 секунд.",
+  SOFTBAN_DESCRIPTION: "софтбанит указанного пользователя",
+  SOFTBAN_NO_ARGS: prefix => `> :x: Кого вы хотите софтбанить? Используйте \`${prefix}softban <пользователь> [причина]\``,
+  CANT_SOFTBAN_YOURSELF: "> :x: Вы не можете софтбанить самого себя.",
+  CANT_SOFTBAN_BOT: "> :x: Вы не можете софтбанить бота.",
+  SOFTBAN_SUCCESS: user => `:white_check_mark: ${user} успешно софтбанен.`,
+  SOFTBAN_FAILED: ":x: Софтбан не удался",
 };
