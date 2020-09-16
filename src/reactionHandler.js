@@ -13,13 +13,12 @@ class ReactionHandler extends EventEmitter {
     if (timeout) {
       const self = this;
       setTimeout(() => self.stop(), timeout);
-//    console.log(this);
+    }
     this.client.on("messageReactionAdd", this.listener)
       .on("messageReactionRemove", this.listener);
   }
 
   async check(msg, emoji, userID) {
-    //    console.log(this.filterFunc);
     if (this.filterFunc(userID)) {
       this.emit("reaction", msg, emoji);
     }
