@@ -1,4 +1,4 @@
-const ReactionHandler = require("eris-reactions");
+const ReactionHandler = require("../../reactionHandler");
 
 module.exports = {
   name: "help",
@@ -51,15 +51,14 @@ module.exports = {
       await message.addReaction("▶");
       // await message.addReaction("❌");
 
-      const reactionListener = new ReactionHandler.continuousReactionStream(
+      const reactionListener = new ReactionHandler(
         message,
         (id) => id === msg.author.id,
-        false,
-        { maxMatches: 100, time: 3600000 },
+        3600000,
       );
 
-      reactionListener.on("reacted", async event => {
-        switch (event.emoji.name) {
+      reactionListener.on("reaction", async (msg, emoji) => {
+        switch (emoji.name) {
           case "◀":
             if (pageNumber === 0) return;
             pageNumber--;
@@ -74,7 +73,7 @@ module.exports = {
         embed.title = _(lang, "HELP_EMBED_TITLE", pageNumber + 1, pages.length);
         embed.fields = [ pages[pageNumber] ];
         await message.edit({ embed });
-        await message.removeReaction(event.emoji.name, msg.author.id);
+        // await message.removeReaction(event.emoji.name, msg.author.id);
       });
     } else {
       const cmd = client.commands.find(c => c.name === cmdName || (c.aliases && c.aliases.includes(cmdName)));
