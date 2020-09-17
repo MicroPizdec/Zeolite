@@ -3,6 +3,7 @@ module.exports = {
   group: "MODERATION_GROUP",
   description: "SOFTBAN_DESCRIPTION",
   usage: "KICK_USAGE",
+  aliases: [ "sban", "clearban", "cban" ],
   requiredPermissions: "banMembers",
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
