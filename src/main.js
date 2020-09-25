@@ -76,11 +76,39 @@ client.on("commandError", async (commandName, msg, error, language) => {
     return await msg.channel.createMessage({ embed });
   }
   const embed = {
-    title: `:x: Error in command ${commandName}:`,
-    description: `\`\`\`\n${error}\`\`\``,
+    title: t(language, "COMMAND_ERROR_OCCURRED"),
+    description: t(language, "COMMAND_ERROR_DESCRIPTION"),
     color: 15158332,
   }
   await msg.channel.createMessage({ embed: embed });
+  client.executeWebhook("709966620193456148", "uQG11BtMutep8QZW2kIcO6W9i8J2wu9P-vMxNSTflAs9AEQ5wmOo3qF8GZvtwXHKVJ9j", {
+    username: "Zeolite Commands Log",
+    embeds: [
+      {
+        title: ":x: An error occurred while executing the command",
+        description: msg.content,
+        color: 13440534,
+        fields: [
+          {
+            name: "Error",
+            value: `\`\`\`${error}\`\`\``,
+          },
+          {
+            name: "User",
+            value: `${msg.author.tag} (ID: ${msg.author.id})`,
+          },
+          {
+            name: "Channel",
+            value: `#${msg.channel.name} (ID: ${msg.channel.id})`,
+          },
+          {
+            name: "Guild",
+            value: `${msg.guild.name} (ID: ${msg.guild.id})`,
+          },
+        ],
+      }
+    ],
+  });
   client.logger.error(`Error in command ${commandName}:\n${error.stack}`);
 });
 

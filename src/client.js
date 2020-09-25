@@ -36,7 +36,7 @@ class CmdClient extends Eris.Client {
 
     this.debugMode = options.debugMode || false;
 
-    this.logger = new Logger(options.debugMode ? Logger.TRACE : Logger.INFO, "zarichbot");
+    this.logger = new Logger(options.debugMode ? Logger.TRACE : Logger.INFO, "Zeolite");
     if (options.debugMode) {
       this._erisLogger = new Logger(Logger.TRACE, "eris");
       this.on("debug", msg => this._erisLogger.debug(msg));
