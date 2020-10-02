@@ -55,7 +55,7 @@ client.once("ready", () => {
   }
 });
 
-client.on("messageCreate", async msg => {
+/* client.on("messageCreate", async msg => {
   if (msg.content.startsWith(`${client.prefix1}reg`)) {
     if (msg.guild.id != "713037975327342602") return;
     if (msg.member.roles.includes("713115183110946857")) return;
@@ -64,7 +64,7 @@ client.on("messageCreate", async msg => {
     await msg.member.removeRole("713115883794595902");
     await msg.delete();
   }
-});
+}); */  
 
 client.on("commandError", async (commandName, msg, error, language) => {
   if (error instanceof CmdClient.PermissionError) {
