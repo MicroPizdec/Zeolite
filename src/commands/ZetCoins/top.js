@@ -12,8 +12,8 @@ module.exports = {
       color: Math.round(Math.random() * 16777216) + 1,
       fields: [],
       footer: {
-        text: "Zeolite © 2019-2020 ZariBros",
-        icon_url: "https://yt3.ggpht.com/a-/AAuE7mC54pDFKe5kqwhrrNUNdwOABF0ogi8Yw4S5NZaeQQ=s288-c-k-c0xffffffff-no-rj-mo",
+        text: `${client.user.username} © 2019-2020 ZariBros`,
+        icon_url: client.user.avatarURL,
       },
     };
 

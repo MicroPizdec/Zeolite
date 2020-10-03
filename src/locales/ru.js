@@ -264,7 +264,7 @@ module.exports = {
   INFO_LINKS: "Ссылки",
   INFO_INVITE: "Добавить бота на свой сервер",
   INFO_SUPPORT_SERVER: "Сервер поддержки",
-  INFO_DONATE: "Поддержать проект",
+  INFO_DONATE: "Пожертвовать",
   EMBED_DESCRIPTION: "шлет эмбед из JSON. Вы можете использовать [Discohook](https://discohook.org) или другой генератор эмбедов",
   EMBED_USAGE: "<json>",
   EMBED_NO_ARGS: prefix => `> :x: Какой эмбед вы хотите послать? Используйте \`${prefix}embed <json>\``,

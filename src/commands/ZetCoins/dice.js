@@ -26,7 +26,10 @@ module.exports = {
       title: _(language, "DICE_WIN"),
       description: _(language, "DICE_WIN_MESSAGE", amount, userBalance.balance),
       color: 0x1cac78,
-      footer,
+      footer: {
+        text: `${client.user.username} © 2019-2020 ZariBros`,
+        icon_url: client.user.avatarURL,
+      },
     };
     const lossEmbed = {
       author: {
@@ -36,7 +39,10 @@ module.exports = {
       title: _(language, "DICE_LOSS"),
       description: _(language, "DICE_LOSS_MESSAGE", amount, userBalance.balance),
       color: 0xcc0605,
-      footer,
+      footer: {
+        text: `${client.user.username} © 2019-2020 ZariBros`,
+        icon_url: client.user.avatarURL,
+      },
     };
 
     if (!chance) {
@@ -51,9 +57,4 @@ module.exports = {
       await msg.channel.createMessage({ embed: winEmbed });
     }
   }
-};
-
-const footer = {
-  text: "Zeolite © 2019-2020 ZariBros",
-  icon_url: "https://yt3.ggpht.com/a-/AAuE7mC54pDFKe5kqwhrrNUNdwOABF0ogi8Yw4S5NZaeQQ=s288-c-k-c0xffffffff-no-rj-mo",
 };

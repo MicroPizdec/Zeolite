@@ -14,6 +14,7 @@ const client = new CmdClient(config.token, {
   supportChannelID: config.supportChannelID,
   defaultImageSize: 1024,
 });
+client.version = "1.5";
 
 const sdcClient = new SDC(config.sdcApiKey);
 let dblClient;

@@ -265,7 +265,7 @@ module.exports = {
   INFO_LINKS: "Links",
   INFO_INVITE: "Add bot to your server",
   INFO_SUPPORT_SERVER: "Support server",
-  INFO_DONATE: "Support the project",
+  INFO_DONATE: "Donate",
   EMBED_DESCRIPTION: "sends the embed from JSON data. You can use [Discohook](https://discohook.org) or other embed generator to generate the embed",
   EMBED_USAGE: "<json>",
   EMBED_NO_ARGS: prefix => `> :x: What embed you want to send? Use \`${prefix}embed <json>\``,

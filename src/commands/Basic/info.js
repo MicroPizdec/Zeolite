@@ -3,8 +3,9 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "INFO_DESCRIPTION",
   async run(client, msg, args, prefix, lang) {
-    const devs = client.users.filter(u => [ "412503784455929857", "464348805899354113", "330153333962702850" ].includes(u.id))
-      .map(u => u.tag).reverse().join(", ");
+    let devs = [];
+    [ "464348805899354113", "412503784455929857", "330153333962702850" ]
+      .forEach(id => devs.push(client.users.get(id)));
 
     const inviteLink = "https://discord.com/oauth2/authorize?client_id=679692205736460301&scope=bot&permissions=8";
 
@@ -18,13 +19,16 @@ module.exports = {
       fields: [
         {
           name: t(lang, "INFO_DEVS"),
-          value: devs,
+          value: devs.map(u => u.tag).join(", "),
         },
         {
           name: t(lang, "INFO_LINKS"),
           value: `[${t(lang, "INFO_INVITE")}](${inviteLink})\n` +
           `[${t(lang, "INFO_SUPPORT_SERVER")}](https://discord.gg/e6V38mv)\n` +
-          `[${t(lang, "INFO_DONATE")}](https://www.donationalerts.com/r/zaribros)`,
+          `[${t(lang, "INFO_DONATE")}](https://www.donationalerts.com/r/zaribros)\n` +
+          `[bots.server-discord.com](https://bots.server-discord.com/679692205736460301)\n` +
+          `[top.gg](https://top.gg/bot/679692205736460301)\n` +
+          `[botsfordiscord.com](https://botsfordiscord.com/bot/679692205736460301)`,
         },
       ],
     };
