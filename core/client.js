@@ -36,6 +36,9 @@ class CmdClient extends Eris.Client {
 
     this.debugMode = options.debugMode || false;
 
+    this.webhookID = options.webhookID;
+    this.webhookToken = options.webhookToken;
+
     this.logger = new Logger(options.debugMode ? Logger.TRACE : Logger.INFO, "Zeolite");
     if (options.debugMode) {
       this._erisLogger = new Logger(Logger.TRACE, "eris");
@@ -122,8 +125,8 @@ class CmdClient extends Eris.Client {
           });
         }
 
-        await this.executeWebhook("709966620193456148", "uQG11BtMutep8QZW2kIcO6W9i8J2wu9P-vMxNSTflAs9AEQ5wmOo3qF8GZvtwXHKVJ9j", {
-          username: "Zeolite Commands Log",
+        await this.executeWebhook(this.webhookID, this.webhookToken, {
+          username: `${this.user.username} Commands Log`,
           embeds: [ embed ],
         });
       } catch (err) {
@@ -168,9 +171,9 @@ class CmdClient extends Eris.Client {
   loadGroups(groups) {
     this.logger.info("loading the commands...")
     for (const dir of groups) {
-      const commands = fs.readdirSync(`./src/commands/${dir}`).filter(f => f.endsWith(".js"));
+      const commands = fs.readdirSync(`./commands/${dir}`).filter(f => f.endsWith(".js"));
       for (let command of commands)
-        this.loadCommand(`./commands/${dir}/${command}`);
+        this.loadCommand(`../commands/${dir}/${command}`);
     }
     this.logger.info(`successfully loaded all commands.`);
   }

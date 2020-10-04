@@ -9,9 +9,9 @@ class i18n {
   _loadLanguages() {
     let langs = {}
     
-    let files = fs.readdirSync("./src/locales").filter(f => f.endsWith(".js"));
+    let files = fs.readdirSync("./locales").filter(f => f.endsWith(".js"));
     for (let file of files) {
-      let lang = require(`./locales/${file}`);
+      let lang = require(`../locales/${file}`);
       langs[file.replace(".js", "")] = lang;
     }
 
