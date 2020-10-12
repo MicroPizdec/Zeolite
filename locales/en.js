@@ -304,4 +304,8 @@ module.exports = {
   CANT_SOFTBAN_BOT: "> :x: You can't softban a bot.",
   SOFTBAN_SUCCESS: user => `:white_check_mark: Successfully softbanned ${user}`,
   SOFTBAN_FAILED: ":x: Softban failed.",
+  REVERSE_DESCRIPTION: "reverses your text",
+  REVERSE_USAGE: "<text>",
+  REVERSE_NO_ARGS: prefix => `> :x: What do you want to reverse? Use \`${prefix}reverse <text>\``,
+  REVERSE_TITLE: "Reverse",
 };

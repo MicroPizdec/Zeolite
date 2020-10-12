@@ -3,6 +3,7 @@ module.exports = {
   group: "ZETCOINS_GROUP",
   description: "BALANCE_COMMAND_DESCRIPTION",
   usage: "BALANCE_COMMAND_USAGE",
+  aliases: [ "bal" ],
   async run(client, msg, args, prefix, language) {
     let userID = args[0];
     let user;
