@@ -11,8 +11,11 @@ module.exports = {
     let userID = args[0];
     
     if (!userID) member = msg.member;
-    else member = msg.channel.guild.members.get(msg.mentions.length ? msg.mentions[0].id : "") ||
-      msg.channel.guild.members.get(userID);
+    else member = !msg.mentions.length ? msg.guild.members.find(m =>
+      m.tag.toLowerCase().startsWith(userID) ||
+      m.id == userID ||
+      (m.nick && m.nick.toLowerCase().startsWith(userID))
+    ) : msg.guild.members.get(msg.mentions[0].id);
 
     if (!member) return;
 
@@ -34,7 +37,7 @@ module.exports = {
         name: nick,
         icon_url: member.avatarURL,
       },
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: member.color,
       footer: {
         text: `${client.user.username} © 2019-2020 ZariBros`,
         icon_url: client.user.avatarURL,
@@ -46,7 +49,7 @@ module.exports = {
         },
         {
           name: t(language, "USERINFO_STATUS"),
-          value: t(language, "USERINFO_STATUSES")[member.status],
+          value: t(language, "USERINFO_STATUSES")[member.status || "offline"],
         },
         {
           name: t(language, "USERINFO_REGDATE"),
