@@ -66,6 +66,10 @@ module.exports = {
           value: t(language, "USERINFO_BOT_DEFINE", member.bot),
         },
         {
+          name: t(language, "USERINFO_ROLES"),
+          value: roleList,
+        },
+        {
           name: t(language, "USERINFO_ZETCOINS_TITLE"),
           value: t(language, "USERINFO_ZETCOINS_BALANCE", userBalance.balance),
         },
