@@ -6,11 +6,12 @@ module.exports = {
   aliases: [ "bal" ],
   async run(client, msg, args, prefix, language) {
     let userID = args[0];
-    let user;
 
-    if (msg.mentions.length) userID = msg.mentions[0].id;
-    if (!userID) user = msg.author;
-    else user = client.users.get(userID);
+    const user = userID ? msg.mentions.length ? msg.mentions[0] :
+      msg.guild.members.find(m =>
+        m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase())
+      ) || client.users.find(u => u.id == userID) : msg.author;
 
     if (!user) return;
 

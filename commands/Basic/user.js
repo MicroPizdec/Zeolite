@@ -12,9 +12,9 @@ module.exports = {
     
     if (!userID) member = msg.member;
     else member = !msg.mentions.length ? msg.guild.members.find(m =>
-      m.tag.toLowerCase().startsWith(userID) ||
+      m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
       m.id == userID ||
-      (m.nick && m.nick.toLowerCase().startsWith(userID))
+      (m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase()))
     ) : msg.guild.members.get(msg.mentions[0].id);
 
     if (!member) return;

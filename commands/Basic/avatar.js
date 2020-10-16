@@ -20,7 +20,7 @@ module.exports = {
     let user, userID = args.raw.join(" ");
     if (!args[0]) user = msg.author;
     else user = msg.mentions.length ? msg.mentions[0] :
-      msg.guild.members.find(m => m.effectiveName.toLowerCase().startsWith(userID)) ||
+      msg.guild.members.find(m => m.effectiveName.toLowerCase().startsWith(userID.toLowerCase())) ||
       client.users.find(u => u.tag == userID || u.id == userID);
     if (!user) return msg.channel.createMessage(_(lang, "INVALID_USER_PROVIDED"));
     if (user.user) user = user.user;

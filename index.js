@@ -16,7 +16,7 @@ const client = new CmdClient(config.token, {
   webhookID: config.webhookID,
   webhookToken: config.webhookToken,
 });
-client.version = "1.6";
+client.version = "1.7";
 
 const sdcClient = new SDC(config.sdcApiKey);
 let dblClient;
