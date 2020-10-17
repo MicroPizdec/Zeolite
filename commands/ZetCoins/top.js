@@ -11,8 +11,9 @@ module.exports = {
 
     if (!isGlobal) balances = balances.filter(b => msg.guild.members.has(b.user));
     balances = balances.sort((a, b) => b.balance - a.balance)
-        .filter(b => client.users.has(b.user) && !client.users.get(b.user).bot).splice(0, 10);
+        .filter(b => client.users.has(b.user) && !client.users.get(b.user).bot);
     const authorPosition = balances.findIndex(b => b.user == msg.author.id) + 1;
+    balances = balances.splice(0, 10);
 
     const embed = {
       title: t(lang, isGlobal ? "TOP_TITLE_GLOBAL" : "TOP_TITLE", msg.guild.name),

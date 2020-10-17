@@ -115,7 +115,7 @@ module.exports = {
   TOP_COMMAND_DESCRIPTION: "топ-10 богатых пользователей на сервере. Используйте ключ -g или --global для глобального топа.",
   TOP_TITLE: name => `Топ сервера ${name}`,
   TOP_TITLE_GLOBAL: "Глобальный топ",
-  TOP_FOOTER: (position, balance) => `Ваша позищия в топе - ${position}, баланс - ${balance} ZetCoin'ов.`,
+  TOP_FOOTER: (position, balance) => `Ваша позиция в топе - ${position}, баланс - ${balance} ZetCoin'ов.`,
   TOP_BALANCE: balance => `<:zetcoins:766959525864669235> ${balance} ZetCoin'ов.`,
   UNBANBALANCE_COMMAND_DESCRIPTION: "разбанивает баланс пользователя",
   UNBANBALANCE_COMMAND_USAGE: "<пользователь>",
