@@ -112,7 +112,7 @@ module.exports = {
   SETBALANCE_AMOUNT_IS_NAN: "> :x: Указанное кол-во не является числом.",
   SETBALANCE_EMBED_TITLE: user => `:white_check_mark: Успешно задан баланс пользователю ${user.username + "#" + user.discriminator}`,
   SETBALANCE_EMBED_DESCRIPTION: amount => `Теперь данный пользователь имеет ${amount} ZetCoin'ов`,
-  TOP_COMMAND_DESCRIPTION: "топ-10 богатых пользователей на сервере",
+  TOP_COMMAND_DESCRIPTION: "топ-10 богатых пользователей на сервере. Используйте ключ -g или --global для глобального топа.",
   TOP_TITLE: name => `Топ сервера ${name}`,
   TOP_TITLE_GLOBAL: "Глобальный топ",
   TOP_FOOTER: (position, balance) => `Ваша позищия в топе - ${position}, баланс - ${balance} ZetCoin'ов.`,
