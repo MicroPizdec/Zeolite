@@ -2,32 +2,37 @@ module.exports = {
   name: "top",
   group: "ZETCOINS_GROUP",
   description: "TOP_COMMAND_DESCRIPTION",
-  async run(client, msg, args, prefix, language) {
+  async run(client, msg, args, prefix, lang) {
+    const isGlobal = args[0] == "-g" || args[0] == "--global";
+
+    const authorBalance = await zetCoins.findOrCreate({ where: { user: msg.author.id } })
+      .then(b => b[0]);
     let balances = await zetCoins.findAll();
-    balances.sort((a, b) => b.balance - a.balance);
-    balances = balances.slice(0, 10).filter(b => msg.guild.members.has(b.user));
+
+    if (!isGlobal) balances = balances.filter(b => msg.guild.members.has(b.user));
+    balances = balances.sort((a, b) => b.balance - a.balance)
+        .filter(b => !client.users.get(b.user).bot).splice(0, 10);
+    const authorPosition = balances.findIndex(b => b.user == msg.author.id) + 1;
 
     const embed = {
-      title: client.i18n.getTranslation(language, "TOP_EMBED_TITLE"),
-      color: Math.round(Math.random() * 16777216) + 1,
-      fields: [],
+      title: t(lang, isGlobal ? "TOP_TITLE_GLOBAL" : "TOP_TITLE", msg.guild.name),
+      color: Math.round(Math.random() * 16777216),
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
-        icon_url: client.user.avatarURL,
+        text: t(lang, "TOP_FOOTER", authorPosition, authorBalance.balance),
+        icon_url: msg.author.avatarURL,
       },
+      fields: [],
     };
 
     let number = 1;
-    for (let bal of balances) {
-      let { tag } = msg.guild.members.get(bal.user)
+    for (const balance of balances) {
+      const user = client.users.get(balance.user);
       embed.fields.push({
-        name: `${number}: ${tag}`,
-        value: _(language, "TOP_BALANCE", bal.balance),
+        name: `${number++}: ${user.tag || balance.user}`,
+        value: t(lang, "TOP_BALANCE", balance.balance),
       });
-
-      number++;
     }
 
     await msg.channel.createMessage({ embed });
   }
-}
+};
