@@ -46,6 +46,9 @@ client.loadGroups([
   "Dev",
 ]);
 
+process.on("unhandledRejection", console.log);
+process.on("uncaughtException", console.log);
+
 client.once("ready", () => {
   client.logger.info(`${client.user.username} online!`);
   sequelize.sync()
@@ -139,6 +142,6 @@ client.on("guildDelete", guild => {
   });
 });
 
-// client.on("error", (err, id) => client.logger.error(`Error on shard ${id}:\n${require("util").inspect(err)}`));
+client.on("error", (err, id) => client.logger.error(`Error on shard ${id}:\n${require("util").inspect(err)}`));
 
 client.connect();
