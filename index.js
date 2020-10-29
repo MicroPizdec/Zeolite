@@ -59,6 +59,10 @@ client.once("ready", () => {
   if (config.sdcApiKey) {
     sdcClient.setAutoPost(client);
   }
+
+  for (const guild of client.guilds.values()) {
+    guild.fetchAllMembers();
+  }
 });
 
 /* client.on("messageCreate", async msg => {
