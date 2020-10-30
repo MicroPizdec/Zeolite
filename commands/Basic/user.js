@@ -11,12 +11,7 @@ module.exports = {
     let userID = args[0];
     
     if (!userID) member = msg.member;
-    else member = !msg.mentions.length ? msg.guild.members.find(m =>
-      m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
-      m.id == userID ||
-      (m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase()))
-    ) : msg.guild.members.get(msg.mentions[0].id);
-
+    else member = (await msg.guild.fetchMembers({ userIDs: [ msg.mentions.length ? msg.mentions[0].id : userID ] }))[0];
     if (!member) return;
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: member.id } }))[0];
@@ -46,10 +41,6 @@ module.exports = {
         {
           name: "ID",
           value: member.id,
-        },
-        {
-          name: t(language, "USERINFO_STATUS"),
-          value: t(language, "USERINFO_STATUSES")[member.status || "offline"],
         },
         {
           name: t(language, "USERINFO_REGDATE"),

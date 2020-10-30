@@ -17,14 +17,10 @@ module.exports = {
       return msg.channel.createMessage({ embed });
     } 
 
-    let user, userID = args.raw.join(" ");
-    if (!args[0]) user = msg.author;
-    else user = msg.mentions.length ? msg.mentions[0] :
-      msg.guild.members.find(m => m.effectiveName.toLowerCase().startsWith(userID.toLowerCase())) ||
-      client.users.find(u => u.tag == userID || u.id == userID);
-    if (!user) return msg.channel.createMessage(_(lang, "INVALID_USER_PROVIDED"));
-    if (user.user) user = user.user;
-    
+    const user = args[0] ? msg.mentions.length ? msg.mentions[0] : await client.fetchUser(args[0]) : msg.author;
+
+    if (!user) return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));
+
     let format;
     if (user.avatar) {
       format = user.avatar.startsWith("a_") ? 'gif' : 'png';
