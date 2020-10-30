@@ -37,15 +37,15 @@ module.exports = {
       return msg.channel.createMessage({ embed: bannedBalanceEmbed });
     }
 
-    await zetCoins.update({
-      balance: userBalance.balance + amount,
-    }, {
-      where: { user: msg.author.id },
-    });
+    await userBalance.update({ balance: userBalance.balance + amount });
 
     const embed = {
+      author: {
+        name: msg.author.tag,
+        icon_url: msg.author.avatarURL,
+      },
       title: client.i18n.getTranslation(language, "WORK_EMBED_TITLE"),
-      description: client.i18n.getTranslation(language, "WORK_EMBED_DESCRIPTION", amount),
+      description: client.i18n.getTranslation(language, "WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
         text: `${client.user.username} © 2019-2020 ZariBros`,
