@@ -18,7 +18,7 @@ module.exports = {
     
     let user;
     if (msg.mentions.length) user = msg.mentions[0];
-    else user = client.users.get(userID);
+    else user = await client.fetchUser(userID);
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: user.id } }))[0];
     if (userBalance.banned)

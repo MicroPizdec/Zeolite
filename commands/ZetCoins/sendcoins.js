@@ -17,7 +17,7 @@ module.exports = {
       return msg.channel.createMessage(client.i18n.getTranslation(language, "SENDCOINS_AMOUNT_IS_NAN"));
 
     if (msg.mentions.length) user = msg.mentions[0];
-    else user = client.users.get(userID);
+    else user = await client.fetchUser(userID);
 
     if (!user) return msg.channel.createMessage(client.i18n.getTranslation(language, "INVALID_USER_PROVIDED"));
 

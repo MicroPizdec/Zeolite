@@ -16,7 +16,7 @@ const client = new CmdClient(config.token, {
   webhookID: config.webhookID,
   webhookToken: config.webhookToken,
 });
-client.version = "1.7";
+client.version = "1.8";
 
 const sdcClient = new SDC(config.sdcApiKey);
 let dblClient;
@@ -58,10 +58,6 @@ client.once("ready", () => {
 
   if (config.sdcApiKey) {
     sdcClient.setAutoPost(client);
-  }
-
-  for (const guild of client.guilds.values()) {
-    guild.fetchAllMembers();
   }
 });
 
