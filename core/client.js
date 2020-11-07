@@ -1,5 +1,7 @@
 const Eris = require("eris-additions")(require("eris"));
 const fs = require("fs");
+const Sequelize = require("sequelize");
+const initDB = require("./initDB");
 
 const PermissionError = require("./errors/permissionError");
 
@@ -46,6 +48,25 @@ class CmdClient extends Eris.Client {
     }
 
     this.supportChannelID = options.supportChannelID;
+
+    this.extensions = {};
+
+    global.sequelize = new Sequelize({
+      dialect: "sqlite",
+      storage: "./bot.db",
+      logging: false,
+    });
+    initDB(sequelize, Sequelize.DataTypes);
+
+    global._ = this.i18n.getTranslation.bind(this.i18n);
+    global.t = _;
+
+    this.once("ready", () => {
+      this.logger.info(`${this.user.username} online!`);
+      this.editStatus({ name: `${this.prefix1}help` });
+      sequelize.sync()
+        .then(() => this.logger.info("connected to the database."));
+    });
 
     this.on("messageCreate", async msg => {
       if ((!msg.content.toLowerCase().startsWith(this.prefix1) && !msg.content.toLowerCase().startsWith(this.prefix2)) || msg.author.bot || !msg.guild) return;
@@ -96,41 +117,10 @@ class CmdClient extends Eris.Client {
       try {
         if (command.requiredPermissions) validatePermission(msg.member, command.requiredPermissions);
         await command.run(this, msg, args, prefixLength == this.prefix1.length ? this.prefix1 : this.prefix2, language.language);
-
-        const embed = {
-          title: `Command \`${command.name}\` used`,
-          color: 0x9f00ff,
-          description: msg.cleanContent,
-          fields: [
-            {
-              name: "User",
-              value: `${msg.author.tag} (ID: ${msg.author.id})`,
-            },
-            {
-              name: "Channel",
-              value: `#${msg.channel.name} (ID: ${msg.channel.id})`,
-            },
-            {
-              name: "Guild",
-              value: msg.guild ? `${msg.guild.name} (ID: ${msg.guild.id})` : "None",
-            },
-          ],
-        };
-
-        if (msg.attachments.length) {
-          let attachmentURLs = msg.attachments.map(a => a.url);
-          embed.fields.push({
-            name: "Attachments",
-            value: attachmentURLs.join("\n"),
-          });
-        }
-
-        await this.executeWebhook(this.webhookID, this.webhookToken, {
-          username: `${this.user.username} Commands Log`,
-          embeds: [ embed ],
-        });
+        
+        this.emit("commandSuccess", command, msg);
       } catch (err) {
-        this.emit("commandError", cmdName, msg, err, language.language);
+        this.emit("commandError", command, msg, err, language.language);
       }
     });
   }
@@ -205,6 +195,38 @@ class CmdClient extends Eris.Client {
     } else {
       return this.users.get(id);
     }
+  }
+
+  loadExtension(path) {
+    const ext = require(path);
+    if (!ext.load || !ext.load instanceof Function) {
+      throw new Error("extension should export a load() function");
+    }
+    if (!ext.unload || !ext.unload instanceof Function) {
+      throw new Error("extension should export a unload() function");
+    }
+
+    ext.load(this);
+    this.extensions[require.resolve(path)] = ext;
+  }
+
+  unloadExtension(path) {
+    const fullPath = require.resolve(path);
+
+    if (!this.extensions[fullPath]) {
+      throw new Error("extension does not exist");
+    }
+
+    const ext = this.extensions[fullPath];
+    
+    ext.unload();
+    delete this.extensions[fullPath];
+    delete require.cache[fullPath];
+  }
+
+  reloadExtension(path) {
+    this.unloadExtension(path);
+    this.loadExtension(path);
   }
 }
 
