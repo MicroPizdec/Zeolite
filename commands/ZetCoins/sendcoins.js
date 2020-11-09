@@ -3,6 +3,7 @@ module.exports = {
   group: "ZETCOINS_GROUP",
   description: "SENDCOINS_COMMAND_DESCRIPTION",
   usage: "SENDCOINS_COMMAND_USAGE",
+  aliases: [ "pay" ],
   async run(client, msg, args, prefix, language) {
     if (!args.length)
       return msg.channel.createMessage(client.i18n.getTranslation(language, "SENDCOINS_NO_ARGS_PROMPT", prefix));

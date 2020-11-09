@@ -1,10 +1,10 @@
 const CmdClient = require("./core/client");
-const config = require("./config");
+global.config = require("./config");
 
 const fs = require("fs");
 const path = require("path");
 
-const client = new CmdClient(config.token, {
+global.client = new CmdClient(config.token, {
   prefix1: config.prefix1,
   prefix2: config.prefix2,
   owners: config.owners,

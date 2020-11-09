@@ -34,7 +34,7 @@ module.exports = {
       },
       color: member.color,
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
+        text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
       fields: [

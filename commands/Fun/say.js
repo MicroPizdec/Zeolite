@@ -42,10 +42,6 @@ module.exports = {
       await msg.delete();
     } catch {}
 
-    if (prefix == client.prefix1) {
-      await msg.channel.createMessage({ embed }, file);
-    } else {
-      await msg.channel.createMessage(text, file);
-    }
+    await msg.channel.createMessage({ embed }, file);
   }
 };

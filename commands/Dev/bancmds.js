@@ -1,5 +1,5 @@
  module.exports = {
-  name: "bancommands",
+  name: "bancmds",
   group: "DEV_GROUP",
   description: "BANCOMMANDS_COMMAND_DESCRIPTION",
   usage: "BANCOMMANDS_COMMAND_USAGE",

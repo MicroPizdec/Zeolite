@@ -63,27 +63,20 @@ class CmdClient extends Eris.Client {
 
     this.once("ready", () => {
       this.logger.info(`${this.user.username} online!`);
-      this.editStatus({ name: `${this.prefix1}help` });
+      this.editStatus({ name: `Type @${this.user.username}`, type: 5 });
       sequelize.sync()
         .then(() => this.logger.info("connected to the database."));
+
+      for (const guild of this.guilds.values()) {
+        guild.fetchAllMembers();
+      }
     });
 
     this.on("messageCreate", async msg => {
-      if ((!msg.content.toLowerCase().startsWith(this.prefix1) && !msg.content.toLowerCase().startsWith(this.prefix2)) || msg.author.bot || !msg.guild) return;
-      let prefixLength = this.prefix1.length;
-      if (msg.content.toLowerCase().startsWith(this.prefix2)) prefixLength = this.prefix2.length;
-
-      const args = this._parseArgs(msg.content.slice(prefixLength));
-      const cmdName = args.shift().toLowerCase();
-
-      args.raw = msg.content.split(/ +/g);
-      args.raw.shift();
-
-      const command = this.commands.find(cmd => cmd.name === cmdName || (cmd.aliases && cmd.aliases.includes(cmdName)));
-      if (!command) return;
-
-      let disabled = await disabledCmds.findOne({ where: { name: command.name } });
-      if (disabled && disabled.disabled) return;
+      if (!msg.guild || msg.author.bot) return;
+      
+      const prefix = await prefixes.findOne({ where: { server: msg.guild.id } })
+          .then(p => p && p.prefix) || this.prefix1;
 
       let language = (await userLanguages.findOrCreate({ where: { user: msg.author.id } }))[0];
       if (!language.overriden) {
@@ -91,6 +84,21 @@ class CmdClient extends Eris.Client {
           language = (await languages.findOrCreate({ where: { server: msg.channel.guild.id } }))[0];
         else language = { language: "en" };
       }
+
+      if (msg.content.replace("<@!", "<@") == (this.user.mention)) {
+        return this.commands.get("prefix").run(client, msg, [], prefix, language.language);
+      }
+
+      if (!msg.content.startsWith(prefix)) return;
+
+      const args = this._parseArgs(msg.content);
+      args.raw = msg.content.split(/ +/g);
+      args.raw.shift();
+
+      const cmdName = args.shift().toLowerCase().slice(prefix.length);
+      const command = this.commands.find(c => c.name == cmdName || this.aliases && this.aliases.includes(cmdName));
+      if (!command) return;
+
       const { banned: areCommandsBanned, reason } = (await commandBans.findOrCreate({ where: { user: msg.author.id } }))[0];
       if (areCommandsBanned) {
         const embed = {
@@ -101,22 +109,13 @@ class CmdClient extends Eris.Client {
         return msg.channel.createEmbed(embed);
       }
 
-      // if (command.guildOnly && !msg.channel.guild)
-      //  return msg.channel.createMessage(this.i18n.getTranslation(language.language, "GUILD_ONLY_COMMAND"));
-
-      if (command.ownerOnly && this.owners.indexOf(msg.author.id) === -1)
+      if (command.ownerOnly && this.owners.indexOf(msg.author.id) === -1) {
         return;
-      if (!command.helpCommand) {
-        if (command.ownerOnly && msg.content.startsWith(this.prefix1)) return;
-
-        if (!command.ownerOnly && msg.content.startsWith(this.prefix2)) return;
-      } else {
-        if (msg.content.startsWith(this.prefix2) && !this.owners.includes(msg.author.id)) return;
       }
 
       try {
         if (command.requiredPermissions) validatePermission(msg.member, command.requiredPermissions);
-        await command.run(this, msg, args, prefixLength == this.prefix1.length ? this.prefix1 : this.prefix2, language.language);
+        await command.run(this, msg, args, prefix, language.language);
         
         this.emit("commandSuccess", command, msg);
       } catch (err) {

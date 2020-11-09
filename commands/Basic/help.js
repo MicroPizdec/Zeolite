@@ -6,27 +6,30 @@ module.exports = {
   helpCommand: true,
   aliases: [ "h" ],
   async run(client, msg, args, prefix, lang) {
+    const isDevHelp = client.owners.includes(msg.author.id) &&
+      args[0] == "--dev" || args[0] == "-d";
+
     let embed = {
       fields: [],
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
+        text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
     };
-
-    const cmdName = args[0];
+  
+    const cmdName = isDevHelp ? "" : args[0];
     
     if (!cmdName) {
       embed.title = t(lang, "HELP_EMBED_TITLE");
       embed.description = t(lang, "HELP_EMBED_DESC", prefix);
 
-      if (prefix == client.prefix2)
+      if (isDevHelp)
         embed.title = client.i18n.getTranslation(lang, "HELP_EMBED_TITLE_OWNER_ONLY");
 
       for (const group of client.groups.values()) {
         let filterFunction = c => !c.ownerOnly;
-        if (prefix == client.prefix2) filterFunction = c => c.ownerOnly;
+        if (isDevHelp) filterFunction = c => c.ownerOnly;
 
         const cmdList = group.commands.filter(filterFunction)
           .map(c => `\`${c.name}\``).join(", ");
@@ -48,7 +51,7 @@ module.exports = {
           description: _(lang, "HELP_COMMAND_DOESNT_EXIST_DESC", prefix),
           color: 0xff1835,
           footer: {
-            text: `${client.user.username} © 2019-2020 ZariBros`,
+            text: `${client.user.username} © ZariBros`,
             icon_url: client.user.avatarURL,
           }
         };
@@ -56,7 +59,7 @@ module.exports = {
         return msg.channel.createMessage({ embed });
       }
 
-      let usage = `${cmd.ownerOnly ? client.prefix2 : client.prefix1}${cmd.name}`;
+      let usage = `${prefix}${cmd.name}`;
       if (cmd.usage) usage += ` ${_(lang, cmd.usage)}`;
 
       let description = _(lang, cmd.description)
@@ -64,7 +67,7 @@ module.exports = {
       description += ".";
 
       embed = {
-        title: _(lang, "HELP_COMMAND_TITLE", cmd.name, cmd.ownerOnly ? client.prefix2 : client.prefix1),
+        title: _(lang, "HELP_COMMAND_TITLE", cmd.name, prefix),
         description,
         color: Math.round(Math.random() * 16777216),
         fields: [
@@ -74,7 +77,7 @@ module.exports = {
           },
         ],
         footer: {
-          text: `${client.user.username} © 2019-2020 ZariBros`,
+          text: `${client.user.username} © ZariBros`,
           icon_url: client.user.avatarURL,
         }
       };

@@ -111,7 +111,7 @@ module.exports = {
           description: _(lang, "NOTES_USAGE_EMBED_DESCRIPTION", prefix),
           color: Math.round(Math.random() * 16777216),
           footer: {
-            text: `${client.user.username} © 2019-2020 ZariBros`,
+            text: `${client.user.username} © ZariBros`,
             icon_url: client.user.avatarURL,
           },
         }

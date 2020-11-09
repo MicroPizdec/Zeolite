@@ -3,6 +3,7 @@ module.exports = {
   group: "ZETCOINS_GROUP",
   description: "BANBALANCE_COMMAND_DESCRIPTION",
   usage: "BANBALANCE_COMMAND_USAGE",
+  aliases: [ "banbal" ],
   ownerOnly: true,
   async run(client, msg, args, prefix, language) {
     const userID = args.shift();

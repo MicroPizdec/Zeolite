@@ -27,7 +27,7 @@ module.exports = {
       description: _(language, "DICE_WIN_MESSAGE", amount, userBalance.balance),
       color: 0x1cac78,
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
+        text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
     };
@@ -40,7 +40,7 @@ module.exports = {
       description: _(language, "DICE_LOSS_MESSAGE", amount, userBalance.balance),
       color: 0xcc0605,
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
+        text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
     };

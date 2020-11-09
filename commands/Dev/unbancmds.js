@@ -1,5 +1,5 @@
 module.exports = {
-  name: "unbancommands",
+  name: "unbancmds",
   group: "DEV_GROUP",
   description: "UNBANCOMMANDS_DESCRIPTION",
   usage: "UNBANCOMMANDS_USAGE",

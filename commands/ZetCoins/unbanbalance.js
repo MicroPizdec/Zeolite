@@ -3,6 +3,7 @@ module.exports = {
   group: "ZETCOINS_GROUP",
   description: "UNBANBALANCE_COMMAND_DESCRIPTION",
   usage: "UNBANBALANCE_COMMAND_USAGE",
+  aliases: [ "unbanbal" ],
   ownerOnly: true,
   async run(client, msg, args, prefix, language) {
     const userID = args[0];

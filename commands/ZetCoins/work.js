@@ -18,7 +18,7 @@ module.exports = {
         description: t(language, "WORK_COOLDOWN_DESC", minsLeft),
         color: Math.round(Math.random() * 16777216),
         footer: {
-          text: `${client.user.username} © 2019-2020 ZariBros`,
+          text: `${client.user.username} © ZariBros`,
           icon_url: client.user.avatarURL,
         },
       };
@@ -48,7 +48,7 @@ module.exports = {
       description: client.i18n.getTranslation(language, "WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
+        text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
     };

@@ -58,7 +58,6 @@ async function onGuildDelete(guild) {
 }
 
 async function onCommandError(cmd, msg, error, language) {
-  console.log(arguments)
   if (error instanceof PermissionError) {
     const embed = {
       title: t(language, "MISSING_PERMISSION"),

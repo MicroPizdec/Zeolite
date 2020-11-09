@@ -19,7 +19,7 @@ module.exports = {
       },
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
+        text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
       fields: [
@@ -40,12 +40,15 @@ module.exports = {
         },
         {
           name: t(lang, "SERVERINFO_MEMBERS"),
-          value: stripIndents`${t(lang, "SERVERINFO_MEMBERS_ONLINE")} - ${msg.guild.members.filter(m => m.status == "online").length}
-          ${t(lang, "SERVERINFO_MEMBERS_IDLE")} - ${msg.guild.members.filter(m => m.status == "idle").length}
-          ${t(lang, "SERVERINFO_MEMBERS_DND")} - ${msg.guild.members.filter(m => m.status == "dnd").length}
-          ${t(lang, "SERVERINFO_MEMBERS_OFFLINE")} - ${msg.guild.members.filter(m => m.status == "offline").length}
-          ${t(lang, "SERVERINFO_MEMBERS_BOTS")} - ${msg.guild.members.filter(m => m.bot).length}
+          value: stripIndents`${t(lang, "SERVERINFO_MEMBERS_BOTS")} - ${msg.guild.members.filter(m => m.bot).length}
           ${t(lang, "SERVERINFO_MEMBERS_TOTAL")} - ${msg.guild.memberCount}`,
+          inline: true,
+        },
+        {
+          name: t(lang, "SERVERINFO_EMOJIS"),
+          value: stripIndents`${t(lang, "SERVERINFO_EMOJIS_STATIC")} - ${msg.guild.emojis.filter(e => !e.animated).length}
+            ${t(lang, "SERVERINFO_EMOJIS_ANIMATED")} - ${msg.guild.emojis.filter(e => e.animated).length}
+            ${t(lang, "SERVERINFO_EMOJIS_TOTAL")} - ${msg.guild.emojis.length}`,
           inline: true,
         },
         {

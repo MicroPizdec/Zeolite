@@ -44,7 +44,7 @@ module.exports = {
       title: client.i18n.getTranslation(language, "STATUS_EMBED_TITLE"),
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
-        text: `${client.user.username} v${client.version} © 2019-2020 ZariBros`,
+        text: `${client.user.username} v${client.version} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
       fields: [

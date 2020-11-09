@@ -13,7 +13,7 @@ module.exports = {
       description: client.i18n.getTranslation(language, coinSide),
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
-        text: `${client.user.username} © 2019-2020 ZariBros`,
+        text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
       },  
     };
