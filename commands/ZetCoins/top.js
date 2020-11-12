@@ -27,7 +27,7 @@ module.exports = {
 
     let number = 1;
     for (const balance of balances) {
-      const user = await client.fetchUser(balance.user);
+      const user = await client.users.get(balance.user);
       embed.fields.push({
         name: `${number++}: ${user.tag || balance.user}`,
         value: t(lang, "TOP_BALANCE", balance.balance),

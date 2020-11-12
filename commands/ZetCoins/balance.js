@@ -7,7 +7,13 @@ module.exports = {
   async run(client, msg, args, prefix, language) {
     let userID = args[0];
 
-    const user = userID ? msg.mentions[0] || await client.fetchUser(userID) : msg.author;
+    const user = userID ? msg.mentions.length ?
+      msg.guild.members.get(msg.mentions[0].id) :
+      msg.guild.members.find(m =>
+        m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.id == userID
+      ) : msg.member;
 
     if (!user) return;
 

@@ -12,7 +12,9 @@ module.exports = {
 
     const [ userID, ...reason ] = args;
 
-    const member = (await msg.guild.fetchMembers({ userIDs: [ msg.mentions.length ? msg.mentions[0].id : userID ] }))[0];
+    const member = msg.mentions.length ?
+      msg.guild.members.get(msg.mentions[0].id) :
+      msg.guild.members.find(m => m.tag == userID || m.id == userID);
 
     if (!member) {
       return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));

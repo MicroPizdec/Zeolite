@@ -11,8 +11,15 @@ module.exports = {
     let userID = args[0];
     
     if (!userID) member = msg.member;
-    else member = (await msg.guild.fetchMembers({ userIDs: [ msg.mentions.length ? msg.mentions[0].id : userID ] }))[0];
-    if (!member) return;
+    else member = msg.mentions.length ?
+      msg.guild.members.get(msg.mentions[0].id) :
+      msg.guild.members.find(m =>
+        m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
+        m.id == userID
+      );
+    
+    if (!member) return msg.channel.createMessage(t(language, "USER_NOT_FOUND"));
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: member.id } }))[0];
 

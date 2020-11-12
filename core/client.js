@@ -11,7 +11,6 @@ const i18n = require("./i18n");
 
 function validatePermission(member, permissions) {
   if (permissions instanceof Array) {
-
     for (const permission of permissions) {
       const hasPermission = member.permission.has(permission);
       if (!hasPermission)
@@ -49,7 +48,7 @@ class CmdClient extends Eris.Client {
 
     this.supportChannelID = options.supportChannelID;
 
-    this.extensions = {};
+    this.extensions = {};1
 
     global.sequelize = new Sequelize({
       dialect: "sqlite",
@@ -96,7 +95,7 @@ class CmdClient extends Eris.Client {
       args.raw.shift();
 
       const cmdName = args.shift().toLowerCase().slice(prefix.length);
-      const command = this.commands.find(c => c.name == cmdName || this.aliases && this.aliases.includes(cmdName));
+      const command = this.commands.find(c => c.name == cmdName || (c.aliases && c.aliases.includes(cmdName)));
       if (!command) return;
 
       const { banned: areCommandsBanned, reason } = (await commandBans.findOrCreate({ where: { user: msg.author.id } }))[0];
