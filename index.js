@@ -12,6 +12,8 @@ global.client = new CmdClient(config.token, {
   defaultImageSize: 1024,
   webhookID: config.webhookID,
   webhookToken: config.webhookToken,
+  guildSubscriptions: false,
+  intents: [ "guilds", "guildMembers", "guildMessages" ],
 });
 
 client.version = "1.8";
