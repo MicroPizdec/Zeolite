@@ -75,6 +75,8 @@ module.exports = {
   USERINFO_LISTENING: "Listening to",
   USERINFO_STREAMING: "Streaming",
   USERINFO_WATCHING: "Watching",
+  USERINFO_ZETCOINS_TOP: "ZetCoins top position",
+  USERINFO_ZETCOINS_TOP_POS: (globalPos, pos) => `global - ${globalPos}\nserver - ${pos}`,
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
   _8BALL_NO_ARGS_PROMPT: prefix => `> :x: What question do you want to ask to magic ball? Use \`${prefix}8ball <question>\``,

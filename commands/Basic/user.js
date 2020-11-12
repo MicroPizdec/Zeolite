@@ -31,6 +31,14 @@ module.exports = {
       .map(r => r.mention)
       .join(", ");
 
+    const balances = await zetCoins.findAll()
+      .then(bals => bals.sort((a, b) => b.balance - a.balance))
+      .then(bals => bals.filter(b => client.users.has(b.user)) || !client.users.get(b.user).bot);
+
+    const globalTopPos = balances.findIndex(b => b.user == member.id) + 1;
+    const topPos = balances.filter(b => msg.guild.members.has(b.user))
+      .findIndex(b => b.user == member.id) + 1;
+
     let nick = member.tag;
     if (member.nick) nick += ` (${member.nick})`;
 
@@ -70,6 +78,10 @@ module.exports = {
         {
           name: t(language, "USERINFO_ZETCOINS_TITLE"),
           value: t(language, "USERINFO_ZETCOINS_BALANCE", userBalance.balance),
+        },
+        {
+          name: t(language, "USERINFO_ZETCOINS_TOP"),
+          value: t(language, "USERINFO_ZETCOINS_TOP_POS", globalTopPos, topPos),
         },
       ],
     };

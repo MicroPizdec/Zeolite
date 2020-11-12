@@ -74,6 +74,8 @@ module.exports = {
   USERINFO_LISTENING: "Слушает",
   USERINFO_STREAMING: "Стримит",
   USERINFO_WATCHING: "Смотрит",
+  USERINFO_ZETCOINS_TOP: "Позиция в топе по ZetCoin'ам",
+  USERINFO_ZETCOINS_TOP_POS: (globalPos, pos) => `глобальная - ${globalPos}\nна сервере - ${pos}`,
   _8BALL_COMMAND_DESCRIPTION: "магический шар-восьмерка",
   _8BALL_COMMAND_USAGE: "<вопрос>",
   _8BALL_NO_ARGS_PROMPT: prefix => `> :x: Какой вопрос вы хотите задать шару? Используйте \`${prefix}8ball <вопрос>\``,
