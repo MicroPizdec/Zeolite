@@ -324,4 +324,9 @@ module.exports = {
   PREFIX_TOO_LONG: "> :x: Prefix shouldn't be long than 10 characters.",
   PREFIX_SUCCESS: prefix => `> :white_check_mark: Prefix has been changed to \`${prefix}\``,
   DEVSAY_DESCRIPTION: "says your text as a bot",
+  RATE_DESCRIPTION: "rate your chosen subject",
+  RATE_USAGE: "<smth>",
+  RATE_NO_ARGS: prefix => `> :x: What do you want to rate? Use \`zp/rate <smth>\``,
+  RATE_EMBED_TITLE: "Rate", 
+  RATE_ITEM: "Subject",
 };

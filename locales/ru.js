@@ -322,5 +322,10 @@ module.exports = {
   PREFIX_FOOTER: prefix => `Вы можете сменить префикс используя ${prefix}prefix [префикс]`,
   PREFIX_TOO_LONG: "> :x: Префикс не может быть длинее 10 символов.",
   PREFIX_SUCCESS: prefix => `> :white_check_mark: Префикс успешно изменен на \`${prefix}\``,
-  EEVSAY_DESCRIPTION: "говорит ваш текст от лица бота",
+  DEVSAY_DESCRIPTION: "говорит ваш текст от лица бота",
+  RATE_DESCRIPTION: "оценить выбранный вами предмет",
+  RATE_USAGE: "<что-либо>",
+  RATE_NO_ARGS: prefix => `> :x: Что вы хотите оценить? Используйте \`${prefix}rate <что-либо>\``,
+  RATE_EMBED_TITLE: "Оценка",
+  RATE_ITEM: "Предмет на оценку",
 };
