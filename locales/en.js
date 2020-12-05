@@ -326,7 +326,7 @@ module.exports = {
   DEVSAY_DESCRIPTION: "says your text as a bot",
   RATE_DESCRIPTION: "rate your chosen subject",
   RATE_USAGE: "<smth>",
-  RATE_NO_ARGS: prefix => `> :x: What do you want to rate? Use \`zp/rate <smth>\``,
+  RATE_NO_ARGS: prefix => `> :x: What do you want to rate? Use \`${prefix}rate <smth>\``,
   RATE_EMBED_TITLE: "Rate", 
   RATE_ITEM: "Subject",
 };
