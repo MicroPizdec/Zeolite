@@ -334,7 +334,7 @@ module.exports = {
   RELOAD_NO_ARGS: prefix => `> :x: Какую команду вы хотите перезагрузить? Используйте \`${prefix}reload <команда, langs или all>\``,
   RELOAD_SUCCESS: cmd => `:white_check_mark: Команда \`${cmd}\` успешно перезагружена!`,
   RELOAD_ALL_SUCCESS: ":white_check_mark: Все команды успешно перезагружены!",
-  RELOAD_LANGS_SUCCESS: "white_check_mark: Языки успешно перезагружены!",
+  RELOAD_LANGS_SUCCESS: ":white_check_mark: Языки успешно перезагружены!",
   RELOAD_COMMAND_DOESNT_EXIST: "> :x: Такой команды не существует.",
   RELOAD_ERROR: cmd => `:x: Произошла ошибка при перезагрузке команды \`${cmd}\``,
   RELOAD_ERROR_ALL: ":x: Произошла ошибка при перезагрузке всех команд",
