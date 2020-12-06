@@ -59,19 +59,18 @@ module.exports = {
   description: "_8BALL_COMMAND_DESCRIPTION",
   usage: "_8BALL_COMMAND_USAGE",
   async run(client, msg, args, prefix, language) {
-    if (!args.length)
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "_8BALL_NO_ARGS_PROMPT", prefix));
-
-    if (msg.content.slice(prefix.length + this.name.length + 1).split(" ").length < 2) {
-      return msg.channel.createMessage(_(language, "_8BALL_2_WORDS"));
+    if (!args.length) {
+      return msg.channel.createMessage(t(language, "_8BALL_NO_ARGS_PROMPT", prefix));
     }
+
+    const question = args.raw.join(" ");
 
     const embed = {
       author: {
         name: msg.author.username + "#" + msg.author.discriminator,
         icon_url: msg.author.avatarURL,
       },
-      title: client.i18n.getTranslation(language, "_8BALL_EMBED_TITLE", msg.content.slice(prefix.length + 1 + this.name.length)),
+      title: t(language, "_8BALL_EMBED_TITLE", question),
       description: randomArrayItem(answers[language]),
       color: Math.round(Math.random() * 16777216) + 1,
       footer: {
@@ -79,6 +78,7 @@ module.exports = {
         icon_url: client.user.avatarURL,
       },
     };
+
     await msg.channel.createMessage({ embed });
   }
 };
