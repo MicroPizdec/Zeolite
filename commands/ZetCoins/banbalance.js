@@ -12,11 +12,11 @@ module.exports = {
     if (msg.mentions.length) user = msg.mentions[0];
     else user = await client.fetchUser(userID);
 
-    if (!user) return msg.channel.createMessage(client.i18n.getTranslation(language, "INVALID_USER_PROVIDED"));
+    if (!user) return msg.channel.createMessage(t(language, "INVALID_USER_PROVIDED"));
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: user.id } }))[0];
     if (userBalance.banned)
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "BALANCE_ALREADY_BANNED", user));
+      return msg.channel.createMessage(t(language, "BALANCE_ALREADY_BANNED", user));
 
     await zetCoins.update({
       banned: true,
@@ -26,9 +26,11 @@ module.exports = {
       where: { user: user.id },
     });
 
+    await deposit.update({ balance: 0 }, { where: { user: user.id } });
+
     const embed = {
-      title: client.i18n.getTranslation(language, "BANBALANCE_EMBED_TITLE", user),
-      description: client.i18n.getTranslation(language, "BANBALANCE_EMBED_DESCRIPTION", reason),
+      title: t(language, "BANBALANCE_EMBED_TITLE", user),
+      description: t(language, "BANBALANCE_EMBED_DESCRIPTION", reason),
       color: 3066993,
     };
     await msg.channel.createMessage({ embed });

@@ -9,6 +9,8 @@ const Group = require("./group");
 const Logger = require("./logger");
 const i18n = require("./i18n");
 
+const { parse, basename } = require("path");
+
 function validatePermission(member, permissions) {
   if (permissions instanceof Array) {
     for (const permission of permissions) {
@@ -200,30 +202,29 @@ class CmdClient extends Eris.Client {
     if (!ext.load || !ext.load instanceof Function) {
       throw new Error("extension should export a load() function");
     }
-    if (!ext.unload || !ext.unload instanceof Function) {
-      throw new Error("extension should export a unload() function");
-    }
+
+    ext.name = parse(basename(path)).name;
+    ext.path = path;
 
     ext.load(this);
-    this.extensions[require.resolve(path)] = ext;
+    this.extensions[ext.name] = ext;
   }
 
-  unloadExtension(path) {
-    const fullPath = require.resolve(path);
-
-    if (!this.extensions[fullPath]) {
+  unloadExtension(name) {
+    if (!this.extensions[name]) {
       throw new Error("extension does not exist");
     }
 
-    const ext = this.extensions[fullPath];
+    const ext = this.extensions[name];
     
-    ext.unload();
-    delete this.extensions[fullPath];
-    delete require.cache[fullPath];
+    if (ext.unload) ext.unload();
+    delete this.extensions[name];
+    delete require.cache[ext.path];
+    return ext.path;
   }
 
-  reloadExtension(path) {
-    this.unloadExtension(path);
+  reloadExtension(name) {
+    const path = this.unloadExtension(name);
     this.loadExtension(path);
   }
 }
