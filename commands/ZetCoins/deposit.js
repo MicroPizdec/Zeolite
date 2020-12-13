@@ -48,9 +48,12 @@ module.exports = {
 
       const embed = {
         title: t(lang, "DEPOSIT_PUT_SUCCESS"),
-        description: t(lang, "BALANCE_EMBED_DESCRIPTION", intSum),
         color: Math.round(Math.random() * 16777216),
         fields: [
+          {
+            name: t(lang, "DEPOSIT_YOUR_BALANCE"),
+            value: t(lang, "BALANCE_EMBED_DESCRIPTION", userBal.balance),
+          },
           {
             name: t(lang, "DEPOSIT_TOTAL"),
             value: t(lang, "BALANCE_EMBED_DESCRIPTION", dep.balance),
@@ -73,9 +76,12 @@ module.exports = {
 
       const embed = {
         title: t(lang, "DEPOSIT_WD_SUCCESS"),
-        description: t(lang, "BALANCE_EMBED_DESCRIPTION", intSum),
         color: Math.round(Math.random() * 16777216),
         fields: [
+          {
+            name: t(lang, "DEPOSIT_YOUR_BALANCE"),
+            value: t(lang, "BALANCE_EMBED_DESCRIPTION", userBal.balance),
+          },
           {
             name: t(lang, "DEPOSIT_TOTAL"),
             value: t(lang, "BALANCE_EMBED_DESCRIPTION", dep.balance),

@@ -352,4 +352,5 @@ module.exports = {
   DEPOSIT_TOTAL: "Deposit",
   DEPOSIT_NOT_ENOUGH_DEPOSIT: bal => `> :x: You don't have enough ZetCoins on deposit. Your deposit balance: ${bal} ZetCoins.`,
   DEPOSIT_WD_SUCCESS: "Successfully withdrawn from deposit!",
+  DEPOSIT_YOUR_BALANCE: "Your balance",
 };

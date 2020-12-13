@@ -350,4 +350,5 @@ module.exports = {
   DEPOSIT_TOTAL: "Депозит",
   DEPOSIT_NOT_ENOUGH_DEPOSIT: bal => `> :x: Недостаточно средств на депозите. Ваш депозит: ${bal} ZetCoin'ов.`,
   DEPOSIT_WD_SUCCESS: "Успешно снято с депозита!",
+  DEPOSIT_YOUR_BALANCE: "Ваш баланс",
 };
