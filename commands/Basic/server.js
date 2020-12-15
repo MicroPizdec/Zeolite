@@ -15,6 +15,8 @@ module.exports = {
     const createdDaysAgo = Math.floor((Date.now() - guild.createdAt) / (86400 * 1000));
     const joinedDaysAgo = Math.floor((Date.now() - msg.member.joinedAt) / (86400 * 1000));
 
+    const boostersCount = guild.members.filter(m => m.premiumSince).length;
+
     const embed = {
       author: {
         name: guild.name,
@@ -33,6 +35,10 @@ module.exports = {
         {
           name: t(lang, "SERVERINFO_CREATION_DATE"),
           value: strftime("%e %b %Y, %H:%M", new Date(guild.createdAt)) + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
+        },
+        {
+          name: t(lang, "SERVERINFO_VERIFICATION_LEVEL"),
+          value: t(lang, "SERVERINFO_VERIFICATION_LEVELS")[guild.verificationLevel],
         },
         {
           name: t(lang, "SERVERINFO_CHANNELS"),
@@ -62,8 +68,26 @@ module.exports = {
           name: t(lang, "SERVERINFO_REGION"),
           value: guild.region,
         },
+        {
+          name: t(lang, "SERVERINFO_BOOST_LEVEL"),
+          value: guild.premiumTier,
+          inline: true,
+        },
       ],
     };
+
+    if (guild.premiumSubscriptionCount) embed.fields.push({
+      name: t(lang, "SERVERINFO_BOOST_COUNT"),
+      value: guild.premiumSubscriptionCount,
+      inline: true,
+    });
+
+    if (boostersCount) embed.fields.push({
+      name: t(lang, "SERVERINFO_BOOSTERS"),
+      value: boostersCount,
+      inline: true,
+    });
+
     await msg.channel.createMessage({ embed })
   }
 };
