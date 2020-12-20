@@ -362,4 +362,9 @@ module.exports = {
   DEPOSIT_NOT_ENOUGH_DEPOSIT: bal => `> :x: Недостаточно средств на депозите. Ваш депозит: ${bal} ZetCoin'ов.`,
   DEPOSIT_WD_SUCCESS: "Успешно снято с депозита!",
   DEPOSIT_YOUR_BALANCE: "Ваш баланс",
+  RANDOM_DESCRIPTION: "Генерирует рандомное число в указанном диапазоне.\nЕсли указано 1 число, генерирует в диапазоне от 1 до указанного числа.",
+  RANDOM_USAGE: "<макс> или <мин> <макс>",
+  RANDOM_NO_ARGS: prefix => `> :x: В каком диапазоне вы хотите сгенерировать число? Используйте \`${prefix}random <макс> или <мин> <макс>\``,
+  RANDOM_NUMBER_IS_NAN: "> :x: Указанное число не является числом.",
+  RANDOM_TITLE: (max, min) => `Рандомное число от ${min} до ${max}`,
 };

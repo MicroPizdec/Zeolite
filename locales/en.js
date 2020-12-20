@@ -364,4 +364,9 @@ module.exports = {
   DEPOSIT_NOT_ENOUGH_DEPOSIT: bal => `> :x: You don't have enough ZetCoins on deposit. Your deposit balance: ${bal} ZetCoins.`,
   DEPOSIT_WD_SUCCESS: "Successfully withdrawn from deposit!",
   DEPOSIT_YOUR_BALANCE: "Your balance",
+  RANDOM_DESCRIPTION: "Generates a random number in specified range.\nIf one number is provided, generates in range from 1 to number.",
+  RANDOM_USAGE: "<max> or <min> <max>",
+  RANDOM_NO_ARGS: prefix => `> :x: What number do you want to generate? Use \`${prefix} random <max> or <min> <max>\``,
+  RANDOM_NUMBER_IS_NAN: "> :x: Provided number is not a number.",
+  RANDOM_TITLE: (max, min) => `Random number in range from ${min} to ${max}`,
 };
