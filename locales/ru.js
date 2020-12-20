@@ -196,7 +196,7 @@ module.exports = {
   AVATAR_DESCRIPTION: "показывает ваш аватар или аватар указанного пользователя. Ключ -s позволяет получить иконку сервера",
   AVATAR_USAGE: "[-s] или [пользователь]",
   AVATAR_USER: user => `Аватар ${user.username}#${user.discriminator}`,
-  SERVER_ICON: "Иконка сервера",
+  SERVER_ICON: server => `Иконка сервера ${server}`,
   NOTES_DESCRIPTION: "позволяет вам управлять заметками",
   NOTES_USAGE: "<субкоманда> или <имя>",
   NOTES_ADD_USAGE: prefix => `> :x: Какую заметку вы хотите добавить? Используйте \`${prefix}notes add <имя> <содержание>\``,

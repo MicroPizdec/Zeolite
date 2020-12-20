@@ -28,8 +28,7 @@ function validatePermission(member, permissions) {
 class CmdClient extends Eris.Client {
   constructor(token, options = {}) {
     super(token, options);
-    this.prefix1 = options.prefix1;
-    this.prefix2 = options.prefix2;
+    this.prefix = options.prefix;
     this.owners = options.owners || [];
 
     this.commands = new Eris.Collection();
@@ -77,7 +76,7 @@ class CmdClient extends Eris.Client {
       if (!msg.guild || msg.author.bot) return;
       
       const prefix = await prefixes.findOne({ where: { server: msg.guild.id } })
-          .then(p => p && p.prefix) || this.prefix1;
+          .then(p => p && p.prefix) || this.prefix;
 
       let language = (await userLanguages.findOrCreate({ where: { user: msg.author.id } }))[0];
       if (!language.overriden) {

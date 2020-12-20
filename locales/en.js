@@ -197,7 +197,7 @@ module.exports = {
   AVATAR_DESCRIPTION: "gets your or someone's avatar. -s key also gets the server icon",
   AVATAR_USAGE: "[-s] or [user]",
   AVATAR_USER: user => `Avatar of ${user.username}#${user.discriminator}`,
-  SERVER_ICON: "Server icon:",
+  SERVER_ICON: server => `Icon of ${server}`,
   NOTES_DESCRIPTION: "lets you to manage your notes",
   NOTES_USAGE: "[subcommand]",
   NOTES_ADD_USAGE: prefix => `> :x: What note you want to add? Use \`${prefix}notes add <name> <content>\``,

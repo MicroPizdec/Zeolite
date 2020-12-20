@@ -5,8 +5,7 @@ const fs = require("fs");
 const path = require("path");
 
 global.client = new CmdClient(config.token, {
-  prefix1: config.prefix1,
-  prefix2: config.prefix2,
+  prefix: config.prefix,
   owners: config.owners,
   supportChannelID: config.supportChannelID,
   defaultImageSize: 1024,

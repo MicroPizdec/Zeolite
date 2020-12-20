@@ -11,12 +11,15 @@ module.exports = {
   usage: "AVATAR_USAGE",
   async run(client, msg, args, prefix, lang) {
     if (args[0] === "-s") {
+      const guild = client.owners.includes(msg.author.id) ?
+        client.guilds.get(args[1]) || msg.guild : msg.guild;
+
       const embed = {
         author: {
-          name: _(lang, "SERVER_ICON"),
-          url: msg.guild.iconURL,
+          name: t(lang, "SERVER_ICON", guild.name),
+          url: guild.iconURL,
         },
-        image: { url: msg.guild.iconURL },
+        image: { url: guild.iconURL },
         color: Math.round(Math.random() * 16777216),
       };
 
