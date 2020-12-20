@@ -14,7 +14,7 @@ module.exports = {
           icon_url: msg.guild.iconURL,
         },
         description: t(lang, "PREFIX_DESC", prefix),
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
       };
 
       if (msg.member.permission.has("manageGuild")) {

@@ -18,7 +18,7 @@ module.exports = {
       },
       title: t(lang, "REVERSE_TITLE"),
       description: reversedString,
-      color: Math.round(Math.random() * 16777216),
+      color: await msg.author.embedColor(),
     }
 
     await msg.channel.createMessage({ embed });

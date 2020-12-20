@@ -22,7 +22,7 @@ module.exports = {
         name: guild.name,
         icon_url: guild.iconURL,
       },
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,

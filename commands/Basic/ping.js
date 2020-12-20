@@ -6,7 +6,7 @@ module.exports = {
     const embed = {
       title: client.i18n.getTranslation(language, "PING_EMBED_TITLE"),
       description: client.i18n.getTranslation(language, "PING_EMBED_DESCRIPTION", client.shards.map(s => s.latency)[0]),
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,

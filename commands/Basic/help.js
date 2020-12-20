@@ -11,7 +11,7 @@ module.exports = {
 
     let embed = {
       fields: [],
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
@@ -69,7 +69,7 @@ module.exports = {
       embed = {
         title: _(lang, "HELP_COMMAND_TITLE", cmd.name, prefix),
         description,
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
         fields: [
           {
             name: _(lang, "HELP_USAGE"),

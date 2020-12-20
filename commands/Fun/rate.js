@@ -130,20 +130,20 @@ const answers = {
     ],
   };
 
-  function randomAnswer(lang) {
-    let langAnswers = answers[lang];
-    return langAnswers[Math.floor(Math.random() * langAnswers.length)];
-  }
+function randomAnswer(lang) {
+  let langAnswers = answers[lang];
+  return langAnswers[Math.floor(Math.random() * langAnswers.length)];
+}
   
-  module.exports = {
-    name: "rate",
-    group: "FUN_GROUP",
-    description: "RATE_DESCRIPTION",
-    usage: "RATE_USAGE",
-    async run(client, msg, args, prefix, lang) {
-        if (!args.length) {
-            return msg.channel.createMessage(_(lang, "RATE_NO_ARGS", prefix));
-          }
+module.exports = {
+  name: "rate",
+  group: "FUN_GROUP",
+  description: "RATE_DESCRIPTION",
+  usage: "RATE_USAGE",
+  async run(client, msg, args, prefix, lang) {
+    if (!args.length) {
+      return msg.channel.createMessage(_(lang, "RATE_NO_ARGS", prefix));
+    }
 
     let question = msg.content.slice(prefix.length + this.name.length + 1);
 
@@ -154,7 +154,7 @@ const answers = {
         },
         title: _(lang, "RATE_EMBED_TITLE"),
         description: randomAnswer(lang),
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
         fields: [
           {
             name: _(lang, "RATE_ITEM"),
@@ -168,4 +168,5 @@ const answers = {
         };
       
       await msg.channel.createMessage({ embed });
-    }}
+  }
+}

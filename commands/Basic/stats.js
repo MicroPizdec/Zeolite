@@ -42,7 +42,7 @@ module.exports = {
 
     const embed = {
       title: client.i18n.getTranslation(language, "STATUS_EMBED_TITLE"),
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} v${client.version} © ZariBros`,
         icon_url: client.user.avatarURL,

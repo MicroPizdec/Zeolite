@@ -16,7 +16,7 @@ module.exports = {
         },
         title: _(lang, "LANG_AVAILABLE_LANGUAGES"),
         description: Object.keys(client.i18n.locales).join(", "),
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
         fields: [
           {
             name: _(lang, "LANG_YOUR_LANGUAGE"),

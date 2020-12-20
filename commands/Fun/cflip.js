@@ -11,7 +11,7 @@ module.exports = {
     const embed = {
       title: client.i18n.getTranslation(language, "CFLIP_EMBED_TITLE"),
       description: client.i18n.getTranslation(language, coinSide),
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,

@@ -24,7 +24,7 @@ module.exports = {
             },
             title: question,
             description,
-            color: Math.round(Math.random() * 16777216) + 1,
+            color: await msg.author.embedColor(),
         };
         const message = await msg.channel.createMessage({ embed });
         for (let i = 0; i < answers.length; i++) message.addReaction(reactions[i]);

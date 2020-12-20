@@ -84,7 +84,7 @@ module.exports = {
       },
       title: t(language, "_8BALL_EMBED_TITLE"),
       description: randomArrayItem(answers[language]),
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       fields: [
         {
         name: t(language, "_8BALL_YOUR_QUESTION"),

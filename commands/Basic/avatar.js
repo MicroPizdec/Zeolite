@@ -20,7 +20,7 @@ module.exports = {
           url: guild.iconURL,
         },
         image: { url: guild.iconURL },
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
       };
 
       return msg.channel.createMessage({ embed });
@@ -45,7 +45,7 @@ module.exports = {
         url: user.dynamicAvatarURL(format, 4096),
       },
 
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       image: { url: user.dynamicAvatarURL(format, 2048) },
     };
     await msg.channel.createEmbed(embed);

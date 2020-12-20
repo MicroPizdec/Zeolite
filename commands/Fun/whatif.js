@@ -45,7 +45,7 @@ module.exports = {
       },
       title: _(lang, "WHATIF_EMBED_TITLE"),
       description: _(lang, "WHATIF_EMBED_DESC", question),
-      color: Math.round(Math.random() * 16777216),
+      color: await msg.author.embedColor(),
       fields: [
         {
           name: _(lang, "WHATIF_ANSWER"),

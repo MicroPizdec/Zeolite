@@ -15,7 +15,7 @@ module.exports = {
         icon_url: client.user.avatarURL,
       },
       description: t(lang, "INFO_EMBED_DESC"),
-      color: Math.round(Math.random() * 16777216),
+      color: await msg.author.embedColor(),
       fields: [
         {
           name: t(lang, "INFO_DEVS"),

@@ -22,7 +22,7 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      color: Math.round(Math.random() * 16777216),
+      color: await msg.author.embedColor(),
     };
 
     let file;

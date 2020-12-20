@@ -109,7 +109,7 @@ module.exports = {
         let embed = {
           title: _(lang, "NOTES_USAGE_EMBED"),
           description: _(lang, "NOTES_USAGE_EMBED_DESCRIPTION", prefix),
-          color: Math.round(Math.random() * 16777216),
+          color: await msg.author.embedColor(),
           footer: {
             text: `${client.user.username} © ZariBros`,
             icon_url: client.user.avatarURL,
