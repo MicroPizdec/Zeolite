@@ -8,7 +8,7 @@ module.exports = {
       const embed = {
         title: t(lang, "DEPOSIT_EMBED_TITLE"),
         description: t(lang, "DEPOSIT_EMBED_DESC"),
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
         fields: [
           {
             name: t(lang, "DEPOSIT_USAGE"),
@@ -48,7 +48,7 @@ module.exports = {
 
       const embed = {
         title: t(lang, "DEPOSIT_PUT_SUCCESS"),
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
         fields: [
           {
             name: t(lang, "DEPOSIT_YOUR_BALANCE"),
@@ -76,7 +76,7 @@ module.exports = {
 
       const embed = {
         title: t(lang, "DEPOSIT_WD_SUCCESS"),
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
         fields: [
           {
             name: t(lang, "DEPOSIT_YOUR_BALANCE"),

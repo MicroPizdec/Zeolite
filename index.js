@@ -15,7 +15,7 @@ global.client = new CmdClient(config.token, {
   intents: [ "guilds", "guildMembers", "guildMessages" ],
 });
 
-client.version = "1.8.3";
+client.version = "1.8.4";
 
 client.loadGroups([
   "Basic",

@@ -35,7 +35,7 @@ module.exports = {
         icon_url: user.avatarURL,
       },
       description: t(language, "BALANCE_EMBED_DESCRIPTION", userBalance.balance),
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       fields: [
         {
           name: t(language, "BALANCE_DEPOSIT"),

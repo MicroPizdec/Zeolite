@@ -16,7 +16,7 @@ module.exports = {
       const embed = {
         title: t(language, "WORK_COOLDOWN_TITLE"),
         description: t(language, "WORK_COOLDOWN_DESC", minsLeft),
-        color: Math.round(Math.random() * 16777216),
+        color: await msg.author.embedColor(),
         footer: {
           text: `${client.user.username} © ZariBros`,
           icon_url: client.user.avatarURL,
@@ -46,7 +46,7 @@ module.exports = {
       },
       title: client.i18n.getTranslation(language, "WORK_EMBED_TITLE"),
       description: client.i18n.getTranslation(language, "WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
-      color: Math.round(Math.random() * 16777216) + 1,
+      color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,

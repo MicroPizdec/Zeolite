@@ -17,7 +17,7 @@ module.exports = {
 
     const embed = {
       title: t(lang, isGlobal ? "TOP_TITLE_GLOBAL" : "TOP_TITLE", msg.guild.name),
-      color: Math.round(Math.random() * 16777216),
+      color: await msg.author.embedColor(),
       footer: {
         text: t(lang, "TOP_FOOTER", authorPosition, authorBalance.balance),
         icon_url: msg.author.avatarURL,
