@@ -6,21 +6,21 @@ module.exports = {
   aliases: [ "pay" ],
   async run(client, msg, args, prefix, language) {
     if (!args.length)
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "SENDCOINS_NO_ARGS_PROMPT", prefix));
+      return msg.channel.createMessage(t(language, "SENDCOINS_NO_ARGS_PROMPT", prefix));
 
     const userID = args[0];
     const amount = Math.abs(parseFloat(args[1]));
     let user;
 
     if (!args[1])
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "SENDCOINS_NO_AMOUNT"));
+      return msg.channel.createMessage(t(language, "SENDCOINS_NO_AMOUNT"));
     if (isNaN(amount))
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "SENDCOINS_AMOUNT_IS_NAN"));
+      return msg.channel.createMessage(t(language, "SENDCOINS_AMOUNT_IS_NAN"));
 
     if (msg.mentions.length) user = msg.mentions[0];
     else user = await client.fetchUser(userID);
 
-    if (!user) return msg.channel.createMessage(client.i18n.getTranslation(language, "INVALID_USER_PROVIDED"));
+    if (!user) return msg.channel.createMessage(t(language, "INVALID_USER_PROVIDED"));
 
     if (user.id === msg.author.id) return msg.channel.createMessage(_(language, "CANNOT_SEND_COINS_TO_SELF"));
 
@@ -29,21 +29,21 @@ module.exports = {
     
     if (authorBalance.banned) {
       const bannedBalanceEmbed = {
-        title: client.i18n.getTranslation(language, "BANNED_BALANCE"),
-        description: client.i18n.getTranslation(language, "BANNED_BALANCE_REASON", authorBalance.reason),
+        title: t(language, "BANNED_BALANCE"),
+        description: t(language, "BANNED_BALANCE_REASON", authorBalance.reason),
         color: 15158332,
       };
       return msg.channel.createMessage({ embed: bannedBalanceEmbed });
     }
     if (userBalance.banned)
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "BALANCE_ALREADY_BANNED", user));
+      return msg.channel.createMessage(t(language, "BALANCE_ALREADY_BANNED", user));
 
     if (amount > authorBalance.balance)
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
+      return msg.channel.createMessage(t(language, "SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
 
     const confirmationEmbed = {
-      title: client.i18n.getTranslation(language, "SENDCOINS_CONFIRMATION_TITLE", amount, user),
-      description: client.i18n.getTranslation(language, "SENDCOINS_CONFIRMATION_DESCRIPTION"),
+      title: t(language, "SENDCOINS_CONFIRMATION_TITLE", amount, user),
+      description: t(language, "SENDCOINS_CONFIRMATION_DESCRIPTION"),
     };
     const message = await msg.channel.createMessage({ embed: confirmationEmbed });
 
@@ -63,7 +63,7 @@ module.exports = {
       await message.edit({
         content: "",
         embed: {
-          title: client.i18n.getTranslation(language, "SENDCOINS_SUCCESSFULLY_SENT", amount, user),
+          title: t(language, "SENDCOINS_SUCCESSFULLY_SENT", amount, user),
           color: 3066993,
         },
       });
@@ -71,7 +71,7 @@ module.exports = {
       await message.edit({
         content: "",
         embed: {
-          title: client.i18n.getTranslation(language, "SENDCOINS_CANCELLED_TRANSACTION"),
+          title: t(language, "SENDCOINS_CANCELLED_TRANSACTION"),
           color: 15158332,
         },
       });

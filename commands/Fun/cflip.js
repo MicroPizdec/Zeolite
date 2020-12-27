@@ -9,8 +9,8 @@ module.exports = {
     const coinSide = sidewaysChance ? "CFLIP_SIDEWAYS" : coin[Math.floor(Math.random() * 2)];
 
     const embed = {
-      title: client.i18n.getTranslation(language, "CFLIP_EMBED_TITLE"),
-      description: client.i18n.getTranslation(language, coinSide),
+      title: t(language, "CFLIP_EMBED_TITLE"),
+      description: t(language, coinSide),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,

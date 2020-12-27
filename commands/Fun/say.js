@@ -13,7 +13,7 @@ module.exports = {
   helpCommand: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length && !msg.attachments.length)
-      return msg.channel.createMessage(client.i18n.getTranslation(language, "SAY_NO_ARGS_PROMPT", prefix));
+      return msg.channel.createMessage(t(language, "SAY_NO_ARGS_PROMPT", prefix));
     
     let text = msg.content.slice(prefix.length + this.name.length + 1);
 

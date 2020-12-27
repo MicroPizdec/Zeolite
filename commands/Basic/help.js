@@ -25,7 +25,7 @@ module.exports = {
       embed.description = t(lang, "HELP_EMBED_DESC", prefix);
 
       if (isDevHelp)
-        embed.title = client.i18n.getTranslation(lang, "HELP_EMBED_TITLE_OWNER_ONLY");
+        embed.title = t(lang, "HELP_EMBED_TITLE_OWNER_ONLY");
 
       for (const group of client.groups.values()) {
         let filterFunction = c => !c.ownerOnly;

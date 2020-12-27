@@ -30,8 +30,8 @@ module.exports = {
     const userBalance = (await zetCoins.findOrCreate({ where: { user: msg.author.id } }))[0];
     if (userBalance.banned) {
       const bannedBalanceEmbed = {
-        title: client.i18n.getTranslation(language, "BANNED_BALANCE"),
-        description: client.i18n.getTranslation(language, "BANNED_BALANCE_REASON", userBalance.reason),
+        title: t(language, "BANNED_BALANCE"),
+        description: t(language, "BANNED_BALANCE_REASON", userBalance.reason),
         color: 15158332,
       };
       return msg.channel.createMessage({ embed: bannedBalanceEmbed });
@@ -44,8 +44,8 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      title: client.i18n.getTranslation(language, "WORK_EMBED_TITLE"),
-      description: client.i18n.getTranslation(language, "WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
+      title: t(language, "WORK_EMBED_TITLE"),
+      description: t(language, "WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,

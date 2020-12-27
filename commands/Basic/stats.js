@@ -41,7 +41,7 @@ module.exports = {
     const ramUsage = process.memoryUsage().heapUsed / 1048576;
 
     const embed = {
-      title: client.i18n.getTranslation(language, "STATUS_EMBED_TITLE"),
+      title: t(language, "STATUS_EMBED_TITLE"),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} v${client.version} © ZariBros`,
@@ -49,7 +49,7 @@ module.exports = {
       },
       fields: [
         {
-          name: client.i18n.getTranslation(language, "STATUS_UPTIME"),
+          name: t(language, "STATUS_UPTIME"),
           value: parseUptime(process.uptime() * 1000),
         },
         {
@@ -61,11 +61,11 @@ module.exports = {
           value: ramUsage.toFixed(1) + " " + t(language, "STATUS_MEGABYTES"),
         },
         {
-          name: client.i18n.getTranslation(language, "STATUS_SERVERS"),
+          name: t(language, "STATUS_SERVERS"),
           value: client.guilds.size,
         },
         {
-          name: client.i18n.getTranslation(language, "STATUS_USERS"),
+          name: t(language, "STATUS_USERS"),
           value: client.users.size,
         },
         {
