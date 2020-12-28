@@ -7,8 +7,6 @@ module.exports = {
     [ "464348805899354113", "412503784455929857", "330153333962702850" ]
       .forEach(id => devs.push(client.users.get(id)));
 
-    const inviteLink = "https://discord.com/oauth2/authorize?client_id=679692205736460301&scope=bot&permissions=8";
-
     const embed = {
       author: {
         name: "Zeolite",
@@ -23,7 +21,7 @@ module.exports = {
         },
         {
           name: t(lang, "INFO_LINKS"),
-          value: `[${t(lang, "INFO_INVITE")}](${inviteLink})\n` +
+          value: `[${t(lang, "INFO_INVITE")}](${await client.getInviteLink(8)})\n` +
           `[${t(lang, "INFO_SUPPORT_SERVER")}](https://discord.gg/e6V38mv)\n` +
           `[${t(lang, "INFO_DONATE")}](https://www.donationalerts.com/r/zaribros)\n` +
           `[bots.server-discord.com](https://bots.server-discord.com/679692205736460301)\n` +

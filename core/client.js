@@ -226,7 +226,20 @@ class CmdClient extends Eris.Client {
     const path = this.unloadExtension(name);
     this.loadExtension(path);
   }
-}
+
+  async getAppInfo() {
+    return this.requestHandler.request("GET", "/oauth2/applications/@me", true);
+  }
+
+  async getInviteLink(permissions){
+    const appInfo = await this.getAppInfo();
+
+    let link = `https://discord.com/api/oauth2/authorize?client_id=${appInfo.id}&scope=bot`;
+    if (permissions) link += `&permissions=${permissions}`;
+
+    return link;
+  }
+} 
 
 CmdClient.PermissionError = PermissionError;
 CmdClient.Group = Group;
