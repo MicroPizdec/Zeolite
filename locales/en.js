@@ -263,7 +263,7 @@ module.exports = {
   WHATIF_2_WORDS: "> :x: Not less than 2 words.",
   WHATIF_EMBED_TITLE: ":grey_question: What if?",
   WHATIF_EMBED_DESC: smth => `What if ${smth}?`,
-  WHATIF_ANSWER: "My intuition tells me...",
+  WHATIF_ANSWER: "Answer",
   WHATIF_FOOTER: "We are not responsible for answers, so don't repeat it.",
   INVITE_DESCRIPTION: "gets information on invite",
   INVITE_USAGE: "<invite>",
