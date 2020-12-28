@@ -1,16 +1,33 @@
 const answers = {
   ru: [
     'Ничего не произойдет',
-    'Это будет успехом!',
-    'Хм... впринципе можно попробовать только без пятого не начинай.',
-    'Это может вызвать сердечный приступ так что лучше не надо...',
+    'Это будет успехом.',
+    'Будь осторожен.',
+    'Это будет провалом.',
+    ':candle: *тебе пиздец...*',
+    'Ну нихуёво ты придумал.',
     'Я даже не знаю, как ответить.',
-    'Плохая идея',
+    'Проверь сам',
+    'Давай!! ДАВАААЙ УРАА ДАВААЙ ДАААВААААЙ',
+    'Не надо!! НЕ НАДО НЕЕЕЕТ НЕ НАААДО СТОЙ ХВАТИТ',
+    'Ну давай твори псина',
+    'Bruh',
+    'Хуйня выйдет',
+    'САША ЖАМБАЛОВ ТЕБЕ ПИЗДЫ ДАСТ!!!',
+    'А хуй его знает.',
+    'Ну давай ебашь',
+    'Пёрни.',
+    '<:lol:729690204759392266> Ачё идея норм)',
+    'undefined',
+    'Плохая идея.',
+    'А я ебу чтоли?',
+    '<:who:793130610968494090> Сомневаюсь что у тебя получится это сделать',
+    '<:what:725632589205078031> Ебанёт интересно?',
   ],
   en: [
     'Nothing will happen',
-    'It will be successful!',
-    'Hmm... you can try it, but don\'t start without fifth.',
+    'It will be successful',
+    'Be careful.',
     'Don\'t do it, because it may cause heart attack.',
     'I don\'t know what to answer.',
     'It\'s a bad idea.'
@@ -34,16 +51,12 @@ module.exports = {
 
     let question = msg.content.slice(prefix.length + this.name.length + 1);
 
-    if (question.split(" ").length < 2) {
-      return msg.channel.createMessage(_(lang, "WHATIF_2_WORDS"));
-    }
 
     let embed = {
       author: {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      title: _(lang, "WHATIF_EMBED_TITLE"),
       description: _(lang, "WHATIF_EMBED_DESC", question),
       color: await msg.author.embedColor(),
       fields: [
@@ -52,9 +65,13 @@ module.exports = {
           value: randomAnswer(lang),
         },
       ],
-      footer: { text: _(lang, "WHATIF_FOOTER") },
+      footer: {
+        text: `${client.user.username} © ZariBros`,
+        icon_url: client.user.avatarURL,
+      },
     };
 
     await msg.channel.createMessage({ embed });
   }
 };
+
