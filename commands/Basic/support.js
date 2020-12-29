@@ -9,6 +9,7 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "SUPPORT_DESCRIPTION",
   usage: "SUPPORT_USAGE",
+  aliases: [ "report" ],
   async run(client, msg, args, prefix, lang) {
     /* let userBan = await supportBans.findOne({ where: { user: msg.author.id } });
     if (userBan && userBan.banned) {
@@ -43,7 +44,7 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      title: ":e_mail: Вам отправили сообщение",
+      title: "Вопрос",
       description: question,
       color: 5369917,
       timestamp: new Date().toISOString(),

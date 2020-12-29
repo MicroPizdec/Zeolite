@@ -9,8 +9,9 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "AVATAR_DESCRIPTION",
   usage: "AVATAR_USAGE",
+  aliases: [ "profilepicture", "av", "pfp", ],
   async run(client, msg, args, prefix, lang) {
-    if (args[0] === "-s") {
+    if (args[0] === "-s" || args[0] == "server") {
       const guild = client.owners.includes(msg.author.id) ?
         client.guilds.get(args[1]) || msg.guild : msg.guild;
 

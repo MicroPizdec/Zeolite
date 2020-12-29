@@ -4,6 +4,7 @@ module.exports = {
   name: "cflip",
   group: "FUN_GROUP",
   description: "CFLIP_COMMAND_DESCRIPTION",
+  aliases: [ "coinflip" ],
   async run(client, msg, args, prefix, language) {
     const sidewaysChance = Math.random() < 0.05;
     const coinSide = sidewaysChance ? "CFLIP_SIDEWAYS" : coin[Math.floor(Math.random() * 2)];

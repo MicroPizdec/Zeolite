@@ -49,6 +49,8 @@ const answers = {
     "Охуеть",
     "Всем интересно! Всем интересно!",
     "Всем похуй! Всем похуй!",
+    "Ладно.",
+    "Нет слов - одни эмоции",
   ],
   ua: [
     "Так.",
@@ -70,6 +72,7 @@ module.exports = {
   group: "FUN_GROUP",
   description: "_8BALL_COMMAND_DESCRIPTION",
   usage: "_8BALL_COMMAND_USAGE",
+  aliases: [ "8b" ],
   async run(client, msg, args, prefix, language) {
     if (!args.length) {
       return msg.channel.createMessage(t(language, "_8BALL_NO_ARGS_PROMPT", prefix));

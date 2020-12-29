@@ -21,15 +21,14 @@ module.exports = {
     let { language: userLang } = await languages.findOne({ where: { server: msg.guild.id } });
 
     let embed = {
-      title: _(userLang, "RESPOND_SENT"),
+      title: t(lang, "RESPOND_SENT"),
       description: answer,
       fields: [
         {
-          name: _(userLang, "RESPOND_YOUR_QUESTION"),
+          name: t(lang, "RESPOND_YOUR_QUESTION"),
           value: question.question,
         },
       ],
-      color: 14031103,
     };
 
     await client.createMessage(question.channel, { content: `<@${question.user}>`, embed });
