@@ -46,7 +46,7 @@ module.exports = {
       },
       title: "Вопрос",
       description: question,
-      color: 5369917,
+      color: 10420479,
       timestamp: new Date().toISOString(),
       footer: { text: `ID: ${id}` },
     };
@@ -71,7 +71,7 @@ module.exports = {
       },
       title: _(lang, "SUPPORT_SUCCESS"),
       description: _(lang, "SUPPORT_SUCCESS_DESC"),
-      color: 5369917,
+      color: await msg.author.embedColor(),
     };
 
     await msg.channel.createMessage({ embed });
