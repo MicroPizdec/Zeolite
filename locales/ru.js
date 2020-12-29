@@ -1,5 +1,5 @@
 module.exports = {
-  COMMAND_ERROR_OCCURRED: ":x: Shit i got cyberbullied...",
+  COMMAND_ERROR_OCCURRED: ":x: Произошла непредвиденная ошибка при выполнении команды.",
   COMMAND_ERROR_DESCRIPTION: "Эта ошибка была выслана разработчикам бота, и будет исправлена в ближайшее время.",
   INVALID_USER_PROVIDED: "> :x: Данного пользователя не существует.",
   BASIC_GROUP: "Основные команды",
@@ -282,8 +282,8 @@ module.exports = {
   INVITE_INVITER: "Приглашающий:",
   INVITE_CODE: code => `Код инвайта: ${code}`,
   INFO_DESCRIPTION: "информация о боте",
-  INFO_EMBED_DESC: "а нахуй тебе это знать вообще?",
-  INFO_DEVS: "Разработчик (не совсем)",
+  INFO_EMBED_DESC: "Простой в плане экономики многофункциональный бот, написанный на JavaScript",
+  INFO_DEVS: "Разработчики",
   INFO_LINKS: "Ссылки",
   INFO_INVITE: "Добавить бота на свой сервер",
   INFO_SUPPORT_SERVER: "Сервер поддержки",
