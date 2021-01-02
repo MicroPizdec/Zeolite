@@ -1,5 +1,6 @@
 const Eris = require("eris");
 const Sequelize = require("sequelize");
+const package = require("../../package");
 
 function parseUptime(time) {
   const obj = new Date(time);
@@ -44,7 +45,7 @@ module.exports = {
       title: t(language, "STATUS_EMBED_TITLE"),
       color: await msg.author.embedColor(),
       footer: {
-        text: `${client.user.username} v${client.version} © ZariBros`,
+        text: `${client.user.username} v${package.version} © ZariBros`,
         icon_url: client.user.avatarURL,
       },
       fields: [

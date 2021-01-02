@@ -4,6 +4,7 @@ module.exports = {
   description: "UNLIMITCMD_DESCRIPTION",
   usage: "UNLIMITCMD_USAGE",
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(_(lang, "UNLIMITCMD_NO_ARGS_PROMPT", prefix));

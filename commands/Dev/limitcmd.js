@@ -4,6 +4,7 @@ module.exports = {
   description: "LIMITCMD_DESCRIPTION",
   usage: "LIMITCMD_USAGE",
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(_(lang, "LIMITCMD_NO_ARGS_PROMPT", prefix));

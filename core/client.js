@@ -113,6 +113,10 @@ class CmdClient extends Eris.Client {
         return;
       }
 
+      if (command.argsRequired && !args.length) {
+        return this.commands.get("help").run(this, msg, [ command.name ], prefix, language.language);
+      }
+
       try {
         if (command.requiredPermissions) validatePermission(msg.member, command.requiredPermissions);
         await command.run(this, msg, args, prefix, language.language);

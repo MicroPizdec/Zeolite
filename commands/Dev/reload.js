@@ -4,6 +4,7 @@ module.exports = {
   description: "RELOAD_DESCRIPTION",
   usage: "RELOAD_USAGE",
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "RELOAD_NO_ARGS", prefix));

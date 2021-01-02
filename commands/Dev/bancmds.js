@@ -4,6 +4,7 @@
   description: "BANCOMMANDS_COMMAND_DESCRIPTION",
   usage: "BANCOMMANDS_COMMAND_USAGE",
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length)
       return msg.channel.createMessage(_(lang, "BANCOMMANDS_NO_ARGS_PROMPT", prefix));

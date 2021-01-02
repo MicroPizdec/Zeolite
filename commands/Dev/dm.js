@@ -4,6 +4,7 @@ module.exports = {
   description: "DM_COMMAND_DESCRIPTION",
   usage: "DM_COMMAND_USAGE",
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length)
       return msg.channel.createMessage(_(language, "DM_NO_ARGS_PROMPT", prefix));

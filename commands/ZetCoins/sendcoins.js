@@ -4,6 +4,7 @@ module.exports = {
   description: "SENDCOINS_COMMAND_DESCRIPTION",
   usage: "SENDCOINS_COMMAND_USAGE",
   aliases: [ "pay" ],
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length)
       return msg.channel.createMessage(t(language, "SENDCOINS_NO_ARGS_PROMPT", prefix));

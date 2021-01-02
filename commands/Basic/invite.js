@@ -23,6 +23,7 @@ module.exports = {
   description: "INVITE_DESCRIPTION",
   usage: "INVITE_USAGE",
   aliases: [ "i", "inviteinfo" ],
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(_(lang, "INVITE_NO_ARGS", prefix));

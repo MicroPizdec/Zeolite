@@ -4,6 +4,7 @@ module.exports = {
   description: "EMBED_DESCRIPTION",
   usage: "EMBED_USAGE",
   aliases: [ "emb" ],
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "EMBED_NO_ARGS", prefix));

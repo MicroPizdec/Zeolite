@@ -73,6 +73,7 @@ module.exports = {
   description: "_8BALL_COMMAND_DESCRIPTION",
   usage: "_8BALL_COMMAND_USAGE",
   aliases: [ "8b" ],
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length) {
       return msg.channel.createMessage(t(language, "_8BALL_NO_ARGS_PROMPT", prefix));

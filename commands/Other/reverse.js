@@ -4,6 +4,7 @@ module.exports = {
   description: "REVERSE_DESCRIPTION",
   usage: "REVERSE_USAGE",
   aliases: [ "rev" ],
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.raw.length) {
       return msg.channel.createMessage(t(lang, "REVERSE_NO_ARGS", prefix));

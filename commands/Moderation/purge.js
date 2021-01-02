@@ -6,6 +6,7 @@ module.exports = {
   guildOnly: true,
   requiredPermissions: "manageMessages",
   aliases: [ "prune", "clear" ],
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "PURGE_NO_ARGS", prefix));

@@ -5,6 +5,7 @@ module.exports = {
   usage: "SETBALANCE_COMMAND_USAGE",
   ownerOnly: true,
   hidden: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length)
       return msg.channel.createMessage(t(language, "SETBALANCE_NO_ARGS_PROMPT", prefix));

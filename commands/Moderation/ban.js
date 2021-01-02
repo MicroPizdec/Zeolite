@@ -4,6 +4,7 @@ module.exports = {
   description: "BAN_DESCRIPTION",
   usage: "KICK_USAGE",
   requiredPermissions: "banMembers",
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "BAN_NO_ARGS", prefix));

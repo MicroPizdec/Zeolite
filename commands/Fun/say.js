@@ -10,7 +10,7 @@ module.exports = {
   group: "FUN_GROUP",
   description: "SAY_COMMAND_DESCRIPTION",
   usage: "<text>",
-  helpCommand: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length && !msg.attachments.length)
       return msg.channel.createMessage(t(language, "SAY_NO_ARGS_PROMPT", prefix));

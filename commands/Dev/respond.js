@@ -5,6 +5,7 @@ module.exports = {
   usage: "RESPOND_USAGE",
   ownerOnly: true,
   hidden: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(_(lang, "RESPOND_NO_ARGS_PROMPT"));

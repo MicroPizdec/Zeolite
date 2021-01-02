@@ -4,6 +4,7 @@ module.exports = {
   description: "KICK_DESCRIPTION",
   usage: "KICK_USAGE",
   requiredPermissions: "kickMembers",
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "KICK_NO_ARGS", prefix));

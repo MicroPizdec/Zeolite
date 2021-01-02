@@ -5,6 +5,7 @@ module.exports = {
   group: "MODERATION_GROUP",
   description: "WARN_DESCRIPTION",
   usage: "WARN_USAGE",
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "WARN_NO_ARGS", prefix));

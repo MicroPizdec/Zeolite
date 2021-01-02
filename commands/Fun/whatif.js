@@ -44,6 +44,7 @@ module.exports = {
   group: "FUN_GROUP",
   description: "WHATIF_DESCRIPTION",
   usage: "WHATIF_USAGE",
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(_(lang, "WHATIF_NO_ARGS", prefix));

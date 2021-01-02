@@ -5,6 +5,7 @@ module.exports = {
   usage: "KICK_USAGE",
   aliases: [ "sban", "clearban", "cban" ],
   requiredPermissions: "banMembers",
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "SOFTBAN_NO_ARGS", prefix));

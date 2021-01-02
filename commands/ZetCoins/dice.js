@@ -3,6 +3,7 @@ module.exports = {
   group: "ZETCOINS_GROUP",
   description: "DICE_COMMAND_DESCRIPTION",
   usage: "DICE_COMMAND_USAGE",
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length)
       return msg.channel.createMessage(_(language, "DICE_NO_ARGS_PROMPT", prefix));

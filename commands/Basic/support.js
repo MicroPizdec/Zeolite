@@ -10,6 +10,7 @@ module.exports = {
   description: "SUPPORT_DESCRIPTION",
   usage: "SUPPORT_USAGE",
   aliases: [ "report" ],
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     /* let userBan = await supportBans.findOne({ where: { user: msg.author.id } });
     if (userBan && userBan.banned) {

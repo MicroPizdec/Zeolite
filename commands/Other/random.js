@@ -7,6 +7,7 @@ module.exports = {
   group: "OTHER_GROUP",
   description: "RANDOM_DESCRIPTION",
   usage: "RANDOM_USAGE",
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(t(lang, "RANDOM_NO_ARGS", prefix));

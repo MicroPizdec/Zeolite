@@ -145,6 +145,7 @@ module.exports = {
   group: "FUN_GROUP",
   description: "RATE_DESCRIPTION",
   usage: "RATE_USAGE",
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(_(lang, "RATE_NO_ARGS", prefix));

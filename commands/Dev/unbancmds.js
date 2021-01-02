@@ -4,6 +4,7 @@ module.exports = {
   description: "UNBANCOMMANDS_DESCRIPTION",
   usage: "UNBANCOMMANDS_USAGE",
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.channel.createMessage(_(lang, "UNBANCOMMANDS_NO_ARGS_PROMPT", prefix));
