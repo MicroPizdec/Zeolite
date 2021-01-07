@@ -1,6 +1,7 @@
 const Eris = require("eris");
 const Sequelize = require("sequelize");
 const package = require("../../package");
+const os = require("os");
 
 function parseUptime(time) {
   const obj = new Date(time);
@@ -37,12 +38,14 @@ function getPlatform() {
 module.exports = {
   name: "stats",
   group: "BASIC_GROUP",
-  description: "STATUS_COMMAND_DESCRIPTION",
+  description: "STATS_COMMAND_DESCRIPTION",
   async run(client, msg, args, prefix, language) {
     const ramUsage = process.memoryUsage().heapUsed / 1048576;
 
+    const cpu = os.cpus()[0];
+
     const embed = {
-      title: t(language, "STATUS_EMBED_TITLE"),
+      title: t(language, "STATS_EMBED_TITLE"),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} v${package.version} © ZariBros`,
@@ -50,28 +53,32 @@ module.exports = {
       },
       fields: [
         {
-          name: t(language, "STATUS_UPTIME"),
+          name: t(language, "STATS_UPTIME"),
           value: parseUptime(process.uptime() * 1000),
         },
         {
-          name: _(language, "STATUS_PLATFORM"),
+          name: _(language, "STATS_PLATFORM"),
           value: getPlatform(),
         },
         {
-          name: t(language, "STATUS_RAM_USAGE"),
-          value: ramUsage.toFixed(1) + " " + t(language, "STATUS_MEGABYTES"),
+          name: t(language, "STATS_RAM_USAGE"),
+          value: ramUsage.toFixed(1) + " " + t(language, "STATS_MEGABYTES"),
         },
         {
-          name: t(language, "STATUS_SERVERS"),
+          name: t(language, "STATS_SERVERS"),
           value: client.guilds.size,
         },
         {
-          name: t(language, "STATUS_USERS"),
+          name: t(language, "STATS_USERS"),
           value: client.users.size,
         },
         {
-          name: _(language, "STATUS_LIBRARIES"),
-          value: `Eris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}`
+          name: t(language, "STATS_CPU"),
+          value: `${cpu ? cpu.model : t(language, "STATS_CANT_GET_CPU_INFO")}`,
+        },
+        {
+          name: _(language, "STATS_LIBRARIES"),
+          value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}`
         },
       ],
     };

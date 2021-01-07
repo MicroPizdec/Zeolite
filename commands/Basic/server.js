@@ -17,6 +17,9 @@ module.exports = {
 
     const boostersCount = guild.members.filter(m => m.premiumSince).length;
 
+    let owner = guild.members.get(guild.ownerID)
+    || await client.fetchUser(guild.ownerID);
+
     const embed = {
       author: {
         name: guild.name,
@@ -28,6 +31,10 @@ module.exports = {
         icon_url: client.user.avatarURL,
       },
       fields: [
+        {
+          name: t(lang, "SERVERINFO_OWNER"),
+          value: `${owner.tag}`,
+        },
         {
           name: "ID",
           value: guild.id,
