@@ -396,7 +396,7 @@ module.exports = {
   WARN_ID: id => `ID предупреждения: ${id}`,
   WARN_FAILED: ":x: Не удалось выдать предупреждение",
   WARN_FAILED_REASON: "Роль этого пользователя выше вашей.",
-  ROLE_DESCRIPTION: "Показывает информацию о роли.",
+  ROLE_DESCRIPTION: "Показывает информацию о роли",
   ROLE_USAGE: "<роль>",
   ROLE_CREATED_AT: "Создана",
   ROLE_NOT_FOUND: "> :x: Роль не найдена.",

@@ -1,4 +1,4 @@
-const strftime = require("strftime");
+const moment = require("moment");
 
 module.exports = {
   name: "user",
@@ -20,6 +20,8 @@ module.exports = {
       ) || await client.fetchUser(userID);
     
     if (!member) return msg.channel.createMessage(t(language, "USER_NOT_FOUND"));
+
+    moment.locale(language);
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: member.id } }))[0];
 
@@ -60,7 +62,7 @@ module.exports = {
         },
         {
           name: t(language, "USERINFO_REGDATE"),
-          value: strftime("%e %b %Y, %H:%M", new Date(member.createdAt)) + " " + _(language, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
+          value: moment(member.createdAt).format("lll") + " " + _(language, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
           inline: true,
         },
         {
@@ -82,7 +84,7 @@ module.exports = {
     if (member.joinedAt) {
       embed.fields.splice(2, 0, {
         name: t(language, "USERINFO_JOINDATE"),
-        value: strftime("%e %b %Y, %H:%M", new Date(member.joinedAt)) + " " + _(language, "USERINFO_CREATED_DAYS_AGO", joinedDaysAgo)
+        value: moment(member.joinedAt).format("lll") + " " + _(language, "USERINFO_CREATED_DAYS_AGO", joinedDaysAgo)
       });
       indexInc++;
     }

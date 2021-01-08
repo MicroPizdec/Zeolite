@@ -1,4 +1,4 @@
-const strftime = require("strftime");
+const moment = require("moment");
 
 function intToHex(int) {
   let hexStr = int.toString(16);
@@ -30,6 +30,8 @@ module.exports = {
       return msg.channel.createMessage(t(lang, "ROLE_NOT_FOUND"));
     }
 
+    moment.locale(lang);
+
     const membersWithRole = msg.guild.members.filter(m => m.roles.includes(role.id))
       .length;
     const createdDaysAgo = Math.floor((Date.now() - role.createdAt) / (86400 * 1000));
@@ -44,7 +46,7 @@ module.exports = {
         },
         {
           name: t(lang, "ROLE_CREATED_AT"),
-          value: strftime("%e %b %Y, %H:%M", new Date(role.createdAt)) + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo)
+          value: moment(role.createdAt).format("lll") + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo)
         },
         {
           name: t(lang, "ROLE_MEMBERS"),

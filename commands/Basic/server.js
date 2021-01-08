@@ -1,4 +1,4 @@
-const strftime = require("strftime");
+const moment = require("moment");
 const { CategoryChannel, TextChannel, VoiceChannel } = require("eris");
 const { stripIndents } = require("common-tags");
 
@@ -9,6 +9,7 @@ module.exports = {
   guildOnly: true,
   aliases: [ "s", "serverinfo" ],
   async run(client, msg, args, prefix, lang) {
+    moment.locale(lang);
     const guild = client.owners.includes(msg.author.id) ?
       client.guilds.get(args[0]) || msg.guild : msg.guild;
 
@@ -41,7 +42,7 @@ module.exports = {
         },
         {
           name: t(lang, "SERVERINFO_CREATION_DATE"),
-          value: strftime("%e %b %Y, %H:%M", new Date(guild.createdAt)) + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
+          value: moment(guild.createdAt).format("lll") + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
         },
         {
           name: t(lang, "SERVERINFO_VERIFICATION_LEVEL"),
