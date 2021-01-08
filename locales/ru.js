@@ -395,5 +395,16 @@ module.exports = {
   WARN_SUCCESS: user => `:white_check_mark: Выдано предупреждение ${user}`,
   WARN_ID: id => `ID предупреждения: ${id}`,
   WARN_FAILED: ":x: Не удалось выдать предупреждение",
-  WARN_FAILED_REASON: "Роль этого пользователя выше вашей."
+  WARN_FAILED_REASON: "Роль этого пользователя выше вашей.",
+  ROLE_DESCRIPTION: "Показывает информацию о роли.",
+  ROLE_USAGE: "<роль>",
+  ROLE_CREATED_AT: "Создана",
+  ROLE_NOT_FOUND: "> :x: Роль не найдена.",
+  ROLE_MEMBERS: "Кол-во участников с этой ролью",
+  ROLE_MENTIONABLE: "Упоминаемая?",
+  ROLE_HOISTED: "Показывается отдельно?",
+  ROLE_MANAGED: "Управляется интеграцией?",
+  YES_NO: what => what ? "Да" : "Нет",
+  ROLE_COLOR: "Цвет",
+  ROLE_COLOR_DEFAULT: "Стандартный",
 };

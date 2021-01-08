@@ -397,5 +397,16 @@ module.exports = {
   WARN_SUCCESS: user => `:white_check_mark: ${user} has been warned`,
   WARN_ID: id => `Warn ID: ${id}`,
   WARN_FAILED: ":x: Warn failed",
-  WARN_FAILED_REASON: "This user's role is higher than your."
+  WARN_FAILED_REASON: "This user's role is higher than your.",
+  ROLE_DESCRIPTION: "Shows info about role",
+  ROLE_USAGE: "<role>",
+  ROLE_CREATED_AT: "Created at",
+  ROLE_NOT_FOUND: "> :x: Role not found.",
+  ROLE_MEMBERS: "Members with this role",
+  ROLE_MENTIONABLE: "Mentionable?",
+  ROLE_HOISTED: "Hoisted?",
+  ROLE_MANAGED: "Managed by integration?",
+  YES_NO: what => what ? "Yes" : "No",
+  ROLE_COLOR: "Color",
+  ROLE_COLOR_DEFAULT: "Default",
 };
