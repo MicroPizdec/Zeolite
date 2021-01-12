@@ -58,7 +58,7 @@ module.exports = {
         },
         {
           name: t(lang, "ROLE_HOISTED"),
-          value: t(lang, "YES_NO", role.hoisted),
+          value: t(lang, "YES_NO", role.hoist),
         },
         {
           name: t(lang, "ROLE_MANAGED"),
