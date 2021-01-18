@@ -410,4 +410,8 @@ module.exports = {
   YES_NO: what => what ? "Yes" : "No",
   ROLE_COLOR: "Color",
   ROLE_COLOR_DEFAULT: "Default",
+  DEMOTIVATOR_DESCRIPTION: "Creates a demotivator.\nYou can use double quotes for text and bottom text",
+  DEMOTIVATOR_USAGE: "<text> <bottom text> <image: url or attachment>",
+  DEMOTIVATOR_NO_BOTTOM_TEXT: "> :x: Provide the bottom text.",
+  DEMOTIVATOR_NO_IMAGE: "> :x: Provide the image.",
 };

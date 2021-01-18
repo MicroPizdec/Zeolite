@@ -408,4 +408,8 @@ module.exports = {
   YES_NO: what => what ? "Да" : "Нет",
   ROLE_COLOR: "Цвет",
   ROLE_COLOR_DEFAULT: "Стандартный",
+  DEMOTIVATOR_DESCRIPTION: "Создает демотиватор.\nИспользуйте двойные кавычки для текста и нижнего текста.",
+  DEMOTIVATOR_USAGE: "<текст> <нижний текст> <изображение: url или вложение>",
+  DEMOTIVATOR_NO_BOTTOM_TEXT: "> :x: Укажите нижний текст.",
+  DEMOTIVATOR_NO_IMAGE: "> :x: Укажите изображение.",
 };
