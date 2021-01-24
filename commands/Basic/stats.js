@@ -3,6 +3,7 @@ const Sequelize = require("sequelize");
 const package = require("../../package");
 const canvas = require("canvas").version
 const os = require("os");
+const moment = require("moment");
 
 function parseUptime(time) {
   const obj = new Date(time);
@@ -59,7 +60,7 @@ module.exports = {
         },
         {
           name: _(language, "STATS_PLATFORM"),
-          value: getPlatform(),
+          value: getPlatform() + " " + os.arch() + " " + os.release(),
         },
         {
           name: t(language, "STATS_RAM_USAGE"),
@@ -68,6 +69,12 @@ module.exports = {
         {
           name: t(language, "STATS_SERVERS"),
           value: client.guilds.size,
+          inline: true,
+        },
+        {
+          name: t(language, "STATS_CHANNELS"),
+          value: Object.keys(client.channelGuildMap).length,
+          inline: true,
         },
         {
           name: t(language, "STATS_USERS"),
@@ -79,7 +86,7 @@ module.exports = {
         },
         {
           name: _(language, "STATS_LIBRARIES"),
-          value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}\nCanvas: ${canvas}`
+          value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}\nCanvas: ${canvas}\nMoment: ${moment.version}`
         },
       ],
     };
