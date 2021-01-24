@@ -1,6 +1,7 @@
 const Eris = require("eris");
 const Sequelize = require("sequelize");
 const package = require("../../package");
+const canvas = require("canvas").version
 const os = require("os");
 
 function parseUptime(time) {
@@ -78,7 +79,7 @@ module.exports = {
         },
         {
           name: _(language, "STATS_LIBRARIES"),
-          value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}`
+          value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}\nCanvas: ${canvas}`
         },
       ],
     };
