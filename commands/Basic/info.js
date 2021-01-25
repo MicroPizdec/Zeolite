@@ -2,6 +2,7 @@ module.exports = {
   name: "info",
   group: "BASIC_GROUP",
   description: "INFO_DESCRIPTION",
+  aliases: [ "about" ],
   async run(client, msg, args, prefix, lang) {
     let devs = [];
     [ "464348805899354113", "412503784455929857", "330153333962702850" ]
@@ -9,7 +10,7 @@ module.exports = {
 
     const embed = {
       author: {
-        name: "Zeolite",
+        name: client.user.username,
         icon_url: client.user.avatarURL,
       },
       description: t(lang, "INFO_EMBED_DESC"),
