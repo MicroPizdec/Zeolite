@@ -3,4 +3,4 @@ module.exports = (sequelize, DataTypes) =>
     user: DataTypes.STRING,
     color: DataTypes.INTEGER,
     isRandom: DataTypes.BOOLEAN,
-  });
+  }, { timestamps: false });
