@@ -32,11 +32,11 @@ module.exports = {
     ctx.fillStyle = isWhite ? "white" : "black";
     ctx.fillRect(0, 0, 1024, 1024);
     ctx.fillStyle = isWhite ? "black" : "white";
-    ctx.fillRect(92, 40, 840, 770);
+    ctx.fillRect(72, 40, 880, 790);
     ctx.fillStyle = isWhite ? "white" : "black";
-    ctx.fillRect(97, 45, 830, 760);
+    ctx.fillRect(77, 45, 870, 780);
 
-    ctx.drawImage(image, 102, 50, 820, 750);
+    ctx.drawImage(image, 82, 50, 860, 770);
 
     ctx.fillStyle = isWhite ? "black" : "white";
     ctx.font = "96px Times New Roman";
