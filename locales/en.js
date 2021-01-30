@@ -449,4 +449,28 @@ module.exports = {
   DEMOTIVATOR_USAGE: "[-w] <text> <bottom text> <image: url or attachment>",
   DEMOTIVATOR_NO_BOTTOM_TEXT: "> :x: Provide the bottom text.",
   DEMOTIVATOR_NO_IMAGE: "> :x: Provide the image.",
+
+  TAGS_DESCRIPTION: "Lets you to manage the tags.\nUse this command without args to see more info",
+  TAGS_USAGE: "[subcommand]",
+  TAGS_HELP: "Tags help",
+  TAGS_HELP_DESC: prefix => `\`${prefix}tags <name>\` - get the tag\n` +
+    `\`${prefix}tags add <name> <content>\` - add the tag\n` +
+    `\`${prefix}tags edit <name> <new content>\` - edit the existing tag\n` +
+    `\`${prefix}tags transfer <name> <new owner>\` - transfer tag to other user\n` +
+    `\`${prefix}tags owner <tag>\` - information about tag owner\n` +
+    `\`${prefix}tags delete <tag>\` - delete the tag\n` +
+    `\`${prefix}tags list <page>\` - shows full list of tags`,
+  TAG_NOT_FOUND: "> :x: Tag not found.",
+  TAGS_NO_NAME: "> :x: No tag name provided.",
+  TAGS_NO_CONTENT: "> :x: No tag content provided.",
+  TAG_ALREADY_EXIST: "> :x: This tag is already exist.",
+  TAG_NAME_TOO_BIG: "> :x: Tag name shouldn't be longer than 128 characters.",
+  TAGS_ADD_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully added.`,
+  TAGS_NOT_OWNER: "> :x: This tag doesn't exist or you don't own it.",
+  TAGS_EDIT_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully edited.`,
+  TAGS_TRANSFER_SUCCESS: (name, user) => `> :white_check_mark: Tag \`${name}\` successfully transfered to \`${user}\`.`,
+  TAGS_OWNER: (name, user) => `> :information_source: Tag \`${name}\` is owned by \`${user}\``,
+  TAGS_INVALID_PAGE_NUMBER: "> :x: Invalid page number.",
+  TAGS_LIST: "Tags list",
+  TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Page ${currentPage} of ${totalPages} | Total tags: ${totalTags}`,
 };

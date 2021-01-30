@@ -447,4 +447,28 @@ module.exports = {
   DEMOTIVATOR_USAGE: "[-w] <текст> <нижний текст> <изображение: url или вложение>",
   DEMOTIVATOR_NO_BOTTOM_TEXT: "> :x: Укажите нижний текст.",
   DEMOTIVATOR_NO_IMAGE: "> :x: Укажите изображение.",
+  
+  TAGS_DESCRIPTION: "Позволяет вам управлять тегами.\nИспользуйте эту команду без аргументов для получения подробной информации",
+  TAGS_USAGE: "[субкоманда]",
+  TAGS_HELP: "Справка по тегам",
+  TAGS_HELP_DESC: prefix => `\`${prefix}tags <name>\` - получить содержимое тега\n` +
+    `\`${prefix}tags add <name> <content>\` - добавить тег\n` +
+    `\`${prefix}tags edit <name> <new content>\` - редактировать существующий тег\n` +
+    `\`${prefix}tags transfer <name> <new owner>\` - передать тег другому пользователю\n` +
+    `\`${prefix}tags owner <tag>\` - информация о владельце тега\n` +
+    `\`${prefix}tags delete <tag>\` - удалить тег\n` +
+    `\`${prefix}tags list <page>\` - список всех тегов на сервере`,
+  TAG_NOT_FOUND: "> :x: Тег не найден.",
+  TAGS_NO_NAME: "> :x: Имя тега не предоставлено.",
+  TAGS_NO_CONTENT: "> :x: Содержимое тега не предоставлено.",
+  TAG_ALREADY_EXIST: "> :x: Тег уже существует.",
+  TAG_NAME_TOO_BIG: "> :x: Имя тега не может быть длинее 128 символов.",
+  TAGS_ADD_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно добавлен.`,
+  TAGS_NOT_OWNER: "> :x: Данного тега не существует либо вы не владеете им.",
+  TAGS_EDIT_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно отредактирован.`,
+  TAGS_TRANSFER_SUCCESS: (name, user) => `> :white_check_mark: Тег \`${name}\` передан пользователю \`${user}\`.`,
+  TAGS_OWNER: (name, user) => `> :information_source: Тег \`${name}\` создан пользователем \`${user}\``,
+  TAGS_INVALID_PAGE_NUMBER: "> :x: Неправильный номер страницы.",
+  TAGS_LIST: "Список тегов",
+  TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Страница ${currentPage} из ${totalPages} | Всего тегов: ${totalTags}`,
 };
