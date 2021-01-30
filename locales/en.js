@@ -449,6 +449,7 @@ module.exports = {
   DEMOTIVATOR_USAGE: "[-w] <text> <bottom text> <image: url or attachment>",
   DEMOTIVATOR_NO_BOTTOM_TEXT: "> :x: Provide the bottom text.",
   DEMOTIVATOR_NO_IMAGE: "> :x: Provide the image.",
+  DEMOTIVATOR_IMAGE_FAILED: "> :x: Failed to download the image.",
 
   TAGS_DESCRIPTION: "Lets you to manage the tags.\nUse this command without args to see more info",
   TAGS_USAGE: "[subcommand]",

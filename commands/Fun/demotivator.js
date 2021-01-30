@@ -24,7 +24,12 @@ module.exports = {
 
     const message = await msg.channel.createMessage("<a:d_typing:791621737880092700>");
 
-    const image = await Canvas.loadImage(msg.attachments[0]?.url || imageLink);
+    let image;
+    try {
+      image = await Canvas.loadImage(msg.attachments[0]?.url || imageLink);
+    } catch {
+      return message.edit(t(lang, "DEMOTIVATOR_IMAGE_FAILED"));
+    }
 
     const canvas = Canvas.createCanvas(1024, 1024);
     const ctx = canvas.getContext("2d");
