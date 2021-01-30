@@ -77,6 +77,10 @@ module.exports = {
           value: guild.region,
         },
         {
+          name: t(lang, "SERVERINFO_FEAUTURES"),
+          value: guild.features.map(f => t(lang, "FEATURES")[f]).join(", ") || t(lang, "NO"),
+        },
+        {
           name: t(lang, "SERVERINFO_BOOST_LEVEL"),
           value: guild.premiumTier,
           inline: true,
