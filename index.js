@@ -15,6 +15,9 @@ global.client = new CmdClient(config.token, {
   intents: [ "guilds", "guildMembers", "guildMessages" ],
 });
 
+client.usageCount = 0;
+client.on("commandSuccess", () => client.usageCount++);
+
 client.loadGroups([
   "Basic",
   "Fun",

@@ -68,6 +68,7 @@ module.exports = {
   STATS_CPU: "Процессор",
   STATS_CANT_GET_CPU_INFO: "Не доступно",
   STATS_CHANNELS: "Каналов",
+  STATS_COMMANDS_USED: "Команд использовано",
   USERINFO_COMMAND_DESCRIPTION: "информация о пользователе (или о вас, если пользователь не предоставлен)",
   USERINFO_COMMAND_USAGE: "[пользователь]",
   USERINFO_STATUS: "Статус",

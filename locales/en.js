@@ -69,6 +69,7 @@ module.exports = {
   STATS_CPU: "CPU",
   STATS_CANT_GET_CPU_INFO: "N/A",
   STATS_CHANNELS: "Channels",
+  STATS_COMMANDS_USED: "Commands used",
   USERINFO_COMMAND_DESCRIPTION: "information about user (or you, if no user provided)",
   USERINFO_COMMAND_USAGE: "[user]",
   USERINFO_STATUS: "Status",

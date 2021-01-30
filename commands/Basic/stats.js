@@ -67,6 +67,10 @@ module.exports = {
           value: ramUsage.toFixed(1) + " " + t(language, "STATS_MEGABYTES"),
         },
         {
+          name: t(language, "STATS_COMMANDS_USED"),
+          value: client.usageCount,
+        },
+        {
           name: t(language, "STATS_SERVERS"),
           value: client.guilds.size,
           inline: true,
@@ -79,6 +83,7 @@ module.exports = {
         {
           name: t(language, "STATS_USERS"),
           value: client.users.size,
+          inline: true,
         },
         {
           name: t(language, "STATS_CPU"),
