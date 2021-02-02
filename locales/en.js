@@ -121,6 +121,8 @@ module.exports = {
   USERINFO_WATCHING: "Watching",
   USERINFO_ZETCOINS_TOP: "ZetCoins top position",
   USERINFO_ZETCOINS_TOP_POS: (globalPos, pos) => `global - ${globalPos}\nserver - ${pos}`,
+  USERINFO_JOINPOS: joinPos => `${joinPos}${joinPos % 10 == 1 ? "st" : joinPos % 10 == 2 ? "nd" : joinPos % 10 == 3 ? "rd" : "th"} server member`,
+  NOT_IN_SERVER: "Not a server member",
 
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
@@ -474,4 +476,9 @@ module.exports = {
   TAGS_INVALID_PAGE_NUMBER: "> :x: Invalid page number.",
   TAGS_LIST: "Tags list",
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Page ${currentPage} of ${totalPages} | Total tags: ${totalTags}`,
+
+  WHOIS_DESCRIPTION: "Indicates a random user",
+  WHOIS_USAGE: "<smth>",
+  WHOIS_EMBED_DESC: smth => `Who is ${smth}?`,
+  WHOIS_ANSWER: "Answer"
 };

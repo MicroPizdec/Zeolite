@@ -21,6 +21,9 @@ module.exports = {
     
     if (!member) return msg.channel.createMessage(t(language, "USER_NOT_FOUND"));
 
+    const joinPos = member.joinedAt ? msg.guild.members.map(m => m.joinedAt)
+    .sort((a, b) => a - b).indexOf(member.joinedAt) + 1 : 0;
+
     moment.locale(language);
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: member.id } }))[0];
@@ -50,6 +53,7 @@ module.exports = {
         name: nick,
         icon_url: member.avatarURL,
       },
+      description: joinPos ? t(language, "USERINFO_JOINPOS", joinPos) : t(language, "NOT_IN_SERVER"),
       color: member.color,
       footer: {
         text: `${client.user.username} © ZariBros`,

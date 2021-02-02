@@ -120,6 +120,8 @@ module.exports = {
   USERINFO_WATCHING: "Смотрит",
   USERINFO_ZETCOINS_TOP: "Позиция в топе по ZetCoin'ам",
   USERINFO_ZETCOINS_TOP_POS: (globalPos, pos) => `глобальная - ${globalPos}\nна сервере - ${pos}`,
+  USERINFO_JOINPOS: joinPos => `${joinPos} участник сервера`,
+  NOT_IN_SERVER: "Не является участником сервера",
 
   _8BALL_COMMAND_DESCRIPTION: "магический шар-восьмерка",
   _8BALL_COMMAND_USAGE: "<вопрос>",
@@ -452,13 +454,13 @@ module.exports = {
   TAGS_DESCRIPTION: "Позволяет вам управлять тегами.\nИспользуйте эту команду без аргументов для получения подробной информации",
   TAGS_USAGE: "[субкоманда]",
   TAGS_HELP: "Справка по тегам",
-  TAGS_HELP_DESC: prefix => `\`${prefix}tags <name>\` - получить содержимое тега\n` +
-    `\`${prefix}tags add <name> <content>\` - добавить тег\n` +
-    `\`${prefix}tags edit <name> <new content>\` - редактировать существующий тег\n` +
-    `\`${prefix}tags transfer <name> <new owner>\` - передать тег другому пользователю\n` +
-    `\`${prefix}tags owner <tag>\` - информация о владельце тега\n` +
-    `\`${prefix}tags delete <tag>\` - удалить тег\n` +
-    `\`${prefix}tags list <page>\` - список всех тегов на сервере`,
+  TAGS_HELP_DESC: prefix => `\`${prefix}tags <имя>\` - получить содержимое тега\n` +
+    `\`${prefix}tags add <имя> <содержимое>\` - добавить тег\n` +
+    `\`${prefix}tags edit <имя> <новое содержимое>\` - редактировать существующий тег\n` +
+    `\`${prefix}tags transfer <имя> <новый владелец>\` - передать тег другому пользователю\n` +
+    `\`${prefix}tags owner <тег>\` - информация о владельце тега\n` +
+    `\`${prefix}tags delete <тег>\` - удалить тег\n` +
+    `\`${prefix}tags list <страница>\` - список всех тегов на сервере`,
   TAG_NOT_FOUND: "> :x: Тег не найден.",
   TAGS_NO_NAME: "> :x: Имя тега не предоставлено.",
   TAGS_NO_CONTENT: "> :x: Содержимое тега не предоставлено.",
@@ -472,4 +474,9 @@ module.exports = {
   TAGS_INVALID_PAGE_NUMBER: "> :x: Неправильный номер страницы.",
   TAGS_LIST: "Список тегов",
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Страница ${currentPage} из ${totalPages} | Всего тегов: ${totalTags}`,
+
+  WHOIS_DESCRIPTION: "Указывает случайного пользователя",
+  WHOIS_USAGE: "<что-либо>",
+  WHOIS_EMBED_DESC: smth => `Кто ${smth}?`,
+  WHOIS_ANSWER: "Ответ"
 };
