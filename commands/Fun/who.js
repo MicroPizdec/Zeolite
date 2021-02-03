@@ -46,11 +46,11 @@ module.exports = {
           value: randomAnswer(lang),
         },
       ],
-        footer: {
-          text: `${client.user.username} © ZariBros`,
-          icon_url: client.user.avatarURL,
-        },
-      };
+      footer: {
+        text: `${client.user.username} © ZariBros`,
+        icon_url: client.user.avatarURL,
+      },
+    };
   
       await msg.channel.createMessage({ embed });
     }
