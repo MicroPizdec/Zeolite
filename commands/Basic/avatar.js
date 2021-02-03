@@ -69,7 +69,7 @@ module.exports = {
       msg.guild.members.find(m =>
         m.nick && m.nick.toLowerCase().startsWith(args[0].toLowerCase()) ||
         m.tag.toLowerCase().startsWith(args[0].toLowerCase())
-      ) || client.users.get(args[0]) : msg.author;
+      ) || await client.fetchUser(args[0]) : msg.author;
 
     if (!user) return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));
 
