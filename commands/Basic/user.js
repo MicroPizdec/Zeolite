@@ -17,8 +17,8 @@ module.exports = {
         m.nick && m.nick.toLowerCase().startsWith(userID.toLowerCase()) ||
         m.tag.toLowerCase().startsWith(userID.toLowerCase()) ||
         m.id == userID
-      ) || await client.fetchUser(userID);
-    
+        ) || client.users.find(u => u.tag == userID) || await client.fetchUser(args[0]);
+        
     if (!member) return msg.channel.createMessage(t(language, "USER_NOT_FOUND"));
 
     const joinPos = member.joinedAt ? msg.guild.members.map(m => m.joinedAt)
