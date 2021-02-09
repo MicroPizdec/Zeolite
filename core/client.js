@@ -89,7 +89,7 @@ class CmdClient extends Eris.Client {
         return this.commands.get("prefix").run(client, msg, [], prefix, language.language);
       }
 
-      if (!msg.content.startsWith(prefix)) return;
+      if (!msg.content.toLowerCase().startsWith(prefix)) return;
 
       const args = this._parseArgs(msg.content);
       args.raw = msg.content.split(/ +/g);
