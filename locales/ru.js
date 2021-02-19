@@ -106,7 +106,7 @@ module.exports = {
   USERINFO_ZETCOINS_TITLE: "Кол-во ZetCoin'ов",
   USERINFO_ZETCOINS_BALANCE: amount => `${amount} ZetCoin'ов`,
   USERINFO_CREATED_DAYS_AGO: days => `(${days} дней назад)`,
-  USERINFO_JOINDATE: "Дата входа на сервер:",
+  USERINFO_JOINDATE: "Дата входа на сервер",
   USERINFO_STATUSES: {
     online: "<:d_online:737229035914133604> В сети",
     idle: "<:d_idle:737229035725258752> Не активен",
@@ -122,6 +122,8 @@ module.exports = {
   USERINFO_ZETCOINS_TOP_POS: (globalPos, pos) => `глобальная - ${globalPos}\nна сервере - ${pos}`,
   USERINFO_JOINPOS: joinPos => `${joinPos} участник сервера`,
   NOT_IN_SERVER: "Не является участником сервера",
+  USERINFO_COLOR: "Цвет роли",
+  USERINFO_DEFAULT_COLOR: "стандартный",
 
   _8BALL_COMMAND_DESCRIPTION: "магический шар-восьмерка",
   _8BALL_COMMAND_USAGE: "<вопрос>",
@@ -246,9 +248,9 @@ module.exports = {
   SERVER_ICON: server => `Иконка сервера ${server}`,
   SERVER_SPLASH: server => `Фон приглашения сервера ${server}`,
   SERVER_BANNER: server => `Баннер сервера ${server}`,
-  NO_ICON: "> :x: Этот сервер не имеет иконку.",
-  NO_SPLASH: "> :x: Этот сервер не имеет фон приглашения.",
-  NO_BANNER: "> :x: Этот сервер не имеет баннер.",
+  NO_ICON: "> :x: На этом сервере отсутствует иконка.",
+  NO_SPLASH: "> :x: На этом сервере отсутствует фон приглашения.",
+  NO_BANNER: "> :x: На этом сервере отсутствует баннер.",
 
   LIMITCMD_DESCRIPTION: "ограничить какую-либо команду",
   LIMITCMD_USAGE: "<команда>",
@@ -292,8 +294,9 @@ module.exports = {
   INVITE_USAGE: "<инвайт>",
   INVITE_NO_ARGS: prefix => `> :x: О каком инвайте вы хотите полyчить информацию? Используйте \`${prefix}invite <инвайт>\``,
   INVITE_INVALID: "> :x: Инвайт неправильный или истек срок его действия.",
-  INVITE_MEMBERS: "Кол-во участников:",
-  INVITE_VERIFICATION_LEVEL: "Уровень проверки:",
+  INVITE_MEMBERS: "Кол-во участников",
+  INVITE_MEMBERS_COUNT: (count, online) => `${count} (${online} в сети)`,
+  INVITE_VERIFICATION_LEVEL: "Уровень проверки",
   INVITE_VERIFICATION_LEVELS: [
     "Отсутствует",
     "Низкий",
@@ -301,8 +304,8 @@ module.exports = {
     "Высокий",
     "Оч. высокий",
   ],
-  INVITE_CHANNEL: "Канал:",
-  INVITE_INVITER: "Приглашающий:",
+  INVITE_CHANNEL: "Канал",
+  INVITE_INVITER: "Приглашающий",
   INVITE_CODE: code => `Код инвайта: ${code}`,
 
   INFO_DESCRIPTION: "информация о боте",
@@ -478,5 +481,11 @@ module.exports = {
   WHOIS_DESCRIPTION: "Указывает случайного пользователя",
   WHOIS_USAGE: "<что-либо>",
   WHOIS_EMBED_DESC: smth => `Кто ${smth}?`,
-  WHOIS_ANSWER: "Ответ"
+  WHOIS_ANSWER: "Ответ",
+
+  DISCRIM_DESCRIPTION: "Показывает до 20 пользователей, которые имеют указанный дискриминатор",
+  DISCRIM_USAGE: "[дискриминатор]",
+  INVALID_DISCRIM: "> :x: Дискриминатор должен быть в диапазоне от 0001 до 9999",
+  DISCRIM_TITLE: discrim => `Пользователи с дискриминатором #${discrim}`,
+  DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором"
 };

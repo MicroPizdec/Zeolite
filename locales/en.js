@@ -107,7 +107,7 @@ module.exports = {
   USERINFO_ZETCOINS_TITLE: "ZetCoins balance",
   USERINFO_ZETCOINS_BALANCE: amount => `${amount} ZetCoins`,
   USERINFO_CREATED_DAYS_AGO: days => `(${days} days ago)`,
-  USERINFO_JOINDATE: "Join date:",
+  USERINFO_JOINDATE: "Join date",
   USERINFO_STATUSES: {
     online: "<:d_online:737229035914133604> Online",
     idle: "<:d_idle:737229035725258752> Idle",
@@ -123,6 +123,8 @@ module.exports = {
   USERINFO_ZETCOINS_TOP_POS: (globalPos, pos) => `global - ${globalPos}\nserver - ${pos}`,
   USERINFO_JOINPOS: joinPos => `${joinPos}${joinPos % 10 == 1 ? "st" : joinPos % 10 == 2 ? "nd" : joinPos % 10 == 3 ? "rd" : "th"} server member`,
   NOT_IN_SERVER: "Not a server member",
+  USERINFO_COLOR: "Role color",
+  USERINFO_DEFAULT_COLOR: "default",
 
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
@@ -293,8 +295,9 @@ module.exports = {
   INVITE_USAGE: "<invite>",
   INVITE_NO_ARGS: prefix => `> :x: What invite you want to get info on? Use \`${prefix}invite <invite>\``,
   INVITE_INVALID: "> :x: Invite is invalid or expired.",
-  INVITE_MEMBERS: "Members:",
-  INVITE_VERIFICATION_LEVEL: "Verification level:",
+  INVITE_MEMBERS: "Members",
+  INVITE_MEMBERS_COUNT: (count, online) => `${count} (${online} online)`,
+  INVITE_VERIFICATION_LEVEL: "Verification level",
   INVITE_VERIFICATION_LEVELS: [
     "None",
     "Low",
@@ -302,8 +305,8 @@ module.exports = {
     "High",
     "Very high",
   ],
-  INVITE_CHANNEL: "Channel:",
-  INVITE_INVITER: "Inviter:",
+  INVITE_CHANNEL: "Channel",
+  INVITE_INVITER: "Inviter",
   INVITE_CODE: code => `Code: ${code}`,
 
   INFO_DESCRIPTION: "information about bot",
@@ -480,5 +483,11 @@ module.exports = {
   WHOIS_DESCRIPTION: "Indicates a random user",
   WHOIS_USAGE: "<smth>",
   WHOIS_EMBED_DESC: smth => `Who is ${smth}?`,
-  WHOIS_ANSWER: "Answer"
+  WHOIS_ANSWER: "Answer",
+
+  DISCRIM_DESCRIPTION: "Shows up to 20 users who have provided discriminator",
+  DISCRIM_USAGE: "[discriminator]",
+  INVALID_DISCRIM: "> :x: Discriminator must be in range from 0001 to 9999",
+  DISCRIM_TITLE: discrim => `Users who have discriminator #${discrim}`,
+  DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator."
 };

@@ -42,6 +42,8 @@ module.exports = {
       return msg.channel.createMessage(_(lang, "INVITE_INVALID"));
     }
 
+    if (!msg.member.permissions.has("manageMessages")) msg.delete().catch(() => {});
+
     const embed = {
       author: {
         name: inviteInfo.guild.name,
@@ -51,7 +53,7 @@ module.exports = {
       fields: [
         {
           name: _(lang, "INVITE_MEMBERS"),
-          value: inviteInfo.memberCount,
+          value: _(lang, "INVITE_MEMBERS_COUNT", inviteInfo.memberCount, inviteInfo.presenceCount),
           inline: true,
         },
         {
@@ -69,8 +71,11 @@ module.exports = {
           value: `#${inviteInfo.channel.name} (ID: ${inviteInfo.channel.id})`,
         },
       ],
-      footer: { text: _(lang, "INVITE_CODE", inviteInfo.code) },
     };
+
+    if (inviteInfo.guild.description) {
+      embed.description = inviteInfo.guild.description;
+    }
 
     if (inviteInfo.inviter) {
       embed.fields.push({

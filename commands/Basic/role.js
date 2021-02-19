@@ -38,7 +38,7 @@ module.exports = {
 
     const embed = {
       title: role.name,
-      color: role.color || null,
+      color: role.color || await msg.author.embedColor(),
       fields: [
         {
           name: "ID",

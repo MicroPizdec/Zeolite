@@ -1,5 +1,15 @@
 const moment = require("moment");
 
+function intToHex(num) {
+  let hex = num.toString(16);
+
+  while (hex.length < 6) {
+    hex = "0" + hex;
+  }
+
+  return hex;
+}
+
 module.exports = {
   name: "user",
   group: "BASIC_GROUP",
@@ -54,7 +64,7 @@ module.exports = {
         icon_url: member.avatarURL,
       },
       description: joinPos ? t(language, "USERINFO_JOINPOS", joinPos) : t(language, "NOT_IN_SERVER"),
-      color: member.color,
+      color: member.color || await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,
         icon_url: client.user.avatarURL,
@@ -96,6 +106,10 @@ module.exports = {
     if (roleList) embed.fields.splice(3 + indexInc, 0, {
       name: t(language, "USERINFO_ROLES"),
       value: roleList,
+    },
+    {
+      name: t(language, "USERINFO_COLOR"),
+      value: member.color ? `#${intToHex(member.color)}` : t(language, "USERINFO_DEFAULT_COLOR"),
     });
 
     await msg.channel.createMessage({ embed });
