@@ -34,7 +34,7 @@ module.exports = {
         icon_url: msg.author.avatarURL,
       },
       title: t(lang, "RANDOM_TITLE", max, min),
-      description: num,
+      description: num.toString(),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,
