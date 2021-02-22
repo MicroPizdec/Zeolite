@@ -28,7 +28,7 @@ module.exports = {
         embed.title = t(lang, "HELP_EMBED_TITLE_OWNER_ONLY");
 
       for (const group of client.groups.values()) {
-        let filterFunction = c => !c.ownerOnly;
+        let filterFunction = c => !c.hidden && !c.ownerOnly;
         if (isDevHelp) filterFunction = c => c.ownerOnly;
 
         const cmdList = group.commands.filter(filterFunction)
@@ -45,7 +45,7 @@ module.exports = {
     } else {
       const cmd = client.commands.find(c => c.name === cmdName || (c.aliases && c.aliases.includes(cmdName)));
 
-      if (!cmd || (cmd.ownerOnly && !client.owners.includes(msg.author.id))) {
+      if (!cmd || ((cmd.hidden || cmd.ownerOnly) && !client.owners.includes(msg.author.id))) {
         embed = {
           title: _(lang, "HELP_COMMAND_DOESNT_EXIST", cmdName, prefix),
           description: _(lang, "HELP_COMMAND_DOESNT_EXIST_DESC", prefix),
