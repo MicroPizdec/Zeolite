@@ -1,42 +1,41 @@
 module.exports = {
-    name: "discrim",
-    group: "OTHER_GROUP",
-    description: "DISCRIM_DESCRIPTION",
-    usage: "DISCRIM_USAGE",
-    aliases: [ "discriminator" ],
-    async run(client, msg, args, prefix, lang) {
-        let discriminator = args[0] || msg.author.discriminator;
+  name: "discrim",
+  group: "OTHER_GROUP",
+  description: "DISCRIM_DESCRIPTION",
+  usage: "DISCRIM_USAGE",
+  aliases: [ "discriminator" ],
+  async run(client, msg, args, prefix, lang) {
+    let discriminator = args[0] || msg.author.discriminator;
 
-        const discrimNumber = parseInt(discriminator);
+    const discrimNumber = parseInt(discriminator);
     if (isNaN(discrimNumber) || discrimNumber > 9999 || discrimNumber < 1) {
       return msg.channel.createMessage(t(lang, "INVALID_DISCRIM"));
     }
 
     while (discriminator.length < 4) {
-        discriminator = "0" + discriminator;
-      }
+      discriminator = "0" + discriminator;
+    }
 
-      const users = Array.from(client.users.values())
+    const users = Array.from(client.users.values())
       .filter(u => u.discriminator === discriminator)
       .splice(0, 20)
       .map(u => u.tag)
       .join("\n")
       .replace(/[_~*\|]/g, "\\$&");
 
-      const embed = {
-        author: {
-          name: t(lang, "DISCRIM_TITLE", discriminator),
-          icon_url: msg.author.avatarURL,
-        },
-        description: users || t(lang, "DISCRIM_USERS_NOT_FOUND"),
-        color: await msg.author.embedColor(),
-        footer: {
-            text: `${client.user.username} © ZariBros`,
-            icon_url: client.user.avatarURL,
-          },
-      };
+    const embed = {
+      author: {
+        name: t(lang, "DISCRIM_TITLE", discriminator),
+        icon_url: msg.author.avatarURL,
+      },
+      description: users || t(lang, "DISCRIM_USERS_NOT_FOUND"),
+      color: await msg.author.embedColor(),
+      footer: {
+        text: `${client.user.username} © ZariBros`,
+        icon_url: client.user.avatarURL,
+      },
+    };
   
-      await msg.channel.createMessage({ embed });
-    
-    }
+    await msg.channel.createMessage({ embed }); 
   }
+}
