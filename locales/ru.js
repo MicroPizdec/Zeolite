@@ -138,8 +138,8 @@ module.exports = {
   CFLIP_SIDEWAYS: "Боком",
   CFLIP_EMBED_TITLE: "Монетка приземлилась:",
 
-  SAY_COMMAND_DESCRIPTION: "говорит ваш текст",
-  SAY_COMMAND_USAGE: "<текст>",
+  SAY_DESCRIPTION: "говорит ваш текст",
+  SAY_USAGE: "<текст>",
   SAY_NO_ARGS_PROMPT: prefix => `> :x: Что вы хотите сказать? Используйте ${prefix}say <текст>`,
 
   BANNED_BALANCE: ":x: Ваш баланс забанен",

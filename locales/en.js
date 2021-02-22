@@ -139,8 +139,8 @@ module.exports = {
   CFLIP_SIDEWAYS: "Sideways",
   CFLIP_EMBED_TITLE: "The coin is landed on:",
 
-  SAY_COMMAND_DESCRIPTION: "says your text",
-  SAY_COMMAND_USAGE: "<text>",
+  SAY_DESCRIPTION: "says your text",
+  SAY_USAGE: "<text>",
   SAY_NO_ARGS_PROMPT: prefix => `> :x: What do you want to say? Use ${prefix}say <text>`,
 
   BANNED_BALANCE: ":x: Your balance is banned",

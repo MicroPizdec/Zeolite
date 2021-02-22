@@ -113,7 +113,7 @@ class CmdClient extends Eris.Client {
         return;
       }
 
-      if (command.argsRequired && !args.length) {
+      if (command.argsRequired && !args.length && !msg.attachments.length) {
         return this.commands.get("help").run(this, msg, [ command.name ], prefix, language.language);
       }
 
