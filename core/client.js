@@ -49,7 +49,7 @@ class CmdClient extends Eris.Client {
 
     this.supportChannelID = options.supportChannelID;
 
-    this.extensions = {};1
+    this.extensions = {};
 
     global.sequelize = new Sequelize({
       dialect: "sqlite",
