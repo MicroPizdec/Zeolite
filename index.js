@@ -23,6 +23,7 @@ client.loadGroups([
   "Fun",
   "ZetCoins",
   "Moderation",
+  "NSFW",
   "Other",
   "Settings",
   "Dev",

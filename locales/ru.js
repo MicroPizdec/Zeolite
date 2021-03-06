@@ -10,6 +10,7 @@ module.exports = {
   SETTINGS_GROUP: "Настройки",
   OTHER_GROUP: "Прочие команды",
   MODERATION_GROUP: "Команды модерации",
+  NSFW_GROUP: "NSFW-команды",
 
   PING_COMMAND_DESCRIPTION: "пинг бота",
   PING_BOT: ping => `Пинг бота: ${ping} мс.`,
@@ -487,5 +488,29 @@ module.exports = {
   DISCRIM_USAGE: "[дискриминатор]",
   INVALID_DISCRIM: "> :x: Дискриминатор должен быть в диапазоне от 0001 до 9999",
   DISCRIM_TITLE: discrim => `Пользователи с дискриминатором #${discrim}`,
-  DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором"
+  DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором",
+  
+  BOORU_USAGE: "<тег>",
+  NOT_NSFW_CHANNEL: "> :x: Канал не помечен как NSFW.",
+  POST_NOT_FOUND: "> :x: Пост не найден.",
+  NOT_MORE_THAN_2_TAGS: "> :x: Не больше, чем 1 тег",
+  BOORU_TITLE: "Пост (кликабельно)",
+  BOORU_CREATEDAT: "Создан",
+  BOORU_TAGS: "Теги",
+  BOORU_SCORE: "Кол-во очков",
+  BOORU_SOURCE: "Источник", 
+  BOORU_RATING: "Рейтинг",
+  BOORU_RATINGS: {
+    s: "Безопасный",
+    q: "Под вопросом",
+    e: "Откровенный",
+    u: "Без рейтинга",
+    },
+
+  PAHEAL_DESCRIPTION: "Ищет paheal-посты по тегу.\nТребуется канал помеченный как NSFW",
+
+  RULE34_DESCRIPTION: "Ищет rule34-посты по тегу.\nТребуется канал помеченный как NSFW",
+
+  DANBOORU_DESCRIPTION: "Ищет danbooru-посты по тегу.\nТребуется канал помеченный как NSFW",
+  DANBOORU_USAGE: "<тег> (не больше, чем 1 тег)",
 };

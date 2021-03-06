@@ -11,6 +11,7 @@ module.exports = {
   SETTINGS_GROUP: "Settings",
   OTHER_GROUP: "Other commands",
   MODERATION_GROUP: "Moderation commands",
+  NSFW_GROUP: "NSFW commands",
 
   PING_COMMAND_DESCRIPTION: "bot ping",
   PING_BOT: ping => `Bot ping: ${ping} ms.`,
@@ -489,5 +490,28 @@ module.exports = {
   DISCRIM_USAGE: "[discriminator]",
   INVALID_DISCRIM: "> :x: Discriminator must be in range from 0001 to 9999",
   DISCRIM_TITLE: discrim => `Users who have discriminator #${discrim}`,
-  DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator."
+  DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator.",
+
+  BOORU_USAGE: "<tag>",
+  NOT_NSFW_CHANNEL: "> :x: Channel is not marked as NSFW.",
+  POST_NOT_FOUND: "> :x: Post not found.",
+  BOORU_TITLE: "Image post (clickable)",
+  BOORU_CREATEDAT: "Created at",
+  BOORU_TAGS: "Tags",
+  BOORU_SCORE: "Scores",
+  BOORU_SOURCE: "Source",
+  BOORU_RATING: "Rating",
+  BOORU_RATINGS: {
+    s: "Safe",
+    q: "Questionable",
+    e: "Explicit",
+    u: "Unrated",
+    },
+
+  PAHEAL_DESCRIPTION: "Searches paheal-posts by tags.\nNSFW-channel is required",
+
+  RULE34_DESCRIPTION: "Searches rule34-posts by tags.\nNSFW-channel is required",
+
+  DANBOORU_DESCRIPTION: "Searches danbooru-posts by tags.\nNSFW-channel is required",
+  DANBOORU_USAGE: "<tag> (not more, than 1 tag)",
 };
