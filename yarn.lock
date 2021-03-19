@@ -52,6 +52,14 @@ bindings@^1.5.0:
   dependencies:
     file-uri-to-path "1.0.0"
 
+booru@^2.4.0:
+  version "2.4.0"
+  resolved "https://registry.yarnpkg.com/booru/-/booru-2.4.0.tgz#8e239dbd82d9e3056693db351804acfaa6dcebf5"
+  integrity sha512-CYawPyAd4l7JA5tq4HmTbu9xAB146aFyQ2xfhU+lHvg28+fsIP8XD2Al/VY9rgQqdE78EvaR2Lvc1AhbsSdSbA==
+  dependencies:
+    fast-xml-parser "^3.17.4"
+    node-fetch "^2.6.1"
+
 brace-expansion@^1.1.7:
   version "1.1.11"
   resolved "https://registry.yarnpkg.com/brace-expansion/-/brace-expansion-1.1.11.tgz#3c7fcbf529d87226f3d2f52b966ff5271eb441dd"
@@ -105,6 +113,13 @@ core-util-is@~1.0.0:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/core-util-is/-/core-util-is-1.0.2.tgz#b5fd54220aa2bc5ab57aab7140c940754503c1a7"
   integrity sha1-tf1UIgqivFq1eqtxQMlAdUUDwac=
+
+dabi-images@^2.7.5:
+  version "2.7.5"
+  resolved "https://registry.yarnpkg.com/dabi-images/-/dabi-images-2.7.5.tgz#f87238e3035244b32edbd818ab63a004ccc45642"
+  integrity sha512-OHRHu6TERzl+UxN9+EOmR03dQqQR3V+5td5vmciJ1MwjKDSX4cLX/QVBCXad5Tsu8gV5Jdwz88qQqulcmp49bg==
+  dependencies:
+    node-fetch "^2.6.0"
 
 debug@^3.2.6:
   version "3.2.6"
@@ -190,6 +205,11 @@ eventemitter3@^4.0.0:
   version "4.0.7"
   resolved "https://registry.yarnpkg.com/eventemitter3/-/eventemitter3-4.0.7.tgz#2de9b68f6528d5644ef5c59526a1b4a07306169f"
   integrity sha512-8guHBZCwKnFhYdHr2ysuRWErTwhoN2X8XELRlrRwpmfeY2jjuUN4taQMsULKUVo1K4DvZl+0pgfyoysHxvmvEw==
+
+fast-xml-parser@^3.17.4:
+  version "3.19.0"
+  resolved "https://registry.yarnpkg.com/fast-xml-parser/-/fast-xml-parser-3.19.0.tgz#cb637ec3f3999f51406dd8ff0e6fc4d83e520d01"
+  integrity sha512-4pXwmBplsCPv8FOY1WRakF970TjNGnGnfbOnLqjlYvMiF1SR3yOHyxMR/YCXpPTOspNF5gwudqktIP4VsWkvBg==
 
 file-uri-to-path@1.0.0:
   version "1.0.0"
@@ -368,7 +388,7 @@ needle@^2.2.1:
     iconv-lite "^0.4.4"
     sax "^1.2.4"
 
-node-fetch@^2.6.0:
+node-fetch@^2.6.0, node-fetch@^2.6.1:
   version "2.6.1"
   resolved "https://registry.yarnpkg.com/node-fetch/-/node-fetch-2.6.1.tgz#045bd323631f76ed2e2b55573394416b639a0052"
   integrity sha512-V4aYg89jEoVRxRb2fJdAg8FHvI7cEyYdVAh94HH0UIK8oJxUfkjlDQN9RbMx+bEjP7+ggMiFRprSti032Oipxw==

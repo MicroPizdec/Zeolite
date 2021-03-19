@@ -1,4 +1,37 @@
 const moment = require("moment");
+const { Constants: { UserFlags }, Member } = require("eris");
+const { lang } = require("moment");
+
+const badgeEmojis = {
+  DISCORD_EMPLOYEE: "<:discordEmployee:822406071497916446>",
+  DISCORD_PARTNER: "<:partneredServerOwner:822406071531864075>",
+  HYPESQUAD_EVENTS: "<:hypesquadEvents:822406071750492200>",
+  BUG_HUNTER_LEVEL_1: "<:bugHunterLvl1:822406071024222209>",
+  HOUSE_BRAVERY: "<:hypesquadBravery:822406071603560508>",
+  HOUSE_BRILLIANCE: "<:hypesquadBrilliance:822406071468949504>",
+  HOUSE_BALANCE: "<:hypesquadBalance:822406071355703297>",
+  EARLY_SUPPORTER: "<:earlySupporter:822406071246782506>",
+  BUG_HUNTER_LEVEL_2: "<:bugHunterLvl2:822406071544447046>",
+  VERIFIED_BOT_DEVELOPER: "<:earlyVerifiedBotDev:822406071598448661>",
+  VERIFIED_BOT: "<:verifiedBot1:822406119275888650><:verifiedBot2:822406118751731753>",
+  BOT: "<:bot:822406071473012736>",
+};
+
+function getUserBadges(user) {
+  if (user instanceof Member) user = user.user;
+
+  const badges = [];
+
+  if (user.bot && !(user.publicFlags & UserFlags.VERIFIED_BOT)) badges.push(badgeEmojis.BOT);
+
+  for (const flag in UserFlags) {
+    if (!!(user.publicFlags & UserFlags[flag])) {
+      badges.push(badgeEmojis[flag]);
+    }
+  }
+
+  return badges;
+}
 
 function intToHex(num) {
   let hex = num.toString(16);
@@ -76,12 +109,12 @@ module.exports = {
         },
         {
           name: t(language, "USERINFO_REGDATE"),
-          value: moment(member.createdAt).format("lll") + " " + _(language, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
+          value: moment(member.createdAt).format("lll") + " " + t(language, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
           inline: true,
         },
         {
-          name: t(language, "USERINFO_BOT_TITLE"),
-          value: t(language, "USERINFO_BOT_DEFINE", member.bot),
+          name: t(language, "USERINFO_BADGES"),
+          value: getUserBadges(member).join(" ") || t(language, "USERINFO_NO_BADGES"),
         },
         {
           name: t(language, "USERINFO_ZETCOINS_TITLE"),
