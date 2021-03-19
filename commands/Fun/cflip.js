@@ -18,6 +18,6 @@ module.exports = {
         icon_url: client.user.avatarURL,
       },  
     };
-    await msg.channel.createMessage({ embed });
+    await msg.reply({ embed });
   }
 }

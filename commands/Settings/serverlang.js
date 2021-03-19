@@ -27,15 +27,15 @@ module.exports = {
         footer: { text: _(lang, "SERVERLANG_FOOTER", prefix) },
       };
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     } else {
       if (!client.i18n.locales[language]) {
-        return msg.channel.createMessage(_(lang, "LANG_NOT_EXIST"));
+        return msg.reply(_(lang, "LANG_NOT_EXIST"));
       }
 
       await serverLang.update({ language });
 
-      await msg.channel.createMessage(_(lang, "SERVERLANG_SUCCESS", language));
+      await msg.reply(_(lang, "SERVERLANG_SUCCESS", language));
     }
   }
 }

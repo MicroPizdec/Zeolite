@@ -21,7 +21,7 @@ module.exports = {
         },
       };
 
-      return msg.channel.createMessage({ embed });
+      return msg.reply({ embed });
     }
 
     const [ subcommand, sum ] = args;
@@ -30,7 +30,7 @@ module.exports = {
 
     const intSum = Math.floor(parseFloat(sum));
     if (!intSum || intSum <= 0) {
-      return msg.channel.createMessage(t(lang, "DEPOSIT_INVALID_SUM"));
+      return msg.reply(t(lang, "DEPOSIT_INVALID_SUM"));
     }
 
     const userBal = await zetCoins.findOrCreate({ where: { user: msg.author.id } })
@@ -40,7 +40,7 @@ module.exports = {
 
     if (subcommand == "put") {
       if (intSum > userBal.balance) {
-        return msg.channel.createMessage(t(lang, "DEPOSIT_NOT_ENOUGH_MONEY", userBal.balance));
+        return msg.reply(t(lang, "DEPOSIT_NOT_ENOUGH_MONEY", userBal.balance));
       }
 
       await dep.update({ balance: dep.balance + intSum });
@@ -65,10 +65,10 @@ module.exports = {
         },
       };
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     } else {
       if (intSum > dep.balance) {
-        return msg.channel.createMessage(t(lang, "DEPOSIT_NOT_ENOUGH_DEPOSIT", dep.balance));
+        return msg.reply(t(lang, "DEPOSIT_NOT_ENOUGH_DEPOSIT", dep.balance));
       }
 
       await dep.update({ balance: dep.balance - intSum });
@@ -93,7 +93,7 @@ module.exports = {
         },
       };
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     }
   }
 }

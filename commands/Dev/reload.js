@@ -7,7 +7,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.channel.createMessage(t(lang, "RELOAD_NO_ARGS", prefix));
+      return msg.reply(t(lang, "RELOAD_NO_ARGS", prefix));
     }
 
     const cmdName = args[0];
@@ -30,7 +30,7 @@ module.exports = {
           color: 1879160,
         };
 
-        await msg.channel.createMessage({ embed });
+        await msg.reply({ embed });
       } else if (cmdName == "langs") {
         client.i18n.reloadLanguages();
 
@@ -39,10 +39,10 @@ module.exports = {
           color: 1879160,
         };
 
-        await msg.channel.createMessage({ embed });
+        await msg.reply({ embed });
       } else {
         if (!client.commands.has(cmdName)) {
-          return msg.channel.createMessage(t(lang, "RELOAD_COMMAND_DOESNT_EXIST"));
+          return msg.reply(t(lang, "RELOAD_COMMAND_DOESNT_EXIST"));
         }
 
         client.reloadCommand(cmdName);
@@ -52,7 +52,7 @@ module.exports = {
           color: 1879160,
         };
 
-        await msg.channel.createMessage({ embed });
+        await msg.reply({ embed });
       }
     } catch (err) {
       let title = t(lang, "RELOAD_ERROR", errCmdName);
@@ -66,7 +66,7 @@ module.exports = {
         color: 13370885,
       };
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     }
   }
 };

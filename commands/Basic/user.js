@@ -62,7 +62,7 @@ module.exports = {
         m.id == userID
         ) || client.users.find(u => u.tag == userID) || await client.fetchUser(args[0]);
         
-    if (!member) return msg.channel.createMessage(t(language, "USER_NOT_FOUND"));
+    if (!member) return msg.reply(t(language, "USER_NOT_FOUND"));
 
     const joinPos = member.joinedAt ? msg.guild.members.map(m => m.joinedAt)
     .sort((a, b) => a - b).indexOf(member.joinedAt) + 1 : 0;
@@ -108,13 +108,13 @@ module.exports = {
           value: member.id,
         },
         {
+          name: t(language, "USERINFO_BADGES"),
+          value: getUserBadges(member).join(" ") || t(language, "USERINFO_NO_BADGES"),
+        },
+        {
           name: t(language, "USERINFO_REGDATE"),
           value: moment(member.createdAt).format("lll") + " " + t(language, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
           inline: true,
-        },
-        {
-          name: t(language, "USERINFO_BADGES"),
-          value: getUserBadges(member).join(" ") || t(language, "USERINFO_NO_BADGES"),
         },
         {
           name: t(language, "USERINFO_ZETCOINS_TITLE"),
@@ -145,6 +145,6 @@ module.exports = {
       value: member.color ? `#${intToHex(member.color)}` : t(language, "USERINFO_DEFAULT_COLOR"),
     });
 
-    await msg.channel.createMessage({ embed });
+    await msg.reply({ embed });
   }
 }

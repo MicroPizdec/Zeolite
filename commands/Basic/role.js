@@ -27,7 +27,7 @@ module.exports = {
     );
 
     if (!role) {
-      return msg.channel.createMessage(t(lang, "ROLE_NOT_FOUND"));
+      return msg.reply(t(lang, "ROLE_NOT_FOUND"));
     }
 
     moment.locale(lang);
@@ -75,6 +75,6 @@ module.exports = {
       },
     };
 
-    await msg.channel.createEmbed(embed);
+    await msg.reply({ embed });
   }
 }

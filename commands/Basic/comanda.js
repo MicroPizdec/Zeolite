@@ -4,6 +4,6 @@ module.exports = {
   description: "команда",
   hidden: true,
   async run(client, msg, args){
-    return msg.channel.createMessage("<:commandblock:798220658818416680>")
+    return msg.reply("<:commandblock:798220658818416680>")
   }
 }

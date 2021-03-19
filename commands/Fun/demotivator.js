@@ -16,13 +16,13 @@ module.exports = {
     const [ text, bottomText, imageLink ] = args;
 
     if (!bottomText) {
-      return msg.channel.createMessage(t(lang, "DEMOTIVATOR_NO_BOTTOM_TEXT"));
+      return msg.reply(t(lang, "DEMOTIVATOR_NO_BOTTOM_TEXT"));
     }
     if (!msg.attachments.length && !imageLink) {
-      return msg.channel.createMessage(t(lang, "DEMOTIVATOR_NO_IMAGE"));
+      return msg.reply(t(lang, "DEMOTIVATOR_NO_IMAGE"));
     }
 
-    const message = await msg.channel.createMessage("<a:d_typing:791621737880092700>");
+    const message = await msg.reply("<a:d_typing:791621737880092700>");
 
     let image;
     try {
@@ -54,6 +54,6 @@ module.exports = {
     const buffer = canvas.toBuffer();
 
     await message.delete();
-    await msg.channel.createMessage("", { name: "demotivator.png", file: buffer });
+    await msg.reply("", { name: "demotivator.png", file: buffer });
   }
 }

@@ -7,7 +7,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.raw.length) {
-      return msg.channel.createMessage(t(lang, "REVERSE_NO_ARGS", prefix));
+      return msg.reply(t(lang, "REVERSE_NO_ARGS", prefix));
     }
 
     const reversedString = args.raw.join(" ").split("").reverse().join("");
@@ -22,6 +22,6 @@ module.exports = {
       color: await msg.author.embedColor(),
     }
 
-    await msg.channel.createMessage({ embed });
+    await msg.reply({ embed });
   }
 };

@@ -1,6 +1,6 @@
 const PermissionError = require("../core/errors/permissionError");
 
-const color = 0x9f00ff;
+const color = config.embedColor;
 
 async function onCommandSuccess(cmd, msg) {
   await this.executeWebhook(this.webhookID, this.webhookToken, {
@@ -48,7 +48,7 @@ async function onGuildDelete(guild) {
     username: `${this.user.username} Commands Log`,
     embeds: [
       {
-        title: "I was removed from server:",
+        title: "I was removed from server",
         description: `${guild.name} (ID: ${guild.id})`,
         color,
         thumbnail: { url: guild.iconURL },
@@ -64,7 +64,7 @@ async function onCommandError(cmd, msg, error, language) {
       description: t(language, "MISSING_PERMISSION_DESCRIPTION", error.missingPermission),
       color: 15158332,
     }
-    return await msg.channel.createMessage({ embed });
+    return await msg.reply({ embed });
   }
   
   const embed = {
@@ -72,7 +72,7 @@ async function onCommandError(cmd, msg, error, language) {
     description: t(language, "COMMAND_ERROR_DESCRIPTION"),
     color: 15158332,
   }
-  await msg.channel.createMessage({ embed: embed });
+  await msg.reply({ embed: embed });
   
   await this.executeWebhook(this.webhookID, this.webhookToken, {
     username: `${this.user.username} Commands Log`,

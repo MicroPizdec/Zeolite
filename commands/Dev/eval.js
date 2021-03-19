@@ -31,9 +31,9 @@ module.exports = {
       if (typeof evaled !== "string")
         evaled = require("util").inspect(evaled);
 
-      await msg.channel.createMessage(`\`\`\`js\n${evaled}\n\`\`\``);
+      await msg.reply(`\`\`\`js\n${evaled}\n\`\`\``);
     } catch (err) {
-      await msg.channel.createMessage(`\`\`\`js\n${err}\n\`\`\``);
+      await msg.reply(`\`\`\`js\n${err}\n\`\`\``);
     }
   }
 };

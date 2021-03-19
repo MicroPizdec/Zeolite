@@ -14,22 +14,22 @@ module.exports = {
       client.users.find(u => u.tag == userID || u.id == userID);
     
     if (!user) {
-      return msg.channel.createMessage(t(lang, "INVALID_USER_PROVIDED"));
+      return msg.reply(t(lang, "INVALID_USER_PROVIDED"));
     }
 
     if (user.id == msg.author.id) {
-      return msg.channel.createMessage(t(lang, "CANNOT_SEND_COINS_TO_SELF"));
+      return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_SELF"));
     }
     if (user.bot) {
-      return msg.channel.createMessage(t(lang, "CANNOT_SEND_COINS_TO_BOT"));
+      return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_BOT"));
     }
 
     if (!sum || sum < 0) {
-      return msg.channel.createMessage(t(lang, "SENDCOINS_NO_AMOUNT"));
+      return msg.reply(t(lang, "SENDCOINS_NO_AMOUNT"));
     }
 
     if (isNaN(sum)) {
-      return msg.channel.createMessage(t(lang, "SENDCOINS_AMOUNT_IS_NAN"));
+      return msg.reply(t(lang, "SENDCOINS_AMOUNT_IS_NAN"));
     }
 
     sum = Math.round(sum);
@@ -40,7 +40,7 @@ module.exports = {
       .then(b => b[0]);
     
     if (authorBalance.balance < sum) {
-      return msg.channel.createMessage(t(lang, "SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
+      return msg.reply(t(lang, "SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
     }
 
     const confirmEmbed = {
@@ -49,7 +49,7 @@ module.exports = {
       color: await msg.author.embedColor(),
     };
 
-    const message = await msg.channel.createMessage({ embed: confirmEmbed });
+    const message = await msg.reply({ embed: confirmEmbed });
     
     const response = await msg.channel.awaitMessages(
       m => m.author == msg.author && ((m.content == "y" || m.content == "yes") || (m.content == "n" || m.content == "no")),

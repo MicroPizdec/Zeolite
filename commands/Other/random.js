@@ -10,7 +10,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.channel.createMessage(t(lang, "RANDOM_NO_ARGS", prefix));
+      return msg.reply(t(lang, "RANDOM_NO_ARGS", prefix));
     }
 
     let [ min, max ] = args;
@@ -23,7 +23,7 @@ module.exports = {
     min = parseInt(min);
 
     if (isNaN(max) || isNaN(min)) {
-      return msg.channel.createMessage(t(lang, "RANDOM_NUMBER_IS_NAN"));
+      return msg.reply(t(lang, "RANDOM_NUMBER_IS_NAN"));
     }
 
     const num = randInt(max, min);
@@ -42,6 +42,6 @@ module.exports = {
       },
     };
 
-    await msg.channel.createMessage({ embed });
+    await msg.reply({ embed });
   }
 }

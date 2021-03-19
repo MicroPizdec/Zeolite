@@ -8,7 +8,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.channel.createMessage(t(lang, "SOFTBAN_NO_ARGS", prefix));
+      return msg.reply(t(lang, "SOFTBAN_NO_ARGS", prefix));
     }
 
     const [ userID, ...reason ] = args;
@@ -18,14 +18,14 @@ module.exports = {
       msg.guild.members.find(m => m.tag == userID || m.id == userID);
 
     if (!member) {
-      return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));
+      return msg.reply(t(lang, "USER_NOT_FOUND"));
     }
 
     if (member.id === msg.author.id) {
-      return msg.channel.createMessage(t(lang, "CANT_SOFTBAN_YOURSELF"));
+      return msg.reply(t(lang, "CANT_SOFTBAN_YOURSELF"));
     }
     if (member.id === client.user.id) {
-      return msg.channel.createMessage(t(lang, "CANT_SOFTBAN_BOT"));
+      return msg.reply(t(lang, "CANT_SOFTBAN_BOT"));
     }
 
     if (member.bannable && msg.member.highestRole.position > member.highestRole.position) {
@@ -38,7 +38,7 @@ module.exports = {
         color: 1638205,
       };
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     } else {
       let description;
 
@@ -56,7 +56,7 @@ module.exports = {
         color: 0xff1835,
       };
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     }
   }
 }

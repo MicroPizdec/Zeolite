@@ -429,7 +429,7 @@ module.exports = {
   WARN_USAGE: "[-d <id>] [-l [user]] <user> [reason]",
   WARN_NO_ARGS: prefix => `> :x: What user do you want to warn? Use \`${prefix}warn [-d <id>] [-l [user]] <user> [reason]\``,
   WARN_LIST: "Warn list",
-  WARN_ITEM: id => `Warn ID ${id}`,
+  WARN_ITEM: (id, user) => `Warn ID ${id} (warned by ${user.tag})`,
   WARN_TOTAL: total => `Total warns: ${total}`,
   WARN_DELETE_NO_ID: "> :x: Warn ID not specified.",
   WARN_INVALID_ID: "> :x: This warn does not exist or located on another server.",

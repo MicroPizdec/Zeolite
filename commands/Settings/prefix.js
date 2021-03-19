@@ -24,21 +24,21 @@ module.exports = {
         };
       }
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     } else {
       if (!msg.member.permission.has("manageGuild")) {
         throw new PermissionError("", "manageGuild");
       }
 
       if (prefixArg.length > 10) {
-        return msg.channel.createMessage(t(lang, "PREFIX_TOO_LONG"));
+        return msg.reply(t(lang, "PREFIX_TOO_LONG"));
       }
 
       const guildPrefix = await prefixes.findOrCreate({ where: { server: msg.guild.id } })
         .then(i => i[0]);
       await guildPrefix.update({ prefix: prefixArg.toLowerCase() });
 
-      await msg.channel.createMessage(t(lang, "PREFIX_SUCCESS", guildPrefix.prefix));
+      await msg.reply(t(lang, "PREFIX_SUCCESS", guildPrefix.prefix));
     }
   }
 }
