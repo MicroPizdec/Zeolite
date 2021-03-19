@@ -125,6 +125,8 @@ module.exports = {
   NOT_IN_SERVER: "Не является участником сервера",
   USERINFO_COLOR: "Цвет роли",
   USERINFO_DEFAULT_COLOR: "стандартный",
+  USERINFO_BADGES: "Значки",
+  USERINFO_NO_BADGES: "Этот пользователь не имеет значков",
 
   _8BALL_COMMAND_DESCRIPTION: "магический шар-восьмерка",
   _8BALL_COMMAND_USAGE: "<вопрос>",

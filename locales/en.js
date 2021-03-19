@@ -126,6 +126,8 @@ module.exports = {
   NOT_IN_SERVER: "Not a server member",
   USERINFO_COLOR: "Role color",
   USERINFO_DEFAULT_COLOR: "default",
+  USERINFO_BADGES: "Badges",
+  USERINFO_NO_BADGES: "This user does not have any badge",
 
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
