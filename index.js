@@ -13,6 +13,7 @@ global.client = new CmdClient(config.token, {
   webhookToken: config.webhookToken,
   guildSubscriptions: false,
   intents: [ "guilds", "guildMembers", "guildMessages" ],
+  getAllUsers: true,
 });
 
 client.usageCount = 0;
