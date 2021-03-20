@@ -67,7 +67,7 @@ module.exports = {
           inline: true,
         },
         {
-          name: "ID:",
+          name: "ID",
           value: inviteInfo.guild.id,
           inline: true,
         },
