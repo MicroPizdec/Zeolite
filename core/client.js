@@ -220,7 +220,7 @@ class CmdClient extends Eris.Client {
 
     const ext = this.extensions[name];
     
-    if (ext.unload) ext.unload();
+    if (ext.unload) ext.unload(this);
     delete this.extensions[name];
     delete require.cache[ext.path];
     return ext.path;
