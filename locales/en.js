@@ -310,7 +310,8 @@ module.exports = {
   ],
   INVITE_CHANNEL: "Channel",
   INVITE_INVITER: "Inviter",
-  INVITE_CODE: code => `Code: ${code}`,
+  // INVITE_CODE: code => `Code: ${code}`,
+  INVITE_FEATURES: "Features",
 
   INFO_DESCRIPTION: "information about bot",
   INFO_EMBED_DESC: "A multifunctional bot that simple in terms of economy written on JavaScript",

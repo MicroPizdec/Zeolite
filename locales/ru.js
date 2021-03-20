@@ -69,8 +69,8 @@ module.exports = {
     VERIFIED: "верифицированный сервер",
     PARTNERED: "Discord Partner",
     PUBLIC: "публичный сервер",
-    COMMERCE: "поммерческий сервер",
-    NEWS: "новостной канал",
+    COMMERCE: "коммерческий сервер",
+    NEWS: "канал с объявлениями",
     DISCOVERABLE: "доступен в обзоре серверов",
     FEATURABLE: "предлагаемый сервер",
     ANIMATED_ICON: "анимированная иконка",
@@ -79,7 +79,7 @@ module.exports = {
     WELCOME_SCREEN_ENABLED: "экран приветствия",
     COMMUNITY: "сообщество",
     MEMBER_VERIFICATION_GATE_ENABLED: "отбор участников",
-    PREVIEW_ENABLED: "превью сервера"
+    PREVIEW_ENABLED: "предпросмотр сервера"
   },
   NO: "нет",
 
@@ -309,7 +309,8 @@ module.exports = {
   ],
   INVITE_CHANNEL: "Канал",
   INVITE_INVITER: "Приглашающий",
-  INVITE_CODE: code => `Код инвайта: ${code}`,
+  // INVITE_CODE: code => `Код инвайта: ${code}`,
+  INVITE_FEATURES: "Функции",
 
   INFO_DESCRIPTION: "информация о боте",
   INFO_EMBED_DESC: "Простой в плане экономики многофункциональный бот, написанный на JavaScript",
