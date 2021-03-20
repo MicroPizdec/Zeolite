@@ -91,7 +91,7 @@ module.exports = {
         },
         {
           name: _(language, "STATS_LIBRARIES"),
-          value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}\nCanvas: ${canvas}\nMoment: ${moment.version}`
+          value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}\nCanvas: ${canvas}\nMoment.js: ${moment.version}`
         },
       ],
     };
