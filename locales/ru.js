@@ -311,6 +311,7 @@ module.exports = {
   INVITE_INVITER: "Приглашающий",
   // INVITE_CODE: code => `Код инвайта: ${code}`,
   INVITE_FEATURES: "Функции",
+  INVITE_SERVER_CREATED_AT: "Сервер создан",
 
   INFO_DESCRIPTION: "информация о боте",
   INFO_EMBED_DESC: "Простой в плане экономики многофункциональный бот, написанный на JavaScript",

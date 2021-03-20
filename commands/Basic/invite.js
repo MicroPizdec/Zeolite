@@ -1,3 +1,4 @@
+const moment = require("moment");
 function isCorrectInvite(invite) {
   const inviteArray = invite.split("/");
   inviteArray.pop();
@@ -44,10 +45,14 @@ module.exports = {
 
     if (!msg.member.permissions.has("manageMessages")) msg.delete().catch(() => {});
 
+    moment.locale(lang);
+    
+    const createdDaysAgo = Math.floor((Date.now() - inviteInfo.guild.createdAt) / (86400 * 1000));
+
     const embed = {
       author: {
         name: inviteInfo.guild.name,
-        icon_url: getGuildIconURL(inviteInfo.guild),
+        icon_url: inviteInfo.guild.iconURL,
       },
       color: await msg.author.embedColor(),
       fields: [
@@ -64,7 +69,11 @@ module.exports = {
         {
           name: "ID:",
           value: inviteInfo.guild.id,
-          inline: false,
+          inline: true,
+        },
+        {
+          name: _(lang, "INVITE_SERVER_CREATED_AT"),
+          value: moment(inviteInfo.guild.createdAt).format("lll") + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo)
         },
         {
           name: _(lang, "INVITE_CHANNEL"),
