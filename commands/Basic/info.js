@@ -27,7 +27,8 @@ module.exports = {
           `[${t(lang, "INFO_DONATE")}](https://www.donationalerts.com/r/zaribros)\n` +
           `[bots.server-discord.com](https://bots.server-discord.com/679692205736460301)\n` +
           `[top.gg](https://top.gg/bot/679692205736460301)\n` +
-          `[botsfordiscord.com](https://botsfordiscord.com/bot/679692205736460301)`,
+          `[botsfordiscord.com](https://botsfordiscord.com/bot/679692205736460301)\n` +
+          `[boticord.top](https://boticord.top/bot/679692205736460301)`,
         },
       ],
     };
