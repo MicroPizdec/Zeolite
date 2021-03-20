@@ -161,7 +161,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.channel.createMessage(_(lang, "RATE_NO_ARGS", prefix));
+      return msg.reply(_(lang, "RATE_NO_ARGS", prefix));
     }
 
     let question = msg.content.slice(prefix.length + this.name.length + 1);
@@ -186,6 +186,6 @@ module.exports = {
           },
         };
       
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
   }
 }

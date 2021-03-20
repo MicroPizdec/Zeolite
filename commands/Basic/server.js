@@ -100,6 +100,6 @@ module.exports = {
       inline: true,
     });
 
-    await msg.channel.createMessage({ embed })
+    await msg.reply({ embed })
   }
 };

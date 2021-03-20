@@ -59,7 +59,7 @@ const answers = {
     "ЯЗЫК БЛЯТЬ ПОЛОМАЕШ В ТРЁХ МЕСТАХ БЛЯТЬ",
     "Ручонки отпустил что-ли, а? Сынок ёбаный! Мальчиш - ебальчиш нахуй.",
   ],
-  ua: [
+ /* ua: [
     "Так.",
     "Немає.",
     "Запитай мене про це пізніше",
@@ -71,7 +71,7 @@ const answers = {
     "Це малоймовірно",
     "Сумніваюся.",
     "¯\_(ツ)_/¯",
-  ],
+  ], */
 };
 
 module.exports = {
@@ -83,7 +83,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length) {
-      return msg.channel.createMessage(t(language, "_8BALL_NO_ARGS_PROMPT", prefix));
+      return msg.reply(t(language, "_8BALL_NO_ARGS_PROMPT", prefix));
     }
 
     const question = args.raw.join(" ");
@@ -108,6 +108,6 @@ module.exports = {
       },
     };
 
-    await msg.channel.createMessage({ embed });
+    await msg.reply({ embed });
   }
 };

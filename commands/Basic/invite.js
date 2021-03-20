@@ -26,20 +26,20 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.channel.createMessage(_(lang, "INVITE_NO_ARGS", prefix));
+      return msg.reply(_(lang, "INVITE_NO_ARGS", prefix));
     }
 
     let invite = args[0];
     
     if (!isCorrectInvite(invite)) {
-      return msg.channel.createMessage(_(lang, "INVITE_INVALID"));
+      return msg.reply(_(lang, "INVITE_INVALID"));
     }
 
     let inviteInfo;
     try {
       inviteInfo = await client.getInvite(parseInvite(invite), true);
     } catch {
-      return msg.channel.createMessage(_(lang, "INVITE_INVALID"));
+      return msg.reply(_(lang, "INVITE_INVALID"));
     }
 
     if (!msg.member.permissions.has("manageMessages")) msg.delete().catch(() => {});

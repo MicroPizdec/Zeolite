@@ -31,30 +31,30 @@ module.exports = {
         footer: { text: t(lang, "EMBEDCOLOR_FOOTER", prefix) },
       };
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     } else {
       switch (newColor) {
         case "default":
           await userColor.update({ color: null });
-          return msg.channel.createMessage(t(lang, "EMBEDCOLOR_DEFAULT_SUCCESS"));
+          return msg.reply(t(lang, "EMBEDCOLOR_DEFAULT_SUCCESS"));
         case "random":
           await userColor.update({ color: null, isRandom: true });
-          return msg.channel.createMessage(t(lang, "EMBEDCOLOR_RANDOM_SUCCESS"));
+          return msg.reply(t(lang, "EMBEDCOLOR_RANDOM_SUCCESS"));
         default: {
           const colorNum = newColor.startsWith("#") ?
             parseInt(newColor.replace("#", ""), 16) :
             parseInt(newColor);
       
           if (isNaN(colorNum)) {
-            return msg.channel.createMessage(t(lang, "EMBEDCOLOR_IS_NAN"));
+            return msg.reply(t(lang, "EMBEDCOLOR_IS_NAN"));
           }
 
           if (colorNum > 16777216) {
-            return msg.channel.createMessage(t(lang, "EMBEDCOLOR_TOO_BIG"));
+            return msg.reply(t(lang, "EMBEDCOLOR_TOO_BIG"));
           }
 
           await userColor.update({ color: colorNum, isRandom: false });
-          await msg.channel.createMessage(t(lang, "EMBEDCOLOR_SUCCESS", intToHex(colorNum)));
+          await msg.reply(t(lang, "EMBEDCOLOR_SUCCESS", intToHex(colorNum)));
         }
       }
     }

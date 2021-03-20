@@ -26,24 +26,24 @@ module.exports = {
         const content = args.join(" ");
 
         if (!name) {
-          return msg.channel.createMessage(t(lang, "TAGS_NO_NAME"));
+          return msg.reply(t(lang, "TAGS_NO_NAME"));
         }
         if (!content) {
-          return msg.channel.createMessage(t(lang, "TAGS_NO_CONTENT"));
+          return msg.reply(t(lang, "TAGS_NO_CONTENT"));
         }
 
         const tag = await getTag(msg.guild.id, name);
         if (tag) {
-          return msg.channel.createMessage(t(lang, "TAG_ALREADY_EXIST"));
+          return msg.reply(t(lang, "TAG_ALREADY_EXIST"));
         }
 
         if (name.length > 128) {
-          return msg.channel.createMessage(t(lang, "TAG_NAME_TOO_BIG"));
+          return msg.reply(t(lang, "TAG_NAME_TOO_BIG"));
         }
 
         await addTag(msg.guild.id, msg.author.id, name, content);
 
-        return msg.channel.createMessage(t(lang, "TAGS_ADD_SUCCESS", name));
+        return msg.reply(t(lang, "TAGS_ADD_SUCCESS", name));
         break;
       }
       case "edit": {
@@ -51,35 +51,35 @@ module.exports = {
         const content = args.join(" ");
 
         if (!name) {
-          return msg.channel.createMessage(t(lang, "TAGS_NO_NAME"));
+          return msg.reply(t(lang, "TAGS_NO_NAME"));
         }
         if (!content) {
-          return msg.channel.createMessage(t(lang, "TAGS_NO_CONTENT"));
+          return msg.reply(t(lang, "TAGS_NO_CONTENT"));
         }
 
         const tag = await getTag(msg.guild.id, name);
         if (!tag || tag.author != msg.author.id) {
-          return msg.channel.createMessage(t(lang, "TAGS_NOT_OWNER"));
+          return msg.reply(t(lang, "TAGS_NOT_OWNER"));
         }
 
         await tag.update({ text: content });
-        return msg.channel.createMessage(t(lang, "TAGS_EDIT_SUCCESS", name));
+        return msg.reply(t(lang, "TAGS_EDIT_SUCCESS", name));
         break;
       }
       case "delete": {
         const name = args[0];
 
         if (!name) {
-          return msg.channel.createMessage(t(lang, "TAGS_NO_NAME"));
+          return msg.reply(t(lang, "TAGS_NO_NAME"));
         }
 
         const tag = await getTag(msg.guild.id, name);
         if (!tag || tag.author != msg.author.id) {
-          return msg.channel.createMessage(t(lang, "TAGS_NOT_OWNER"));
+          return msg.reply(t(lang, "TAGS_NOT_OWNER"));
         }
 
         await tag.destroy();
-        return msg.channel.createMessage(t(lang, "TAGS_REMOVE_SUCCESS", name));
+        return msg.reply(t(lang, "TAGS_REMOVE_SUCCESS", name));
         break;
       }
       case "transfer": {
@@ -87,16 +87,16 @@ module.exports = {
         const user = msg.mentions[0] || client.users.find(u => u.tag == args[1] || u.id == args[1]);
 
         if (!user) {
-          return msg.channel.createMessage(t(lang, "INVALID_USER_PROVIDED"));
+          return msg.reply(t(lang, "INVALID_USER_PROVIDED"));
         }
 
         const tag = await getTag(msg.guild.id, name);
         if (!tag || tag.author != msg.author.id) {
-          return msg.channel.createMessage(t(lang, "TAGS_NOT_OWNER"));
+          return msg.reply(t(lang, "TAGS_NOT_OWNER"));
         }
 
         await tag.update({ author: user.id });
-        return msg.channel.createMessage(t(lang, "TAGS_TRANSFER_SUCCESS", name, user.tag));
+        return msg.reply(t(lang, "TAGS_TRANSFER_SUCCESS", name, user.tag));
         break;
       }
       case "owner": {
@@ -104,11 +104,11 @@ module.exports = {
 
         const tag = await getTag(msg.guild.id, name);
         if (!tag) {
-          return msg.channel.createMessage(t(lang, "TAG_NOT_FOUND"));
+          return msg.reply(t(lang, "TAG_NOT_FOUND"));
         }
 
         const owner = client.users.get(tag.author);
-        return msg.channel.createMessage(t(lang, "TAGS_OWNER", name, owner ? owner.tag : tag.author));
+        return msg.reply(t(lang, "TAGS_OWNER", name, owner ? owner.tag : tag.author));
       }
       case "list": {
         const pageNum = parseInt(args[0]) || 1;
@@ -128,7 +128,7 @@ module.exports = {
         }
 
         if (!pages[pageNum - 1]) {
-          return msg.channel.createMessage(t(lang, "TAGS_INVALID_PAGE_NUMBER"));
+          return msg.reply(t(lang, "TAGS_INVALID_PAGE_NUMBER"));
         }
 
         const embed = {
@@ -137,7 +137,7 @@ module.exports = {
           color: await msg.author.embedColor(),
           footer: { text: t(lang, "TAGS_LIST_FOOTER", pageNum, pages.length, total) },
         };
-        return msg.channel.createMessage({ embed });
+        return msg.reply({ embed });
         break;
       }
       default: {
@@ -152,12 +152,12 @@ module.exports = {
             },
           };
 
-          await msg.channel.createMessage({ embed });
+          await msg.reply({ embed });
         } else {
           const tag = await getTag(msg.guild.id, subcommand);
 
           if (!tag) {
-            return msg.channel.createMessage(t(lang, "TAG_NOT_FOUND"));
+            return msg.reply(t(lang, "TAG_NOT_FOUND"));
           }
 
           await msg.channel.createMessage(tag.text);

@@ -19,6 +19,8 @@ global.client = new CmdClient(config.token, {
 client.usageCount = 0;
 client.on("commandSuccess", () => client.usageCount++);
 
+client.options.allowedMentions.replied_user = false;
+
 client.loadGroups([
   "Basic",
   "Fun",

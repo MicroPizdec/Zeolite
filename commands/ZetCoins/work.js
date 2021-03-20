@@ -22,7 +22,7 @@ module.exports = {
           icon_url: client.user.avatarURL,
         },
       };
-      return msg.channel.createMessage({ embed });
+      return msg.reply({ embed });
     }
     
     const amount = randInt(100, 400);
@@ -34,7 +34,7 @@ module.exports = {
         description: t(language, "BANNED_BALANCE_REASON", userBalance.reason),
         color: 15158332,
       };
-      return msg.channel.createMessage({ embed: bannedBalanceEmbed });
+      return msg.reply({ embed: bannedBalanceEmbed });
     }
 
     await userBalance.update({ balance: userBalance.balance + amount });
@@ -52,7 +52,7 @@ module.exports = {
         icon_url: client.user.avatarURL,
       },
     };
-    await msg.channel.createMessage({ embed });
+    await msg.reply({ embed });
 
     cooldowns.set(msg.author.id, Date.now() + 3600000);
     setTimeout(() => cooldowns.delete(msg.author.id), 3600000);

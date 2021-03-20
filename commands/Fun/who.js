@@ -52,6 +52,6 @@ module.exports = {
       },
     };
   
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     }
   };

@@ -15,7 +15,7 @@ module.exports = {
       const guild = client.owners.includes(msg.author.id) ?
         client.guilds.get(args[1]) || msg.guild : msg.guild;
 
-      if(!guild.icon) return await msg.channel.createMessage(t(lang, "NO_ICON"))
+      if(!guild.icon) return await msg.reply(t(lang, "NO_ICON"))
 
       const embed = {
         author: {
@@ -26,14 +26,14 @@ module.exports = {
         color: await msg.author.embedColor(),
       };
 
-      return msg.channel.createMessage({ embed });
+      return msg.reply({ embed });
     } 
 
     if (args[0] === "-sp" || args[0] == "splash") {
       const guild = client.owners.includes(msg.author.id) ?
         client.guilds.get(args[1]) || msg.guild : msg.guild;
       
-      if(!guild.splash) return await msg.channel.createMessage(t(lang, "NO_SPLASH"))
+      if(!guild.splash) return await msg.reply(t(lang, "NO_SPLASH"))
 
       const embed = {
         author: {
@@ -44,14 +44,14 @@ module.exports = {
         color: await msg.author.embedColor(),
       };
 
-      return msg.channel.createMessage({ embed });
+      return msg.reply({ embed });
     } 
 
     if (args[0] === "-b" || args[0] == "banner") {
       const guild = client.owners.includes(msg.author.id) ?
         client.guilds.get(args[1]) || msg.guild : msg.guild;
       
-      if(!guild.banner) return await msg.channel.createMessage(t(lang, "NO_BANNER"))
+      if(!guild.banner) return await msg.reply(t(lang, "NO_BANNER"))
 
       const embed = {
         author: {
@@ -62,7 +62,7 @@ module.exports = {
         color: await msg.author.embedColor(),
       };
 
-      return msg.channel.createMessage({ embed });
+      return msg.reply({ embed });
     } 
 
     const user = args[0] ? msg.mentions.length ? msg.mentions[0] :
@@ -71,7 +71,7 @@ module.exports = {
         m.tag.toLowerCase().startsWith(args[0].toLowerCase())
       ) || client.users.find(u => u.tag == args[0]) || await client.fetchUser(args[0]) : msg.author;
 
-    if (!user) return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));
+    if (!user) return msg.reply(t(lang, "USER_NOT_FOUND"));
 
     let format;
     if (user.avatar) {
@@ -87,6 +87,6 @@ module.exports = {
       color: await msg.author.embedColor(),
       image: { url: user.dynamicAvatarURL(format, 2048) },
     };
-    await msg.channel.createEmbed(embed);
+    await msg.reply({ embed });
   }
 };

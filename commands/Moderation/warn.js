@@ -8,7 +8,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.channel.createMessage(t(lang, "WARN_NO_ARGS", prefix));
+      return msg.reply(t(lang, "WARN_NO_ARGS", prefix));
     }
 
     const userID = args.shift();
@@ -23,7 +23,7 @@ module.exports = {
       }
 
       if (!user) {
-        return msg.channel.createMessage(t(lang, "USER_NOT_FOUND"));
+        return msg.reply(t(lang, "USER_NOT_FOUND"));
       }
 
       const warnlist = await warns.findAll({ where: { user: user.id, server: msg.guild.id } });
@@ -41,30 +41,30 @@ module.exports = {
 
       for (const warn of warnlist) {
         embed.fields.push({
-          name: t(lang, "WARN_ITEM", warn.id),
+          name: t(lang, "WARN_ITEM", warn.id, await client.fetchUser(warn.warnedBy)),
           value: t(lang, "REASON", warn.reason),
         });
       }
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     } else if (userID == "-d") {
       if (!msg.member.permissions.has("kickMembers")) {
         throw new PermissionError("", "kickMembers");
       }
 
       if (!args[0]) {
-        return msg.channel.createMessage(t(lang, "WARN_DELETE_NO_ID"));
+        return msg.reply(t(lang, "WARN_DELETE_NO_ID"));
       }
 
       const warn = await warns.findOne({ where: { id: args[0] } });
 
       if (!warn || warn.server != msg.guild.id) {
-        return msg.channel.createMessage(t(lang, "WARN_INVALID_ID"));
+        return msg.reply(t(lang, "WARN_INVALID_ID"));
       }
 
       await warn.destroy();
 
-      await msg.channel.createMessage(t(lang, "WARN_DELETE_SUCCESS", args[0]));
+      await msg.reply(t(lang, "WARN_DELETE_SUCCESS", args[0]));
     } else {
       if (!msg.member.permissions.has("kickMembers")) {
         throw new PermissionError("", "kickMembers");
@@ -74,19 +74,19 @@ module.exports = {
       : msg.guild.members.find(m => m.id == userID || m.tag == userID);
 
       if (!user) {
-        return msg.channel.createMessage(t(lang, "USER_NOT_FOUND")); 
+        return msg.reply(t(lang, "USER_NOT_FOUND")); 
       }
 
       if (user.id == msg.author.id) {
-        return msg.channel.createMessage(t(lang, "CANT_WARN_YOURSELF"));
+        return msg.reply(t(lang, "CANT_WARN_YOURSELF"));
       }
       if (user.bot) {
-        return msg.channel.createMessage(t(lang, "CANT_WARN_BOTS"));
+        return msg.reply(t(lang, "CANT_WARN_BOTS"));
       }
 
       const reason = args.join(" ");
       if (reason.length > 100) {
-        return msg.channel.createMessage(t(lang, "WARN_REASON_TOO_LONG"));
+        return msg.reply(t(lang, "WARN_REASON_TOO_LONG"));
       }
 
       if (user.punishable(msg.member)) {
@@ -104,7 +104,7 @@ module.exports = {
           footer: { text: t(lang, "WARN_ID", warn.id) },
         };
 
-        await msg.channel.createMessage({ embed });
+        await msg.reply({ embed });
       } else {
         const embed = {
           title: t(lang, "WARN_FAILED"),
@@ -112,7 +112,7 @@ module.exports = {
           color: 16717877,
         };
 
-        await msg.channel.createMessage({ embed });
+        await msg.reply({ embed });
       }
     }
   }

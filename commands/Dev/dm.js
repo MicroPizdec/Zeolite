@@ -7,15 +7,15 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length)
-      return msg.channel.createMessage(_(language, "DM_NO_ARGS_PROMPT", prefix));
+      return msg.reply(_(language, "DM_NO_ARGS_PROMPT", prefix));
 
     let unparsedArgs = msg.content.slice(prefix.length + this.name.length + 1).split(" ");
 
     const userID = unparsedArgs.shift();
     const user = msg.mentions[0] || client.users.get(userID);
 
-    if (!user) return msg.channel.createMessage(_(language, "INVALID_USER_PROVIDED"));
-    if (!unparsedArgs.length) return msg.channel.createMessage(_(language, "DM_NO_CONTENT_TO_SEND"));
+    if (!user) return msg.reply(_(language, "INVALID_USER_PROVIDED"));
+    if (!unparsedArgs.length) return msg.reply(_(language, "DM_NO_CONTENT_TO_SEND"));
 
     const channel = await client.getDMChannel(user.id);
     await channel.createMessage(unparsedArgs.join(" "));

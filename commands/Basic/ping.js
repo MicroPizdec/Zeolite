@@ -4,7 +4,7 @@ module.exports = {
   description: "PING_COMMAND_DESCRIPTION",
   async run(client, msg, args, prefix, language) {
     const startTime = Date.now();
-    const message = await msg.channel.createMessage("<a:d_typing:791621737880092700>");
+    const message = await msg.reply("<a:d_typing:791621737880092700>");
 
     const embed = {
       title: t(language, "PING_BOT", Math.floor(Date.now() - startTime)),

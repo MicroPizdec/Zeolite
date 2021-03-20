@@ -13,7 +13,7 @@ module.exports = {
   argsRequired: "attachment",
   async run(client, msg, args, prefix, language) {
     if (!args.length && !msg.attachments.length)
-      return msg.channel.createMessage(t(language, "SAY_NO_ARGS_PROMPT", prefix));
+      return msg.reply(t(language, "SAY_NO_ARGS_PROMPT", prefix));
     
     let text = msg.content.slice(prefix.length + this.name.length + 1);
 

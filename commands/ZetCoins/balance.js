@@ -26,7 +26,7 @@ module.exports = {
         description: t(language, "BANNED_BALANCE_REASON", userBalance.reason),
         color: 15158332,
       };
-      return msg.channel.createMessage({ embed: bannedBalanceEmbed });
+      return msg.reply({ embed: bannedBalanceEmbed });
     }
 
     const embed = {
@@ -47,6 +47,6 @@ module.exports = {
         icon_url: client.user.avatarURL,
       },
     };
-    await msg.channel.createMessage({ embed });
+    await msg.reply({ embed });
   }
 };

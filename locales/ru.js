@@ -235,14 +235,14 @@ module.exports = {
   BANCOMMANDS_NO_ARGS_PROMPT: prefix => `> :x: Кому вы хотите забанить команды? Введите \`${prefix}bancommands <пользователь> [причина]\``,
   BANCOMMANDS_CANT_BAN_SELF: "> :x: Вы не можете забанить команды самому себе.",
   BANCOMMANDS_CANT_BAN_OTHER_BOT_OWNER: "> :x: Вы не можете забанить команды другому владельцу бота.",
-  BANCOMMANDS_USER_ALREADY_BANNED: "> :x: Пользователь уже был забанен.",
+  BANCOMMANDS_USER_ALREADY_BANNED: "> :x: У этого пользователя команды уже были забанены.",
   BANCOMMANDS_SUCCESSFUL_BAN: user => `:white_check_mark: Успешно забанены команды пользователю ${user.username}#${user.discriminator}.`,
   BANCOMMANDS_BAN_REASON: reason => `Причина: ${reason || "нету"}`,
 
   UNBANCOMMANDS_DESCRIPTION: "разбанивает команды указанному пользователю",
   UNBANCOMMANDS_USAGE: "<пользователь>",
   UNBANCOMMANDS_NO_ARGS_PROMPT: prefix => `> :x: Кому вы хотите разбанить команды? Введите \`${prefix}unbancommands <пользователь>\``,
-  UNBANCOMMANDS_USER_ISNT_BANNED: "> :x: Данный пользователь не забанен.",
+  UNBANCOMMANDS_USER_ISNT_BANNED: "> :x: У этого пользователя команды не забанены.",
   UNBANCOMMANDS_SUCCESSFUL_UNBAN: user => `:white_check_mark: Успешно разбанены команды пользователю ${user.username}#${user.discriminator}`,
 
   AVATAR_DESCRIPTION: "показывает ваш аватар или аватар указанного пользователя.\nКлючи могут показать следующее:\n`-s` или `server` - иконку сервера\n`-sp` или `splash` - фон приглашения сервера (если есть)\n`-b` или `banner` - баннер сервера (если есть)",
@@ -427,7 +427,7 @@ module.exports = {
   WARN_USAGE: "[-d <id>] [-l [пользователь]] <пользователь> [причина]",
   WARN_NO_ARGS: prefix => `> :x: Кому вы хотите выдать предупреждение? Используйте \`${prefix}warn [-d <id>] [-l [пользователь]] <пользователь> [причина]\``,
   WARN_LIST: "Список предупреждений",
-  WARN_ITEM: id => `Предупреждение ${id}`,
+  WARN_ITEM: (id, user) => `Предупреждение ${id} (выдал ${user.tag})`,
   WARN_TOTAL: total => `Всего предупреждений: ${total}`,
   WARN_DELETE_NO_ID: "> :x: ID предупреждения не указан.",
   WARN_INVALID_ID: "> :x: Такого предупреждения не существует или оно расположено на другом сервере.",
@@ -492,7 +492,7 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Пользователи с дискриминатором #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором",
   
-  BOORU_USAGE: "<тег>",
+  BOORU_USAGE: "<теги>",
   NOT_NSFW_CHANNEL: "> :x: Канал не помечен как NSFW.",
   POST_NOT_FOUND: "> :x: Пост не найден.",
   NOT_MORE_THAN_2_TAGS: "> :x: Не больше, чем 1 тег",
@@ -511,7 +511,7 @@ module.exports = {
 
   PAHEAL_DESCRIPTION: "Ищет paheal-посты по тегу.\nТребуется канал помеченный как NSFW",
 
-  RULE34_DESCRIPTION: "Ищет rule34-посты по тегу.\nТребуется канал помеченный как NSFW",
+  RULE34_DESCRIPTION: "Получает rule34-пост по тегам.\nЭта команда требует канал помеченный как NSFW",
 
   DANBOORU_DESCRIPTION: "Ищет danbooru-посты по тегу.\nТребуется канал помеченный как NSFW",
   DANBOORU_USAGE: "<тег> (не больше, чем 1 тег)",

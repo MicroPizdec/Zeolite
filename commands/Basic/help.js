@@ -41,7 +41,7 @@ module.exports = {
         });
       }
 
-      const message = await msg.channel.createMessage({ embed });
+      const message = await msg.reply({ embed });
     } else {
       const cmd = client.commands.find(c => c.name === cmdName || (c.aliases && c.aliases.includes(cmdName)));
 
@@ -56,7 +56,7 @@ module.exports = {
           }
         };
 
-        return msg.channel.createMessage({ embed });
+        return msg.reply({ embed });
       }
 
       let usage = `${prefix}${cmd.name}`;
@@ -89,7 +89,7 @@ module.exports = {
         })
       }
 
-      await msg.channel.createMessage({ embed });
+      await msg.reply({ embed });
     }
   }
 };

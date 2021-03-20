@@ -12,11 +12,11 @@ module.exports = {
         const {0: post} = await booru.search("rule34.xxx", args, {limit:1, random: true})
 
         if (!msg.channel.nsfw) {
-            return msg.channel.createMessage(t(lang, "NOT_NSFW_CHANNEL"));
+            return msg.reply(t(lang, "NOT_NSFW_CHANNEL"));
           }
     
         if (!post) {
-           return msg.channel.createMessage(t(lang, "POST_NOT_FOUND"));
+           return msg.reply(t(lang, "POST_NOT_FOUND"));
         }
     
         moment.locale(lang);
@@ -49,6 +49,6 @@ module.exports = {
             },
             color: await msg.author.embedColor(),
        }
-       await msg.channel.createMessage({ embed });
+       await msg.reply({ embed });
       }
     }
