@@ -517,4 +517,10 @@ module.exports = {
 
   DANBOORU_DESCRIPTION: "Ищет danbooru-посты по тегу.\nТребуется канал помеченный как NSFW",
   DANBOORU_USAGE: "<тег> (не больше, чем 1 тег)",
+
+  TRANSLATE_DESCRIPTION: "переводит текст на указанный язык",
+  TRANSLATE_USAGE: "<язык> <текст>",
+  TRANSLATE_NO_TEXT: "> :x: Укажите текст.",
+  TRANSLATE_INVALID_LANG: "> :x: Язык неверно указан.",
+  TRANSLATE_TITLE: fromLang => `Переводчик (переведено с ${fromLang})`,
 };

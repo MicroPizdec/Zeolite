@@ -518,4 +518,10 @@ module.exports = {
 
   DANBOORU_DESCRIPTION: "Searches danbooru-posts by tags.\nNSFW-channel is required",
   DANBOORU_USAGE: "<tag> (not more, than 1 tag)",
+
+  TRANSLATE_DESCRIPTION: "translates text into provided language",
+  TRANSLATE_USAGE: "<language> <text>",
+  TRANSLATE_NO_TEXT: "> :x: Provide the text.",
+  TRANSLATE_INVALID_LANG: "> :x: The language is wrong provided.",
+  TRANSLATE_TITLE: fromLang => `Translator (translated from ${fromLang})`,
 };
