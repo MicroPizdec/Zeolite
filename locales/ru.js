@@ -2,6 +2,7 @@ module.exports = {
   COMMAND_ERROR_OCCURRED: ":x: Произошла непредвиденная ошибка при выполнении команды.",
   COMMAND_ERROR_DESCRIPTION: "Эта ошибка была выслана разработчикам бота, и будет исправлена в ближайшее время.",
   INVALID_USER_PROVIDED: "> :x: Данного пользователя не существует.",
+  DAYS_AGO: days => `(${days} дней назад)`,
 
   BASIC_GROUP: "Основные команды",
   FUN_GROUP: "Развлекательные команды",
@@ -106,7 +107,6 @@ module.exports = {
   USERINFO_BOT_DEFINE: bot => bot ? "Да" : "Нет",
   USERINFO_ZETCOINS_TITLE: "Кол-во ZetCoin'ов",
   USERINFO_ZETCOINS_BALANCE: amount => `${amount} ZetCoin'ов`,
-  USERINFO_CREATED_DAYS_AGO: days => `(${days} дней назад)`,
   USERINFO_JOINDATE: "Дата входа на сервер",
   USERINFO_STATUSES: {
     online: "<:d_online:737229035914133604> В сети",

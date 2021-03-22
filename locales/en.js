@@ -3,6 +3,7 @@ module.exports = {
   COMMAND_ERROR_DESCRIPTION: "This error was sent to the bot developers, and will be fixed as soon as possible.",
   GUILD_ONLY_COMMAND: "> :x: You cannot use this command in DM.",
   INVALID_USER_PROVIDED: "> :x: Invalid user provided.",
+  DAYS_AGO: days => `(${days} days ago)`,
 
   BASIC_GROUP: "Basic commands",
   FUN_GROUP: "Fun commands",
@@ -107,7 +108,6 @@ module.exports = {
   USERINFO_BOT_DEFINE: bot => bot ? "Yes" : "No",
   USERINFO_ZETCOINS_TITLE: "ZetCoins balance",
   USERINFO_ZETCOINS_BALANCE: amount => `${amount} ZetCoins`,
-  USERINFO_CREATED_DAYS_AGO: days => `(${days} days ago)`,
   USERINFO_JOINDATE: "Join date",
   USERINFO_STATUSES: {
     online: "<:d_online:737229035914133604> Online",

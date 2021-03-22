@@ -20,6 +20,7 @@ module.exports = {
         }
     
         moment.locale(lang);
+        const createdDaysAgo = Math.floor((Date.now() - post.createdAt) / (1000 * 86400));
         
         const embed = {
             author: {
@@ -29,7 +30,7 @@ module.exports = {
             fields: [
                {
                    name: t(lang, "BOORU_CREATEDAT"),
-                   value: moment(post.createdAt).format("lll"),
+                   value: moment(post.createdAt).format("lll") + " " + t(lang, "DAYS_AGO", createdDaysAgo),
                    inline: true,
                },
                {

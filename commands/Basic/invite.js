@@ -73,7 +73,7 @@ module.exports = {
         },
         {
           name: _(lang, "INVITE_SERVER_CREATED_AT"),
-          value: moment(inviteInfo.guild.createdAt).format("lll") + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo)
+          value: moment(inviteInfo.guild.createdAt).format("lll") + " " + _(lang, "DAYS_AGO", createdDaysAgo)
         },
         {
           name: _(lang, "INVITE_CHANNEL"),
