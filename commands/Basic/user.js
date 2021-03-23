@@ -113,7 +113,7 @@ module.exports = {
         },
         {
           name: t(language, "USERINFO_REGDATE"),
-          value: moment(member.createdAt).format("lll") + " " + t(language, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
+          value: moment(member.createdAt).format("lll") + " " + t(language, "DAYS_AGO", createdDaysAgo),
           inline: true,
         },
         {
@@ -131,7 +131,7 @@ module.exports = {
     if (member.joinedAt) {
       embed.fields.splice(2, 0, {
         name: t(language, "USERINFO_JOINDATE"),
-        value: moment(member.joinedAt).format("lll") + " " + _(language, "USERINFO_CREATED_DAYS_AGO", joinedDaysAgo)
+        value: moment(member.joinedAt).format("lll") + " " + _(language, "DAYS_AGO", joinedDaysAgo)
       });
       indexInc++;
     }

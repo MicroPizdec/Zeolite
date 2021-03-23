@@ -42,7 +42,7 @@ module.exports = {
         },
         {
           name: t(lang, "SERVERINFO_CREATION_DATE"),
-          value: moment(guild.createdAt).format("lll") + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo),
+          value: moment(guild.createdAt).format("lll") + " " + _(lang, "DAYS_AGO", createdDaysAgo),
         },
         {
           name: t(lang, "SERVERINFO_VERIFICATION_LEVEL"),

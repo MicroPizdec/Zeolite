@@ -14,6 +14,7 @@ global.client = new CmdClient(config.token, {
   guildSubscriptions: false,
   intents: [ "guilds", "guildMembers", "guildMessages" ],
   getAllUsers: true,
+  db: config.db,
 });
 
 client.usageCount = 0;
