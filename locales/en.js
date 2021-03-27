@@ -22,7 +22,7 @@ module.exports = {
   HELP_COMMAND_USAGE: "[command]",
   HELP_EMBED_TITLE: `Bot commands`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Bot commands (Owner only)",
-  HELP_EMBED_DESC: prefix => `Want to get more information about some command? Type \`${prefix}help [command]\``,
+  HELP_EMBED_DESC: prefix => `To get more information about some command use \`${prefix}help [command]\`\nAny questions? You can ask them in [our support server](https://discord.gg/ZKChwBD).`,
   HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `Command \`${prefix}${name}\` does not exist.`,
   HELP_COMMAND_DOESNT_EXIST_DESC: prefix => `Type \`${prefix}help\` to get a list of commands.`,
   HELP_COMMAND_TITLE: (name, prefix) => `\`${prefix}${name}\` help`,
@@ -65,13 +65,13 @@ module.exports = {
   SERVERINFO_OWNER: "Owner",
   SERVERINFO_FEAUTURES: "Server features",
   FEATURES: {
-    INVITE_SPLASH: "splash",
-    VIP_REGIONS: "384 kb/s voice channel",
+    INVITE_SPLASH: "invite splash",
+    VIP_REGIONS: "384 kb/s bitrate",
     VANITY_URL: "vanity url",
     VERIFIED: "verified",
     PARTNERED: "Discord Partner",
     PUBLIC: "public",
-    COMMERCE: "commerce",
+    COMMERCE: "shop channels",
     NEWS: "announcement channel",
     DISCOVERABLE: "in server discovery",
     FEATURABLE: "featurable",
@@ -83,7 +83,6 @@ module.exports = {
     MEMBER_VERIFICATION_GATE_ENABLED: "membership screening",
     PREVIEW_ENABLED: "server preview"
   },
-  NO: "no",
 
   STATS_COMMAND_DESCRIPTION: "bot stats",
   STATS_EMBED_TITLE: "Stats",
@@ -128,6 +127,7 @@ module.exports = {
   USERINFO_DEFAULT_COLOR: "default",
   USERINFO_BADGES: "Badges",
   USERINFO_NO_BADGES: "This user does not have any badge",
+  USERINFO_FOOTER: id => `ID: ${id}. Registered`,
 
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
@@ -218,12 +218,6 @@ module.exports = {
   DICE_LOSS: ":money_with_wings: Loss",
   DICE_LOSS_MESSAGE: (amount, balance) => `You lost: **${amount}** ZetCoins\nYour balance: **${balance - amount}** ZetCoins`,
   DICE_MORE_THAN_ZERO: "> :x: Amount should be more than 0.",
-
-  DM_COMMAND_DESCRIPTION: "sends the text to provided user",
-  DM_COMMAND_USAGE: "<user> <text>",
-  DM_NO_ARGS_PROMPT: prefix => `> :x: What do you want to send? Use \`${prefix}dm <user> <message>\``,
-  DM_NO_CONTENT_TO_SEND: `> :x: Please provide the text you want to send.`,
-  DM_ANSWER_SENT: "Answer sent",
 
   EVAL_COMMAND_DESCRIPTION: "evaluates the JavaScript code",
   EVAL_COMMAND_USAGE: "<code>",
@@ -496,7 +490,7 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Users who have discriminator #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator.",
 
-  BOORU_USAGE: "<tag>",
+  BOORU_USAGE: "<tags>",
   NOT_NSFW_CHANNEL: "> :x: Channel is not marked as NSFW.",
   POST_NOT_FOUND: "> :x: Post not found.",
   BOORU_TITLE: "Image post (clickable)",
@@ -514,7 +508,7 @@ module.exports = {
 
   PAHEAL_DESCRIPTION: "Searches paheal-posts by tags.\nNSFW-channel is required",
 
-  RULE34_DESCRIPTION: "Searches rule34-posts by tags.\nNSFW-channel is required",
+  RULE34_DESCRIPTION: "Gets a random rule34-post by tags.\nThis command requires NSFW-channel",
 
   DANBOORU_DESCRIPTION: "Searches danbooru-posts by tags.\nNSFW-channel is required",
   DANBOORU_USAGE: "<tag> (not more, than 1 tag)",
