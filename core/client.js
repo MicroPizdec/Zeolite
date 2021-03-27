@@ -10,6 +10,7 @@ const Logger = require("./logger");
 const i18n = require("./i18n");
 
 const { parse, basename } = require("path");
+const { config } = require("process");
 
 function validatePermission(member, permissions) {
   if (permissions instanceof Array) {
@@ -51,9 +52,11 @@ class CmdClient extends Eris.Client {
 
     this.extensions = {};
 
-    global.sequelize = new Sequelize({
-      dialect: "sqlite",
-      storage: "./bot.db",
+    global.sequelize = new Sequelize(options.db.database, options.db.username, options.db.password, {
+      host: options.db.host,
+      dialect: options.db.dialect,
+      storage: options.db.storage,
+      dialectOptions: { timezone: "Etc/GMT0" },
       logging: false,
     });
     initDB(sequelize, Sequelize.DataTypes);
