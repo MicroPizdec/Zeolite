@@ -83,6 +83,7 @@ module.exports = {
     MEMBER_VERIFICATION_GATE_ENABLED: "membership screening",
     PREVIEW_ENABLED: "server preview"
   },
+  SERVERINFO_FOOTER: owner => `Owner: ${owner}\nCreated at`,
 
   STATS_COMMAND_DESCRIPTION: "bot stats",
   STATS_EMBED_TITLE: "Stats",
@@ -126,8 +127,8 @@ module.exports = {
   USERINFO_COLOR: "Role color",
   USERINFO_DEFAULT_COLOR: "default",
   USERINFO_BADGES: "Badges",
-  USERINFO_NO_BADGES: "This user does not have any badge",
-  USERINFO_FOOTER: id => `ID: ${id}. Registered`,
+  USERINFO_NO_BADGES: "This user does not have any badges",
+  USERINFO_FOOTER: id => `ID: ${id}\nRegistered`,
 
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
