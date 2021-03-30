@@ -38,6 +38,7 @@ async function onGuildCreate(guild) {
         description: `${guild.name} (ID: ${guild.id})`,
         color,
         thumbnail: { url: guild.iconURL },
+        footer: { text: `Total members: ${guild.memberCount}` }
       },
     ],
   });
@@ -70,6 +71,10 @@ async function onCommandError(cmd, msg, error, language) {
   const embed = {
     title: t(language, "COMMAND_ERROR_OCCURRED"),
     description: t(language, "COMMAND_ERROR_DESCRIPTION"),
+    footer: {
+      text: `${client.user.username} © ZariBros`,
+      icon_url: client.user.avatarURL,
+    },
     color: 15158332,
   }
   await msg.reply({ embed: embed });

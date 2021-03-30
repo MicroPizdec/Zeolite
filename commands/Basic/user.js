@@ -49,7 +49,7 @@ module.exports = {
   description: "USERINFO_COMMAND_DESCRIPTION",
   usage: "USERINFO_COMMAND_USAGE",
   aliases: [ "u", "userinfo" ],
-  async run(client, msg, args, prefix, language) {
+  async run(client, msg, args, prefix, lang) {
     let member;
     let userID = args[0];
     
@@ -62,12 +62,12 @@ module.exports = {
         m.id == userID
         ) || client.users.find(u => u.tag == userID) || await client.fetchUser(args[0]);
         
-    if (!member) return msg.reply(t(language, "USER_NOT_FOUND"));
+    if (!member) return msg.reply(t(lang, "USER_NOT_FOUND"));
 
     const joinPos = member.joinedAt ? msg.guild.members.map(m => m.joinedAt)
     .sort((a, b) => a - b).indexOf(member.joinedAt) + 1 : 0;
 
-    moment.locale(language);
+    moment.locale(lang);
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: member.id } }))[0];
 
@@ -94,55 +94,47 @@ module.exports = {
     const embed = {
       author: {
         name: nick,
-        icon_url: member.avatarURL,
       },
-      description: joinPos ? t(language, "USERINFO_JOINPOS", joinPos) : t(language, "NOT_IN_SERVER"),
+      description: joinPos ? t(lang, "USERINFO_JOINPOS", joinPos) : t(lang, "NOT_IN_SERVER"),
       color: member.color || await msg.author.embedColor(),
-      footer: {
-        text: `${client.user.username} © ZariBros`,
-        icon_url: client.user.avatarURL,
-      },
+      thumbnail: { url: member.avatarURL },
+      footer: { text: t(lang, "USERINFO_FOOTER", member.id) + " " + t(lang, "DAYS_AGO", createdDaysAgo) },
+      timestamp: new Date(member.createdAt).toISOString(),
       fields: [
         {
-          name: "ID",
-          value: member.id,
-        },
-        {
-          name: t(language, "USERINFO_BADGES"),
-          value: getUserBadges(member).join(" ") || t(language, "USERINFO_NO_BADGES"),
-        },
-        {
-          name: t(language, "USERINFO_REGDATE"),
-          value: moment(member.createdAt).format("lll") + " " + t(language, "DAYS_AGO", createdDaysAgo),
-          inline: true,
-        },
-        {
-          name: t(language, "USERINFO_ZETCOINS_TITLE"),
-          value: t(language, "USERINFO_ZETCOINS_BALANCE", userBalance.balance),
-        },
-        {
-          name: t(language, "USERINFO_ZETCOINS_TOP"),
-          value: t(language, "USERINFO_ZETCOINS_TOP_POS", globalTopPos, topPos || "n/a"),
+          name: t(lang, "USERINFO_BADGES"),
+          value: getUserBadges(member).join(" ") || t(lang, "USERINFO_NO_BADGES"),
         },
       ],
     };
 
     let indexInc = 0;
     if (member.joinedAt) {
-      embed.fields.splice(2, 0, {
-        name: t(language, "USERINFO_JOINDATE"),
-        value: moment(member.joinedAt).format("lll") + " " + _(language, "DAYS_AGO", joinedDaysAgo)
+      embed.fields.splice(1, 0, {
+        name: t(lang, "USERINFO_JOINDATE"),
+        value: moment(member.joinedAt).format("lll") + " " + t(lang, "DAYS_AGO", joinedDaysAgo)
       });
       indexInc++;
     }
 
-    if (roleList) embed.fields.splice(3 + indexInc, 0, {
-      name: t(language, "USERINFO_ROLES"),
+    if (roleList) embed.fields.splice(1 + indexInc, 0, {
+      name: t(lang, "USERINFO_ROLES"),
       value: roleList,
     },
     {
-      name: t(language, "USERINFO_COLOR"),
-      value: member.color ? `#${intToHex(member.color)}` : t(language, "USERINFO_DEFAULT_COLOR"),
+      name: t(lang, "USERINFO_COLOR"),
+      value: member.color ? `#${intToHex(member.color)}` : t(lang, "USERINFO_DEFAULT_COLOR"),
+    });
+
+    if (!member.bot) embed.fields.push({
+        name: t(lang, "USERINFO_ZETCOINS_TITLE"),
+        value: t(lang, "USERINFO_ZETCOINS_BALANCE", userBalance.balance),
+        inline: true,
+      },
+      {
+        name: t(lang, "USERINFO_ZETCOINS_TOP"),
+        value: t(lang, "USERINFO_ZETCOINS_TOP_POS", globalTopPos, topPos || "n/a"),
+        inline: true,
     });
 
     await msg.reply({ embed });

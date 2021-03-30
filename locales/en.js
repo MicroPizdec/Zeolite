@@ -83,7 +83,7 @@ module.exports = {
     MEMBER_VERIFICATION_GATE_ENABLED: "membership screening",
     PREVIEW_ENABLED: "server preview"
   },
-  SERVERINFO_FOOTER: owner => `Owner: ${owner}\nCreated at`,
+  SERVERINFO_FOOTER: id => `ID: ${id}\nCreated at`,
 
   STATS_COMMAND_DESCRIPTION: "bot stats",
   STATS_EMBED_TITLE: "Stats",

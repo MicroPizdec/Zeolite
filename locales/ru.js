@@ -82,6 +82,7 @@ module.exports = {
     MEMBER_VERIFICATION_GATE_ENABLED: "отбор участников",
     PREVIEW_ENABLED: "предпросмотр сервера"
   },
+  SERVERINFO_FOOTER: id => `ID: ${id}\nCоздан`,
 
   STATS_COMMAND_DESCRIPTION: "статистика бота",
   STATS_EMBED_TITLE: "Статистика",
@@ -126,7 +127,7 @@ module.exports = {
   USERINFO_DEFAULT_COLOR: "стандартный",
   USERINFO_BADGES: "Значки",
   USERINFO_NO_BADGES: "Этот пользователь не имеет значков",
-  USERINFO_FOOTER: id => `ID: ${id}. Зарегистрировался`,
+  USERINFO_FOOTER: id => `ID: ${id}\nЗарегистрировался`,
 
   _8BALL_COMMAND_DESCRIPTION: "магический шар-восьмерка",
   _8BALL_COMMAND_USAGE: "<вопрос>",
@@ -265,8 +266,8 @@ module.exports = {
 
   LANG_DESCRIPTION: "изменяет ваш язык",
   LANG_USAGE: "[язык]",
-  LANG_AVAILABLE_LANGUAGES: "Доступные языки:",
-  LANG_YOUR_LANGUAGE: "Ваш язык:",
+  LANG_AVAILABLE_LANGUAGES: "Доступные языки",
+  LANG_YOUR_LANGUAGE: "Ваш язык",
   LANG_DEPENDING: "зависит от языка сервера",
   LANG_FOOTER: prefix => `Вы можете изменить язык использовав ${prefix}lang [язык]`,
   LANG_NOT_EXIST: "> :x: Такого языка не существует.",
