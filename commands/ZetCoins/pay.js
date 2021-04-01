@@ -20,11 +20,12 @@ module.exports = {
     if (user.id == msg.author.id) {
       return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_SELF"));
     }
+
     if (user.bot) {
       return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_BOT"));
     }
 
-    if (!sum || sum < 0) {
+    if (!sum || sum <= 0) {
       return msg.reply(t(lang, "SENDCOINS_NO_AMOUNT"));
     }
 
@@ -42,6 +43,12 @@ module.exports = {
     if (authorBalance.balance < sum) {
       return msg.reply(t(lang, "SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
     }
+
+    if (userBalance.banned) {
+      return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_BANNED_BALANCE"));
+    }
+
+    // тут ещё надо добавить проверку (типа если у передающего баланс забанен то выводится эмбед) но я не ебу как её делать xd
 
     const confirmEmbed = {
       title: t(lang, "SENDCOINS_CONFIRMATION_TITLE", sum, user),

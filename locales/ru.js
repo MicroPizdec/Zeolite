@@ -22,7 +22,7 @@ module.exports = {
   HELP_EMBED_TITLE: `Команды бота`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Команды бота (Только для владельцев)",
   HELP_EMBED_DESC: prefix => `Для получения больше информации о какой-либо команде используйте \`${prefix}help [команда]\`\nЕсть вопросы? Вы можете их задать в [сервере поддержки](https://discord.gg/ZKChwBD).`,
-  HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `Команда \`${prefix}${name}\` не существует.`,
+  HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `:x: Команда \`${prefix}${name}\` не существует.`,
   HELP_COMMAND_DOESNT_EXIST_DESC: prefix => `Введите \`${prefix}help\` для получения списка команд.`,
   HELP_COMMAND_TITLE: (name, prefix) => `Справка о \`${prefix}${name}\``,
   HELP_USAGE: "Как использовать",
@@ -146,7 +146,7 @@ module.exports = {
   SAY_USAGE: "<текст>",
   SAY_NO_ARGS_PROMPT: prefix => `> :x: Что вы хотите сказать? Используйте ${prefix}say <текст>`,
 
-  BANNED_BALANCE: ":x: Ваш баланс забанен",
+  BANNED_BALANCE: ":x: Баланс заблокирован разработчиком.",
   BANNED_BALANCE_REASON: reason => `Причина: ${reason || "не предоставлена"}`,
   BALANCE_COMMAND_DESCRIPTION: "показывает ваше (или другого пользователя) кол-во ZetCoin'ов на счету",
   BALANCE_COMMAND_USAGE: "[пользователь]",
@@ -173,6 +173,7 @@ module.exports = {
   SENDCOINS_TIME_EXPIRED: ":x: Время вышло.",
   CANNOT_SEND_COINS_TO_SELF: "> :x: Вы не можете передать ZetCoin'ы самому себе.",
   CANNOT_SEND_COINS_TO_BOT: "> :x: Вы не можете передать ZetCoin'ы боту.",
+  CANNOT_SEND_COINS_TO_BANNED_BALANCE: "> :x: Вы не можете переводить ZetCoin'ы пользователю с заблокированным балансом.",
 
   SETBALANCE_COMMAND_DESCRIPTION: "задает кол-во ZetCoin'ов пользователю",
   SETBALANCE_COMMAND_USAGE: "<пользователь> <кол-во>",
