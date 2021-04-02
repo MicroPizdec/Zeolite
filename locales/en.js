@@ -466,20 +466,24 @@ module.exports = {
     `\`${prefix}tags transfer <name> <new owner>\` - transfer tag to other user\n` +
     `\`${prefix}tags owner <tag>\` - information about tag owner\n` +
     `\`${prefix}tags delete <tag>\` - delete the tag\n` +
+    `\`${prefix}tags rename <name> <new name>\` - rename the tag\n` +
     `\`${prefix}tags list <page>\` - shows full list of tags`,
   TAG_NOT_FOUND: "> :x: Tag not found.",
   TAGS_NO_NAME: "> :x: No tag name provided.",
+  TAGS_NO_NEW_NAME: "> :x: No tag new name provided.",
   TAGS_NO_CONTENT: "> :x: No tag content provided.",
   TAG_ALREADY_EXIST: "> :x: This tag is already exist.",
   TAG_NAME_TOO_BIG: "> :x: Tag name shouldn't be longer than 128 characters.",
+  TAG_NEW_NAME_TOO_BIG: "> :x: Tag new name shouldn't be longer than 128 characters.",
   TAGS_ADD_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully added.`,
   TAGS_NOT_OWNER: "> :x: This tag doesn't exist or you don't own it.",
   TAGS_EDIT_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully edited.`,
   TAGS_TRANSFER_SUCCESS: (name, user) => `> :white_check_mark: Tag \`${name}\` successfully transfered to \`${user}\`.`,
-  TAGS_OWNER: (name, user) => `> :information_source: Tag \`${name}\` is owned by \`${user}\``,
+  TAGS_OWNER: (name, user) => `> :information_source: Tag \`${name}\` is owned by \`${user}\`.`,
   TAGS_INVALID_PAGE_NUMBER: "> :x: Invalid page number.",
   TAGS_LIST: "Tags list",
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Page ${currentPage} of ${totalPages} | Total tags: ${totalTags}`,
+  TAGS_RENAME_SUCCESS: (name, newName) => `> :white_check_mark: Tag \`${name}\` successfully renamed to \`${newName}\`.`,
 
   WHOIS_DESCRIPTION: "Indicates a random user",
   WHOIS_USAGE: "<smth>",
@@ -520,4 +524,8 @@ module.exports = {
   TRANSLATE_NO_TEXT: "> :x: Provide the text.",
   TRANSLATE_INVALID_LANG: "> :x: The language is wrong provided.",
   TRANSLATE_TITLE: fromLang => `Translator (translated from ${fromLang})`,
+
+  COLOR_DESCRIPTION: "Shows information about specified color",
+  COLOR_USAGE: "<color: #hex or number>",
+  COLOR_NUMBER: "Number",
 };

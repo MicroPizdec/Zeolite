@@ -464,12 +464,15 @@ module.exports = {
     `\`${prefix}tags transfer <имя> <новый владелец>\` - передать тег другому пользователю\n` +
     `\`${prefix}tags owner <тег>\` - информация о владельце тега\n` +
     `\`${prefix}tags delete <тег>\` - удалить тег\n` +
+    `\`${prefix}tags rename <имя> <новое имя>\` - переименовать тег\n` +
     `\`${prefix}tags list <страница>\` - список всех тегов на сервере`,
   TAG_NOT_FOUND: "> :x: Тег не найден.",
   TAGS_NO_NAME: "> :x: Имя тега не предоставлено.",
+  TAGS_NO_NEW_NAME: "> :x: Новое имя тега не предоставлено.",
   TAGS_NO_CONTENT: "> :x: Содержимое тега не предоставлено.",
   TAG_ALREADY_EXIST: "> :x: Тег уже существует.",
   TAG_NAME_TOO_BIG: "> :x: Имя тега не может быть длинее 128 символов.",
+  TAG_NEW_NAME_TOO_BIG: "> :x: Новое имя тега не может быть длинее 128 символов.",
   TAGS_ADD_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно добавлен.`,
   TAGS_NOT_OWNER: "> :x: Данного тега не существует либо вы не владеете им.",
   TAGS_EDIT_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно отредактирован.`,
@@ -478,6 +481,7 @@ module.exports = {
   TAGS_INVALID_PAGE_NUMBER: "> :x: Неправильный номер страницы.",
   TAGS_LIST: "Список тегов",
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Страница ${currentPage} из ${totalPages} | Всего тегов: ${totalTags}`,
+  TAGS_RENAME_SUCCESS: (name, newName) => `> :white_check_mark: Тег \`${name}\` успешно переименован в \`${newName}\`.`,
 
   WHOIS_DESCRIPTION: "Указывает случайного пользователя",
   WHOIS_USAGE: "<что-либо>",
@@ -519,4 +523,8 @@ module.exports = {
   TRANSLATE_NO_TEXT: "> :x: Укажите текст.",
   TRANSLATE_INVALID_LANG: "> :x: Язык неверно указан.",
   TRANSLATE_TITLE: fromLang => `Переводчик (переведено с ${fromLang})`,
+  
+  COLOR_DESCRIPTION: "Показывает информацию о указанном цвете",
+  COLOR_USAGE: "<цвет: #hex или число>",
+  COLOR_NUMBER: "Число",
 };
