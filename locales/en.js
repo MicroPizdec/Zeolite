@@ -419,7 +419,7 @@ module.exports = {
   EMBEDCOLOR_DEFAULT_SUCCESS: "> :white_check_mark: Your embed color has been changed to `default`.",
   EMBEDCOLOR_IS_NAN: "> :x: The color is not a number.",
   EMBEDCOLOR_SUCCESS: newColor => `> :white_check_mark: Your embed color has been changed to \`#${newColor}\``,
-  EMBEDCOLOR_TOO_BIG: "> :x: Embed color can't be bigger than 16777216.",
+  EMBEDCOLOR_TOO_BIG: "> :x: The color can't be bigger than 16777216.",
   EMBEDCOLOR_RANDOM_SUCCESS: "> :white_check_mark: Your embed color has been changed to `random`.",
   EMBEDCOLOR_RANDOM: "random",
 

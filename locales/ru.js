@@ -417,7 +417,7 @@ module.exports = {
   EMBEDCOLOR_DEFAULT_SUCCESS: "> :white_check_mark: Ваш цвет эмбеда был изменен на `стандартный`.",
   EMBEDCOLOR_IS_NAN: "> :x: Цвет не является числом.",
   EMBEDCOLOR_SUCCESS: newColor => `> :white_check_mark: Ваш цвет эмбеда был изменен на \`#${newColor}\``,
-  EMBEDCOLOR_TOO_BIG: "> :x: Цвет эмбеда не может быть больше, чем 16777216.",
+  EMBEDCOLOR_TOO_BIG: "> :x: Цвет не может быть больше, чем 16777216.",
   EMBEDCOLOR_RANDOM_SUCCESS: "> :white_check_mark: Ваш цвет эмбеда был изменен на `случайный`.",
   EMBEDCOLOR_RANDOM: "случайный",
 
