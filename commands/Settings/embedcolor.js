@@ -1,12 +1,4 @@
-function intToHex(num) {
-  let hex = num.toString(16);
-
-  while (hex.length < 6) {
-    hex = "0" + hex;
-  }
-
-  return hex;
-}
+const intToHex = require("../../utils/intToHex");
 
 module.exports = {
   name: "embedcolor",

@@ -419,7 +419,7 @@ module.exports = {
   EMBEDCOLOR_DEFAULT_SUCCESS: "> :white_check_mark: Your embed color has been changed to `default`.",
   EMBEDCOLOR_IS_NAN: "> :x: The color is not a number.",
   EMBEDCOLOR_SUCCESS: newColor => `> :white_check_mark: Your embed color has been changed to \`#${newColor}\``,
-  EMBEDCOLOR_TOO_BIG: "> :x: Embed color can't be bigger than 16777216.",
+  EMBEDCOLOR_TOO_BIG: "> :x: The color can't be bigger than 16777216.",
   EMBEDCOLOR_RANDOM_SUCCESS: "> :white_check_mark: Your embed color has been changed to `random`.",
   EMBEDCOLOR_RANDOM: "random",
 
@@ -520,4 +520,8 @@ module.exports = {
   TRANSLATE_NO_TEXT: "> :x: Provide the text.",
   TRANSLATE_INVALID_LANG: "> :x: The language is wrong provided.",
   TRANSLATE_TITLE: fromLang => `Translator (translated from ${fromLang})`,
+
+  COLOR_DESCRIPTION: "Shows information about specified color",
+  COLOR_USAGE: "<color: #hex or number>",
+  COLOR_NUMBER: "Number",
 };
