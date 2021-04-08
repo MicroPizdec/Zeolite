@@ -5,7 +5,7 @@ module.exports = {
   aliases: [ "about" ],
   async run(client, msg, args, prefix, lang) {
     let devs = [];
-    [ "464348805899354113", "412503784455929857", "330153333962702850" ]
+    [ "464348805899354113", "412503784455929857", "800051176330231838" ]
       .forEach(id => devs.push(client.users.get(id)));
 
     const embed = {
