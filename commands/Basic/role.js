@@ -46,7 +46,7 @@ module.exports = {
         },
         {
           name: t(lang, "ROLE_CREATED_AT"),
-          value: moment(role.createdAt).format("lll") + " " + _(lang, "USERINFO_CREATED_DAYS_AGO", createdDaysAgo)
+          value: moment(role.createdAt).format("lll") + " " + _(lang, "DAYS_AGO", createdDaysAgo)
         },
         {
           name: t(lang, "ROLE_MEMBERS"),
