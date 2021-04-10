@@ -21,6 +21,11 @@ module.exports = {
     
         moment.locale(lang);
         const createdDaysAgo = Math.floor((Date.now() - post.createdAt) / (1000 * 86400));
+        const postTags = post.tags.map(tag => `\`${tag}\``).join(", ").substring(0, 1024);
+
+        if(post.tags.includes("video")) {
+            return msg.reply(t(lang, "BOORU_VIDEO", post.fileUrl, postTags))
+        }
         
         const embed = {
             author: {
@@ -40,7 +45,7 @@ module.exports = {
                },
                {
                    name: t(lang, "BOORU_TAGS"),
-                   value: post.tags.join(", ").substring(0, 1024),
+                   value: postTags,
                },
             ],
             image: { url: post.fileUrl },

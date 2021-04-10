@@ -146,7 +146,7 @@ module.exports = {
   SAY_USAGE: "<текст>",
   SAY_NO_ARGS_PROMPT: prefix => `> :x: Что вы хотите сказать? Используйте ${prefix}say <текст>`,
 
-  BANNED_BALANCE: ":x: Баланс заблокирован разработчиком.",
+  BANNED_BALANCE: ":x: Баланс заблокирован.",
   BANNED_BALANCE_REASON: reason => `Причина: ${reason || "не предоставлена"}`,
   BALANCE_COMMAND_DESCRIPTION: "показывает ваше (или другого пользователя) кол-во ZetCoin'ов на счету",
   BALANCE_COMMAND_USAGE: "[пользователь]",
@@ -393,7 +393,7 @@ module.exports = {
 
   DEPOSIT_DESCRIPTION: "позволяет вам внести или снять ZetCoin'ы с депозита. Используйте эту команду без аргументов для получения подробной информации",
   DEPOSIT_EMBED_TITLE: "Справка по депозитам",
-  DEPOSIT_EMBED_DESC: "Вы можете внести деньги на депозит.\nПри этом, вы не сможете использовать их и эта сумма не будет учитываться в топе до того, как вы их снимете.\nКаждые 2 часа будет начисляться 1% от суммы на депозите. Лимит 250000 ZetCoin'ов.",
+  DEPOSIT_EMBED_DESC: "Вы можете внести ZetCoin'ы на депозит.\nПри этом, вы не сможете использовать их и эта сумма не будет учитываться в топе до того, как вы их снимете.\nКаждые 2 часа будет начисляться 1% от суммы на депозите. Лимит 250000 ZetCoin'ов.",
   DEPOSIT_USAGE: "Как использовать",
   DEPOSIT_USAGE_DESC: prefix => `\`${prefix}deposit put <сумма>\n${prefix}deposit wd <сумма>\``,
   DEPOSIT_NOT_ENOUGH_MONEY: bal => `> :x: Недостаточно средств. Ваш баланс: ${bal} ZetCoin'ов.`,
@@ -496,7 +496,7 @@ module.exports = {
   
   BOORU_USAGE: "<теги>",
   NOT_NSFW_CHANNEL: "> :x: Канал не помечен как NSFW.",
-  POST_NOT_FOUND: "> :x: Пост не найден.",
+  POST_NOT_FOUND: "> :x: Пост не найден либо вы неправильно ввели теги.",
   NOT_MORE_THAN_2_TAGS: "> :x: Не больше, чем 1 тег",
   BOORU_TITLE: "Пост (кликабельно)",
   BOORU_CREATEDAT: "Создан",
@@ -504,6 +504,7 @@ module.exports = {
   BOORU_SCORE: "Кол-во очков",
   BOORU_SOURCE: "Источник", 
   BOORU_RATING: "Рейтинг",
+  BOORU_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Видео: ${postUrl}\nТеги: ${postTags}`,
   BOORU_RATINGS: {
     s: "Безопасный",
     q: "Под вопросом",
@@ -527,4 +528,9 @@ module.exports = {
   COLOR_DESCRIPTION: "Показывает информацию о указанном цвете",
   COLOR_USAGE: "<цвет: #hex или число>",
   COLOR_NUMBER: "Число",
+
+  HENTAI_DESCRIPTION: "Получает случайное хентай-изображение.\nЭта команда требует канал помеченный как NSFW",
+  HENTAI_TITLE: "Хентай-изображение",
+
+  HENTAIASS_DESCRIPTION: "Получает случайное хентай-изображение с задницей.\nЭта команда требует канал помеченный как NSFW",
 };

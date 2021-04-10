@@ -125,7 +125,7 @@ module.exports = {
   USERINFO_JOINPOS: joinPos => `${joinPos}${joinPos % 10 == 1 ? "st" : joinPos % 10 == 2 ? "nd" : joinPos % 10 == 3 ? "rd" : "th"} server member`,
   NOT_IN_SERVER: "Not a server member",
   USERINFO_COLOR: "Role color",
-  USERINFO_DEFAULT_COLOR: "default",
+  USERINFO_DEFAULT_COLOR: "Default",
   USERINFO_BADGES: "Badges",
   USERINFO_NO_BADGES: "This user does not have any badges",
   USERINFO_FOOTER: id => `ID: ${id}\nRegistered`,
@@ -498,13 +498,14 @@ module.exports = {
 
   BOORU_USAGE: "<tags>",
   NOT_NSFW_CHANNEL: "> :x: Channel is not marked as NSFW.",
-  POST_NOT_FOUND: "> :x: Post not found.",
+  POST_NOT_FOUND: "> :x: Post not found or you provided invalid tags.",
   BOORU_TITLE: "Image post (clickable)",
   BOORU_CREATEDAT: "Created at",
   BOORU_TAGS: "Tags",
   BOORU_SCORE: "Scores",
   BOORU_SOURCE: "Source",
   BOORU_RATING: "Rating",
+  BOORU_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Video post: ${postUrl}\nTags: ${postTags}`,
   BOORU_RATINGS: {
     s: "Safe",
     q: "Questionable",
@@ -528,4 +529,9 @@ module.exports = {
   COLOR_DESCRIPTION: "Shows information about specified color",
   COLOR_USAGE: "<color: #hex or number>",
   COLOR_NUMBER: "Number",
+
+  HENTAI_DESCRIPTION: "Gets a random hentai image.\nThis command requires NSFW-channel",
+  HENTAI_TITLE: "Hentai image",
+
+  HENTAIASS_DESCRIPTION: "Gets a random hentai ass image.\nThis command requires NSFW-channel",
 };
