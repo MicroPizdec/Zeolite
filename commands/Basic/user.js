@@ -1,3 +1,4 @@
+const intToHex = require("../../utils/intToHex");
 const moment = require("moment");
 const { Constants: { UserFlags }, Member } = require("eris");
 const { lang } = require("moment");
@@ -31,16 +32,6 @@ function getUserBadges(user) {
   }
 
   return badges;
-}
-
-function intToHex(num) {
-  let hex = num.toString(16);
-
-  while (hex.length < 6) {
-    hex = "0" + hex;
-  }
-
-  return hex;
 }
 
 module.exports = {

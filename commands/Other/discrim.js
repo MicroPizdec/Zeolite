@@ -8,7 +8,7 @@ module.exports = {
     let discriminator = args[0] || msg.author.discriminator;
 
     const discrimNumber = parseInt(discriminator);
-    if (isNaN(discrimNumber) || discrimNumber > 9999 || discrimNumber < 1) {
+    if (isNaN(discrimNumber) || discrimNumber > 9999 || discrimNumber < 1 || !/\d{4}$/g.test(discriminator.toString())) {
       return msg.reply(t(lang, "INVALID_DISCRIM"));
     }
 
