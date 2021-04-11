@@ -484,6 +484,7 @@ module.exports = {
   TAGS_LIST: "Tags list",
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Page ${currentPage} of ${totalPages} | Total tags: ${totalTags}`,
   TAGS_RENAME_SUCCESS: (name, newName) => `> :white_check_mark: Tag \`${name}\` successfully renamed to \`${newName}\`.`,
+  TAGS_REMOVE_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully removed.`,
 
   WHOIS_DESCRIPTION: "Indicates a random user",
   WHOIS_USAGE: "<smth>",
