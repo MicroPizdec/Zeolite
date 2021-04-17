@@ -85,6 +85,8 @@ module.exports = {
         if (!tag || tag.author != msg.author.id) {
           return msg.reply(t(lang, "TAGS_NOT_OWNER"));
         }
+        
+        // я обк*к*лся и забыл ввести проверку на существующий тег но я так и не сделал ибо не ебу xddddd
 
         await tag.update({ name: newName });
         return msg.reply(t(lang, "TAGS_RENAME_SUCCESS", name, newName));
@@ -125,6 +127,10 @@ module.exports = {
       }
       case "owner": {
         const name = args[0];
+
+        if (!name) {
+          return msg.reply(t(lang, "TAGS_NO_NAME"));
+        }
 
         const tag = await getTag(msg.guild.id, name);
         if (!tag) {
