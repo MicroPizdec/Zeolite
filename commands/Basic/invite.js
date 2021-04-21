@@ -91,13 +91,6 @@ module.exports = {
       });
     }
 
-    if (inviteInfo.guild.features.length) {
-      embed.fields.push({
-        name: _(lang, "INVITE_FEATURES"),
-        value: inviteInfo.guild.features.map(f => t(lang, "FEATURES")[f]).join(", "),
-      });
-    }
-
     await msg.channel.createMessage({ embed });
   }
 }

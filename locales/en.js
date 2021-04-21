@@ -275,7 +275,7 @@ module.exports = {
   LANG_NOT_EXIST: "> :x: This lang is not exist.",
   LANG_SUCCESS: "> :white_check_mark: Your language has been changed to `en`",
 
-  SERVERLANG_DESCRIPTION: "changes default server language",
+  SERVERLANG_DESCRIPTION: "changes default server language.\nThis command requires the \"Manage guild\" permission",
   SERVERLANG_USAGE: "[language]",
   SERVERLANG_LANGUAGE: "Server language:",
   SERVERLANG_FOOTER: prefix => `You can change the server language by using ${prefix}serverlang [language]`,
@@ -499,29 +499,18 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Users who have discriminator #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator.",
 
-  BOORU_USAGE: "<tags>",
   NOT_NSFW_CHANNEL: "> :x: Channel is not marked as NSFW.",
-  POST_NOT_FOUND: "> :x: Post not found or you provided invalid tags.",
-  BOORU_TITLE: "Image post (clickable)",
-  BOORU_CREATEDAT: "Created at",
-  BOORU_TAGS: "Tags",
-  BOORU_SCORE: "Scores",
-  BOORU_SOURCE: "Source",
-  BOORU_RATING: "Rating",
-  BOORU_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Video post: ${postUrl}\nTags: ${postTags}`,
-  BOORU_RATINGS: {
-    s: "Safe",
-    q: "Questionable",
-    e: "Explicit",
-    u: "Unrated",
-    },
 
   PAHEAL_DESCRIPTION: "Searches paheal-posts by tags.\nNSFW-channel is required",
 
-  RULE34_DESCRIPTION: "Gets a random rule34-post by tags.\nThis command requires NSFW-channel",
-
-  DANBOORU_DESCRIPTION: "Searches danbooru-posts by tags.\nNSFW-channel is required",
-  DANBOORU_USAGE: "<tag> (not more, than 1 tag)",
+  RULE34_DESCRIPTION: "Gets a random post from Rule34 by tags.\nThis command requires NSFW-channel",
+  RULE34_USAGE: "<tags>",
+  RULE34_NOT_FOUND: "> :x: Nothing found by provided tags.",
+  RULE34_TITLE: "Image post (clickable)",
+  RULE34_CREATEDAT: "Created at",
+  RULE34_TAGS: "Tags",
+  RULE34_SCORE: "Scores",
+  RULE34_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Video post: ${postUrl}\nTags: ${postTags}`,
 
   TRANSLATE_DESCRIPTION: "translates text into provided language",
   TRANSLATE_USAGE: "<language> <text>",

@@ -274,7 +274,7 @@ module.exports = {
   LANG_NOT_EXIST: "> :x: Такого языка не существует.",
   LANG_SUCCESS: "> :white_check_mark: Ваш язык был изменен на `ru`",
 
-  SERVERLANG_DESCRIPTION: "изменяет язык сервера по умолчанию",
+  SERVERLANG_DESCRIPTION: "изменяет язык сервера по умолчанию.\nЭта команда требует право \"Управлять сервером\"",
   SERVERLANG_USAGE: "[язык]",
   SERVERLANG_LANGUAGE: "Язык сервера:",
   SERVERLANG_FOOTER: prefix => `Вы можете изменить язык сервера использовав ${prefix}serverlang [язык]`,
@@ -497,30 +497,18 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Пользователи с дискриминатором #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором",
   
-  BOORU_USAGE: "<теги>",
   NOT_NSFW_CHANNEL: "> :x: Канал не помечен как NSFW.",
-  POST_NOT_FOUND: "> :x: Пост не найден либо вы неправильно ввели теги.",
-  NOT_MORE_THAN_2_TAGS: "> :x: Не больше, чем 1 тег",
-  BOORU_TITLE: "Пост (кликабельно)",
-  BOORU_CREATEDAT: "Создан",
-  BOORU_TAGS: "Теги",
-  BOORU_SCORE: "Кол-во очков",
-  BOORU_SOURCE: "Источник", 
-  BOORU_RATING: "Рейтинг",
-  BOORU_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Видео: ${postUrl}\nТеги: ${postTags}`,
-  BOORU_RATINGS: {
-    s: "Безопасный",
-    q: "Под вопросом",
-    e: "Откровенный",
-    u: "Без рейтинга",
-    },
 
   PAHEAL_DESCRIPTION: "Ищет paheal-посты по тегу.\nТребуется канал помеченный как NSFW",
 
-  RULE34_DESCRIPTION: "Получает rule34-пост по тегам.\nЭта команда требует канал помеченный как NSFW",
-
-  DANBOORU_DESCRIPTION: "Ищет danbooru-посты по тегу.\nТребуется канал помеченный как NSFW",
-  DANBOORU_USAGE: "<тег> (не больше, чем 1 тег)",
+  RULE34_DESCRIPTION: "Получает случайную публикацию из Rule34 по тегам.\nЭта команда требует канал помеченный как NSFW",
+  RULE34_USAGE: "<теги>",
+  RULE34_TITLE: "Публикация (кликабельно)",
+  RULE34_NOT_FOUND: "> :x: Ничего не найдено по указанным тегам.",
+  RULE34_CREATEDAT: "Создан",
+  RULE34_TAGS: "Теги",
+  RULE34_SCORE: "Кол-во очков",
+  RULE34_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Видео: ${postUrl}\nТеги: ${postTags}`,
 
   TRANSLATE_DESCRIPTION: "переводит текст на указанный язык",
   TRANSLATE_USAGE: "<язык> <текст>",
@@ -540,5 +528,5 @@ module.exports = {
   DEVIANTART_DESCRIPTION: "Получает случайную публикацию из DeviantArt по тегу.\nЭта команда требует канал помеченный как NSFW",
   DEVIANTART_USAGE: "<тег>",
   DEVIANTART_NOT_FOUND: "> :x: Ничего не найдено по указанному тегу.",
-  DEVIANTART_FAVOURITES: "Избранное",
+  DEVIANTART_FAVOURITES: "Избранные",
 };
