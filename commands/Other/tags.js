@@ -174,7 +174,13 @@ module.exports = {
         if (!subcommand) {
           const embed = {
             title: t(lang, "TAGS_HELP"),
-            description: t(lang, "TAGS_HELP_DESC", prefix),
+            description: t(lang, "TAGS_DESC"),
+            fields: [
+              {
+                name: t(lang, "TAGS_HELP_LIST"),
+                value: t(lang, "TAGS_HELP_DESC", prefix),
+              },
+            ],
             color: await msg.author.embedColor(),
             footer: {
               text: `${client.user.username} © ZariBros`,

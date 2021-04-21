@@ -460,6 +460,8 @@ module.exports = {
   TAGS_DESCRIPTION: "Lets you to manage the tags.\nUse this command without args to see more info",
   TAGS_USAGE: "[subcommand]",
   TAGS_HELP: "Tags help",
+  TAGS_DESC: "Tags is the server notes, that allows to keep useful (and not really) information and control them.",
+  TAGS_HELP_LIST: "Subcommands",
   TAGS_HELP_DESC: prefix => `\`${prefix}tags <name>\` - get the tag\n` +
     `\`${prefix}tags add <name> <content>\` - add the tag\n` +
     `\`${prefix}tags edit <name> <new content>\` - edit the existing tag\n` +
