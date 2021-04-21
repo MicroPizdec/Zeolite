@@ -11,7 +11,7 @@ module.exports = {
   SETTINGS_GROUP: "Настройки",
   OTHER_GROUP: "Прочие команды",
   MODERATION_GROUP: "Команды модерации",
-  NSFW_GROUP: "NSFW-команды",
+  NSFW_GROUP: "NSFW команды",
 
   PING_COMMAND_DESCRIPTION: "пинг бота",
   PING_BOT: ping => `Пинг бота: ${ping} мс.`,
@@ -21,8 +21,8 @@ module.exports = {
   HELP_COMMAND_USAGE: "[команда]",
   HELP_EMBED_TITLE: `Команды бота`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Команды бота (Только для владельцев)",
-  HELP_EMBED_DESC: prefix => `Хотите получить больше информации о какой-либо команде? Введите \`${prefix}help [команда]\``,
-  HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `Команда \`${prefix}${name}\` не существует.`,
+  HELP_EMBED_DESC: prefix => `Для получения больше информации о какой-либо команде используйте \`${prefix}help [команда]\`\nЕсть вопросы? Вы можете их задать в [сервере поддержки](https://discord.gg/ZKChwBD).`,
+  HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `:x: Команда \`${prefix}${name}\` не существует.`,
   HELP_COMMAND_DOESNT_EXIST_DESC: prefix => `Введите \`${prefix}help\` для получения списка команд.`,
   HELP_COMMAND_TITLE: (name, prefix) => `Справка о \`${prefix}${name}\``,
   HELP_USAGE: "Как использовать",
@@ -65,24 +65,24 @@ module.exports = {
   SERVERINFO_FEAUTURES: "Функции сервера",
   FEATURES: {
     INVITE_SPLASH: "фон приглашения",
-    VIP_REGIONS: "384 кб/с голосовой канал",
-    VANITY_URL: "свой инвайт-код",
+    VIP_REGIONS: "384 кб/с битрейт",
+    VANITY_URL: "своя ссылка",
     VERIFIED: "верифицированный сервер",
-    PARTNERED: "Discord Partner",
+    PARTNERED: "партнер Discord",
     PUBLIC: "публичный сервер",
-    COMMERCE: "коммерческий сервер",
+    COMMERCE: "магазинные каналы",
     NEWS: "канал с объявлениями",
     DISCOVERABLE: "доступен в обзоре серверов",
-    FEATURABLE: "предлагаемый сервер",
+    FEATURABLE: "избранный сервер",
     ANIMATED_ICON: "анимированная иконка",
-    BANNER: "баннер",
+    BANNER: "баннер сервера",
     PUBLIC_DISABLED: "не может быть публичным",
-    WELCOME_SCREEN_ENABLED: "экран приветствия",
+    WELCOME_SCREEN_ENABLED: "экран с приветствием",
     COMMUNITY: "сообщество",
     MEMBER_VERIFICATION_GATE_ENABLED: "отбор участников",
     PREVIEW_ENABLED: "предпросмотр сервера"
   },
-  NO: "нет",
+  SERVERINFO_FOOTER: id => `ID: ${id}\nCоздан`,
 
   STATS_COMMAND_DESCRIPTION: "статистика бота",
   STATS_EMBED_TITLE: "Статистика",
@@ -127,6 +127,7 @@ module.exports = {
   USERINFO_DEFAULT_COLOR: "стандартный",
   USERINFO_BADGES: "Значки",
   USERINFO_NO_BADGES: "Этот пользователь не имеет значков",
+  USERINFO_FOOTER: id => `ID: ${id}\nЗарегистрировался`,
 
   _8BALL_COMMAND_DESCRIPTION: "магический шар-восьмерка",
   _8BALL_COMMAND_USAGE: "<вопрос>",
@@ -145,7 +146,7 @@ module.exports = {
   SAY_USAGE: "<текст>",
   SAY_NO_ARGS_PROMPT: prefix => `> :x: Что вы хотите сказать? Используйте ${prefix}say <текст>`,
 
-  BANNED_BALANCE: ":x: Ваш баланс забанен",
+  BANNED_BALANCE: ":x: Баланс заблокирован.",
   BANNED_BALANCE_REASON: reason => `Причина: ${reason || "не предоставлена"}`,
   BALANCE_COMMAND_DESCRIPTION: "показывает ваше (или другого пользователя) кол-во ZetCoin'ов на счету",
   BALANCE_COMMAND_USAGE: "[пользователь]",
@@ -172,6 +173,7 @@ module.exports = {
   SENDCOINS_TIME_EXPIRED: ":x: Время вышло.",
   CANNOT_SEND_COINS_TO_SELF: "> :x: Вы не можете передать ZetCoin'ы самому себе.",
   CANNOT_SEND_COINS_TO_BOT: "> :x: Вы не можете передать ZetCoin'ы боту.",
+  CANNOT_SEND_COINS_TO_BANNED_BALANCE: "> :x: Вы не можете переводить ZetCoin'ы пользователю с заблокированным балансом.",
 
   SETBALANCE_COMMAND_DESCRIPTION: "задает кол-во ZetCoin'ов пользователю",
   SETBALANCE_COMMAND_USAGE: "<пользователь> <кол-во>",
@@ -221,12 +223,6 @@ module.exports = {
   EVAL_COMMAND_DESCRIPTION: "выполняет JavaScript-код",
   EVAL_COMMAND_USAGE: "<код>",
 
-  DM_COMMAND_DESCRIPTION: "отправляет сообщение указанному пользователю",
-  DM_COMMAND_USAGE: "<пользователь> <текст>",
-  DM_NO_ARGS_PROMPT: prefix => `> :x: Что вы хотите послать пользователю? Используйте \`${prefix}dm <пользователь> <текст>\``,
-  DM_NO_CONTENT_TO_SEND: "> :x: Пожалуйста, укажите текст сообщения, который вы хотите послать.",
-  DM_ANSWER_SENT: "Ответ выслан:",
-
   COMMANDS_BANNED: ":x: Команды забанены",
   COMMANDS_BANNED_REASON: reason => `Причина: ${reason || "отсутствует"}`,
 
@@ -271,14 +267,14 @@ module.exports = {
 
   LANG_DESCRIPTION: "изменяет ваш язык",
   LANG_USAGE: "[язык]",
-  LANG_AVAILABLE_LANGUAGES: "Доступные языки:",
-  LANG_YOUR_LANGUAGE: "Ваш язык:",
+  LANG_AVAILABLE_LANGUAGES: "Доступные языки",
+  LANG_YOUR_LANGUAGE: "Ваш язык",
   LANG_DEPENDING: "зависит от языка сервера",
   LANG_FOOTER: prefix => `Вы можете изменить язык использовав ${prefix}lang [язык]`,
   LANG_NOT_EXIST: "> :x: Такого языка не существует.",
   LANG_SUCCESS: "> :white_check_mark: Ваш язык был изменен на `ru`",
 
-  SERVERLANG_DESCRIPTION: "изменяет язык сервера по умолчанию",
+  SERVERLANG_DESCRIPTION: "изменяет язык сервера по умолчанию.\nЭта команда требует право \"Управлять сервером\"",
   SERVERLANG_USAGE: "[язык]",
   SERVERLANG_LANGUAGE: "Язык сервера:",
   SERVERLANG_FOOTER: prefix => `Вы можете изменить язык сервера использовав ${prefix}serverlang [язык]`,
@@ -397,7 +393,7 @@ module.exports = {
 
   DEPOSIT_DESCRIPTION: "позволяет вам внести или снять ZetCoin'ы с депозита. Используйте эту команду без аргументов для получения подробной информации",
   DEPOSIT_EMBED_TITLE: "Справка по депозитам",
-  DEPOSIT_EMBED_DESC: "Вы можете внести деньги на депозит.\nПри этом, вы не сможете использовать их и эта сумма не будет учитываться в топе до того, как вы их снимете.\nКаждые 2 часа будет начисляться 1% от суммы на депозите. Лимит 250000 ZetCoin'ов.",
+  DEPOSIT_EMBED_DESC: "Вы можете внести ZetCoin'ы на депозит.\nПри этом, вы не сможете использовать их и эта сумма не будет учитываться в топе до того, как вы их снимете.\nКаждые 2 часа будет начисляться 1% от суммы на депозите. Лимит 250000 ZetCoin'ов.",
   DEPOSIT_USAGE: "Как использовать",
   DEPOSIT_USAGE_DESC: prefix => `\`${prefix}deposit put <сумма>\n${prefix}deposit wd <сумма>\``,
   DEPOSIT_NOT_ENOUGH_MONEY: bal => `> :x: Недостаточно средств. Ваш баланс: ${bal} ZetCoin'ов.`,
@@ -421,7 +417,7 @@ module.exports = {
   EMBEDCOLOR_DEFAULT_SUCCESS: "> :white_check_mark: Ваш цвет эмбеда был изменен на `стандартный`.",
   EMBEDCOLOR_IS_NAN: "> :x: Цвет не является числом.",
   EMBEDCOLOR_SUCCESS: newColor => `> :white_check_mark: Ваш цвет эмбеда был изменен на \`#${newColor}\``,
-  EMBEDCOLOR_TOO_BIG: "> :x: Цвет эмбеда не может быть больше, чем 16777216.",
+  EMBEDCOLOR_TOO_BIG: "> :x: Цвет не может быть больше, чем 16777216.",
   EMBEDCOLOR_RANDOM_SUCCESS: "> :white_check_mark: Ваш цвет эмбеда был изменен на `случайный`.",
   EMBEDCOLOR_RANDOM: "случайный",
 
@@ -462,18 +458,23 @@ module.exports = {
   TAGS_DESCRIPTION: "Позволяет вам управлять тегами.\nИспользуйте эту команду без аргументов для получения подробной информации",
   TAGS_USAGE: "[субкоманда]",
   TAGS_HELP: "Справка по тегам",
+  TAGS_DESC: "Теги - серверные заметки, позволяющее хранить полезную (и не очень) информацию также и управлять ими.",
+  TAGS_HELP_LIST: "Субкоманды",
   TAGS_HELP_DESC: prefix => `\`${prefix}tags <имя>\` - получить содержимое тега\n` +
     `\`${prefix}tags add <имя> <содержимое>\` - добавить тег\n` +
     `\`${prefix}tags edit <имя> <новое содержимое>\` - редактировать существующий тег\n` +
     `\`${prefix}tags transfer <имя> <новый владелец>\` - передать тег другому пользователю\n` +
     `\`${prefix}tags owner <тег>\` - информация о владельце тега\n` +
     `\`${prefix}tags delete <тег>\` - удалить тег\n` +
+    `\`${prefix}tags rename <имя> <новое имя>\` - переименовать тег\n` +
     `\`${prefix}tags list <страница>\` - список всех тегов на сервере`,
   TAG_NOT_FOUND: "> :x: Тег не найден.",
   TAGS_NO_NAME: "> :x: Имя тега не предоставлено.",
+  TAGS_NO_NEW_NAME: "> :x: Новое имя тега не предоставлено.",
   TAGS_NO_CONTENT: "> :x: Содержимое тега не предоставлено.",
   TAG_ALREADY_EXIST: "> :x: Тег уже существует.",
   TAG_NAME_TOO_BIG: "> :x: Имя тега не может быть длинее 128 символов.",
+  TAG_NEW_NAME_TOO_BIG: "> :x: Новое имя тега не может быть длинее 128 символов.",
   TAGS_ADD_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно добавлен.`,
   TAGS_NOT_OWNER: "> :x: Данного тега не существует либо вы не владеете им.",
   TAGS_EDIT_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно отредактирован.`,
@@ -482,6 +483,8 @@ module.exports = {
   TAGS_INVALID_PAGE_NUMBER: "> :x: Неправильный номер страницы.",
   TAGS_LIST: "Список тегов",
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Страница ${currentPage} из ${totalPages} | Всего тегов: ${totalTags}`,
+  TAGS_RENAME_SUCCESS: (name, newName) => `> :white_check_mark: Тег \`${name}\` успешно переименован в \`${newName}\`.`,
+  TAGS_REMOVE_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно удален.`,
 
   WHOIS_DESCRIPTION: "Указывает случайного пользователя",
   WHOIS_USAGE: "<что-либо>",
@@ -494,33 +497,36 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Пользователи с дискриминатором #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором",
   
-  BOORU_USAGE: "<теги>",
   NOT_NSFW_CHANNEL: "> :x: Канал не помечен как NSFW.",
-  POST_NOT_FOUND: "> :x: Пост не найден.",
-  NOT_MORE_THAN_2_TAGS: "> :x: Не больше, чем 1 тег",
-  BOORU_TITLE: "Пост (кликабельно)",
-  BOORU_CREATEDAT: "Создан",
-  BOORU_TAGS: "Теги",
-  BOORU_SCORE: "Кол-во очков",
-  BOORU_SOURCE: "Источник", 
-  BOORU_RATING: "Рейтинг",
-  BOORU_RATINGS: {
-    s: "Безопасный",
-    q: "Под вопросом",
-    e: "Откровенный",
-    u: "Без рейтинга",
-    },
 
   PAHEAL_DESCRIPTION: "Ищет paheal-посты по тегу.\nТребуется канал помеченный как NSFW",
 
-  RULE34_DESCRIPTION: "Получает rule34-пост по тегам.\nЭта команда требует канал помеченный как NSFW",
-
-  DANBOORU_DESCRIPTION: "Ищет danbooru-посты по тегу.\nТребуется канал помеченный как NSFW",
-  DANBOORU_USAGE: "<тег> (не больше, чем 1 тег)",
+  RULE34_DESCRIPTION: "Получает случайную публикацию из Rule34 по тегам.\nЭта команда требует канал помеченный как NSFW",
+  RULE34_USAGE: "<теги>",
+  RULE34_TITLE: "Публикация (кликабельно)",
+  RULE34_NOT_FOUND: "> :x: Ничего не найдено по указанным тегам.",
+  RULE34_CREATEDAT: "Создан",
+  RULE34_TAGS: "Теги",
+  RULE34_SCORE: "Кол-во очков",
+  RULE34_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Видео: ${postUrl}\nТеги: ${postTags}`,
 
   TRANSLATE_DESCRIPTION: "переводит текст на указанный язык",
   TRANSLATE_USAGE: "<язык> <текст>",
   TRANSLATE_NO_TEXT: "> :x: Укажите текст.",
   TRANSLATE_INVALID_LANG: "> :x: Язык неверно указан.",
   TRANSLATE_TITLE: fromLang => `Переводчик (переведено с ${fromLang})`,
+  
+  COLOR_DESCRIPTION: "Показывает информацию о указанном цвете",
+  COLOR_USAGE: "<цвет: #hex или число>",
+  COLOR_NUMBER: "Число",
+
+  HENTAI_DESCRIPTION: "Получает случайное хентай-изображение.\nЭта команда требует канал помеченный как NSFW",
+  HENTAI_TITLE: "Хентай-изображение",
+
+  HENTAIASS_DESCRIPTION: "Получает случайное хентай-изображение с задницей.\nЭта команда требует канал помеченный как NSFW",
+
+  DEVIANTART_DESCRIPTION: "Получает случайную публикацию из DeviantArt по тегу.\nЭта команда требует канал помеченный как NSFW",
+  DEVIANTART_USAGE: "<тег>",
+  DEVIANTART_NOT_FOUND: "> :x: Ничего не найдено по указанному тегу.",
+  DEVIANTART_FAVOURITES: "Избранные",
 };

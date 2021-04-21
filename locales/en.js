@@ -22,8 +22,8 @@ module.exports = {
   HELP_COMMAND_USAGE: "[command]",
   HELP_EMBED_TITLE: `Bot commands`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Bot commands (Owner only)",
-  HELP_EMBED_DESC: prefix => `Want to get more information about some command? Type \`${prefix}help [command]\``,
-  HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `Command \`${prefix}${name}\` does not exist.`,
+  HELP_EMBED_DESC: prefix => `To get more information about some command use \`${prefix}help [command]\`\nAny questions? You can ask them in [our support server](https://discord.gg/ZKChwBD).`,
+  HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `:x: Command \`${prefix}${name}\` does not exist.`,
   HELP_COMMAND_DOESNT_EXIST_DESC: prefix => `Type \`${prefix}help\` to get a list of commands.`,
   HELP_COMMAND_TITLE: (name, prefix) => `\`${prefix}${name}\` help`,
   HELP_USAGE: "Usage",
@@ -65,13 +65,13 @@ module.exports = {
   SERVERINFO_OWNER: "Owner",
   SERVERINFO_FEAUTURES: "Server features",
   FEATURES: {
-    INVITE_SPLASH: "splash",
-    VIP_REGIONS: "384 kb/s voice channel",
+    INVITE_SPLASH: "invite splash",
+    VIP_REGIONS: "384 kb/s bitrate",
     VANITY_URL: "vanity url",
     VERIFIED: "verified",
     PARTNERED: "Discord Partner",
     PUBLIC: "public",
-    COMMERCE: "commerce",
+    COMMERCE: "shop channels",
     NEWS: "announcement channel",
     DISCOVERABLE: "in server discovery",
     FEATURABLE: "featurable",
@@ -83,7 +83,7 @@ module.exports = {
     MEMBER_VERIFICATION_GATE_ENABLED: "membership screening",
     PREVIEW_ENABLED: "server preview"
   },
-  NO: "no",
+  SERVERINFO_FOOTER: id => `ID: ${id}\nCreated at`,
 
   STATS_COMMAND_DESCRIPTION: "bot stats",
   STATS_EMBED_TITLE: "Stats",
@@ -125,9 +125,10 @@ module.exports = {
   USERINFO_JOINPOS: joinPos => `${joinPos}${joinPos % 10 == 1 ? "st" : joinPos % 10 == 2 ? "nd" : joinPos % 10 == 3 ? "rd" : "th"} server member`,
   NOT_IN_SERVER: "Not a server member",
   USERINFO_COLOR: "Role color",
-  USERINFO_DEFAULT_COLOR: "default",
+  USERINFO_DEFAULT_COLOR: "Default",
   USERINFO_BADGES: "Badges",
-  USERINFO_NO_BADGES: "This user does not have any badge",
+  USERINFO_NO_BADGES: "This user does not have any badges",
+  USERINFO_FOOTER: id => `ID: ${id}\nRegistered`,
 
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
@@ -146,7 +147,7 @@ module.exports = {
   SAY_USAGE: "<text>",
   SAY_NO_ARGS_PROMPT: prefix => `> :x: What do you want to say? Use ${prefix}say <text>`,
 
-  BANNED_BALANCE: ":x: Your balance is banned",
+  BANNED_BALANCE: ":x: Balance is blocked.",
   BANNED_BALANCE_REASON: reason => `Reason: ${reason || "not provided"}`,
   BALANCE_COMMAND_DESCRIPTION: "shows your (or provided user's) ZetCoins balance",
   BALANCE_COMMAND_USAGE: "[user]",
@@ -173,6 +174,7 @@ module.exports = {
   SENDCOINS_TIME_EXPIRED: ":x: Time expired.",
   CANNOT_SEND_COINS_TO_SELF: "> :x: You can't send ZetCoins to self.",
   CANNOT_SEND_COINS_TO_BOT: "> :x: You can't send ZetCoins to bot.",
+  CANNOT_SEND_COINS_TO_BANNED_BALANCE: "> :x: You can't send ZetCoins to user with blocked balance.",
 
   SETBALANCE_COMMAND_DESCRIPTION: "sets the provided user's balance",
   SETBALANCE_COMMAND_USAGE: "<user> <amount>",
@@ -218,12 +220,6 @@ module.exports = {
   DICE_LOSS: ":money_with_wings: Loss",
   DICE_LOSS_MESSAGE: (amount, balance) => `You lost: **${amount}** ZetCoins\nYour balance: **${balance - amount}** ZetCoins`,
   DICE_MORE_THAN_ZERO: "> :x: Amount should be more than 0.",
-
-  DM_COMMAND_DESCRIPTION: "sends the text to provided user",
-  DM_COMMAND_USAGE: "<user> <text>",
-  DM_NO_ARGS_PROMPT: prefix => `> :x: What do you want to send? Use \`${prefix}dm <user> <message>\``,
-  DM_NO_CONTENT_TO_SEND: `> :x: Please provide the text you want to send.`,
-  DM_ANSWER_SENT: "Answer sent",
 
   EVAL_COMMAND_DESCRIPTION: "evaluates the JavaScript code",
   EVAL_COMMAND_USAGE: "<code>",
@@ -279,7 +275,7 @@ module.exports = {
   LANG_NOT_EXIST: "> :x: This lang is not exist.",
   LANG_SUCCESS: "> :white_check_mark: Your language has been changed to `en`",
 
-  SERVERLANG_DESCRIPTION: "changes default server language",
+  SERVERLANG_DESCRIPTION: "changes default server language.\nThis command requires the \"Manage guild\" permission",
   SERVERLANG_USAGE: "[language]",
   SERVERLANG_LANGUAGE: "Server language:",
   SERVERLANG_FOOTER: prefix => `You can change the server language by using ${prefix}serverlang [language]`,
@@ -423,7 +419,7 @@ module.exports = {
   EMBEDCOLOR_DEFAULT_SUCCESS: "> :white_check_mark: Your embed color has been changed to `default`.",
   EMBEDCOLOR_IS_NAN: "> :x: The color is not a number.",
   EMBEDCOLOR_SUCCESS: newColor => `> :white_check_mark: Your embed color has been changed to \`#${newColor}\``,
-  EMBEDCOLOR_TOO_BIG: "> :x: Embed color can't be bigger than 16777216.",
+  EMBEDCOLOR_TOO_BIG: "> :x: The color can't be bigger than 16777216.",
   EMBEDCOLOR_RANDOM_SUCCESS: "> :white_check_mark: Your embed color has been changed to `random`.",
   EMBEDCOLOR_RANDOM: "random",
 
@@ -464,26 +460,33 @@ module.exports = {
   TAGS_DESCRIPTION: "Lets you to manage the tags.\nUse this command without args to see more info",
   TAGS_USAGE: "[subcommand]",
   TAGS_HELP: "Tags help",
+  TAGS_DESC: "Tags is the server notes, that allows to keep useful (and not really) information and control them.",
+  TAGS_HELP_LIST: "Subcommands",
   TAGS_HELP_DESC: prefix => `\`${prefix}tags <name>\` - get the tag\n` +
     `\`${prefix}tags add <name> <content>\` - add the tag\n` +
     `\`${prefix}tags edit <name> <new content>\` - edit the existing tag\n` +
     `\`${prefix}tags transfer <name> <new owner>\` - transfer tag to other user\n` +
     `\`${prefix}tags owner <tag>\` - information about tag owner\n` +
     `\`${prefix}tags delete <tag>\` - delete the tag\n` +
+    `\`${prefix}tags rename <name> <new name>\` - rename the tag\n` +
     `\`${prefix}tags list <page>\` - shows full list of tags`,
   TAG_NOT_FOUND: "> :x: Tag not found.",
   TAGS_NO_NAME: "> :x: No tag name provided.",
+  TAGS_NO_NEW_NAME: "> :x: No tag new name provided.",
   TAGS_NO_CONTENT: "> :x: No tag content provided.",
   TAG_ALREADY_EXIST: "> :x: This tag is already exist.",
   TAG_NAME_TOO_BIG: "> :x: Tag name shouldn't be longer than 128 characters.",
+  TAG_NEW_NAME_TOO_BIG: "> :x: Tag new name shouldn't be longer than 128 characters.",
   TAGS_ADD_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully added.`,
   TAGS_NOT_OWNER: "> :x: This tag doesn't exist or you don't own it.",
   TAGS_EDIT_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully edited.`,
   TAGS_TRANSFER_SUCCESS: (name, user) => `> :white_check_mark: Tag \`${name}\` successfully transfered to \`${user}\`.`,
-  TAGS_OWNER: (name, user) => `> :information_source: Tag \`${name}\` is owned by \`${user}\``,
+  TAGS_OWNER: (name, user) => `> :information_source: Tag \`${name}\` is owned by \`${user}\`.`,
   TAGS_INVALID_PAGE_NUMBER: "> :x: Invalid page number.",
   TAGS_LIST: "Tags list",
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Page ${currentPage} of ${totalPages} | Total tags: ${totalTags}`,
+  TAGS_RENAME_SUCCESS: (name, newName) => `> :white_check_mark: Tag \`${name}\` successfully renamed to \`${newName}\`.`,
+  TAGS_REMOVE_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully removed.`,
 
   WHOIS_DESCRIPTION: "Indicates a random user",
   WHOIS_USAGE: "<smth>",
@@ -496,32 +499,36 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Users who have discriminator #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator.",
 
-  BOORU_USAGE: "<tag>",
   NOT_NSFW_CHANNEL: "> :x: Channel is not marked as NSFW.",
-  POST_NOT_FOUND: "> :x: Post not found.",
-  BOORU_TITLE: "Image post (clickable)",
-  BOORU_CREATEDAT: "Created at",
-  BOORU_TAGS: "Tags",
-  BOORU_SCORE: "Scores",
-  BOORU_SOURCE: "Source",
-  BOORU_RATING: "Rating",
-  BOORU_RATINGS: {
-    s: "Safe",
-    q: "Questionable",
-    e: "Explicit",
-    u: "Unrated",
-    },
 
   PAHEAL_DESCRIPTION: "Searches paheal-posts by tags.\nNSFW-channel is required",
 
-  RULE34_DESCRIPTION: "Searches rule34-posts by tags.\nNSFW-channel is required",
-
-  DANBOORU_DESCRIPTION: "Searches danbooru-posts by tags.\nNSFW-channel is required",
-  DANBOORU_USAGE: "<tag> (not more, than 1 tag)",
+  RULE34_DESCRIPTION: "Gets a random post from Rule34 by tags.\nThis command requires NSFW-channel",
+  RULE34_USAGE: "<tags>",
+  RULE34_NOT_FOUND: "> :x: Nothing found by provided tags.",
+  RULE34_TITLE: "Image post (clickable)",
+  RULE34_CREATEDAT: "Created at",
+  RULE34_TAGS: "Tags",
+  RULE34_SCORE: "Scores",
+  RULE34_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Video post: ${postUrl}\nTags: ${postTags}`,
 
   TRANSLATE_DESCRIPTION: "translates text into provided language",
   TRANSLATE_USAGE: "<language> <text>",
   TRANSLATE_NO_TEXT: "> :x: Provide the text.",
   TRANSLATE_INVALID_LANG: "> :x: The language is wrong provided.",
   TRANSLATE_TITLE: fromLang => `Translator (translated from ${fromLang})`,
+
+  COLOR_DESCRIPTION: "Shows information about specified color",
+  COLOR_USAGE: "<color: #hex or number>",
+  COLOR_NUMBER: "Number",
+
+  HENTAI_DESCRIPTION: "Gets a random hentai image.\nThis command requires NSFW-channel",
+  HENTAI_TITLE: "Hentai image",
+
+  HENTAIASS_DESCRIPTION: "Gets a random hentai ass image.\nThis command requires NSFW-channel",
+
+  DEVIANTART_DESCRIPTION: "Gets a random deviation from DeviantArt by tag.\nThis command requires NSFW-channel",
+  DEVIANTART_USAGE: "<tag>",
+  DEVIANTART_NOT_FOUND: "> :x: Nothing found by provided tag.",
+  DEVIANTART_FAVOURITES: "Favourites",
 };

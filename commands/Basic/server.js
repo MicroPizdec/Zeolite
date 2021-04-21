@@ -7,7 +7,7 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "SERVERINFO_COMMAND_DESCRIPTION",
   guildOnly: true,
-  aliases: [ "s", "serverinfo" ],
+  aliases: [ "s", "serverinfo", "guildinfo", "g", "guild" ],
   async run(client, msg, args, prefix, lang) {
     moment.locale(lang);
     const guild = client.owners.includes(msg.author.id) ?
@@ -24,25 +24,17 @@ module.exports = {
     const embed = {
       author: {
         name: guild.name,
-        icon_url: guild.iconURL,
       },
       color: await msg.author.embedColor(),
+      thumbnail: { url: guild.iconURL },
       footer: {
-        text: `${client.user.username} © ZariBros`,
-        icon_url: client.user.avatarURL,
+        text: t(lang, "SERVERINFO_FOOTER", guild.id) + " " + t(lang, "DAYS_AGO", createdDaysAgo),
       },
+      timestamp: new Date(guild.createdAt).toISOString(),
       fields: [
         {
           name: t(lang, "SERVERINFO_OWNER"),
-          value: `${owner.tag}`,
-        },
-        {
-          name: "ID",
-          value: guild.id,
-        },
-        {
-          name: t(lang, "SERVERINFO_CREATION_DATE"),
-          value: moment(guild.createdAt).format("lll") + " " + _(lang, "DAYS_AGO", createdDaysAgo),
+          value: owner.tag,
         },
         {
           name: t(lang, "SERVERINFO_VERIFICATION_LEVEL"),
@@ -73,14 +65,6 @@ module.exports = {
           value: guild.roles.size,
         },
         {
-          name: t(lang, "SERVERINFO_REGION"),
-          value: guild.region,
-        },
-        {
-          name: t(lang, "SERVERINFO_FEAUTURES"),
-          value: guild.features.map(f => t(lang, "FEATURES")[f]).join(", ") || t(lang, "NO"),
-        },
-        {
           name: t(lang, "SERVERINFO_BOOST_LEVEL"),
           value: guild.premiumTier,
           inline: true,
@@ -98,6 +82,11 @@ module.exports = {
       name: t(lang, "SERVERINFO_BOOSTERS"),
       value: boostersCount,
       inline: true,
+    });
+
+    if (guild.features.length) embed.fields.push({
+      name: t(lang, "SERVERINFO_FEAUTURES"),
+      value: guild.features.map(f => t(lang, "FEATURES")[f]).join(", "),
     });
 
     await msg.reply({ embed })

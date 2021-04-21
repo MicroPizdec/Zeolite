@@ -23,7 +23,7 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "INVITE_DESCRIPTION",
   usage: "INVITE_USAGE",
-  aliases: [ "i", "inviteinfo" ],
+  aliases: [ "i", "inviteinfo", "inv" ],
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
@@ -52,9 +52,11 @@ module.exports = {
     const embed = {
       author: {
         name: inviteInfo.guild.name,
-        icon_url: inviteInfo.guild.iconURL,
       },
+      thumbnail: { url: inviteInfo.guild.iconURL },
       color: await msg.author.embedColor(),
+      footer: { text: t(lang, "INVITE_SERVER_CREATED_AT") + " " + t(lang, "DAYS_AGO", createdDaysAgo) },
+      timestamp: new Date(inviteInfo.guild.createdAt).toISOString(),
       fields: [
         {
           name: _(lang, "INVITE_MEMBERS"),
@@ -72,10 +74,6 @@ module.exports = {
           inline: true,
         },
         {
-          name: _(lang, "INVITE_SERVER_CREATED_AT"),
-          value: moment(inviteInfo.guild.createdAt).format("lll") + " " + _(lang, "DAYS_AGO", createdDaysAgo)
-        },
-        {
           name: _(lang, "INVITE_CHANNEL"),
           value: `#${inviteInfo.channel.name} (ID: ${inviteInfo.channel.id})`,
         },
@@ -90,13 +88,6 @@ module.exports = {
       embed.fields.push({
         name: _(lang, "INVITE_INVITER"),
         value: `${inviteInfo.inviter.tag} (ID: ${inviteInfo.inviter.id})`,
-      });
-    }
-
-    if (inviteInfo.guild.features.length) {
-      embed.fields.push({
-        name: _(lang, "INVITE_FEATURES"),
-        value: inviteInfo.guild.features.map(f => t(lang, "FEATURES")[f]).join(", "),
       });
     }
 

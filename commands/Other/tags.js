@@ -66,6 +66,32 @@ module.exports = {
         return msg.reply(t(lang, "TAGS_EDIT_SUCCESS", name));
         break;
       }
+      case "rename": {
+        const name = args.shift();
+        const newName = args.join(" ");
+
+        if (!name) {
+          return msg.reply(t(lang, "TAGS_NO_NAME"));
+        }
+        if (!newName) {
+          return msg.reply(t(lang, "TAGS_NO_NEW_NAME"));
+        }
+
+        if (newName.length > 128) {
+          return msg.reply(t(lang, "TAG_NEW_NAME_TOO_BIG"));
+        }
+
+        const tag = await getTag(msg.guild.id, name);
+        if (!tag || tag.author != msg.author.id) {
+          return msg.reply(t(lang, "TAGS_NOT_OWNER"));
+        }
+        
+        // я обк*к*лся и забыл ввести проверку на существующий тег но я так и не сделал ибо не ебу xddddd
+
+        await tag.update({ name: newName });
+        return msg.reply(t(lang, "TAGS_RENAME_SUCCESS", name, newName));
+        break;
+      }
       case "delete": {
         const name = args[0];
 
@@ -101,6 +127,10 @@ module.exports = {
       }
       case "owner": {
         const name = args[0];
+
+        if (!name) {
+          return msg.reply(t(lang, "TAGS_NO_NAME"));
+        }
 
         const tag = await getTag(msg.guild.id, name);
         if (!tag) {
@@ -144,7 +174,13 @@ module.exports = {
         if (!subcommand) {
           const embed = {
             title: t(lang, "TAGS_HELP"),
-            description: t(lang, "TAGS_HELP_DESC", prefix),
+            description: t(lang, "TAGS_DESC"),
+            fields: [
+              {
+                name: t(lang, "TAGS_HELP_LIST"),
+                value: t(lang, "TAGS_HELP_DESC", prefix),
+              },
+            ],
             color: await msg.author.embedColor(),
             footer: {
               text: `${client.user.username} © ZariBros`,
@@ -160,7 +196,7 @@ module.exports = {
             return msg.reply(t(lang, "TAG_NOT_FOUND"));
           }
 
-          await msg.channel.createMessage(tag.text);
+          await msg.reply(tag.text);
         }
 
         break;

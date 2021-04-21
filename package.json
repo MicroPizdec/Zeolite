@@ -1,6 +1,6 @@
 {
   "name": "zeolite",
-  "version": "2.1.1",
+  "version": "3.0",
   "description": "",
   "main": "index.js",
   "scripts": {
@@ -13,10 +13,10 @@
     "booru": "^2.4.0",
     "bufferutil": "^4.0.1",
     "canvas": "^2.6.1",
+    "color-convert": "^2.0.1",
     "common-tags": "^1.8.0",
-    "dabi-images": "^2.7.5",
     "discord-nsfw": "^1.3.0",
-    "eris": "0.14.0",
+    "eris": "^0.15.0",
     "eris-additions": "^1.3.0",
     "eris-reactions": "^0.1.3",
     "erlpack": "abalabahaha/erlpack",
@@ -25,6 +25,6 @@
     "moment": "^2.29.1",
     "node-fetch": "^2.6.0",
     "sequelize": "^6.3.5",
-    "sqlite3": "^4.1.1"
+    "sqlite3": "^5.0.0"
   }
 }
