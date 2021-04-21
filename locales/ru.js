@@ -536,4 +536,9 @@ module.exports = {
   HENTAI_TITLE: "Хентай-изображение",
 
   HENTAIASS_DESCRIPTION: "Получает случайное хентай-изображение с задницей.\nЭта команда требует канал помеченный как NSFW",
+
+  DEVIANTART_DESCRIPTION: "Получает случайную публикацию из DeviantArt по тегу.\nЭта команда требует канал помеченный как NSFW",
+  DEVIANTART_USAGE: "<тег>",
+  DEVIANTART_NOT_FOUND: "> :x: Ничего не найдено по указанному тегу.",
+  DEVIANTART_FAVOURITES: "Избранное",
 };

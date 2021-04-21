@@ -537,4 +537,9 @@ module.exports = {
   HENTAI_TITLE: "Hentai image",
 
   HENTAIASS_DESCRIPTION: "Gets a random hentai ass image.\nThis command requires NSFW-channel",
+
+  DEVIANTART_DESCRIPTION: "Gets a random deviation from DeviantArt by tag.\nThis command requires NSFW-channel",
+  DEVIANTART_USAGE: "<tag>",
+  DEVIANTART_NOT_FOUND: "> :x: Nothing found by provided tag.",
+  DEVIANTART_FAVOURITES: "Favourites",
 };
