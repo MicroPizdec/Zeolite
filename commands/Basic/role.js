@@ -1,14 +1,5 @@
+const intToHex = require("../../utils/intToHex");
 const moment = require("moment");
-
-function intToHex(int) {
-  let hexStr = int.toString(16);
-
-  while (hexStr.length > 6) {
-    hexStr = 0 + hexStr;
-  }
-
-  return `#${hexStr}`;
-}
 
 module.exports = {
   name: "role",
@@ -66,7 +57,7 @@ module.exports = {
         },
         {
           name: t(lang, "ROLE_COLOR"),
-          value: role.color ? intToHex(role.color) : t(lang, "ROLE_COLOR_DEFAULT"),
+          value: role.color ? `#${intToHex(role.color)}` : t(lang, "ROLE_COLOR_DEFAULT"),
         },
       ],
       footer: {
