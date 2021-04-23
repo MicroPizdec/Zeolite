@@ -17,7 +17,7 @@ const answers = {
     "¯\\_(ツ)\_/¯",
     "Maybe.",
     "What?",
-    "I don't answer to this questions.",
+    "I don't answer to these questions.",
   ],
   ru: [
     "Да.",
