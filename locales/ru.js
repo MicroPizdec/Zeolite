@@ -521,7 +521,7 @@ module.exports = {
   COLOR_NUMBER: "Число",
 
   HENTAI_DESCRIPTION: "Получает случайное хентай-изображение.\nЭта команда требует канал помеченный как NSFW",
-  HENTAI_TITLE: "Хентай-изображение",
+  HENTAI_TITLE: "Хентай изображение",
 
   HENTAIASS_DESCRIPTION: "Получает случайное хентай-изображение с задницей.\nЭта команда требует канал помеченный как NSFW",
 
@@ -529,4 +529,7 @@ module.exports = {
   DEVIANTART_USAGE: "<тег>",
   DEVIANTART_NOT_FOUND: "> :x: Ничего не найдено по указанному тегу.",
   DEVIANTART_FAVOURITES: "Избранные",
+
+  FEET_DESCRIPTION: "Получает случайный футфетиш.\nЭта команда требует канал помеченный как NSFW",
+  FEET_TITLE: "Футфетиш",
 };

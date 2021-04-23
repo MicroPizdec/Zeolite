@@ -531,4 +531,7 @@ module.exports = {
   DEVIANTART_USAGE: "<tag>",
   DEVIANTART_NOT_FOUND: "> :x: Nothing found by provided tag.",
   DEVIANTART_FAVOURITES: "Favourites",
+
+  FEET_DESCRIPTION: "Gets a random foot fetish image.\nThis command requires NSFW-channel",
+  FEET_TITLE: "Foot fetish image",
 };
