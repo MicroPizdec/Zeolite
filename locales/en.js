@@ -487,6 +487,7 @@ module.exports = {
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Page ${currentPage} of ${totalPages} | Total tags: ${totalTags}`,
   TAGS_RENAME_SUCCESS: (name, newName) => `> :white_check_mark: Tag \`${name}\` successfully renamed to \`${newName}\`.`,
   TAGS_REMOVE_SUCCESS: name => `> :white_check_mark: Tag \`${name}\` successfully removed.`,
+  TAGS_SAME_NAME: "> :x: New name shouldn't be the same as the existing name.",
 
   WHOIS_DESCRIPTION: "Indicates a random user",
   WHOIS_USAGE: "<smth>",
