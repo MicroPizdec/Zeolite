@@ -485,6 +485,7 @@ module.exports = {
   TAGS_LIST_FOOTER: (currentPage, totalPages, totalTags) => `Страница ${currentPage} из ${totalPages} | Всего тегов: ${totalTags}`,
   TAGS_RENAME_SUCCESS: (name, newName) => `> :white_check_mark: Тег \`${name}\` успешно переименован в \`${newName}\`.`,
   TAGS_REMOVE_SUCCESS: name => `> :white_check_mark: Тег \`${name}\` успешно удален.`,
+  TAGS_SAME_NAME: "> :x: Новое имя не должно быть таким же, как существующее имя.",
 
   WHOIS_DESCRIPTION: "Указывает случайного пользователя",
   WHOIS_USAGE: "<что-либо>",

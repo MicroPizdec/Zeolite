@@ -86,7 +86,9 @@ module.exports = {
           return msg.reply(t(lang, "TAGS_NOT_OWNER"));
         }
         
-        // я обк*к*лся и забыл ввести проверку на существующий тег но я так и не сделал ибо не ебу xddddd
+        if (newName == tag.name) {
+          return msg.reply(t(lang, "TAGS_SAME_NAME"));
+        }
 
         await tag.update({ name: newName });
         return msg.reply(t(lang, "TAGS_RENAME_SUCCESS", name, newName));
