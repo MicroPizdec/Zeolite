@@ -5,6 +5,7 @@ module.exports = {
   usage: "UNBANBALANCE_COMMAND_USAGE",
   aliases: [ "unbanbal" ],
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     const userID = args[0];
     let user;

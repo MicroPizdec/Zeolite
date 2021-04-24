@@ -39,6 +39,15 @@ module.exports = {
       .then(b => b[0]);
     const userBalance = await zetCoins.findOrCreate({ where: { user: user.id } })
       .then(b => b[0]);
+
+    if (authorBalance.banned) {
+      const bannedBalanceEmbed = {
+        title: t(lang, "BANNED_BALANCE"),
+        description: t(lang, "BANNED_BALANCE_REASON", authorBalance.reason),
+        color: 15158332,
+      };
+      return msg.reply({ embed: bannedBalanceEmbed });
+    }
     
     if (authorBalance.balance < sum) {
       return msg.reply(t(lang, "SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
@@ -47,8 +56,6 @@ module.exports = {
     if (userBalance.banned) {
       return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_BANNED_BALANCE"));
     }
-
-    // тут ещё надо добавить проверку (типа если у передающего баланс забанен то выводится эмбед) но я не ебу как её делать xd
 
     const confirmEmbed = {
       title: t(lang, "SENDCOINS_CONFIRMATION_TITLE", sum, user),

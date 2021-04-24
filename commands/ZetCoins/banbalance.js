@@ -5,6 +5,7 @@ module.exports = {
   usage: "BANBALANCE_COMMAND_USAGE",
   aliases: [ "banbal" ],
   ownerOnly: true,
+  argsRequired: true,
   async run(client, msg, args, prefix, language) {
     const userID = args.shift();
     const reason = args.join(" ");
