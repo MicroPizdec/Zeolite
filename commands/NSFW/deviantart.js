@@ -52,6 +52,12 @@ module.exports = {
         {
           name: t(lang, "DEVIANTART_FAVOURITES"),
           value: result.stats.favourites,
+          inline: true,
+        },
+        {
+          name: t(lang, "DEVIANTART_COMMENTS"),
+          value: result.stats.comments,
+          inline: true,
         },
       ],
     };
