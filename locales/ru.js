@@ -142,10 +142,6 @@ module.exports = {
   CFLIP_SIDEWAYS: "Боком",
   CFLIP_EMBED_TITLE: "Монетка приземлилась:",
 
-  SAY_DESCRIPTION: "говорит ваш текст",
-  SAY_USAGE: "<текст>",
-  SAY_NO_ARGS_PROMPT: prefix => `> :x: Что вы хотите сказать? Используйте ${prefix}say <текст>`,
-
   BANNED_BALANCE: ":x: Баланс заблокирован.",
   BANNED_BALANCE_REASON: reason => `Причина: ${reason || "не предоставлена"}`,
   BALANCE_COMMAND_DESCRIPTION: "показывает ваше (или другого пользователя) кол-во ZetCoin'ов на счету",
