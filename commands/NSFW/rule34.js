@@ -34,14 +34,8 @@ module.exports = {
             },
             fields: [
                {
-                   name: t(lang, "RULE34_CREATEDAT"),
-                   value: moment(post.createdAt).format("lll") + " " + t(lang, "DAYS_AGO", createdDaysAgo),
-                   inline: true,
-               },
-               {
                    name: t(lang, "RULE34_SCORE"),
                    value: post.score,
-                   inline: true,
                },
                {
                    name: t(lang, "RULE34_TAGS"),
@@ -49,10 +43,8 @@ module.exports = {
                },
             ],
             image: { url: post.fileUrl },
-            footer: {
-                text: `${client.user.username} © ZariBros`,
-                icon_url: client.user.avatarURL,
-            },
+            footer: { text: t(lang, "RULE34_CREATEDAT") + " " + t(lang, "DAYS_AGO", createdDaysAgo), },
+            timestamp: new Date(post.createdAt).toISOString(),
             color: await msg.author.embedColor(),
        }
        await msg.reply({ embed });

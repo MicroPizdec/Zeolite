@@ -496,7 +496,7 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Users who have discriminator #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator.",
 
-  NOT_NSFW_CHANNEL: "> :x: Channel is not marked as NSFW.",
+  NOT_NSFW_CHANNEL: "> :x: This channel is not marked as NSFW.",
 
   PAHEAL_DESCRIPTION: "Searches paheal-posts by tags.\nNSFW-channel is required",
 
@@ -507,7 +507,7 @@ module.exports = {
   RULE34_CREATEDAT: "Created at",
   RULE34_TAGS: "Tags",
   RULE34_SCORE: "Scores",
-  RULE34_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Video post: ${postUrl}\nTags: ${postTags}`,
+  RULE34_VIDEO: (postUrl, postTags) => `>>> Link to video post: ${postUrl}\nTags: ${postTags}`,
 
   TRANSLATE_DESCRIPTION: "translates text into provided language",
   TRANSLATE_USAGE: "<language> <text>",

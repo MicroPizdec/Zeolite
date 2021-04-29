@@ -494,7 +494,7 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Пользователи с дискриминатором #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором",
   
-  NOT_NSFW_CHANNEL: "> :x: Канал не помечен как NSFW.",
+  NOT_NSFW_CHANNEL: "> :x: Этот канал не помечен как NSFW.",
 
   PAHEAL_DESCRIPTION: "Ищет paheal-посты по тегу.\nТребуется канал помеченный как NSFW",
 
@@ -504,8 +504,8 @@ module.exports = {
   RULE34_NOT_FOUND: "> :x: Ничего не найдено по указанным тегам.",
   RULE34_CREATEDAT: "Создан",
   RULE34_TAGS: "Теги",
-  RULE34_SCORE: "Кол-во очков",
-  RULE34_VIDEO: (postUrl, postTags) => `>>> :arrow_forward: Видео: ${postUrl}\nТеги: ${postTags}`,
+  RULE34_SCORE: "Баллов",
+  RULE34_VIDEO: (postUrl, postTags) => `>>> Ссылка на видео: ${postUrl}\nТеги: ${postTags}`,
 
   TRANSLATE_DESCRIPTION: "переводит текст на указанный язык",
   TRANSLATE_USAGE: "<язык> <текст>",
