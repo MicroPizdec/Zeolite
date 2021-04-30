@@ -195,12 +195,12 @@ module.exports = {
   WORK_EMBED_TITLE: "Работа",
   WORK_EMBED_DESCRIPTION: (amount, balance) => `**Вы заработали: ${amount}** ZetCoin'ов <:zetcoins:766959525864669235>\n**Ваш баланс: ${balance}** ZetCoin'ов <:zetcoins:766959525864669235>`,
 
-  POLL_COMMAND_DESCRIPTION: "создает опрос из реакций (до 10 вариантов ответа)",
+  POLL_COMMAND_DESCRIPTION: "создает опрос из реакций (до 10 вариантов ответа).\nИспользуйте двойные кавычки для вопроса и ответов",
   POLL_COMMAND_USAGE: "<вопрос> <ответы>",
   POLL_NO_ARGS_PROMPT: prefix => `> :x: Какой заголовок опроса? Используйте \`${prefix}poll <вопрос> <ответы>\` (до 10 вариантов ответа)`,
   POLL_NOT_MORE_THAN_10_ANSWERS: "> :x: Не больше, чем 10 вариантов ответа.",
   POLL_NO_ANSWERS: prefix => `> :x: А где ответы? Используйте \`${prefix}poll <вопрос> <ответы>\` (до 10 вариантов ответа)`,
-  POLL_STARTED_BY: user => `Начат пользователем ${user.username}#${user.discriminator}`,
+  POLL_STARTED_BY: user => `Начат ${user.username}#${user.discriminator}`,
 
   MISSING_PERMISSION: ":x: Вы не имеете разрешений на использование этой команды.",
   MISSING_PERMISSION_DESCRIPTION: permission => `Нужное разрешение: \`${permission}\``,
@@ -494,11 +494,11 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Пользователи с дискриминатором #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Сейчас я не вижу пользователей с таким дискриминатором",
   
-  NOT_NSFW_CHANNEL: "> :x: Этот канал не помечен как NSFW.",
+  NOT_NSFW_CHANNEL: cmd => `> :x: Команда \`${cmd}\` может быть использавана только на каналах, помеченных как NSFW.`,
 
   PAHEAL_DESCRIPTION: "Ищет paheal-посты по тегу.\nТребуется канал помеченный как NSFW",
 
-  RULE34_DESCRIPTION: "Получает случайную публикацию из Rule34 по тегам.\nЭта команда требует канал помеченный как NSFW",
+  RULE34_DESCRIPTION: "Получает случайную публикацию из rule34.xxx по тегам.\nЭта команда требует канал помеченный как NSFW",
   RULE34_USAGE: "<теги>",
   RULE34_TITLE: "Публикация (кликабельно)",
   RULE34_NOT_FOUND: "> :x: Ничего не найдено по указанным тегам.",

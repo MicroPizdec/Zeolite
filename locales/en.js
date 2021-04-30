@@ -196,7 +196,7 @@ module.exports = {
   WORK_EMBED_TITLE: "Work",
   WORK_EMBED_DESCRIPTION: (amount, balance) => `**You earned: ${amount}** ZetCoins <:zetcoins:766959525864669235>\n**Your balance: ${balance}** ZetCoins <:zetcoins:766959525864669235>`,
 
-  POLL_COMMAND_DESCRIPTION: "creates a reaction poll (up to 10 answers)",
+  POLL_COMMAND_DESCRIPTION: "creates a reaction poll (up to 10 answers).\nYou can use double quotes for question and answers",
   POLL_COMMAND_USAGE: "<question> <answers>",
   POLL_NO_ARGS_PROMPT: prefix => `> :x: What is the title of the poll? Use \`${prefix}poll <question> <answers>\` (up to 10 answers)`,
   POLL_NOT_MORE_THAN_10_ANSWERS: "> :x: Not more than 10 answers.",
@@ -496,11 +496,11 @@ module.exports = {
   DISCRIM_TITLE: discrim => `Users who have discriminator #${discrim}`,
   DISCRIM_USERS_NOT_FOUND: "Currently I don't see any user who have this discriminator.",
 
-  NOT_NSFW_CHANNEL: "> :x: This channel is not marked as NSFW.",
+  NOT_NSFW_CHANNEL: cmd => `> :x: Command \`${cmd}\` can be used only in channels, marked as NSFW.`,
 
   PAHEAL_DESCRIPTION: "Searches paheal-posts by tags.\nNSFW-channel is required",
 
-  RULE34_DESCRIPTION: "Gets a random post from Rule34 by tags.\nThis command requires NSFW-channel",
+  RULE34_DESCRIPTION: "Gets a random post from rule34.xxx by tags.\nThis command requires NSFW-channel",
   RULE34_USAGE: "<tags>",
   RULE34_NOT_FOUND: "> :x: Nothing found by provided tags.",
   RULE34_TITLE: "Image post (clickable)",

@@ -12,7 +12,7 @@ module.exports = {
         const {0: post} = await booru.search("rule34.xxx", args, {limit:1, random: true})
 
         if (!msg.channel.nsfw) {
-            return msg.reply(t(lang, "NOT_NSFW_CHANNEL"));
+            return msg.reply(t(lang, "NOT_NSFW_CHANNEL", this.name));
           }
     
         if (!post) {

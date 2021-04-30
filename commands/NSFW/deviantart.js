@@ -16,7 +16,7 @@ module.exports = {
   aliases: [ "da" ],
   async run(client, msg, args, prefix, lang) {
     if (!msg.channel.nsfw) {
-      return msg.reply(t(lang, "NOT_NSFW_CHANNEL"));
+      return msg.reply(t(lang, "NOT_NSFW_CHANNEL", this.name));
     }
 
     if (isTokenExpired) {
