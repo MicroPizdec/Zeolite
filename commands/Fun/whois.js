@@ -1,12 +1,16 @@
 module.exports = {
-  name: "who",
+  name: "whois",
   group: "FUN_GROUP",
   description: "WHOIS_DESCRIPTION",
   usage: "WHOIS_USAGE",
+  aliases: [ "who" ],
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     const randomUser = msg.channel.guild.members.random().user.username;
-    const subject = msg.content.slice(prefix.length + this.name.length + 1); 
+    
+    const subject = args.join(" ");
+    // fuck content.slice
+    
     const answers = {
       ru: [
         `${randomUser}`,
