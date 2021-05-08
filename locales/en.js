@@ -14,6 +14,14 @@ module.exports = {
   MODERATION_GROUP: "Moderation commands",
   NSFW_GROUP: "NSFW commands",
 
+  PERMISSIONS: {
+    kickMembers: "Kick Members",
+    banMembers: "Ban Members",
+    manageRoles: "Manage Roles",
+    manageMessages: "Manage Messages",
+    manageGuild: "Manage Server",
+  },
+
   PING_COMMAND_DESCRIPTION: "bot ping",
   PING_BOT: ping => `Bot ping: ${ping} ms.`,
   PING_API: latency => `API ping: ${latency} ms.`,
@@ -500,7 +508,7 @@ module.exports = {
 
   PAHEAL_DESCRIPTION: "Searches paheal-posts by tags.\nNSFW-channel is required",
 
-  RULE34_DESCRIPTION: "Gets a random post from rule34.xxx by tags.\nThis command requires NSFW-channel",
+  RULE34_DESCRIPTION: "Gets a random post from rule34.xxx by tags.\nThis command can be used only in channels marked as NSFW",
   RULE34_USAGE: "<tags>",
   RULE34_NOT_FOUND: "> :x: Nothing found by provided tags.",
   RULE34_TITLE: "Image post (clickable)",
@@ -519,17 +527,17 @@ module.exports = {
   COLOR_USAGE: "<color: #hex or number>",
   COLOR_NUMBER: "Number",
 
-  HENTAI_DESCRIPTION: "Gets a random hentai image.\nThis command requires NSFW-channel",
+  HENTAI_DESCRIPTION: "Gets a random hentai image.\nThis command can be used only in channels marked as NSFW",
   HENTAI_TITLE: "Hentai image",
 
-  HENTAIASS_DESCRIPTION: "Gets a random hentai ass image.\nThis command requires NSFW-channel",
+  HENTAIASS_DESCRIPTION: "Gets a random hentai ass image.\nThis command can be used only in channels marked as NSFW",
 
-  DEVIANTART_DESCRIPTION: "Gets a random deviation from DeviantArt by tag.\nThis command requires NSFW-channel",
+  DEVIANTART_DESCRIPTION: "Gets a random deviation from DeviantArt by tag.\nThis command can be used only in channels marked as NSFW",
   DEVIANTART_USAGE: "<tag>",
   DEVIANTART_NOT_FOUND: "> :x: Nothing found by provided tag.",
   DEVIANTART_FAVOURITES: "Favourites",
   DEVIANTART_COMMENTS: "Comments",
 
-  FEET_DESCRIPTION: "Gets a random foot fetish image.\nThis command requires NSFW-channel",
+  FEET_DESCRIPTION: "Gets a random foot fetish image.\nThis command can be used only in channels marked as NSFW",
   FEET_TITLE: "Foot fetish image",
 };

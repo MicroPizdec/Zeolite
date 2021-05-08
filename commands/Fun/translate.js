@@ -2,7 +2,7 @@ const translate = require('@vitalets/google-translate-api');
 
 module.exports = {
     name: "translate",
-    group: "OTHER_GROUP",
+    group: "FUN_GROUP",
     description: "TRANSLATE_DESCRIPTION",
     usage: "TRANSLATE_USAGE",
     aliases: [ "translator", "tr" ],

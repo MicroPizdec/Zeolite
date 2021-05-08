@@ -18,8 +18,7 @@ module.exports = {
             author: {
                 name: msg.author.tag,
                 icon_url: msg.author.avatarURL,
-              },
-            title: t(lang, "HENTAI_TITLE"),
+            },
             image: { url: nsfwimage },
             color: await msg.author.embedColor(),
             footer: {

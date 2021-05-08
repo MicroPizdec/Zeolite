@@ -13,6 +13,14 @@ module.exports = {
   MODERATION_GROUP: "Команды модерации",
   NSFW_GROUP: "NSFW команды",
 
+  PERMISSIONS: {
+    kickMembers: "Выгонять участников",
+    banMembers: "Банить участников",
+    manageRoles: "Управлять ролями",
+    manageMessages: "Управлять сообщениями",
+    manageGuild: "Управлять сервером",
+  },
+
   PING_COMMAND_DESCRIPTION: "пинг бота",
   PING_BOT: ping => `Пинг бота: ${ping} мс.`,
   PING_API: latency => `Пинг API: ${latency} мс.`,
@@ -496,9 +504,7 @@ module.exports = {
   
   NOT_NSFW_CHANNEL: cmd => `> :x: Команда \`${cmd}\` может быть использавана только на каналах, помеченных как NSFW.`,
 
-  PAHEAL_DESCRIPTION: "Ищет paheal-посты по тегу.\nТребуется канал помеченный как NSFW",
-
-  RULE34_DESCRIPTION: "Получает случайную публикацию из rule34.xxx по тегам.\nЭта команда требует канал помеченный как NSFW",
+  RULE34_DESCRIPTION: "Получает случайную публикацию из rule34.xxx по тегам.\nЭту команду можно использовать только в каналах помеченных как NSFW",
   RULE34_USAGE: "<теги>",
   RULE34_TITLE: "Публикация (кликабельно)",
   RULE34_NOT_FOUND: "> :x: Ничего не найдено по указанным тегам.",
@@ -517,17 +523,16 @@ module.exports = {
   COLOR_USAGE: "<цвет: #hex или число>",
   COLOR_NUMBER: "Число",
 
-  HENTAI_DESCRIPTION: "Получает случайное хентай-изображение.\nЭта команда требует канал помеченный как NSFW",
-  HENTAI_TITLE: "Хентай изображение",
+  HENTAI_DESCRIPTION: "Получает случайное хентай-изображение.\nЭту команду можно использовать только в каналах помеченных как NSFW",
 
-  HENTAIASS_DESCRIPTION: "Получает случайное хентай-изображение с задницей.\nЭта команда требует канал помеченный как NSFW",
+  HENTAIASS_DESCRIPTION: "Получает случайное хентай-изображение с задницей.\nЭту команду можно использовать только в каналах помеченных как NSFW",
 
-  DEVIANTART_DESCRIPTION: "Получает случайную публикацию из DeviantArt по тегу.\nЭта команда требует канал помеченный как NSFW",
+  DEVIANTART_DESCRIPTION: "Получает случайную публикацию из DeviantArt по тегу.\nЭту команду можно использовать только в каналах помеченных как NSFW",
   DEVIANTART_USAGE: "<тег>",
   DEVIANTART_NOT_FOUND: "> :x: Ничего не найдено по указанному тегу.",
   DEVIANTART_FAVOURITES: "Избранные",
-  DEVIANTART_COMMENTS: "Комментариев",
+  DEVIANTART_COMMENTS: "Комментарии",
 
-  FEET_DESCRIPTION: "Получает случайный футфетиш.\nЭта команда требует канал помеченный как NSFW",
+  FEET_DESCRIPTION: "Получает случайный футфетиш.\nЭту команду можно использовать только в каналах помеченных как NSFW",
   FEET_TITLE: "Футфетиш",
 };
