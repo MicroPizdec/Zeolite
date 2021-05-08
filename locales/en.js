@@ -392,7 +392,7 @@ module.exports = {
   RELOAD_ALL_SUCCESS: ":white_check_mark: All commands are successfully reloaded!",
   RELOAD_LANGS_SUCCESS: ":white_check_mark: Languages successfully reloaded!",
   RELOAD_COMMAND_DOESNT_EXIST: "> :x: This command doesn't exist.",
-  RELOAD_ERROR: cmd => `:x: An error occurred while reloading command \`${name}\``,
+  RELOAD_ERROR: cmd => `:x: An error occurred while reloading command \`${cmd}\``,
   RELOAD_ERROR_ALL: ":x: An error occurred while reloading all commands",
   RELOAD_ERROR_LANGS: ":x: An error occurred while reloading languages",
 
