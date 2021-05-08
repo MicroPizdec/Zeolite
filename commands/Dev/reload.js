@@ -20,7 +20,7 @@ module.exports = {
           try {
             client.reloadCommand(cmd);
           } catch (err) {
-            errCmdName = cmd.name;
+            errCmdName = cmd;
             throw err;
           }
         }
