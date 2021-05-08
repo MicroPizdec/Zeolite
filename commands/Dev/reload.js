@@ -62,7 +62,7 @@ module.exports = {
 
       const embed = {
         title,
-        description: `\`\`\`${err}\`\`\``,
+        description: `\`\`\`${err.stack}\`\`\``,
         color: 13370885,
       };
 
