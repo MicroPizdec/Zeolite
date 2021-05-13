@@ -34,6 +34,7 @@ class CmdClient extends Eris.Client {
 
     this.commands = new Eris.Collection();
     this.groups = new Eris.Collection();
+    this.cooldowns = new Eris.Collection();
 
     this.i18n = new i18n(this);
 
@@ -120,9 +121,31 @@ class CmdClient extends Eris.Client {
         return this.commands.get("help").run(this, msg, [ command.name ], prefix, language.language);
       }
 
+      if (command.cooldown) {
+        if (!this.cooldowns.has(command.name)) {
+          this.cooldowns.set(command.name, new Eris.Collection());
+        }
+  
+        let cmdCooldowns = this.cooldowns.get(command.name);
+        let now = Date.now();
+        if (cmdCooldowns.has(msg.author.id)) {
+          let expiration = cmdCooldowns.get(msg.author.id) + (command.cooldown * 1000);
+          if (now < expiration) {
+            let secsLeft = Math.floor((expiration - now) / 1000);
+            return msg.reply(t(language.language, "COOLDOWN", secsLeft));
+          }
+        }
+      }
+
       try {
         if (command.requiredPermissions) validatePermission(msg.member, command.requiredPermissions);
         await command.run(this, msg, args, prefix, language.language);
+
+        if (command.cooldown) {
+          let cmdCooldowns = this.cooldowns.get(command.name);
+          cmdCooldowns.set(msg.author.id, Date.now());
+          setTimeout(() => cmdCooldowns.delete(msg.author.id), command.cooldown * 1000);
+        }
         
         this.emit("commandSuccess", command, msg);
       } catch (err) {

@@ -4,6 +4,7 @@ module.exports = {
   GUILD_ONLY_COMMAND: "> :x: You cannot use this command in DM.",
   INVALID_USER_PROVIDED: "> :x: Invalid user provided.",
   DAYS_AGO: days => `(${days} days ago)`,
+  COOLDOWN: time => `> :x: You can use this command again in ${time} seconds.`,
 
   BASIC_GROUP: "Basic commands",
   FUN_GROUP: "Fun commands",
