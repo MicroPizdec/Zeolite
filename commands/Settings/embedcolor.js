@@ -27,7 +27,7 @@ module.exports = {
     } else {
       switch (newColor) {
         case "default":
-          await userColor.update({ color: null });
+          await userColor.update({ color: null, isRandom: false });
           return msg.reply(t(lang, "EMBEDCOLOR_DEFAULT_SUCCESS"));
         case "random":
           await userColor.update({ color: null, isRandom: true });
