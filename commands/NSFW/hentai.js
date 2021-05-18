@@ -10,21 +10,26 @@ module.exports = {
     if (!msg.channel.nsfw) {
       return msg.reply(t(lang, "NOT_NSFW_CHANNEL", this.name));
     }
-        
-    const nsfwimage = await nsfw.hentai();
+    
+    try {
+      const nsfwimage = await nsfw.hentai();
           
-    const embed = {
-      author: {
-        name: msg.author.tag,
-        icon_url: msg.author.avatarURL,
-      },
-      image: { url: nsfwimage },
-      color: await msg.author.embedColor(),
-      footer: {
-        text: `${client.user.username} © ZariBros`,
-        icon_url: client.user.avatarURL,
-      },
+      const embed = {
+        author: {
+          name: msg.author.tag,
+          icon_url: msg.author.avatarURL,
+        },
+        image: { url: nsfwimage },
+        color: await msg.author.embedColor(),
+        footer: {
+          text: `${client.user.username} © ZariBros`,
+          icon_url: client.user.avatarURL,
+        },
+      };
+
+      await msg.reply({ embed });
+    } catch (err) {
+      await msg.reply(t(lang, "HENTAI_ERROR", err.message));
     }
-    await msg.reply({ embed });
   }
 }

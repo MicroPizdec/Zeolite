@@ -530,6 +530,7 @@ module.exports = {
 
   HENTAI_DESCRIPTION: "Gets a random hentai image.\nThis command can be used only in channels marked as NSFW",
   HENTAI_TITLE: "Hentai image",
+  HENTAI_ERROR: err => `> :x: An error occurred. \`${err}\``, 
 
   HENTAIASS_DESCRIPTION: "Gets a random hentai ass image.\nThis command can be used only in channels marked as NSFW",
 
