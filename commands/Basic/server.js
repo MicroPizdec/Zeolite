@@ -25,6 +25,7 @@ module.exports = {
       author: {
         name: guild.name,
       },
+      description: guild.description,
       color: await msg.author.embedColor(),
       thumbnail: { url: guild.iconURL },
       footer: {
