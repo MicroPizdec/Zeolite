@@ -30,7 +30,7 @@ module.exports = {
   HELP_COMMAND_USAGE: "[команда]",
   HELP_EMBED_TITLE: `Команды бота`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Команды бота (Только для владельцев)",
-  HELP_EMBED_DESC: prefix => `Для получения больше информации о какой-либо команде используйте \`${prefix}help [команда]\`.\nЕсть вопросы? Вы можете их задать в [сервере поддержки](https://discord.gg/ZKChwBD).`,
+  HELP_EMBED_DESC: prefix => `Для получения больше информации о какой-либо команде используйте \`${prefix}help [команда]\`.\nЕсть вопросы? Вы можете их задать на [сервере поддержки](https://discord.gg/ZKChwBD).`,
   HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `:x: Команда \`${prefix}${name}\` не существует.`,
   HELP_COMMAND_DOESNT_EXIST_DESC: prefix => `Введите \`${prefix}help\` для получения списка команд.`,
   HELP_COMMAND_TITLE: (name, prefix) => `Справка о \`${prefix}${name}\``,
