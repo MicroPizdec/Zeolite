@@ -7,7 +7,7 @@ module.exports = {
   group: "BASIC_GROUP",
   description: "SERVERINFO_COMMAND_DESCRIPTION",
   guildOnly: true,
-  aliases: [ "s", "serverinfo", "guildinfo", "g", "guild" ],
+  aliases: [ "s", "serverinfo"],
   async run(client, msg, args, prefix, lang) {
     moment.locale(lang);
     const guild = client.owners.includes(msg.author.id) ?
