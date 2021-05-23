@@ -253,9 +253,9 @@ module.exports = {
   SERVER_ICON: server => `Icon of ${server}`,
   SERVER_SPLASH: server => `Splash of ${server}`,
   SERVER_BANNER: server => `Banner of ${server}`,
-  NO_ICON: "> :x: This server has no icon.",
-  NO_SPLASH: "> :x: This server has no splash.",
-  NO_BANNER: "> :x: This server has no banner.",
+  NO_ICON: "> :x: This server does not have an icon.",
+  NO_SPLASH: "> :x: This server does not have an splash.",
+  NO_BANNER: "> :x: This server does not have a banner.",
 
   LIMITCMD_DESCRIPTION: "limit the specified command",
   LIMITCMD_USAGE: "<command>",
