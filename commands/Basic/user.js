@@ -124,7 +124,7 @@ module.exports = {
       },
       {
         name: t(lang, "USERINFO_ZETCOINS_TOP"),
-        value: t(lang, "USERINFO_ZETCOINS_TOP_POS", globalTopPos, topPos || "n/a"),
+        value: t(lang, "USERINFO_ZETCOINS_TOP_POS", globalTopPos || "n/a", topPos || "n/a"),
         inline: true,
     });
 
