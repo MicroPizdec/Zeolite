@@ -520,8 +520,8 @@ module.exports = {
   TRANSLATE_INVALID_LANG: "> :x: Язык неверно указан.",
   TRANSLATE_TITLE: fromLang => `Переводчик (переведено с ${fromLang})`,
   
-  COLOR_DESCRIPTION: "Показывает информацию о указанном цвете",
-  COLOR_USAGE: "<цвет: #hex или число>",
+  COLOR_DESCRIPTION: "Показывает информацию о указанном цвете.\nИспользуйте ключ -r или --random для получения случайного цвета",
+  COLOR_USAGE: "[-r, --random] <цвет: #hex или число>",
   COLOR_NUMBER: "Число",
 
   HENTAI_DESCRIPTION: "Получает случайное хентай-изображение.\nЭту команду можно использовать только в каналах помеченных как NSFW",

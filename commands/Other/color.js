@@ -11,9 +11,13 @@ module.exports = {
   async run(client, msg, args, prefix, lang) {
     const colorStr = args[0];
 
-    const colorNum = colorStr.startsWith("#") ?
+    let colorNum = colorStr.startsWith("#") ?
       parseInt(colorStr.slice(1), 16) :
       parseInt(colorStr);
+    
+    if (colorStr == "-r" || colorStr == "--random") {
+      colorNum = Math.round(Math.random() * 16777216);
+    }
     
     if (isNaN(colorNum)) {
       return msg.reply(t(lang, "EMBEDCOLOR_IS_NAN"));
