@@ -524,8 +524,8 @@ module.exports = {
   TRANSLATE_INVALID_LANG: "> :x: The language is wrong provided.",
   TRANSLATE_TITLE: fromLang => `Translator (translated from ${fromLang})`,
 
-  COLOR_DESCRIPTION: "Shows information about specified color",
-  COLOR_USAGE: "<color: #hex or number>",
+  COLOR_DESCRIPTION: "Shows information about specified color.\nUse -r or --random key to get a random color",
+  COLOR_USAGE: "[-r, --random] <color: #hex or number>",
   COLOR_NUMBER: "Number",
 
   HENTAI_DESCRIPTION: "Gets a random hentai image.\nThis command can be used only in channels marked as NSFW",
