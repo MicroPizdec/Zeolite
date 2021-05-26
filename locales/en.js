@@ -31,7 +31,7 @@ module.exports = {
   HELP_COMMAND_USAGE: "[command]",
   HELP_EMBED_TITLE: `Bot commands`,
   HELP_EMBED_TITLE_OWNER_ONLY: "Bot commands (Owner only)",
-  HELP_EMBED_DESC: prefix => `To get more information about some command use \`${prefix}help [command]\`.\nAny questions? You can ask them in [our support server](https://discord.gg/ZKChwBD).`,
+  HELP_EMBED_DESC: prefix => `To get more information about some command use \`${prefix}help [command]\`.\nAny questions? You can ask them on [our support server](https://discord.gg/ZKChwBD).`,
   HELP_COMMAND_DOESNT_EXIST: (name, prefix) => `:x: Command \`${prefix}${name}\` does not exist.`,
   HELP_COMMAND_DOESNT_EXIST_DESC: prefix => `Type \`${prefix}help\` to get a list of commands.`,
   HELP_COMMAND_TITLE: (name, prefix) => `\`${prefix}${name}\` help`,
