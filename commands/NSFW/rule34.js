@@ -29,8 +29,8 @@ module.exports = {
         
         const embed = {
             author: {
-                name: t(lang, "RULE34_TITLE"),
-                url: post.postView,
+                name: msg.author.tag,
+                icon_url: msg.author.avatarURL,
             },
             fields: [
                {
@@ -47,6 +47,17 @@ module.exports = {
             timestamp: new Date(post.createdAt).toISOString(),
             color: await msg.author.embedColor(),
        }
-       await msg.reply({ embed });
+       await msg.reply({ embed, components: [
+        {
+          type: 1,
+          components: [
+          {
+            type: 2,
+            label: t(lang, "RULE34_URL"),
+            style: 5,
+            url: post.postView,
+          }
+        ],
+        }]});
       }
     }

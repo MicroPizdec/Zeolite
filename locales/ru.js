@@ -513,6 +513,7 @@ module.exports = {
   RULE34_TAGS: "Теги",
   RULE34_SCORE: "Баллов",
   RULE34_VIDEO: (postUrl, postTags) => `>>> Ссылка на видео: ${postUrl}\nТеги: ${postTags}`,
+  RULE34_URL: "Ссылка на публикацию",
 
   TRANSLATE_DESCRIPTION: "переводит текст на указанный язык",
   TRANSLATE_USAGE: "<язык> <текст>",
