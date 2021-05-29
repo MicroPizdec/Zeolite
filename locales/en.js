@@ -542,4 +542,10 @@ module.exports = {
 
   FEET_DESCRIPTION: "Gets a random foot fetish image.\nThis command can be used only in channels marked as NSFW",
   FEET_TITLE: "Foot fetish image",
+
+  EMOJI_DESCRIPTION: "Shows information about provided emoji.\nStandard Discord emojis isn't supported",
+  EMOJI_USAGE: "<emoji>",
+  EMOJI_NOT_FOUND: "> :x: Emoji not found.",
+  EMOJI_ANIMATED: "Animated?",
+  EMOJI_URL: "Emoji URL",
 };
