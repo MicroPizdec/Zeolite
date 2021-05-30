@@ -409,6 +409,7 @@ module.exports = {
   DEPOSIT_NOT_ENOUGH_DEPOSIT: bal => `> :x: You don't have enough ZetCoins on deposit. Your deposit balance: ${bal} ZetCoins.`,
   DEPOSIT_WD_SUCCESS: "Successfully withdrawn from deposit!",
   DEPOSIT_YOUR_BALANCE: "Your balance",
+  DEPOSIT_INVALID_SUM: "> :x: Invalid sum provided.",
 
   RANDOM_DESCRIPTION: "Generates a random number in specified range.\nIf one number is provided, generates in range from 1 to number",
   RANDOM_USAGE: "<max> or <min> <max>",
