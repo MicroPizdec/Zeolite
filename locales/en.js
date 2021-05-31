@@ -37,7 +37,7 @@ module.exports = {
   HELP_COMMAND_TITLE: (name, prefix) => `\`${prefix}${name}\` help`,
   HELP_USAGE: "Usage",
   HELP_ALIASES: "Aliases",
-  HELP_PREFIX: prefix => ` | Prefix on this server: ${prefix}`,
+  // HELP_HELLO: user => `Hello ${user}!`, блять нахуя я закомментил...........
 
   SERVERINFO_COMMAND_DESCRIPTION: "server information",
   SERVERINFO_CREATION_DATE: "Creation date",
@@ -550,4 +550,6 @@ module.exports = {
   EMOJI_NOT_FOUND: "> :x: Emoji not found.",
   EMOJI_ANIMATED: "Animated?",
   EMOJI_URL: "Emoji URL",
+
+  BOOBS_DESCRIPTION: "Gets a random boobs image.\nThis command can be used only in channels marked as NSFW",
 };

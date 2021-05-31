@@ -36,7 +36,7 @@ module.exports = {
   HELP_COMMAND_TITLE: (name, prefix) => `Справка о \`${prefix}${name}\``,
   HELP_USAGE: "Как использовать",
   HELP_ALIASES: "Псевдонимы",
-  HELP_PREFIX: prefix => ` | Префикс на этом сервере: ${prefix}`,
+  // HELP_HELLO: user => `Привет ${user}!`,
 
   SERVERINFO_COMMAND_DESCRIPTION: "информация о сервере",
   SERVERINFO_CREATION_DATE: "Дата создания",
@@ -545,4 +545,6 @@ module.exports = {
   EMOJI_NOT_FOUND: "> :x: Эмодзи не найден.",
   EMOJI_ANIMATED: "Анимированный?",
   EMOJI_URL: "Ссылка на эмодзи",
+
+  BOOBS_DESCRIPTION: "Получает случайное изображение с грудью.\nЭту команду можно использовать только в каналах помеченных как NSFW",
 };
