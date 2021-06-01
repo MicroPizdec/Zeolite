@@ -9,7 +9,6 @@ module.exports = {
         const emojiName = args[0];
 
         const emoji = msg.guild.emojis.find(e => 
-            e.name.toLowerCase().startsWith(emojiName) || // idk why, lol
             e.name == emojiName ||
             e.id == emojiName
             // "wtf, zarich?" x3? 'cause i don't know how to use regexp
