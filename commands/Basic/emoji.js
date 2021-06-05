@@ -10,8 +10,10 @@ module.exports = {
 
         const emoji = msg.guild.emojis.find(e => 
             e.name == emojiName ||
-            e.id == emojiName
+            e.id == emojiName ||
+            new RegExp(`<a:${e.name}:${e.id}>|<:${e.name}:${e.id}>`, "g").test(emojiName)
             // "wtf, zarich?" x3? 'cause i don't know how to use regexp
+            // ну ща получается будет фикс
         );
 
         if (!emoji) {
