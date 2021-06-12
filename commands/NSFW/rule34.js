@@ -19,7 +19,7 @@ module.exports = {
            return msg.reply(msg.t("RULE34_NOT_FOUND"));
         }
     
-        moment.locale(lang);
+        moment.locale(msg.author.lang);
         const createdDaysAgo = Math.floor((Date.now() - post.createdAt) / (1000 * 86400));
         const postTags = post.tags.map(tag => `\`${tag}\``).join(", ").substring(0, 1024);
 

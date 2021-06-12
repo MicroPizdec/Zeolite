@@ -58,7 +58,7 @@ module.exports = {
     const joinPos = member.joinedAt ? msg.guild.members.map(m => m.joinedAt)
     .sort((a, b) => a - b).indexOf(member.joinedAt) + 1 : 0;
 
-    moment.locale(lang);
+    moment.locale(msg.author.lang);
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: member.id } }))[0];
 

@@ -45,7 +45,7 @@ module.exports = {
 
     if (!msg.member.permissions.has("manageMessages")) msg.delete().catch(() => {});
 
-    moment.locale(lang);
+    moment.locale(msg.author.lang);
     
     const createdDaysAgo = Math.floor((Date.now() - inviteInfo.guild.createdAt) / (86400 * 1000));
 

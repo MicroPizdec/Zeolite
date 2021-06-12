@@ -21,7 +21,7 @@ module.exports = {
       return msg.reply(msg.t("ROLE_NOT_FOUND"));
     }
 
-    moment.locale(lang);
+    moment.locale(msg.author.lang);
 
     const membersWithRole = msg.guild.members.filter(m => m.roles.includes(role.id))
       .length;

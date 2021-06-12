@@ -9,7 +9,7 @@ module.exports = {
   guildOnly: true,
   aliases: [ "s", "serverinfo"],
   async run(client, msg, args, prefix, lang) {
-    moment.locale(lang);
+    moment.locale(msg.author.lang);
     const guild = client.owners.includes(msg.author.id) ?
       client.guilds.get(args[0]) || msg.guild : msg.guild;
 
