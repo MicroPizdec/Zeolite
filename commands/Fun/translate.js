@@ -12,14 +12,14 @@ module.exports = {
         const language = args[0]
 
         if (!text) {
-            return msg.reply(t(lang, "TRANSLATE_NO_TEXT"))
+            return msg.reply(msg.t("TRANSLATE_NO_TEXT"))
         }
         
         let res
         try{
             res = await translate(text, {to: language})
         }catch(error){
-            if(error.message.endsWith("is not supported")) return msg.reply(t(lang, "TRANSLATE_INVALID_LANG"))
+            if(error.message.endsWith("is not supported")) return msg.reply(msg.t("TRANSLATE_INVALID_LANG"))
             else throw error
         }
 
@@ -28,7 +28,7 @@ module.exports = {
                 name: msg.author.tag,
                 icon_url: msg.author.avatarURL,
             },
-            title: t(lang, "TRANSLATE_TITLE", res.from.language.iso),
+            title: msg.t("TRANSLATE_TITLE", res.from.language.iso),
             description: `\`\`\`${res.text}\`\`\``,
             color: await msg.author.embedColor(),
             footer: {

@@ -16,10 +16,10 @@ module.exports = {
     balances = balances.splice(0, 10);
 
     const embed = {
-      title: t(lang, isGlobal ? "TOP_TITLE_GLOBAL" : "TOP_TITLE", msg.guild.name),
+      title: msg.t(isGlobal ? "TOP_TITLE_GLOBAL" : "TOP_TITLE", msg.guild.name),
       color: await msg.author.embedColor(),
       footer: {
-        text: t(lang, "TOP_FOOTER", authorPosition, authorBalance.balance),
+        text: msg.t("TOP_FOOTER", authorPosition, authorBalance.balance),
         icon_url: msg.author.avatarURL,
       },
       fields: [],
@@ -30,7 +30,7 @@ module.exports = {
       const user = client.users.get(balance.user) || await client.fetchUser(balance.user);
       embed.fields.push({
         name: `${number++}: ${user.tag || balance.user}`,
-        value: t(lang, "TOP_BALANCE", balance.balance),
+        value: msg.t("TOP_BALANCE", balance.balance),
       });
     }
 

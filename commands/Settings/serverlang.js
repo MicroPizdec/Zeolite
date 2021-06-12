@@ -15,27 +15,27 @@ module.exports = {
           name: msg.author.tag,
           icon_url: msg.author.avatarURL,
         },
-        title: _(lang, "LANG_AVAILABLE_LANGUAGES"),
+        title: msg.t("LANG_AVAILABLE_LANGUAGES"),
         description: Object.keys(client.i18n.locales).join(", "),
         color: await msg.author.embedColor(),
         fields: [
           {
-            name: _(lang, "SERVERLANG_LANGUAGE"),
+            name: msg.t("SERVERLANG_LANGUAGE"),
             value: serverLang.language,
           },
         ],
-        footer: { text: _(lang, "SERVERLANG_FOOTER", prefix) },
+        footer: { text: msg.t("SERVERLANG_FOOTER", prefix) },
       };
 
       await msg.reply({ embed });
     } else {
       if (!client.i18n.locales[language]) {
-        return msg.reply(_(lang, "LANG_NOT_EXIST"));
+        return msg.reply(msg.t("LANG_NOT_EXIST"));
       }
 
       await serverLang.update({ language });
 
-      await msg.reply(_(lang, "SERVERLANG_SUCCESS", language));
+      await msg.reply(msg.t("SERVERLANG_SUCCESS", language));
     }
   }
 }

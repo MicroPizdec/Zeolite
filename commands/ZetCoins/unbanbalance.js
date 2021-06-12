@@ -12,7 +12,7 @@ module.exports = {
     if (msg.mentions.length) user = msg.mentions[0];
     else user = await client.fetchUser(userID);
 
-    if (!user) return msg.reply(t(language, "INVALID_USER_PROVIDED"));
+    if (!user) return msg.reply(msg.t("INVALID_USER_PROVIDED"));
 
     await zetCoins.update({
       banned: false,
@@ -21,6 +21,6 @@ module.exports = {
       where: { user: user.id },
     });
 
-    await msg.reply(t(language, "UNBANBALANCE_SUCCESSFUL_UNBAN", user));
+    await msg.reply(msg.t("UNBANBALANCE_SUCCESSFUL_UNBAN", user));
   }
 }

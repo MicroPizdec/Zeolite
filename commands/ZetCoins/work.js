@@ -14,8 +14,8 @@ module.exports = {
       const minsLeft = Math.ceil((cooldown - Date.now()) / 60000);
 
       const embed = {
-        title: t(language, "WORK_COOLDOWN_TITLE"),
-        description: t(language, "WORK_COOLDOWN_DESC", minsLeft),
+        title: msg.t("WORK_COOLDOWN_TITLE"),
+        description: msg.t("WORK_COOLDOWN_DESC", minsLeft),
         color: await msg.author.embedColor(),
         footer: {
           text: `${client.user.username} © ZariBros`,
@@ -30,8 +30,8 @@ module.exports = {
     const userBalance = (await zetCoins.findOrCreate({ where: { user: msg.author.id } }))[0];
     if (userBalance.banned) {
       const bannedBalanceEmbed = {
-        title: t(language, "BANNED_BALANCE"),
-        description: t(language, "BANNED_BALANCE_REASON", userBalance.reason),
+        title: msg.t("BANNED_BALANCE"),
+        description: msg.t("BANNED_BALANCE_REASON", userBalance.reason),
         color: 15158332,
       };
       return msg.reply({ embed: bannedBalanceEmbed });
@@ -44,8 +44,8 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      title: t(language, "WORK_EMBED_TITLE"),
-      description: t(language, "WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
+      title: msg.t("WORK_EMBED_TITLE"),
+      description: msg.t("WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,

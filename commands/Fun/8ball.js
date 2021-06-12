@@ -90,7 +90,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length) {
-      return msg.reply(t(language, "_8BALL_NO_ARGS_PROMPT", prefix));
+      return msg.reply(msg.t("_8BALL_NO_ARGS_PROMPT", prefix));
     }
 
     const question = args.raw.join(" ");
@@ -100,12 +100,12 @@ module.exports = {
         name: msg.author.username + "#" + msg.author.discriminator,
         icon_url: msg.author.avatarURL,
       },
-      title: t(language, "_8BALL_EMBED_TITLE"),
+      title: msg.t("_8BALL_EMBED_TITLE"),
       description: randomArrayItem(answers[language]),
       color: await msg.author.embedColor(),
       fields: [
         {
-        name: t(language, "_8BALL_YOUR_QUESTION"),
+        name: msg.t("_8BALL_YOUR_QUESTION"),
         value: question,
         },
       ],

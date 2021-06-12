@@ -7,17 +7,17 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(_(lang, "UNBANCOMMANDS_NO_ARGS_PROMPT", prefix));
+      return msg.reply(msg.t("UNBANCOMMANDS_NO_ARGS_PROMPT", prefix));
     }
 
     const user = msg.mentions[0] || client.users.get(args[0]);
     if (!user) {
-      return msg.reply(_(lang, "INVALID_USER_PROVIDED"));
+      return msg.reply(msg.t("INVALID_USER_PROVIDED"));
     }
 
     const { banned } = (await commandBans.findOrCreate({ where: { user: user.id } }))[0];
     if (!banned) {
-      return msg.reply(_(lang, "UNBANCOMMANDS_USER_ISNT_BANNED"));
+      return msg.reply(msg.t("UNBANCOMMANDS_USER_ISNT_BANNED"));
     }
     
     await commandBans.update({
@@ -26,7 +26,7 @@ module.exports = {
     }, { where: { user: user.id } });
 
     const embed = {
-      title: _(lang, "UNBANCOMMANDS_SUCCESSFUL_UNBAN", user),
+      title: msg.t("UNBANCOMMANDS_SUCCESSFUL_UNBAN", user),
       color: 3066993,
       timestamp: new Date().toISOString(),
     };

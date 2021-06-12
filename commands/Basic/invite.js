@@ -27,20 +27,20 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(_(lang, "INVITE_NO_ARGS", prefix));
+      return msg.reply(msg.t("INVITE_NO_ARGS", prefix));
     }
 
     let invite = args[0];
     
     if (!isCorrectInvite(invite)) {
-      return msg.reply(_(lang, "INVITE_INVALID"));
+      return msg.reply(msg.t("INVITE_INVALID"));
     }
 
     let inviteInfo;
     try {
       inviteInfo = await client.getInvite(parseInvite(invite), true);
     } catch {
-      return msg.reply(_(lang, "INVITE_INVALID"));
+      return msg.reply(msg.t("INVITE_INVALID"));
     }
 
     if (!msg.member.permissions.has("manageMessages")) msg.delete().catch(() => {});
@@ -55,17 +55,17 @@ module.exports = {
       },
       thumbnail: { url: inviteInfo.guild.iconURL },
       color: await msg.author.embedColor(),
-      footer: { text: t(lang, "INVITE_SERVER_CREATED_AT") + " " + t(lang, "DAYS_AGO", createdDaysAgo) },
+      footer: { text: msg.t("INVITE_SERVER_CREATED_AT") + " " + msg.t("DAYS_AGO", createdDaysAgo) },
       timestamp: new Date(inviteInfo.guild.createdAt).toISOString(),
       fields: [
         {
-          name: _(lang, "INVITE_MEMBERS"),
-          value: _(lang, "INVITE_MEMBERS_COUNT", inviteInfo.memberCount, inviteInfo.presenceCount),
+          name: msg.t("INVITE_MEMBERS"),
+          value: msg.t("INVITE_MEMBERS_COUNT", inviteInfo.memberCount, inviteInfo.presenceCount),
           inline: true,
         },
         {
-          name: _(lang, "INVITE_VERIFICATION_LEVEL"),
-          value: _(lang, "INVITE_VERIFICATION_LEVELS")[inviteInfo.guild.verificationLevel],
+          name: msg.t("INVITE_VERIFICATION_LEVEL"),
+          value: msg.t("INVITE_VERIFICATION_LEVELS")[inviteInfo.guild.verificationLevel],
           inline: true,
         },
         {
@@ -74,7 +74,7 @@ module.exports = {
           inline: true,
         },
         {
-          name: _(lang, "INVITE_CHANNEL"),
+          name: msg.t("INVITE_CHANNEL"),
           value: `#${inviteInfo.channel.name} (ID: ${inviteInfo.channel.id})`,
         },
       ],
@@ -86,7 +86,7 @@ module.exports = {
 
     if (inviteInfo.inviter) {
       embed.fields.push({
-        name: _(lang, "INVITE_INVITER"),
+        name: msg.t("INVITE_INVITER"),
         value: `${inviteInfo.inviter.tag} (ID: ${inviteInfo.inviter.id})`,
       });
     }

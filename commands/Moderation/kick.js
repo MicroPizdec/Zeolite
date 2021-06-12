@@ -7,7 +7,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(t(lang, "KICK_NO_ARGS", prefix));
+      return msg.reply(msg.t("KICK_NO_ARGS", prefix));
     }
     const [ userID, ...reason ] = args;
 
@@ -16,21 +16,21 @@ module.exports = {
       msg.guild.members.find(m => m.tag == userID || m.id == userID);
 
     if (!member) {
-      return msg.reply(t(lang, "USER_NOT_FOUND"));
+      return msg.reply(msg.t("USER_NOT_FOUND"));
     }
 
     if (member.id === msg.author.id) {
-      return msg.reply(t(lang, "CANT_KICK_YOURSELF"));
+      return msg.reply(msg.t("CANT_KICK_YOURSELF"));
     } else if (member.id === client.user.id) {
-      return msg.reply(t(lang, "CANT_KICK_BOT"));
+      return msg.reply(msg.t("CANT_KICK_BOT"));
     }
 
     if (member.kickable && msg.member.highestRole.position > member.highestRole.position) {
       await member.kick(encodeURI(`${reason.join(" ")} (kicked by: ${msg.author.tag})`));
 
       const embed = {
-        title: t(lang, "KICK_SUCCESS", member.tag),
-        description: t(lang, "REASON", reason.join(" ")),
+        title: msg.t("KICK_SUCCESS", member.tag),
+        description: msg.t("REASON", reason.join(" ")),
         color: 0x18ff3d,
       };
 
@@ -38,15 +38,15 @@ module.exports = {
     } else {
       let description;
       if (msg.member.highestRole.position <= member.highestRole.position) {
-        description = t(lang, "MEMBER_ROLE_HIGHER");
+        description = msg.t("MEMBER_ROLE_HIGHER");
       } else if (member.highestRole.position >= msg.guild.me.highestRole.position) {
-        description = t(lang, "BOT_ROLE_HIGHER");
+        description = msg.t("BOT_ROLE_HIGHER");
       } else if (msg.guild.me.permission.has("kickMembers")) {
-        description = t(lang, "KICK_DONT_HAVE_PERMS");
+        description = msg.t("KICK_DONT_HAVE_PERMS");
       }
 
       const embed = {
-        title: t(lang, "KICK_FAILED"),
+        title: msg.t("KICK_FAILED"),
         description,
         color: 0xff1835,
       };

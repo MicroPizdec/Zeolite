@@ -48,7 +48,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(_(lang, "WHATIF_NO_ARGS", prefix));
+      return msg.reply(msg.t("WHATIF_NO_ARGS", prefix));
     }
 
     const question = args.join(" ");
@@ -59,11 +59,11 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      description: _(lang, "WHATIF_EMBED_DESC", question),
+      description: msg.t("WHATIF_EMBED_DESC", question),
       color: await msg.author.embedColor(),
       fields: [
         {
-          name: _(lang, "WHATIF_ANSWER"),
+          name: msg.t("WHATIF_ANSWER"),
           value: randomAnswer(lang),
         },
       ],

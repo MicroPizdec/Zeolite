@@ -15,11 +15,11 @@ module.exports = {
       const guild = client.owners.includes(msg.author.id) ?
         client.guilds.get(args[1]) || msg.guild : msg.guild;
 
-      if(!guild.icon) return await msg.reply(t(lang, "NO_ICON"))
+      if(!guild.icon) return await msg.reply(msg.t("NO_ICON"))
 
       const embed = {
         author: {
-          name: t(lang, "SERVER_ICON", guild.name),
+          name: msg.t("SERVER_ICON", guild.name),
           url: guild.iconURL,
         },
         image: { url: guild.iconURL },
@@ -33,11 +33,11 @@ module.exports = {
       const guild = client.owners.includes(msg.author.id) ?
         client.guilds.get(args[1]) || msg.guild : msg.guild;
       
-      if(!guild.splash) return await msg.reply(t(lang, "NO_SPLASH"))
+      if(!guild.splash) return await msg.reply(msg.t("NO_SPLASH"))
 
       const embed = {
         author: {
-          name: t(lang, "SERVER_SPLASH", guild.name),
+          name: msg.t("SERVER_SPLASH", guild.name),
           url: guild.dynamicSplashURL("png", 4096),
         },
         image: { url: guild.dynamicSplashURL("png", 4096) },
@@ -51,11 +51,11 @@ module.exports = {
       const guild = client.owners.includes(msg.author.id) ?
         client.guilds.get(args[1]) || msg.guild : msg.guild;
       
-      if(!guild.banner) return await msg.reply(t(lang, "NO_BANNER"))
+      if(!guild.banner) return await msg.reply(msg.t("NO_BANNER"))
 
       const embed = {
         author: {
-          name: t(lang, "SERVER_BANNER", guild.name),
+          name: msg.t("SERVER_BANNER", guild.name),
           url: guild.dynamicBannerURL("png", 4096),
         },
         image: { url: guild.dynamicBannerURL("png", 4096) },
@@ -71,7 +71,7 @@ module.exports = {
         m.tag.toLowerCase().startsWith(args[0].toLowerCase())
       ) || client.users.find(u => u.tag == args[0]) || await client.fetchUser(args[0]) : msg.author;
 
-    if (!user) return msg.reply(t(lang, "USER_NOT_FOUND"));
+    if (!user) return msg.reply(msg.t("USER_NOT_FOUND"));
 
     let format;
     if (user.avatar) {
@@ -80,7 +80,7 @@ module.exports = {
 
     const embed = {
       author: {
-        name: _(lang, "AVATAR_USER", user),
+        name: msg.t("AVATAR_USER", user),
         url: user.dynamicAvatarURL(format, 4096),
       },
 

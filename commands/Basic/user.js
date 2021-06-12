@@ -53,7 +53,7 @@ module.exports = {
         m.id == userID
         ) || client.users.find(u => u.tag == userID) || await client.fetchUser(args[0]);
         
-    if (!member) return msg.reply(t(lang, "USER_NOT_FOUND"));
+    if (!member) return msg.reply(msg.t("USER_NOT_FOUND"));
 
     const joinPos = member.joinedAt ? msg.guild.members.map(m => m.joinedAt)
     .sort((a, b) => a - b).indexOf(member.joinedAt) + 1 : 0;
@@ -86,15 +86,15 @@ module.exports = {
       author: {
         name: nick,
       },
-      description: joinPos ? t(lang, "USERINFO_JOINPOS", joinPos) : t(lang, "NOT_IN_SERVER"),
+      description: joinPos ? msg.t("USERINFO_JOINPOS", joinPos) : msg.t("NOT_IN_SERVER"),
       color: member.color || await msg.author.embedColor(),
       thumbnail: { url: member.avatarURL },
-      footer: { text: t(lang, "USERINFO_FOOTER", member.id) + " " + t(lang, "DAYS_AGO", createdDaysAgo) },
+      footer: { text: msg.t("USERINFO_FOOTER", member.id) + " " + msg.t("DAYS_AGO", createdDaysAgo) },
       timestamp: new Date(member.createdAt).toISOString(),
       fields: [
         {
-          name: t(lang, "USERINFO_BADGES"),
-          value: getUserBadges(member).join(" ") || t(lang, "USERINFO_NO_BADGES"),
+          name: msg.t("USERINFO_BADGES"),
+          value: getUserBadges(member).join(" ") || msg.t("USERINFO_NO_BADGES"),
         },
       ],
     };
@@ -102,29 +102,29 @@ module.exports = {
     let indexInc = 0;
     if (member.joinedAt) {
       embed.fields.splice(1, 0, {
-        name: t(lang, "USERINFO_JOINDATE"),
-        value: moment(member.joinedAt).format("lll") + " " + t(lang, "DAYS_AGO", joinedDaysAgo)
+        name: msg.t("USERINFO_JOINDATE"),
+        value: moment(member.joinedAt).format("lll") + " " + msg.t("DAYS_AGO", joinedDaysAgo)
       });
       indexInc++;
     }
 
     if (roleList) embed.fields.splice(1 + indexInc, 0, {
-      name: t(lang, "USERINFO_ROLES"),
+      name: msg.t("USERINFO_ROLES"),
       value: roleList,
     },
     {
-      name: t(lang, "USERINFO_COLOR"),
-      value: member.color ? `#${intToHex(member.color)}` : t(lang, "USERINFO_DEFAULT_COLOR"),
+      name: msg.t("USERINFO_COLOR"),
+      value: member.color ? `#${intToHex(member.color)}` : msg.t("USERINFO_DEFAULT_COLOR"),
     });
 
     if (!member.bot) embed.fields.push({
-        name: t(lang, "USERINFO_ZETCOINS_TITLE"),
-        value: t(lang, "USERINFO_ZETCOINS_BALANCE", userBalance.balance),
+        name: msg.t("USERINFO_ZETCOINS_TITLE"),
+        value: msg.t("USERINFO_ZETCOINS_BALANCE", userBalance.balance),
         inline: true,
       },
       {
-        name: t(lang, "USERINFO_ZETCOINS_TOP"),
-        value: t(lang, "USERINFO_ZETCOINS_TOP_POS", globalTopPos || "n/a", topPos || "n/a"),
+        name: msg.t("USERINFO_ZETCOINS_TOP"),
+        value: msg.t("USERINFO_ZETCOINS_TOP_POS", globalTopPos || "n/a", topPos || "n/a"),
         inline: true,
     });
 

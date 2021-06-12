@@ -9,7 +9,7 @@ module.exports = {
     async run(client, msg, args, prefix, lang) {
         
         if (!msg.channel.nsfw) {
-            return msg.reply(t(lang, "NOT_NSFW_CHANNEL", this.name));
+            return msg.reply(msg.t("NOT_NSFW_CHANNEL", this.name));
         }
         
         const nsfwimage = await nsfw.boobs();

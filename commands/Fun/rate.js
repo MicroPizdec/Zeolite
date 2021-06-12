@@ -197,7 +197,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(_(lang, "RATE_NO_ARGS", prefix));
+      return msg.reply(msg.t("RATE_NO_ARGS", prefix));
     }
 
     let question = msg.content.slice(prefix.length + this.name.length + 1);
@@ -207,12 +207,12 @@ module.exports = {
           name: msg.author.tag,
           icon_url: msg.author.avatarURL,
         },
-        title: _(lang, "RATE_EMBED_TITLE"),
+        title: msg.t("RATE_EMBED_TITLE"),
         description: randomAnswer(lang),
         color: await msg.author.embedColor(),
         fields: [
           {
-            name: _(lang, "RATE_ITEM"),
+            name: msg.t("RATE_ITEM"),
             value: question,
           },
         ],

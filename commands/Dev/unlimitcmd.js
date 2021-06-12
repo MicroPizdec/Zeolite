@@ -7,21 +7,21 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(_(lang, "UNLIMITCMD_NO_ARGS_PROMPT", prefix));
+      return msg.reply(msg.t("UNLIMITCMD_NO_ARGS_PROMPT", prefix));
     }
 
     let cmdName = args[0];
     if (!client.commands.has(cmdName)) {
-      return msg.reply(_(lang, "UNLIMITCMD_INVALID_COMMAND"));
+      return msg.reply(msg.t("UNLIMITCMD_INVALID_COMMAND"));
     }
 
     let disabledCmd = await disabledCmds.findOrCreate({ where: { name: cmdName } })
       .then(c => c[0]);
     if (!disabledCmd.disabled) {
-      return msg.reply(_(lang, "UNLIMITCMD_NOT_LIMITED"));
+      return msg.reply(msg.t("UNLIMITCMD_NOT_LIMITED"));
     }
 
     await disabledCmd.update({ disabled: false });
-    await msg.reply(_(lang, "UNLIMITCMD_SUCCESS", cmdName));
+    await msg.reply(msg.t("UNLIMITCMD_SUCCESS", cmdName));
   }
 }

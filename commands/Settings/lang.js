@@ -14,27 +14,29 @@ module.exports = {
           name: msg.author.tag,
           icon_url: msg.author.avatarURL,
         },
-        title: _(lang, "LANG_AVAILABLE_LANGUAGES"),
-        description: Object.keys(client.i18n.locales).join(", "),
+        title: msg.t("LANG_AVAILABLE_LANGUAGES"),
+        description: Array.from(client.languages.keys()).map(l => `\`${l}\``).join(", "),
         color: await msg.author.embedColor(),
         fields: [
           {
-            name: _(lang, "LANG_YOUR_LANGUAGE"),
-            value: dbLang.overriden ? dbLang.language : _(lang, "LANG_DEPENDING"),
+            name: msg.t("LANG_YOUR_LANGUAGE"),
+            value: dbLang.overriden ? dbLang.language : msg.t("LANG_DEPENDING"),
           },
         ],
-        footer: { text: _(lang, "LANG_FOOTER", prefix) },
+        footer: { text: msg.t("LANG_FOOTER", prefix) },
       };
 
       await msg.reply({ embed });
     } else {
-      if (!client.i18n.locales[language]) {
-        return msg.reply(_(lang, "LANG_NOT_EXIST"));
+      if (!client.languages.has(language)) {
+        return msg.reply(msg.t("LANG_NOT_EXIST"));
       }
 
       await dbLang.update({ language, overriden: true });
 
-      await msg.reply(_(language, "LANG_SUCCESS"));
+      msg.author.lang = language;
+      
+      await msg.reply(msg.t("LANG_SUCCESS"));
     }
   }
 }

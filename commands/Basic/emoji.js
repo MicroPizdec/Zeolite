@@ -17,7 +17,7 @@ module.exports = {
         );
 
         if (!emoji) {
-           return msg.reply(t(lang, "EMOJI_NOT_FOUND"));
+           return msg.reply(msg.t("EMOJI_NOT_FOUND"));
         }
 
         const url = `https://cdn.discordapp.com/emojis/${emoji.id}.${emoji.animated ? "gif" : "png"}?v=1`;
@@ -32,8 +32,8 @@ module.exports = {
                    value: emoji.id,
                },
                {
-                name: t(lang, "EMOJI_ANIMATED"),
-                value: t(lang, "YES_NO", emoji.animated),
+                name: msg.t("EMOJI_ANIMATED"),
+                value: msg.t("YES_NO", emoji.animated),
                },
             ],
             footer: {
@@ -47,7 +47,7 @@ module.exports = {
             type: 1,
             components: [{
               type: 2,
-              label: t(lang, "EMOJI_URL"),
+              label: msg.t("EMOJI_URL"),
               style: 5,
               url,
             }],

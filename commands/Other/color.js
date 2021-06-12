@@ -20,11 +20,11 @@ module.exports = {
     }
     
     if (isNaN(colorNum)) {
-      return msg.reply(t(lang, "EMBEDCOLOR_IS_NAN"));
+      return msg.reply(msg.t("EMBEDCOLOR_IS_NAN"));
     }
 
     if (colorNum > 0xffffff) {
-      return msg.reply(t(lang, "EMBEDCOLOR_TOO_BIG"));
+      return msg.reply(msg.t("EMBEDCOLOR_TOO_BIG"));
     }
 
     const rgb = convert.hex.rgb(intToHex(colorNum));
@@ -50,7 +50,7 @@ module.exports = {
           inline: true,
         },
         {
-          name: t(lang, "COLOR_NUMBER"),
+          name: msg.t("COLOR_NUMBER"),
           value: colorNum,
         },
       ],

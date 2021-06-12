@@ -7,7 +7,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(t(lang, "RELOAD_NO_ARGS", prefix));
+      return msg.reply(msg.t("RELOAD_NO_ARGS", prefix));
     }
 
     const cmdName = args[0];
@@ -26,7 +26,7 @@ module.exports = {
         }
 
         const embed = {
-          title: t(lang, "RELOAD_ALL_SUCCESS"),
+          title: msg.t("RELOAD_ALL_SUCCESS"),
           color: 1879160,
         };
 
@@ -35,30 +35,30 @@ module.exports = {
         client.i18n.reloadLanguages();
 
         const embed = {
-          title: t(lang, "RELOAD_LANGS_SUCCESS"),
+          title: msg.t("RELOAD_LANGS_SUCCESS"),
           color: 1879160,
         };
 
         await msg.reply({ embed });
       } else {
         if (!client.commands.has(cmdName)) {
-          return msg.reply(t(lang, "RELOAD_COMMAND_DOESNT_EXIST"));
+          return msg.reply(msg.t("RELOAD_COMMAND_DOESNT_EXIST"));
         }
 
         client.reloadCommand(cmdName);
 
         const embed = {
-          title: t(lang, "RELOAD_SUCCESS", cmdName),
+          title: msg.t("RELOAD_SUCCESS", cmdName),
           color: 1879160,
         };
 
         await msg.reply({ embed });
       }
     } catch (err) {
-      let title = t(lang, "RELOAD_ERROR", errCmdName);
+      let title = msg.t("RELOAD_ERROR", errCmdName);
 
-      if (cmdName == "all") title = t(lang, "RELOAD_ERROR_ALL");
-      if (cmdName == "langs") title = t(lang, "RELOAD_ERROR_LANGS");
+      if (cmdName == "all") title = msg.t("RELOAD_ERROR_ALL");
+      if (cmdName == "langs") title = msg.t("RELOAD_ERROR_LANGS");
 
       const embed = {
         title,

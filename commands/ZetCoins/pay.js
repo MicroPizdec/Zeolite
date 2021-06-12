@@ -1,5 +1,3 @@
-const { ZETCOINS_GROUP } = require("../../locales/en");
-
 module.exports = {
   name: "pay",
   group: "ZETCOINS_GROUP",
@@ -14,23 +12,23 @@ module.exports = {
       client.users.find(u => u.tag == userID || u.id == userID);
     
     if (!user) {
-      return msg.reply(t(lang, "INVALID_USER_PROVIDED"));
+      return msg.reply(msg.t("INVALID_USER_PROVIDED"));
     }
 
     if (user.id == msg.author.id) {
-      return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_SELF"));
+      return msg.reply(msg.t("CANNOT_SEND_COINS_TO_SELF"));
     }
 
     if (user.bot) {
-      return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_BOT"));
+      return msg.reply(msg.t("CANNOT_SEND_COINS_TO_BOT"));
     }
 
     if (!sum || sum <= 0) {
-      return msg.reply(t(lang, "SENDCOINS_NO_AMOUNT"));
+      return msg.reply(msg.t("SENDCOINS_NO_AMOUNT"));
     }
 
     if (isNaN(sum)) {
-      return msg.reply(t(lang, "SENDCOINS_AMOUNT_IS_NAN"));
+      return msg.reply(msg.t("SENDCOINS_AMOUNT_IS_NAN"));
     }
 
     sum = Math.round(sum);
@@ -42,24 +40,24 @@ module.exports = {
 
     if (authorBalance.banned) {
       const bannedBalanceEmbed = {
-        title: t(lang, "BANNED_BALANCE"),
-        description: t(lang, "BANNED_BALANCE_REASON", authorBalance.reason),
+        title: msg.t("BANNED_BALANCE"),
+        description: msg.t("BANNED_BALANCE_REASON", authorBalance.reason),
         color: 15158332,
       };
       return msg.reply({ embed: bannedBalanceEmbed });
     }
     
     if (authorBalance.balance < sum) {
-      return msg.reply(t(lang, "SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
+      return msg.reply(msg.t("SENDCOINS_NOT_ENOUGH_MONEY", authorBalance.balance));
     }
 
     if (userBalance.banned) {
-      return msg.reply(t(lang, "CANNOT_SEND_COINS_TO_BANNED_BALANCE"));
+      return msg.reply(msg.t("CANNOT_SEND_COINS_TO_BANNED_BALANCE"));
     }
 
     const confirmEmbed = {
-      title: t(lang, "SENDCOINS_CONFIRMATION_TITLE", sum, user),
-      description: t(lang, "SENDCOINS_CONFIRMATION_DESCRIPTION"),
+      title: msg.t("SENDCOINS_CONFIRMATION_TITLE", sum, user),
+      description: msg.t("SENDCOINS_CONFIRMATION_DESCRIPTION"),
       color: await msg.author.embedColor(),
     };
 
@@ -75,7 +73,7 @@ module.exports = {
           name: msg.author.tag,
           icon_url: msg.author.avatarURL,
         },
-        description: t(lang, "SENDCOINS_TIME_EXPIRED"),
+        description: msg.t("SENDCOINS_TIME_EXPIRED"),
         color: await msg.author.embedColor(),
       };
 
@@ -89,7 +87,7 @@ module.exports = {
           name: msg.author.tag,
           icon_url: msg.author.avatarURL,
         },
-        description: t(lang, "SENDCOINS_SUCCESSFULLY_SENT", sum, user),
+        description: msg.t("SENDCOINS_SUCCESSFULLY_SENT", sum, user),
         color: await msg.author.embedColor(),
       };
 
@@ -100,7 +98,7 @@ module.exports = {
           name: msg.author.tag,
           icon_url: msg.author.avatarURL,
         },
-        description: t(lang, "SENDCOINS_CANCELLED_TRANSACTION"),
+        description: msg.t("SENDCOINS_CANCELLED_TRANSACTION"),
         color: await msg.author.embedColor(),
       };
 

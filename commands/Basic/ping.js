@@ -7,8 +7,8 @@ module.exports = {
     const message = await msg.reply("<a:d_typing:791621737880092700>");
 
     const embed = {
-      title: t(language, "PING_BOT", Math.floor(Date.now() - startTime)),
-      description: t(language, "PING_API", msg.guild.shard.latency),
+      title: msg.t("PING_BOT", Math.floor(Date.now() - startTime)),
+      description: msg.t("PING_API", msg.guild.shard.latency),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} © ZariBros`,

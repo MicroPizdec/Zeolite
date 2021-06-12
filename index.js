@@ -1,37 +1,34 @@
-const CmdClient = require("./core/client");
+const CmdClient = require("./core/CmdClient");
 global.config = require("./config");
 
 const fs = require("fs");
 const path = require("path");
 
 global.client = new CmdClient(config.token, {
-  prefix: config.prefix,
+  async prefix(client, msg) {
+    return await prefixes.findOne({ where: { server: msg.guild.id } })
+     .then(p => p && p.prefix) || config.prefix;
+  },
   owners: config.owners,
-  supportChannelID: config.supportChannelID,
   defaultImageSize: 1024,
-  webhookID: config.webhookID,
-  webhookToken: config.webhookToken,
   guildSubscriptions: false,
   intents: [ "guilds", "guildMembers", "guildMessages" ],
   getAllUsers: true,
   db: config.db,
 });
 
+client.webhookID = config.webhookID,
+client.webhookToken = config.webhookToken,
+
 client.usageCount = 0;
 client.on("commandSuccess", () => client.usageCount++);
 
 client.options.allowedMentions.replied_user = false;
 
-client.loadGroups([
-  "Basic",
-  "Fun",
-  "ZetCoins",
-  "Moderation",
-  "NSFW",
-  "Other",
-  "Settings",
-  "Dev",
-]);
+const groups = [ "Basic", "Fun", "ZetCoins", "Moderation", "NSFW", "Other", "Settings", "Dev" ];
+for (const group of groups) {
+  client.loadCommandGroup(path.join(__dirname, "commands", group));
+}
 
 const extensions = fs.readdirSync(path.join(__dirname, "extensions"))
   .filter(f => f.endsWith(".js"));

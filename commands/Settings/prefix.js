@@ -1,4 +1,4 @@
-const PermissionError = require("../../core/errors/permissionError");
+const PermissionError = require("../../core/errors/PermissionError");
 
 module.exports = {
   name: "prefix",
@@ -13,13 +13,13 @@ module.exports = {
           name: msg.guild.name,
           icon_url: msg.guild.iconURL,
         },
-        description: t(lang, "PREFIX_DESC", prefix),
+        description: msg.t("PREFIX_DESC", prefix),
         color: await msg.author.embedColor(),
       };
 
       if (msg.member.permission.has("manageGuild")) {
         embed.footer = { 
-          text: t(lang, "PREFIX_FOOTER", prefix),
+          text: msg.t("PREFIX_FOOTER", prefix),
           icon_url: msg.author.avatarURL,
         };
       }
@@ -31,14 +31,14 @@ module.exports = {
       }
 
       if (prefixArg.length > 10) {
-        return msg.reply(t(lang, "PREFIX_TOO_LONG"));
+        return msg.reply(msg.t("PREFIX_TOO_LONG"));
       }
 
       const guildPrefix = await prefixes.findOrCreate({ where: { server: msg.guild.id } })
         .then(i => i[0]);
       await guildPrefix.update({ prefix: prefixArg.toLowerCase() });
 
-      await msg.reply(t(lang, "PREFIX_SUCCESS", guildPrefix.prefix));
+      await msg.reply(msg.t("PREFIX_SUCCESS", guildPrefix.prefix));
     }
   }
 }

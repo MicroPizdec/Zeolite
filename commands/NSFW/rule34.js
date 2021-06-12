@@ -12,11 +12,11 @@ module.exports = {
         const {0: post} = await booru.search("rule34.xxx", args, {limit:1, random: true})
 
         if (!msg.channel.nsfw) {
-            return msg.reply(t(lang, "NOT_NSFW_CHANNEL", this.name));
+            return msg.reply(msg.t("NOT_NSFW_CHANNEL", this.name));
           }
     
         if (!post) {
-           return msg.reply(t(lang, "RULE34_NOT_FOUND"));
+           return msg.reply(msg.t("RULE34_NOT_FOUND"));
         }
     
         moment.locale(lang);
@@ -24,7 +24,7 @@ module.exports = {
         const postTags = post.tags.map(tag => `\`${tag}\``).join(", ").substring(0, 1024);
 
         if(post.tags.includes("video")) {
-            return msg.reply(t(lang, "RULE34_VIDEO", post.fileUrl, postTags))
+            return msg.reply(msg.t("RULE34_VIDEO", post.fileUrl, postTags))
         }
         
         const embed = {
@@ -34,16 +34,16 @@ module.exports = {
             },
             fields: [
                {
-                   name: t(lang, "RULE34_SCORE"),
+                   name: msg.t("RULE34_SCORE"),
                    value: post.score,
                },
                {
-                   name: t(lang, "RULE34_TAGS"),
+                   name: msg.t("RULE34_TAGS"),
                    value: postTags,
                },
             ],
             image: { url: post.fileUrl },
-            footer: { text: t(lang, "RULE34_CREATEDAT") + " " + t(lang, "DAYS_AGO", createdDaysAgo), },
+            footer: { text: msg.t("RULE34_CREATEDAT") + " " + msg.t("DAYS_AGO", createdDaysAgo), },
             timestamp: new Date(post.createdAt).toISOString(),
             color: await msg.author.embedColor(),
        }
@@ -53,7 +53,7 @@ module.exports = {
           components: [
           {
             type: 2,
-            label: t(lang, "RULE34_URL"),
+            label: msg.t("RULE34_URL"),
             style: 5,
             url: post.postView,
           }

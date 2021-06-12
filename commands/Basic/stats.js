@@ -47,7 +47,7 @@ module.exports = {
     const cpu = os.cpus()[0];
 
     const embed = {
-      title: t(language, "STATS_EMBED_TITLE"),
+      title: msg.t("STATS_EMBED_TITLE"),
       color: await msg.author.embedColor(),
       footer: {
         text: `${client.user.username} v${package.version} © ZariBros`,
@@ -55,42 +55,42 @@ module.exports = {
       },
       fields: [
         {
-          name: t(language, "STATS_UPTIME"),
+          name: msg.t("STATS_UPTIME"),
           value: parseUptime(process.uptime() * 1000),
         },
         {
-          name: _(language, "STATS_PLATFORM"),
+          name: msg.t("STATS_PLATFORM"),
           value: getPlatform() + " " + os.arch() + " " + os.release(),
         },
         {
-          name: t(language, "STATS_RAM_USAGE"),
-          value: ramUsage.toFixed(1) + " " + t(language, "STATS_MEGABYTES"),
+          name: msg.t("STATS_RAM_USAGE"),
+          value: ramUsage.toFixed(1) + " " + msg.t("STATS_MEGABYTES"),
         },
         {
-          name: t(language, "STATS_COMMANDS_USED"),
+          name: msg.t("STATS_COMMANDS_USED"),
           value: client.usageCount,
         },
         {
-          name: t(language, "STATS_SERVERS"),
+          name: msg.t("STATS_SERVERS"),
           value: client.guilds.size,
           inline: true,
         },
         {
-          name: t(language, "STATS_CHANNELS"),
+          name: msg.t("STATS_CHANNELS"),
           value: Object.keys(client.channelGuildMap).length,
           inline: true,
         },
         {
-          name: t(language, "STATS_USERS"),
+          name: msg.t("STATS_USERS"),
           value: client.users.size,
           inline: true,
         },
         {
-          name: t(language, "STATS_CPU"),
-          value: `${cpu ? cpu.model : t(language, "STATS_CANT_GET_CPU_INFO")}`,
+          name: msg.t("STATS_CPU"),
+          value: `${cpu ? cpu.model : msg.t("STATS_CANT_GET_CPU_INFO")}`,
         },
         {
-          name: _(language, "STATS_LIBRARIES"),
+          name: msg.t("STATS_LIBRARIES"),
           value: `Node.js: ${process.version}\nEris: ${Eris.VERSION}\nSequelize: ${Sequelize.version}\nCanvas: ${canvas}\nMoment.js: ${moment.version}`
         },
       ],

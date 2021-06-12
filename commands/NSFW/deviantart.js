@@ -16,7 +16,7 @@ module.exports = {
   aliases: [ "da" ],
   async run(client, msg, args, prefix, lang) {
     if (!msg.channel.nsfw) {
-      return msg.reply(t(lang, "NOT_NSFW_CHANNEL", this.name));
+      return msg.reply(msg.t("NOT_NSFW_CHANNEL", this.name));
     }
 
     if (isTokenExpired) {
@@ -34,7 +34,7 @@ module.exports = {
     }).then(r => r.json());
 
     if (!data?.results?.length) {
-      return msg.reply(t(lang, "DEVIANTART_NOT_FOUND"));
+      return msg.reply(msg.t("DEVIANTART_NOT_FOUND"));
     }
 
     const result = data.results[Math.floor(Math.random() * data.results.length)];
@@ -50,12 +50,12 @@ module.exports = {
       image: { url: result.preview.src },
       fields: [
         {
-          name: t(lang, "DEVIANTART_FAVOURITES"),
+          name: msg.t("DEVIANTART_FAVOURITES"),
           value: result.stats.favourites,
           inline: true,
         },
         {
-          name: t(lang, "DEVIANTART_COMMENTS"),
+          name: msg.t("DEVIANTART_COMMENTS"),
           value: result.stats.comments,
           inline: true,
         },

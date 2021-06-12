@@ -1,4 +1,4 @@
-const PermissionError = require("../../core/errors/permissionError");
+const PermissionError = require("../../core/errors/PermissionError");
 
 module.exports = {
   name: "warn",
@@ -8,7 +8,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(t(lang, "WARN_NO_ARGS", prefix));
+      return msg.reply(msg.t("WARN_NO_ARGS", prefix));
     }
 
     const userID = args.shift();
@@ -23,7 +23,7 @@ module.exports = {
       }
 
       if (!user) {
-        return msg.reply(t(lang, "USER_NOT_FOUND"));
+        return msg.reply(msg.t("USER_NOT_FOUND"));
       }
 
       const warnlist = await warns.findAll({ where: { user: user.id, server: msg.guild.id } });
@@ -33,16 +33,16 @@ module.exports = {
           name: user.tag,
           icon_url: user.avatarURL,
         },
-        title: t(lang, "WARN_LIST"),
+        title: msg.t("WARN_LIST"),
         color: await msg.author.embedColor(),
         fields: [],
-        footer: { text: t(lang, "WARN_TOTAL", warnlist.length) },
+        footer: { text: msg.t("WARN_TOTAL", warnlist.length) },
       };
 
       for (const warn of warnlist) {
         embed.fields.push({
-          name: t(lang, "WARN_ITEM", warn.id, await client.fetchUser(warn.warnedBy)),
-          value: t(lang, "REASON", warn.reason),
+          name: msg.t("WARN_ITEM", warn.id, await client.fetchUser(warn.warnedBy)),
+          value: msg.t("REASON", warn.reason),
         });
       }
 
@@ -53,18 +53,18 @@ module.exports = {
       }
 
       if (!args[0]) {
-        return msg.reply(t(lang, "WARN_DELETE_NO_ID"));
+        return msg.reply(msg.t("WARN_DELETE_NO_ID"));
       }
 
       const warn = await warns.findOne({ where: { id: args[0] } });
 
       if (!warn || warn.server != msg.guild.id) {
-        return msg.reply(t(lang, "WARN_INVALID_ID"));
+        return msg.reply(msg.t("WARN_INVALID_ID"));
       }
 
       await warn.destroy();
 
-      await msg.reply(t(lang, "WARN_DELETE_SUCCESS", args[0]));
+      await msg.reply(msg.t("WARN_DELETE_SUCCESS", args[0]));
     } else {
       if (!msg.member.permissions.has("kickMembers")) {
         throw new PermissionError("", "kickMembers");
@@ -74,19 +74,19 @@ module.exports = {
       : msg.guild.members.find(m => m.id == userID || m.tag == userID);
 
       if (!user) {
-        return msg.reply(t(lang, "USER_NOT_FOUND")); 
+        return msg.reply(msg.t("USER_NOT_FOUND")); 
       }
 
       if (user.id == msg.author.id) {
-        return msg.reply(t(lang, "CANT_WARN_YOURSELF"));
+        return msg.reply(msg.t("CANT_WARN_YOURSELF"));
       }
       if (user.bot) {
-        return msg.reply(t(lang, "CANT_WARN_BOTS"));
+        return msg.reply(msg.t("CANT_WARN_BOTS"));
       }
 
       const reason = args.join(" ");
       if (reason.length > 100) {
-        return msg.reply(t(lang, "WARN_REASON_TOO_LONG"));
+        return msg.reply(msg.t("WARN_REASON_TOO_LONG"));
       }
 
       if (user.punishable(msg.member)) {
@@ -98,17 +98,17 @@ module.exports = {
         });
 
         const embed = {
-          title: t(lang, "WARN_SUCCESS", user.tag),
-          description: t(lang, "REASON", reason),
+          title: msg.t("WARN_SUCCESS", user.tag),
+          description: msg.t("REASON", reason),
           color: 0x18ff3d,
-          footer: { text: t(lang, "WARN_ID", warn.id) },
+          footer: { text: msg.t("WARN_ID", warn.id) },
         };
 
         await msg.reply({ embed });
       } else {
         const embed = {
-          title: t(lang, "WARN_FAILED"),
-          description: t(lang, "WARN_FAILED_REASON"),
+          title: msg.t("WARN_FAILED"),
+          description: msg.t("WARN_FAILED_REASON"),
           color: 16717877,
         };
 

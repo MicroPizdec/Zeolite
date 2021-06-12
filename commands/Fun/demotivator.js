@@ -16,10 +16,10 @@ module.exports = {
     const [ text, bottomText, imageLink ] = args;
 
     if (!bottomText) {
-      return msg.reply(t(lang, "DEMOTIVATOR_NO_BOTTOM_TEXT"));
+      return msg.reply(msg.t("DEMOTIVATOR_NO_BOTTOM_TEXT"));
     }
     if (!msg.attachments.length && !imageLink) {
-      return msg.reply(t(lang, "DEMOTIVATOR_NO_IMAGE"));
+      return msg.reply(msg.t("DEMOTIVATOR_NO_IMAGE"));
     }
 
     const message = await msg.reply("<a:d_typing:791621737880092700>");
@@ -28,7 +28,7 @@ module.exports = {
     try {
       image = await Canvas.loadImage(msg.attachments[0]?.url || imageLink);
     } catch {
-      return message.edit(t(lang, "DEMOTIVATOR_IMAGE_FAILED"));
+      return message.edit(msg.t("DEMOTIVATOR_IMAGE_FAILED"));
     }
 
     const canvas = Canvas.createCanvas(1024, 1024);

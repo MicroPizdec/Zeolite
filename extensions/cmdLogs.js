@@ -1,4 +1,4 @@
-const PermissionError = require("../core/errors/permissionError");
+const PermissionError = require("../core/errors/PermissionError");
 
 const color = config.embedColor;
 
@@ -61,16 +61,16 @@ async function onGuildDelete(guild) {
 async function onCommandError(cmd, msg, error, language) {
   if (error instanceof PermissionError) {
     const embed = {
-      title: t(language, "MISSING_PERMISSION"),
-      description: t(language, "MISSING_PERMISSION_DESCRIPTION", error.missingPermission),
+      title: msg.t("MISSING_PERMISSION"),
+      description: msg.t("MISSING_PERMISSION_DESCRIPTION", error.missingPermission),
       color: 15158332,
     }
     return await msg.reply({ embed });
   }
   
   const embed = {
-    title: t(language, "COMMAND_ERROR_OCCURRED"),
-    description: t(language, "COMMAND_ERROR_DESCRIPTION"),
+    title: msg.t("COMMAND_ERROR_OCCURRED"),
+    description: msg.t("COMMAND_ERROR_DESCRIPTION"),
     footer: {
       text: `${client.user.username} © ZariBros`,
       icon_url: client.user.avatarURL,

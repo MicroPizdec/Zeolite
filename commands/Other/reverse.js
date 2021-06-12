@@ -7,7 +7,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.raw.length) {
-      return msg.reply(t(lang, "REVERSE_NO_ARGS", prefix));
+      return msg.reply(msg.t("REVERSE_NO_ARGS", prefix));
     }
 
     const reversedString = args.raw.join(" ").split("").reverse().join("");
@@ -17,7 +17,7 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      title: t(lang, "REVERSE_TITLE"),
+      title: msg.t("REVERSE_TITLE"),
       description: reversedString,
       color: await msg.author.embedColor(),
     }

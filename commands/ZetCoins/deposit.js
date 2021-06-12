@@ -6,13 +6,13 @@ module.exports = {
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       const embed = {
-        title: t(lang, "DEPOSIT_EMBED_TITLE"),
-        description: t(lang, "DEPOSIT_EMBED_DESC"),
+        title: msg.t("DEPOSIT_EMBED_TITLE"),
+        description: msg.t("DEPOSIT_EMBED_DESC"),
         color: await msg.author.embedColor(),
         fields: [
           {
-            name: t(lang, "DEPOSIT_USAGE"),
-            value: t(lang, "DEPOSIT_USAGE_DESC", prefix),
+            name: msg.t("DEPOSIT_USAGE"),
+            value: msg.t("DEPOSIT_USAGE_DESC", prefix),
           },
         ],
         footer: {
@@ -30,7 +30,7 @@ module.exports = {
 
     const intSum = Math.floor(parseFloat(sum));
     if (!intSum || intSum <= 0) {
-      return msg.reply(t(lang, "DEPOSIT_INVALID_SUM"));
+      return msg.reply(msg.t("DEPOSIT_INVALID_SUM"));
     }
 
     const userBal = await zetCoins.findOrCreate({ where: { user: msg.author.id } })
@@ -40,23 +40,23 @@ module.exports = {
 
     if (subcommand == "put") {
       if (intSum > userBal.balance) {
-        return msg.reply(t(lang, "DEPOSIT_NOT_ENOUGH_MONEY", userBal.balance));
+        return msg.reply(msg.t("DEPOSIT_NOT_ENOUGH_MONEY", userBal.balance));
       }
 
       await dep.update({ balance: dep.balance + intSum });
       await userBal.update({ balance: userBal.balance - intSum });
 
       const embed = {
-        title: t(lang, "DEPOSIT_PUT_SUCCESS"),
+        title: msg.t("DEPOSIT_PUT_SUCCESS"),
         color: await msg.author.embedColor(),
         fields: [
           {
-            name: t(lang, "DEPOSIT_YOUR_BALANCE"),
-            value: t(lang, "BALANCE_EMBED_DESCRIPTION", userBal.balance),
+            name: msg.t("DEPOSIT_YOUR_BALANCE"),
+            value: msg.t("BALANCE_EMBED_DESCRIPTION", userBal.balance),
           },
           {
-            name: t(lang, "DEPOSIT_TOTAL"),
-            value: t(lang, "BALANCE_EMBED_DESCRIPTION", dep.balance),
+            name: msg.t("DEPOSIT_TOTAL"),
+            value: msg.t("BALANCE_EMBED_DESCRIPTION", dep.balance),
           },
         ],
         footer: {
@@ -68,23 +68,23 @@ module.exports = {
       await msg.reply({ embed });
     } else {
       if (intSum > dep.balance) {
-        return msg.reply(t(lang, "DEPOSIT_NOT_ENOUGH_DEPOSIT", dep.balance));
+        return msg.reply(msg.t("DEPOSIT_NOT_ENOUGH_DEPOSIT", dep.balance));
       }
 
       await dep.update({ balance: dep.balance - intSum });
       await userBal.update({ balance: userBal.balance + intSum });
 
       const embed = {
-        title: t(lang, "DEPOSIT_WD_SUCCESS"),
+        title: msg.t("DEPOSIT_WD_SUCCESS"),
         color: await msg.author.embedColor(),
         fields: [
           {
-            name: t(lang, "DEPOSIT_YOUR_BALANCE"),
-            value: t(lang, "BALANCE_EMBED_DESCRIPTION", userBal.balance),
+            name: msg.t("DEPOSIT_YOUR_BALANCE"),
+            value: msg.t("BALANCE_EMBED_DESCRIPTION", userBal.balance),
           },
           {
-            name: t(lang, "DEPOSIT_TOTAL"),
-            value: t(lang, "BALANCE_EMBED_DESCRIPTION", dep.balance),
+            name: msg.t("DEPOSIT_TOTAL"),
+            value: msg.t("BALANCE_EMBED_DESCRIPTION", dep.balance),
           },
         ],
         footer: {

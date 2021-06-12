@@ -42,11 +42,11 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      description: t(lang, "WHOIS_EMBED_DESC", subject),
+      description: msg.t("WHOIS_EMBED_DESC", subject),
       color: await msg.author.embedColor(),
       fields: [
         {
-          name: t(lang, "WHOIS_ANSWER"),
+          name: msg.t("WHOIS_ANSWER"),
           value: randomAnswer(lang),
         },
       ],

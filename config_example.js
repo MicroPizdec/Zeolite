@@ -6,7 +6,7 @@ module.exports = {
     webhookToken: "webhook-token",
     supportChannelID: 'id',
     embedColor: 0x9f00ff,
-    db: {
+    database: {
       dialect: "sqlite",
       storage: "bot.db",
     },

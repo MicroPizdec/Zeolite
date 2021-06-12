@@ -18,7 +18,7 @@ module.exports = {
     );
 
     if (!role) {
-      return msg.reply(t(lang, "ROLE_NOT_FOUND"));
+      return msg.reply(msg.t("ROLE_NOT_FOUND"));
     }
 
     moment.locale(lang);
@@ -36,28 +36,28 @@ module.exports = {
           value: role.id,
         },
         {
-          name: t(lang, "ROLE_CREATED_AT"),
-          value: moment(role.createdAt).format("lll") + " " + _(lang, "DAYS_AGO", createdDaysAgo)
+          name: msg.t("ROLE_CREATED_AT"),
+          value: moment(role.createdAt).format("lll") + " " + msg.t("DAYS_AGO", createdDaysAgo)
         },
         {
-          name: t(lang, "ROLE_MEMBERS"),
+          name: msg.t("ROLE_MEMBERS"),
           value: membersWithRole,
         },
         {
-          name: t(lang, "ROLE_MENTIONABLE"),
-          value: t(lang, "YES_NO", role.mentionable),
+          name: msg.t("ROLE_MENTIONABLE"),
+          value: msg.t("YES_NO", role.mentionable),
         },
         {
-          name: t(lang, "ROLE_HOISTED"),
-          value: t(lang, "YES_NO", role.hoist),
+          name: msg.t("ROLE_HOISTED"),
+          value: msg.t("YES_NO", role.hoist),
         },
         {
-          name: t(lang, "ROLE_MANAGED"),
-          value: t(lang, "YES_NO", role.managed),
+          name: msg.t("ROLE_MANAGED"),
+          value: msg.t("YES_NO", role.managed),
         },
         {
-          name: t(lang, "ROLE_COLOR"),
-          value: role.color ? `#${intToHex(role.color)}` : t(lang, "ROLE_COLOR_DEFAULT"),
+          name: msg.t("ROLE_COLOR"),
+          value: role.color ? `#${intToHex(role.color)}` : msg.t("ROLE_COLOR_DEFAULT"),
         },
       ],
       footer: {

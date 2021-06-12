@@ -25,4 +25,10 @@ module.exports.load = () => {
       return this.channel.createMessage(obj, file);
     }
   }
+
+  Message.prototype.t = function (str, ...args) {
+    const lang = client.languages.get(this.author.lang);
+
+    return lang[str] ? lang[str] instanceof Function ? lang[str](...args) : lang[str] : str;
+  }
 }

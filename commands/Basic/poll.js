@@ -6,21 +6,21 @@ module.exports = {
     argsRequired: true,
     async run(client, msg, args, prefix, language) {
         if (!args.length)
-            return msg.reply(t(language, "POLL_NO_ARGS_PROMPT", prefix));
+            return msg.reply(msg.t("POLL_NO_ARGS_PROMPT", prefix));
 
         const [ question, ...answers ] = args;
         const reactions = [ "🇦", "🇧", "🇨", "🇩", "🇪", "🇫", "🇬", "🇭", "🇮", "🇯" ];
 
         if (!answers.length)
-            return msg.reply(t(language, "POLL_NO_ANSWERS", prefix));
+            return msg.reply(msg.t("POLL_NO_ANSWERS", prefix));
         if (answers.length > 10)
-            return msg.reply(t(language, "POLL_NOT_MORE_THAN_10_ANSWERS"));
+            return msg.reply(msg.t("POLL_NOT_MORE_THAN_10_ANSWERS"));
 
         const description = answers.map((answer, index) => `${reactions[index]} - ${answer}`).join("\n");
 
         const embed = {
             author: {
-                name: t(language, "POLL_STARTED_BY", msg.author),
+                name: msg.t("POLL_STARTED_BY", msg.author),
                 icon_url: msg.author.avatarURL,
             },
             title: question,

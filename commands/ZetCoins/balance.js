@@ -22,8 +22,8 @@ module.exports = {
 
     if (userBalance.banned) {
       const bannedBalanceEmbed = {
-        title: t(language, "BANNED_BALANCE"),
-        description: t(language, "BANNED_BALANCE_REASON", userBalance.reason),
+        title: msg.t("BANNED_BALANCE"),
+        description: msg.t("BANNED_BALANCE_REASON", userBalance.reason),
         color: 15158332,
       };
       return msg.reply({ embed: bannedBalanceEmbed });
@@ -31,15 +31,15 @@ module.exports = {
 
     const embed = {
       author: {
-        name: t(language, "BALANCE_EMBED_AUTHOR_NAME", user),
+        name: msg.t("BALANCE_EMBED_AUTHOR_NAME", user),
         icon_url: user.avatarURL,
       },
-      description: t(language, "BALANCE_EMBED_DESCRIPTION", userBalance.balance),
+      description: msg.t("BALANCE_EMBED_DESCRIPTION", userBalance.balance),
       color: await msg.author.embedColor(),
       fields: [
         {
-          name: t(language, "BALANCE_DEPOSIT"),
-          value: t(language, "BALANCE_EMBED_DESCRIPTION", userDeposit.balance),
+          name: msg.t("BALANCE_DEPOSIT"),
+          value: msg.t("BALANCE_EMBED_DESCRIPTION", userDeposit.balance),
         },
       ],
       footer: {

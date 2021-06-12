@@ -8,14 +8,14 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, language) {
     if (!args.length)
-      return msg.reply(t(language, "SETBALANCE_NO_ARGS_PROMPT", prefix));
+      return msg.reply(msg.t("SETBALANCE_NO_ARGS_PROMPT", prefix));
 
     let userID = args[0];
     const amount = parseFloat(args[1]);
     if (!args[1])
-      return msg.reply(t(language, "SETBALANCE_NO_AMOUNT"));
+      return msg.reply(msg.t("SETBALANCE_NO_AMOUNT"));
     if (isNaN(amount))
-      return msg.reply(t(language, "SETBALANCE_AMOUNT_IS_NAN"));
+      return msg.reply(msg.t("SETBALANCE_AMOUNT_IS_NAN"));
     
     let user;
     if (msg.mentions.length) user = msg.mentions[0];
@@ -23,9 +23,9 @@ module.exports = {
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: user.id } }))[0];
     if (userBalance.banned)
-      return msg.reply(t(language, "BALANCE_ALREADY_BANNED", user));
+      return msg.reply(msg.t("BALANCE_ALREADY_BANNED", user));
 
-    if (!user) return msg.reply(t(language, "INVALID_USER_PROVIDED"));
+    if (!user) return msg.reply(msg.t("INVALID_USER_PROVIDED"));
 
     await zetCoins.update({
       balance: amount,
@@ -34,8 +34,8 @@ module.exports = {
     });
 
     const embed = {
-      title: t(language, "SETBALANCE_EMBED_TITLE", user),
-      description: t(language, "SETBALANCE_EMBED_DESCRIPTION", amount),
+      title: msg.t("SETBALANCE_EMBED_TITLE", user),
+      description: msg.t("SETBALANCE_EMBED_DESCRIPTION", amount),
       color: 3066993,
     };
     await msg.reply({ embed });

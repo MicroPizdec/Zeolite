@@ -10,7 +10,7 @@ module.exports = {
   argsRequired: true,
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
-      return msg.reply(t(lang, "RANDOM_NO_ARGS", prefix));
+      return msg.reply(msg.t("RANDOM_NO_ARGS", prefix));
     }
 
     let [ min, max ] = args;
@@ -23,7 +23,7 @@ module.exports = {
     min = parseInt(min);
 
     if (isNaN(max) || isNaN(min)) {
-      return msg.reply(t(lang, "RANDOM_NUMBER_IS_NAN"));
+      return msg.reply(msg.t("RANDOM_NUMBER_IS_NAN"));
     }
 
     const num = randInt(max, min);
@@ -33,7 +33,7 @@ module.exports = {
         name: msg.author.tag,
         icon_url: msg.author.avatarURL,
       },
-      title: t(lang, "RANDOM_TITLE", max, min),
+      title: msg.t("RANDOM_TITLE", max, min),
       description: num.toString(),
       color: await msg.author.embedColor(),
       footer: {

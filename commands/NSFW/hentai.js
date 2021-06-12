@@ -8,7 +8,7 @@ module.exports = {
   aliases: [ "hn" ],
   async run(client, msg, args, prefix, lang) {
     if (!msg.channel.nsfw) {
-      return msg.reply(t(lang, "NOT_NSFW_CHANNEL", this.name));
+      return msg.reply(msg.t("NOT_NSFW_CHANNEL", this.name));
     }
     
     try {
@@ -29,7 +29,7 @@ module.exports = {
 
       await msg.reply({ embed });
     } catch (err) {
-      await msg.reply(t(lang, "HENTAI_ERROR", err.message));
+      await msg.reply(msg.t("HENTAI_ERROR", err.message));
     }
   }
 }
