@@ -42,4 +42,8 @@ process.on("uncaughtException", console.log);
 
 client.on("error", (err, id) => client.logger.error(`Error on shard ${id}:\n${require("util").inspect(err)}`));
 
+client.on("commandCooldown", async (cmd, msg, secsLeft) => {
+  return msg.reply(msg.t("COOLDOWN", secsLeft));
+});
+
 client.connect();
