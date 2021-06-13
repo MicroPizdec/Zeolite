@@ -21,13 +21,10 @@ module.exports.load = async client => {
       .catch(err => databaseLogger.error(`Failed to connect to the database:\n${err.stack}`));
   });
 
-  /* client.on("guildDelete", async guild => {
-    await db.antiInvite.destroy({ where: { server: guild.id } });
-    await db.autorole.destroy({ where: { server: guild.id } });
-    await db.warns.destroy({ where: { server: guild.id } });
-    await db.modlogs.destroy({ where: { server: guild.id } });
-    await db.prefixes.destroy({ where: { server: guild.id } });
-
-    delete client.prefixCache[guild.id];
-  }); */
+  client.on("guildDelete", async guild => {
+    await warns.destroy({ where: { server: guild.id } });
+    await prefixes.destroy({ where: { server: guild.id } });
+    await tags.destroy({ where: { server: guild.id } });
+    await languages.destroy({ where: { server: guild.id } });
+  });
 }
