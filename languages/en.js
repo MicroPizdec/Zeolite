@@ -257,8 +257,8 @@ module.exports = {
   NO_SPLASH: "> :x: This server does not have an splash.",
   NO_BANNER: "> :x: This server does not have a banner.",
 
-  LIMITCMD_DESCRIPTION: "limit the specified command",
-  LIMITCMD_USAGE: "<command>",
+  LIMITCMD_DESCRIPTION: "Limits the specified command.\n The -h or --hide key also hides the command from help",
+  LIMITCMD_USAGE: "[-h | --hide] <command>",
   LIMITCMD_NO_ARGS_PROMPT: prefix => `> :x: What command do you want to limit? Use \`${prefix}limitcmd <command>\``,
   LIMITCMD_INVALID_COMMAND: "> :x: This command does not exist or this is an owner-only command.",
   COMMAND_ALREADY_LIMITED: "> :x: This command is already limited.",
