@@ -62,7 +62,7 @@ async function onCommandError(cmd, msg, error, language) {
   if (error instanceof PermissionError) {
     const embed = {
       title: msg.t("MISSING_PERMISSION"),
-      description: msg.t("MISSING_PERMISSION_DESCRIPTION", error.missingPermission),
+      description: msg.t("MISSING_PERMISSION_DESCRIPTION", msg.t("PERMISSIONS")[error.missingPermission]),
       color: 15158332,
     }
     return await msg.reply({ embed });
