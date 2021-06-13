@@ -111,10 +111,6 @@ module.exports = {
     if (roleList) embed.fields.splice(1 + indexInc, 0, {
       name: msg.t("USERINFO_ROLES"),
       value: roleList,
-    },
-    {
-      name: msg.t("USERINFO_COLOR"),
-      value: member.color ? `#${intToHex(member.color)}` : msg.t("USERINFO_DEFAULT_COLOR"),
     });
 
     if (!member.bot) embed.fields.push({

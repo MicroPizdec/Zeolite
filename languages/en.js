@@ -132,7 +132,7 @@ module.exports = {
   USERINFO_ZETCOINS_TOP: "ZetCoins top position",
   USERINFO_ZETCOINS_TOP_POS: (globalPos, pos) => `global - ${globalPos}\nserver - ${pos}`,
   USERINFO_JOINPOS: joinPos => `${joinPos}${joinPos % 10 == 1 ? "st" : joinPos % 10 == 2 ? "nd" : joinPos % 10 == 3 ? "rd" : "th"} server member`,
-  NOT_IN_SERVER: "Not a server member",
+  NOT_IN_SERVER: "This user isn't a server member",
   USERINFO_COLOR: "Role color",
   USERINFO_DEFAULT_COLOR: "Default",
   USERINFO_BADGES: "Badges",
@@ -245,7 +245,7 @@ module.exports = {
   UNBANCOMMANDS_USAGE: "<user>",
   UNBANCOMMANDS_NO_ARGS_PROMPT: prefix => `> :x: What user do you want to unban commands? Use \`${prefix}unbancommands <user>\``,
   UNBANCOMMANDS_USER_ISNT_BANNED: "> :x: This user isn't banned.",
-  UNBANCOMMANDS_SUCCESSFUL_UNBAN: user => `:white_check_mark: Successfully unbanned commands for ${user.username}#${user.discriminator}`,
+  UNBANCOMMANDS_SUCCESSFUL_UNBAN: user => `Successfully unbanned commands for ${user.username}#${user.discriminator}`,
 
   AVATAR_DESCRIPTION: "gets your or someone's avatar. Keys can show the following:\n`-s` or `server` - server icon (if it has)\n`-sp` or `splash` - server splash (if it has)\n`-b` or `banner` - server banner (if it has)",
   AVATAR_USAGE: "[-s/server], [-sp/splash], [-b/banner] or [user]",

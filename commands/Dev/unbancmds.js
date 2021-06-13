@@ -26,7 +26,10 @@ module.exports = {
     }, { where: { user: user.id } });
 
     const embed = {
-      title: msg.t("UNBANCOMMANDS_SUCCESSFUL_UNBAN", user),
+      author: {
+        name: msg.t("UNBANCOMMANDS_SUCCESSFUL_UNBAN", user),
+        icon_url: user.avatarURL,
+      },
       color: 3066993,
       timestamp: new Date().toISOString(),
     };
