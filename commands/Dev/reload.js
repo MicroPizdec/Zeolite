@@ -32,7 +32,7 @@ module.exports = {
 
         await msg.reply({ embed });
       } else if (cmdName == "langs") {
-        client.i18n.reloadLanguages();
+        client.reloadLanguages();
 
         const embed = {
           title: msg.t("RELOAD_LANGS_SUCCESS"),
