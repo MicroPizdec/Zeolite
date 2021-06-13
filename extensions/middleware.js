@@ -7,7 +7,7 @@ module.exports.load = client => {
       else language = { language: "en" };
     }
     return msg.author.lang = language.language;
-  }, true);
+  }, false);
 
   client.addMiddleware(async (msg, prefix) => {
     const { banned: areCommandsBanned, reason } = (await commandBans.findOrCreate({ where: { user: msg.author.id } }))[0];
@@ -31,4 +31,9 @@ module.exports.load = client => {
 
     return true;
   }, false);
+
+  client.addMiddleware(async (msg, prefix, cmd) => {
+    const disabledState = await disabledCmds.findOne({ where: { name: cmd.name } });
+    return !disabledState?.disabled;
+  }, true);
 }

@@ -97,7 +97,7 @@ class CmdClient extends Eris.Client {
     if (!command) return;
 
     for (const middleware of this.middlewares.postCheck) {
-      const value = await middleware(msg, prefix, data);
+      const value = await middleware(msg, prefix, command, data);
       if (!value) return;
       data.push(value); 
     }

@@ -5,12 +5,19 @@ module.exports = {
   usage: "LIMITCMD_USAGE",
   ownerOnly: true,
   argsRequired: true,
+  aliases: [ "disablecmd" ],
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.reply(msg.t("LIMITCMD_NO_ARGS_PROMPT", prefix));
     }
 
-    let cmdName = args[0];
+    let cmdName = args[0], hideFlag = false;
+    
+    if (cmdName == "-h" || cmdName == "--hide") {
+      cmdName = args[1];
+      hideFlag = true;
+    }
+
     if (!client.commands.has(cmdName)) {
       return msg.reply(msg.t("LIMITCMD_INVALID_COMMAND"));
     }
@@ -25,6 +32,7 @@ module.exports = {
     }
 
     await disabledCmd.update({ disabled: true });
+    if (hideFlag) client.commands.get(cmdName).hidden = true;
     await msg.reply(msg.t("LIMITCMD_SUCCESS", cmdName));
   }
 };

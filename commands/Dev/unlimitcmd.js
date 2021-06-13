@@ -5,6 +5,7 @@ module.exports = {
   usage: "UNLIMITCMD_USAGE",
   ownerOnly: true,
   argsRequired: true,
+  aliases: [ "enablecmd" ],
   async run(client, msg, args, prefix, lang) {
     if (!args.length) {
       return msg.reply(msg.t("UNLIMITCMD_NO_ARGS_PROMPT", prefix));
