@@ -158,12 +158,12 @@ module.exports = {
   BALANCE_COMMAND_USAGE: "[user]",
   BALANCE_EMBED_AUTHOR_NAME: user => `${user.username}#${user.discriminator}'s balance:`,
   BALANCE_EMBED_DESCRIPTION: amount => `<:zetcoins:766959525864669235> ${amount} ZetCoins.`,
-  BALANCE_ALREADY_BANNED: user => `${user.username}#${user.discriminator}'s balance is banned.`,
+  BALANCE_ALREADY_BANNED: user => `${user.username}#${user.discriminator}'s balance is blocked.`,
   BALANCE_DEPOSIT: "Deposit",
 
   BANBALANCE_COMMAND_DESCRIPTION: "bans the provided user's balance",
   BANBALANCE_COMMAND_USAGE: "<user> [reason",
-  BANBALANCE_EMBED_TITLE: user => `:white_check_mark: Successfully banned ${user.username}#${user.discriminator}'s balance.`,
+  BANBALANCE_EMBED_TITLE: user => `:white_check_mark: Successfully blocked ${user.username}#${user.discriminator}'s balance.`,
   BANBALANCE_EMBED_DESCRIPTION: reason => `Reason: ${reason || "not provided"}`,
 
   SENDCOINS_COMMAND_DESCRIPTION: "sends an amount of ZetCoins to user",
@@ -197,7 +197,7 @@ module.exports = {
 
   UNBANBALANCE_COMMAND_DESCRIPTION: "unbans the provided user's balance",
   UNBANBALANCE_COMMAND_USAGE: "<user>",
-  UNBANBALANCE_SUCCESSFUL_UNBAN: user => `> :white_check_mark: Successfully unbanned ${user.username + "#" + user.discriminator}'s balance.`,
+  UNBANBALANCE_SUCCESSFUL_UNBAN: user => `> :white_check_mark: Successfully unblocked ${user.username + "#" + user.discriminator}'s balance.`,
 
   WORK_COMMAND_DESCRIPTION: "earn from 100 to 400 ZetCoins (1 time per hour)",
   WORK_COOLDOWN_TITLE: ":x: Not so fast!",
@@ -229,7 +229,7 @@ module.exports = {
   EVAL_COMMAND_DESCRIPTION: "evaluates the JavaScript code",
   EVAL_COMMAND_USAGE: "<code>",
 
-  COMMANDS_BANNED: ":x: Commands are banned",
+  COMMANDS_BANNED: ":x: Commands are blocked",
   COMMANDS_BANNED_REASON: reason => `Reason: ${reason || "none"}`,
 
   BANCOMMANDS_COMMAND_DESCRIPTION: "bans the commands for provided user",
@@ -237,15 +237,15 @@ module.exports = {
   BANCOMMANDS_NO_ARGS_PROMPT: prefix => `> :x: What user do you want to ban commands? Use \`${prefix}bancommands <user> [reason]\``,
   BANCOMMANDS_CANT_BAN_SELF: "> :x: You can't ban commands for yourself.",
   BANCOMMANDS_CANT_BAN_OTHER_BOT_OWNER: "> :x: You can't ban commands for other bot owner.",
-  BANCOMMANDS_USER_ALREADY_BANNED: "> :x: This user is already banned.",
-  BANCOMMANDS_SUCCESSFUL_BAN: user => `Successfully banned commands for ${user.username}#${user.discriminator}`,
+  BANCOMMANDS_USER_ALREADY_BANNED: "> :x: This user is already blocked.",
+  BANCOMMANDS_SUCCESSFUL_BAN: user => `Successfully blocked commands for ${user.username}#${user.discriminator}`,
   BANCOMMANDS_BAN_REASON: reason => `Reason: ${reason || "none"}`,
 
   UNBANCOMMANDS_DESCRIPTION: "unbans commands for provided user",
   UNBANCOMMANDS_USAGE: "<user>",
   UNBANCOMMANDS_NO_ARGS_PROMPT: prefix => `> :x: What user do you want to unban commands? Use \`${prefix}unbancommands <user>\``,
-  UNBANCOMMANDS_USER_ISNT_BANNED: "> :x: This user isn't banned.",
-  UNBANCOMMANDS_SUCCESSFUL_UNBAN: user => `Successfully unbanned commands for ${user.username}#${user.discriminator}`,
+  UNBANCOMMANDS_USER_ISNT_BANNED: "> :x: This user isn't blocked.",
+  UNBANCOMMANDS_SUCCESSFUL_UNBAN: user => `Successfully unblocked commands for ${user.username}#${user.discriminator}`,
 
   AVATAR_DESCRIPTION: "gets your or someone's avatar. Keys can show the following:\n`-s` or `server` - server icon (if it has)\n`-sp` or `splash` - server splash (if it has)\n`-b` or `banner` - server banner (if it has)",
   AVATAR_USAGE: "[-s/server], [-sp/splash], [-b/banner] or [user]",

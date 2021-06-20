@@ -152,18 +152,18 @@ module.exports = {
   CFLIP_EMBED_TITLE: "Монетка приземлилась:",
 
   BANNED_BALANCE: ":x: Баланс заблокирован.",
-  BANNED_BALANCE_REASON: reason => `Причина: ${reason || "не предоставлена"}`,
+  BANNED_BALANCE_REASON: reason => `Причина: ${reason || "отсутствует"}`,
   BALANCE_COMMAND_DESCRIPTION: "показывает ваше (или другого пользователя) кол-во ZetCoin'ов на счету",
   BALANCE_COMMAND_USAGE: "[пользователь]",
   BALANCE_EMBED_AUTHOR_NAME: user => `Баланс ${user.username}#${user.discriminator}`,
   BALANCE_EMBED_DESCRIPTION: amount => `<:zetcoins:766959525864669235> ${amount} ZetCoin'ов.`,
-  BALANCE_ALREADY_BANNED: user => `Баланс пользователя ${user.username}#${user.discriminator} забанен.`,
+  BALANCE_ALREADY_BANNED: user => `Баланс пользователя ${user.username}#${user.discriminator} заблокирован.`,
   BALANCE_DEPOSIT: "Депозит",
 
   BANBALANCE_COMMAND_DESCRIPTION: "банит баланс предоставленного пользователя",
   BANBALANCE_COMMAND_USAGE: "<пользователь> [причина]",
-  BANBALANCE_EMBED_TITLE: user => `:white_check_mark: Успешно забанен баланс пользователя ${user.username}#${user.discriminator}`,
-  BANBALANCE_EMBED_DESCRIPTION: reason => `Причина: ${reason || "не предоставлена"}`,
+  BANBALANCE_EMBED_TITLE: user => `:white_check_mark: Успешно заблокирован баланс пользователя ${user.username}#${user.discriminator}`,
+  BANBALANCE_EMBED_DESCRIPTION: reason => `Причина: ${reason || "отсутствует"}`,
 
   SENDCOINS_COMMAND_DESCRIPTION: "передать указанное кол-во ZetCoin'ов пользователю",
   SENDCOINS_COMMAND_USAGE: "<пользователь> <кол-во>",
@@ -228,7 +228,7 @@ module.exports = {
   EVAL_COMMAND_DESCRIPTION: "выполняет JavaScript-код",
   EVAL_COMMAND_USAGE: "<код>",
 
-  COMMANDS_BANNED: ":x: Команды забанены",
+  COMMANDS_BANNED: ":x: Команды заблокированы",
   COMMANDS_BANNED_REASON: reason => `Причина: ${reason || "отсутствует"}`,
 
   BANCOMMANDS_COMMAND_DESCRIPTION: "банит команды указанному пользователю",
@@ -236,14 +236,14 @@ module.exports = {
   BANCOMMANDS_NO_ARGS_PROMPT: prefix => `> :x: Кому вы хотите забанить команды? Введите \`${prefix}bancommands <пользователь> [причина]\``,
   BANCOMMANDS_CANT_BAN_SELF: "> :x: Вы не можете забанить команды самому себе.",
   BANCOMMANDS_CANT_BAN_OTHER_BOT_OWNER: "> :x: Вы не можете забанить команды другому владельцу бота.",
-  BANCOMMANDS_USER_ALREADY_BANNED: "> :x: У этого пользователя команды уже были забанены.",
-  BANCOMMANDS_SUCCESSFUL_BAN: user => `Успешно забанены команды пользователю ${user.username}#${user.discriminator}.`,
+  BANCOMMANDS_USER_ALREADY_BANNED: "> :x: У этого пользователя команды уже были заблокированы.",
+  BANCOMMANDS_SUCCESSFUL_BAN: user => `Успешно заблокированы команды пользователю ${user.username}#${user.discriminator}.`,
   BANCOMMANDS_BAN_REASON: reason => `Причина: ${reason || "нету"}`,
 
   UNBANCOMMANDS_DESCRIPTION: "разбанивает команды указанному пользователю",
   UNBANCOMMANDS_USAGE: "<пользователь>",
   UNBANCOMMANDS_NO_ARGS_PROMPT: prefix => `> :x: Кому вы хотите разбанить команды? Введите \`${prefix}unbancommands <пользователь>\``,
-  UNBANCOMMANDS_USER_ISNT_BANNED: "> :x: У этого пользователя команды не забанены.",
+  UNBANCOMMANDS_USER_ISNT_BANNED: "> :x: У этого пользователя команды не заблокированы.",
   UNBANCOMMANDS_SUCCESSFUL_UNBAN: user => `Успешно разбанены команды пользователю ${user.username}#${user.discriminator}`,
 
   AVATAR_DESCRIPTION: "показывает ваш аватар или аватар указанного пользователя.\nКлючи могут показать следующее:\n`-s` или `server` - иконку сервера\n`-sp` или `splash` - фон приглашения сервера (если есть)\n`-b` или `banner` - баннер сервера (если есть)",
