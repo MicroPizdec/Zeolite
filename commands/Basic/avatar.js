@@ -87,7 +87,7 @@ module.exports = {
     const embed = {
       author: {
         name: msg.t("AVATAR_USER", user),
-        url: user.dynamicAvatarURL(format, 4096),
+        url: avatar,
       },
 
       color: await msg.author.embedColor(),
