@@ -73,10 +73,16 @@ module.exports = {
 
     if (!user) return msg.reply(msg.t("USER_NOT_FOUND"));
 
+    const guildAvatarHash = await client.requestHandler.request("GET", `/guilds/${msg.guild.id}/members/${user.id}`, true)
+    .then(r => r.avatar)
+    .catch(() => {});
+
     let format;
     if (user.avatar) {
       format = user.avatar.startsWith("a_") ? 'gif' : 'png';
     }
+
+    const avatar = guildAvatarHash ? `https://cdn.discordapp.com/guilds/${msg.guild.id}/users/${user.id}/avatars/${guildAvatarHash}.${guildAvatarHash.startsWith("a_") ? "gif" : "png"}?size=2048` : user.dynamicAvatarURL(format, 2048);
 
     const embed = {
       author: {
@@ -85,7 +91,7 @@ module.exports = {
       },
 
       color: await msg.author.embedColor(),
-      image: { url: user.dynamicAvatarURL(format, 2048) },
+      image: { url: avatar },
     };
     await msg.reply({ embed });
   }

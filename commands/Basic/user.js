@@ -55,6 +55,12 @@ module.exports = {
         
     if (!member) return msg.reply(msg.t("USER_NOT_FOUND"));
 
+    const guildAvatarHash = await client.requestHandler.request("GET", `/guilds/${msg.guild.id}/members/${member.id}`, true)
+        .then(r => r.avatar)
+        .catch(() => {});
+
+    const avatar = guildAvatarHash ? `https://cdn.discordapp.com/guilds/${msg.guild.id}/users/${member.id}/avatars/${guildAvatarHash}.${guildAvatarHash.startsWith("a_") ? "gif" : "png"}?size=2048` : member.avatarURL;
+
     const joinPos = member.joinedAt ? msg.guild.members.map(m => m.joinedAt)
     .sort((a, b) => a - b).indexOf(member.joinedAt) + 1 : 0;
 
@@ -88,7 +94,7 @@ module.exports = {
       },
       description: joinPos ? msg.t("USERINFO_JOINPOS", joinPos) : msg.t("NOT_IN_SERVER"),
       color: member.color || await msg.author.embedColor(),
-      thumbnail: { url: member.avatarURL },
+      thumbnail: { url: avatar },
       footer: { text: msg.t("USERINFO_FOOTER", member.id) + " " + msg.t("DAYS_AGO", createdDaysAgo) },
       timestamp: new Date(member.createdAt).toISOString(),
       fields: [
