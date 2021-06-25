@@ -15,10 +15,12 @@ module.exports.load = async client => {
 
   global.db = initDB(sequelize, Sequelize.DataTypes);
 
-  await sequelize.sync()
-    .then(() => databaseLogger.info("Connected successfully to the database."))
-    .catch(err => databaseLogger.error(`Failed to connect to the database:\n${err.stack}`));
-    
+  client.once("ready", async () => {
+    await sequelize.sync()
+      .then(() => databaseLogger.info("Connected successfully to the database."))
+      .catch(err => databaseLogger.error(`Failed to connect to the database:\n${err.stack}`));
+  });
+
   client.on("guildDelete", async guild => {
     await warns.destroy({ where: { server: guild.id } });
     await prefixes.destroy({ where: { server: guild.id } });
