@@ -137,7 +137,7 @@ module.exports = {
   USERINFO_DEFAULT_COLOR: "Default",
   USERINFO_BADGES: "Badges",
   USERINFO_NO_BADGES: "This user does not have any badges",
-  USERINFO_FOOTER: id => `ID: ${id}\nRegistered`,
+  USERINFO_FOOTER: id => `ID: ${id}\nRegistration date`,
 
   _8BALL_COMMAND_DESCRIPTION: "a magic 8 ball",
   _8BALL_COMMAND_USAGE: "<question>",
@@ -552,4 +552,6 @@ module.exports = {
   EMOJI_URL: "Emoji URL",
 
   BOOBS_DESCRIPTION: "Gets a random boobs image.\nThis command can be used only in channels marked as NSFW",
+
+  PORN_DESCRIPTION: "Gets a random porn gif.\nThis command can be used only in channels marked as NSFW",
 };
