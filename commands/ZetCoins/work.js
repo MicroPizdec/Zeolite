@@ -25,7 +25,7 @@ module.exports = {
       return msg.reply({ embed });
     }
     
-    const amount = randInt(100, 400);
+    const amount = randInt(50, 300);
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: msg.author.id } }))[0];
     if (userBalance.banned) {

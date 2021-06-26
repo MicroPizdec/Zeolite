@@ -7,7 +7,7 @@ module.exports = {
 
   BASIC_GROUP: "Основные команды",
   FUN_GROUP: "Развлекательные команды",
-  ZETCOINS_GROUP: "ZetCoins",
+  ZETCOINS_GROUP: "ZetCoin'ы",
   DEV_GROUP: "Команды для разработчиков",
   SETTINGS_GROUP: "Настройки",
   OTHER_GROUP: "Прочие команды",
@@ -89,7 +89,10 @@ module.exports = {
     WELCOME_SCREEN_ENABLED: "экран с приветствием",
     COMMUNITY: "сообщество",
     MEMBER_VERIFICATION_GATE_ENABLED: "отбор участников",
-    PREVIEW_ENABLED: "предпросмотр сервера"
+    PREVIEW_ENABLED: "предпросмотр сервера",
+    PRIVATE_THREADS: "приватные трэды",
+    THREE_DAY_THREAD_ARCHIVE: "3-х дневные архивные трэды",
+    SEVEN_DAY_THREAD_ARCHIVE: "7-и дневные архивные трэды",
   },
   SERVERINFO_FOOTER: id => `ID: ${id}\nCоздан`,
 
@@ -198,7 +201,7 @@ module.exports = {
   UNBANBALANCE_COMMAND_USAGE: "<пользователь>",
   UNBANBALANCE_SUCCESSFUL_UNBAN: user => `> :white_check_mark: Успешно разбанен баланс пользователя ${user.username + "#" + user.discriminator}`,
 
-  WORK_COMMAND_DESCRIPTION: "получить от 100 до 400 ZetCoin'ов (раз в час)",
+  WORK_COMMAND_DESCRIPTION: "получить от 50 до 300 ZetCoin'ов (раз в час)",
   WORK_COOLDOWN_TITLE: ":x: Не так быстро!",
   WORK_COOLDOWN_DESC: time => `Работа будет доступна через **${time}** минут.`,
   WORK_EMBED_TITLE: "Работа",

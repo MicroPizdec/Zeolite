@@ -90,7 +90,10 @@ module.exports = {
     WELCOME_SCREEN_ENABLED: "welcome screen",
     COMMUNITY: "community",
     MEMBER_VERIFICATION_GATE_ENABLED: "membership screening",
-    PREVIEW_ENABLED: "server preview"
+    PREVIEW_ENABLED: "server preview",
+    PRIVATE_THREADS: "private threads",
+    THREE_DAY_THREAD_ARCHIVE: "3 day archived threads",
+    SEVEN_DAY_THREAD_ARCHIVE: "7 days archived threads",
   },
   SERVERINFO_FOOTER: id => `ID: ${id}\nCreated at`,
 
@@ -199,7 +202,7 @@ module.exports = {
   UNBANBALANCE_COMMAND_USAGE: "<user>",
   UNBANBALANCE_SUCCESSFUL_UNBAN: user => `> :white_check_mark: Successfully unblocked ${user.username + "#" + user.discriminator}'s balance.`,
 
-  WORK_COMMAND_DESCRIPTION: "earn from 100 to 400 ZetCoins (1 time per hour)",
+  WORK_COMMAND_DESCRIPTION: "earn from 50 to 300 ZetCoins (1 time per hour)",
   WORK_COOLDOWN_TITLE: ":x: Not so fast!",
   WORK_COOLDOWN_DESC: time => `You can work again in **${time}** mins.`,
   WORK_EMBED_TITLE: "Work",
