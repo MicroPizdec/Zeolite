@@ -18,7 +18,6 @@
     "discord-nsfw": "^1.3.0",
     "eris": "^0.15.1",
     "eris-additions": "^1.3.0",
-    "erlpack": "abalabahaha/erlpack",
     "eventemitter3": "^4.0.0",
     "mariadb": "^2.5.3",
     "moment": "^2.29.1",
