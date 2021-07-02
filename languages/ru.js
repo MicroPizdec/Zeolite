@@ -278,14 +278,14 @@ module.exports = {
   LANG_AVAILABLE_LANGUAGES: "Доступные языки",
   LANG_YOUR_LANGUAGE: "Ваш язык",
   LANG_DEPENDING: "зависит от языка сервера",
-  LANG_FOOTER: prefix => `Вы можете изменить язык использовав ${prefix}lang [язык]`,
+  LANG_FOOTER: prefix => `Вы можете изменить язык, используя ${prefix}lang [язык]`,
   LANG_NOT_EXIST: "> :x: Такого языка не существует.",
   LANG_SUCCESS: "> :white_check_mark: Ваш язык был изменен на `ru`",
 
   SERVERLANG_DESCRIPTION: "изменяет язык сервера по умолчанию.\nЭта команда требует право \"Управлять сервером\"",
   SERVERLANG_USAGE: "[язык]",
   SERVERLANG_LANGUAGE: "Язык сервера:",
-  SERVERLANG_FOOTER: prefix => `Вы можете изменить язык сервера использовав ${prefix}serverlang [язык]`,
+  SERVERLANG_FOOTER: prefix => `Вы можете изменить язык сервера, используя ${prefix}serverlang [язык]`,
   SERVERLANG_SUCCESS: lang => `> :white_check_mark: Язык сервера был изменен на \`${lang}\``,
 
   WHATIF_DESCRIPTION: "что если?",

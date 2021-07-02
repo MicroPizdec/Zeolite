@@ -16,7 +16,7 @@ module.exports = {
           icon_url: msg.author.avatarURL,
         },
         title: msg.t("LANG_AVAILABLE_LANGUAGES"),
-        description: Object.keys(client.i18n.locales).join(", "),
+        description: Array.from(client.languages.keys()).map(l => `\`${l}\``).join(", "),
         color: await msg.author.embedColor(),
         fields: [
           {
@@ -29,7 +29,7 @@ module.exports = {
 
       await msg.reply({ embed });
     } else {
-      if (!client.i18n.locales[language]) {
+      if (!client.languages.has(language)) {
         return msg.reply(msg.t("LANG_NOT_EXIST"));
       }
 
