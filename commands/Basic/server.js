@@ -66,18 +66,12 @@ module.exports = {
           value: guild.roles.size,
         },
         {
-          name: msg.t("SERVERINFO_BOOST_LEVEL"),
-          value: guild.premiumTier,
+          name: msg.t("SERVERINFO_BOOST_COUNT"),
+          value: msg.t("SERVERINFO_BOOSTS", guild.premiumSubscriptionCount, guild.premiumTier),
           inline: true,
         },
       ],
     };
-
-    if (guild.premiumSubscriptionCount) embed.fields.push({
-      name: msg.t("SERVERINFO_BOOST_COUNT"),
-      value: guild.premiumSubscriptionCount,
-      inline: true,
-    });
 
     if (boostersCount) embed.fields.push({
       name: msg.t("SERVERINFO_BOOSTERS"),

@@ -71,6 +71,7 @@ module.exports = {
   SERVERINFO_BOOST_LEVEL: "Boost level",
   SERVERINFO_BOOST_COUNT: "Boosts",
   SERVERINFO_BOOSTERS: "Boosters",
+  SERVERINFO_BOOSTS: (boosts, tier) => `${boosts} (Level ${tier})`,
   SERVERINFO_OWNER: "Owner",
   SERVERINFO_FEAUTURES: "Server features",
   FEATURES: {
