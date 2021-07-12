@@ -23,7 +23,7 @@ module.exports = {
         {
           name: msg.t("INFO_LINKS"),
           value: `[${msg.t("INFO_INVITE")}](${await client.getInviteLink(8)})\n` +
-          `[${msg.t("INFO_SUPPORT_SERVER")}](https://discord.gg/e6V38mv)\n` +
+          `[${msg.t("INFO_SUPPORT_SERVER")}](https://discord.gg/ZKChwBD)\n` +
           `[${msg.t("INFO_DONATE")}](https://www.donationalerts.com/r/zaribros)\n` +
           `[bots.server-discord.com](https://bots.server-discord.com/679692205736460301)\n` +
           `[top.gg](https://top.gg/bot/679692205736460301)\n` +
