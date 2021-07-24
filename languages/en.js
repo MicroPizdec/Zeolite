@@ -326,6 +326,7 @@ module.exports = {
   INFO_INVITE: "Add me to your server",
   INFO_SUPPORT_SERVER: "Support server",
   INFO_DONATE: "Donate",
+  INFO_REPOSITORY: "GitHub repository",
 
   EMBED_DESCRIPTION: "sends the embed from JSON data. You can use [Discohook](https://discohook.org) or other embed generator to generate the embed",
   EMBED_USAGE: "<json>",

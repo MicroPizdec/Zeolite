@@ -325,6 +325,7 @@ module.exports = {
   INFO_INVITE: "Добавить меня на свой сервер",
   INFO_SUPPORT_SERVER: "Сервер поддержки",
   INFO_DONATE: "Пожертвовать",
+  INFO_REPOSITORY: "Репозиторий GitHub",
 
   EMBED_DESCRIPTION: "шлет эмбед из JSON. Вы можете использовать [Discohook](https://discohook.org) или другой генератор эмбедов",
   EMBED_USAGE: "<json>",
