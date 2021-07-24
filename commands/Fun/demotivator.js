@@ -54,6 +54,14 @@ module.exports = {
     const buffer = canvas.toBuffer();
 
     await message.delete();
-    await msg.reply("", { name: "demotivator.png", file: buffer });
+    const embed = {
+      color: await msg.author.embedColor(),
+      image: { url: "attachment://demotivator.png" },
+      footer: {
+        text: msg.t("USED_BY", msg.author.tag),
+        icon_url: msg.author.avatarURL, 
+      },
+    };
+    await msg.reply({ embed: embed }, { name: "demotivator.png", file: buffer });
   }
 }

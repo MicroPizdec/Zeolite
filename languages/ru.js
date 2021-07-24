@@ -464,6 +464,7 @@ module.exports = {
   DEMOTIVATOR_NO_BOTTOM_TEXT: "> :x: Укажите нижний текст.",
   DEMOTIVATOR_NO_IMAGE: "> :x: Укажите изображение.",
   DEMOTIVATOR_IMAGE_FAILED: "> :x: Не удалось загрузить изображение.",
+  USED_BY: author => `Использовано ${author}`,
   
   TAGS_DESCRIPTION: "Позволяет вам управлять тегами.\nИспользуйте эту команду без аргументов для получения подробной информации",
   TAGS_USAGE: "[субкоманда]",
