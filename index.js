@@ -47,4 +47,3 @@ client.on("commandCooldown", async (cmd, msg, secsLeft) => {
 });
 
 client.connect();
-
