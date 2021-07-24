@@ -11,7 +11,7 @@ module.exports = {
   async run (client, msg, args, prefix, language) {
     if (cooldowns.has(msg.author.id)) {
       const cooldown = cooldowns.get(msg.author.id);
-      const minsLeft = Math.ceil((cooldown - Date.now()) / 60000);
+      const minsLeft = Math.floor(cooldown / 1000);
 
       const embed = {
         title: msg.t("WORK_COOLDOWN_TITLE"),

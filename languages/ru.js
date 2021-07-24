@@ -204,7 +204,7 @@ module.exports = {
 
   WORK_COMMAND_DESCRIPTION: "получить от 50 до 300 ZetCoin'ов (раз в час)",
   WORK_COOLDOWN_TITLE: ":x: Не так быстро!",
-  WORK_COOLDOWN_DESC: time => `Работа будет доступна через **${time}** минут.`,
+  WORK_COOLDOWN_DESC: time => `Работа будет доступна <t:${time}:R>.`,
   WORK_EMBED_TITLE: "Работа",
   WORK_EMBED_DESCRIPTION: (amount, balance) => `**Вы заработали: ${amount}** ZetCoin'ов <:zetcoins:766959525864669235>\n**Ваш баланс: ${balance}** ZetCoin'ов <:zetcoins:766959525864669235>`,
 

@@ -205,7 +205,7 @@ module.exports = {
 
   WORK_COMMAND_DESCRIPTION: "earn from 50 to 300 ZetCoins (1 time per hour)",
   WORK_COOLDOWN_TITLE: ":x: Not so fast!",
-  WORK_COOLDOWN_DESC: time => `You can work again in **${time}** mins.`,
+  WORK_COOLDOWN_DESC: time => `You can work again <t:${time}:R>.`,
   WORK_EMBED_TITLE: "Work",
   WORK_EMBED_DESCRIPTION: (amount, balance) => `**You earned: ${amount}** ZetCoins <:zetcoins:766959525864669235>\n**Your balance: ${balance}** ZetCoins <:zetcoins:766959525864669235>`,
 
