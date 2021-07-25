@@ -9,16 +9,18 @@ module.exports = {
     if (!args.length)
       return msg.reply(msg.t("DICE_NO_ARGS_PROMPT", prefix));
     
-    const amount = Math.floor(Math.abs(parseFloat(args[0])));
+    let amount = Math.floor(Math.abs(parseFloat(args[0])));
     const chance = Math.random() < 0.5;
 
     const userBalance = (await zetCoins.findOrCreate({ where: { user: msg.author.id } }))[0];
     if (amount > userBalance.balance)
       return msg.reply(msg.t("DICE_NOT_ENOUGH_MONEY", userBalance.balance));
-    if (isNaN(amount))
+    if (isNaN(amount) && args[0] != "all")
       return msg.reply(msg.t("DICE_AMOUNT_IS_NAN"));
     if (amount === 0)
       return msg.reply(msg.t("DICE_MORE_THAN_ZERO"));
+
+    if (args[0] == "all") amount = userBalance.balance;
 
     const winEmbed = {
       author: {

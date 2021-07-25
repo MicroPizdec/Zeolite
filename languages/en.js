@@ -220,7 +220,7 @@ module.exports = {
   MISSING_PERMISSION_DESCRIPTION: permission => `Missing permission: \`${permission}\``,
 
   DICE_COMMAND_DESCRIPTION: "win or lose the amount of ZetCoins",
-  DICE_COMMAND_USAGE: "<amount>",
+  DICE_COMMAND_USAGE: "<amount | all>",
   DICE_NO_ARGS_PROMPT: prefix => `> :x: How much ZetCoins you want to bet? Use \`${prefix}dice <amount>\``,
   DICE_NOT_ENOUGH_MONEY: balance => `> :x: You don't have enough ZetCoins. Your balance: ${balance} ZetCoins.`,
   DICE_AMOUNT_IS_NAN: "> :x: Provided amount is not a number.",

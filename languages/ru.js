@@ -219,7 +219,7 @@ module.exports = {
   MISSING_PERMISSION_DESCRIPTION: permission => `Нужное разрешение: \`${permission}\``,
 
   DICE_COMMAND_DESCRIPTION: "выиграть или потерять кол-во ZetCoin'ов",
-  DICE_COMMAND_USAGE: "<кол-во>",
+  DICE_COMMAND_USAGE: "<кол-во | all>",
   DICE_NO_ARGS_PROMPT: prefix => `> :x: Сколько ZetCoin'ов вы хотите поставить? Используйте \`${prefix}dice <кол-во>\``,
   DICE_NOT_ENOUGH_MONEY: balance => `> :x: Недостаточно ZetCoin'ов на счету. Ваш баланс: ${balance} ZetCoin'ов.`,
   DICE_AMOUNT_IS_NAN: "> :x: Указанное кол-во не является числом.",
