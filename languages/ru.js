@@ -405,7 +405,7 @@ module.exports = {
   DEPOSIT_EMBED_TITLE: "Справка по депозитам",
   DEPOSIT_EMBED_DESC: "Вы можете внести ZetCoin'ы на депозит.\nПри этом, вы не сможете использовать их и эта сумма не будет учитываться в топе до того, как вы их снимете.\nКаждые 2 часа будет начисляться 1% от суммы на депозите. Лимит 250000 ZetCoin'ов.",
   DEPOSIT_USAGE: "Как использовать",
-  DEPOSIT_USAGE_DESC: prefix => `\`${prefix}deposit put <сумма>\n${prefix}deposit wd <сумма>\``,
+  DEPOSIT_USAGE_DESC: prefix => `\`\`\`${prefix}deposit put <сумма>\n${prefix}deposit put all\n${prefix}deposit wd <сумма>\n${prefix}deposit wd all\`\`\``,
   DEPOSIT_NOT_ENOUGH_MONEY: bal => `> :x: Недостаточно средств. Ваш баланс: ${bal} ZetCoin'ов.`,
   DEPOSIT_PUT_SUCCESS: "Успешно внесено в депозит!",
   DEPOSIT_TOTAL: "Депозит",

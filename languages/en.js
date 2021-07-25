@@ -406,7 +406,7 @@ module.exports = {
   DEPOSIT_EMBED_TITLE: "Deposit help",
   DEPOSIT_EMBED_DESC: "You can put your ZetCoins to the deposit.\nHowever, you won't be able to use them, and this sum won't be counted in the top.\nEvery 2 hours 1% of the sum on deposit will be charged. Limit is 250000 ZetCoins.",
   DEPOSIT_USAGE: "How to use",
-  DEPOSIT_USAGE_DESC: prefix => `\`${prefix}deposit put <sum>\n${prefix}deposit wd <sum>\``,
+  DEPOSIT_USAGE_DESC: prefix => `\`\`\`${prefix}deposit put <sum>\n${prefix}deposit put all\n${prefix}deposit wd <sum>\n${prefix}deposit wd all\`\`\``,
   DEPOSIT_INVALID_SUM: "> :x: Invalid sum.",
   DEPOSIT_NOT_ENOUGH_MONEY: bal => `> :x: You don't have enough ZetCoins. Your balance: ${bal} ZetCoins.`,
   DEPOSIT_PUT_SUCCESS: "Successfully put to deposit!",
