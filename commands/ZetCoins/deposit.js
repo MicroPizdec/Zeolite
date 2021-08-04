@@ -28,8 +28,8 @@ module.exports = {
 
     if (subcommand != "put" && subcommand != "wd") return;
 
-    const intSum = Math.floor(parseFloat(sum));
-    if (!intSum || intSum <= 0) {
+    let intSum = Math.floor(parseFloat(sum));
+    if ((!intSum || intSum <= 0) && sum != "all") {
       return msg.reply(msg.t("DEPOSIT_INVALID_SUM"));
     }
 
@@ -39,6 +39,8 @@ module.exports = {
       .then(d => d[0]);
 
     if (subcommand == "put") {
+      if (sum == "all") intSum = userBal.balance;
+
       if (intSum > userBal.balance) {
         return msg.reply(msg.t("DEPOSIT_NOT_ENOUGH_MONEY", userBal.balance));
       }
@@ -67,6 +69,8 @@ module.exports = {
 
       await msg.reply({ embed });
     } else {
+      if (sum == "all") intSum = dep.balance;
+      
       if (intSum > dep.balance) {
         return msg.reply(msg.t("DEPOSIT_NOT_ENOUGH_DEPOSIT", dep.balance));
       }

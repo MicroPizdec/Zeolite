@@ -220,7 +220,7 @@ module.exports = {
   MISSING_PERMISSION_DESCRIPTION: permission => `Missing permission: \`${permission}\``,
 
   DICE_COMMAND_DESCRIPTION: "win or lose the amount of ZetCoins",
-  DICE_COMMAND_USAGE: "<amount>",
+  DICE_COMMAND_USAGE: "<amount | all>",
   DICE_NO_ARGS_PROMPT: prefix => `> :x: How much ZetCoins you want to bet? Use \`${prefix}dice <amount>\``,
   DICE_NOT_ENOUGH_MONEY: balance => `> :x: You don't have enough ZetCoins. Your balance: ${balance} ZetCoins.`,
   DICE_AMOUNT_IS_NAN: "> :x: Provided amount is not a number.",
@@ -406,7 +406,7 @@ module.exports = {
   DEPOSIT_EMBED_TITLE: "Deposit help",
   DEPOSIT_EMBED_DESC: "You can put your ZetCoins to the deposit.\nHowever, you won't be able to use them, and this sum won't be counted in the top.\nEvery 2 hours 1% of the sum on deposit will be charged. Limit is 250000 ZetCoins.",
   DEPOSIT_USAGE: "How to use",
-  DEPOSIT_USAGE_DESC: prefix => `\`${prefix}deposit put <sum>\n${prefix}deposit wd <sum>\``,
+  DEPOSIT_USAGE_DESC: prefix => `\`\`\`${prefix}deposit put <sum>\n${prefix}deposit put all\n${prefix}deposit wd <sum>\n${prefix}deposit wd all\`\`\``,
   DEPOSIT_INVALID_SUM: "> :x: Invalid sum.",
   DEPOSIT_NOT_ENOUGH_MONEY: bal => `> :x: You don't have enough ZetCoins. Your balance: ${bal} ZetCoins.`,
   DEPOSIT_PUT_SUCCESS: "Successfully put to deposit!",
