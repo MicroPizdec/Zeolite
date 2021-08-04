@@ -542,14 +542,7 @@ module.exports = {
 
   HENTAIASS_DESCRIPTION: "Gets a random hentai ass image.\nThis command can be used only in channels marked as NSFW",
 
-  DEVIANTART_DESCRIPTION: "Gets a random deviation from DeviantArt by tag.\nThis command can be used only in channels marked as NSFW",
-  DEVIANTART_USAGE: "<tag>",
-  DEVIANTART_NOT_FOUND: "> :x: Nothing found by provided tag.",
-  DEVIANTART_FAVOURITES: "Favourites",
-  DEVIANTART_COMMENTS: "Comments",
-
   FEET_DESCRIPTION: "Gets a random foot fetish image.\nThis command can be used only in channels marked as NSFW",
-  FEET_TITLE: "Foot fetish image",
 
   EMOJI_DESCRIPTION: "Shows information about provided emoji.\nStandard Discord emojis isn't supported",
   EMOJI_USAGE: "<emoji>",
