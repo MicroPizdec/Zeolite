@@ -91,9 +91,9 @@ module.exports = {
     COMMUNITY: "сообщество",
     MEMBER_VERIFICATION_GATE_ENABLED: "отбор участников",
     PREVIEW_ENABLED: "предпросмотр сервера",
-    PRIVATE_THREADS: "приватные трэды",
-    THREE_DAY_THREAD_ARCHIVE: "3-х дневные архивные трэды",
-    SEVEN_DAY_THREAD_ARCHIVE: "7-и дневные архивные трэды",
+    PRIVATE_THREADS: "приватные ветки",
+    THREE_DAY_THREAD_ARCHIVE: "3-х дневный архив веток",
+    SEVEN_DAY_THREAD_ARCHIVE: "7-и дневный архив веток",
   },
   SERVERINFO_FOOTER: id => `ID: ${id}\nCоздан`,
 
