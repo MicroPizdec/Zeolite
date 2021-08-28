@@ -550,4 +550,15 @@ module.exports = {
   PORN_DESCRIPTION: "Получает случайное gif-порно.\nЭту команду можно использовать только в каналах помеченных как NSFW",
 
   SOLO_DESCRIPTION: "Получает случайное соло-изображение.\nЭту команду можно использовать только в каналах помеченных как NSFW",
+
+  MODLOGS_DESCRIPTION: "Позволяет управлять логами.",
+  MODLOGS_USAGE: "[канал: упоминание или id]",
+  MODLOGS_ENABLED: channel => `Логи включены в канале ${channel}.`,
+  MODLOGS_DISABLED: "Логи отключены.",
+  MODLOGS_FOOTER: prefix => `Вы можете включить логи или поменять канал используя ${prefix}modlogs [канал]. Либо же ${prefix}modlogs disable для отключения.`,
+  MODLOGS_DISABLE_SUCCESS: "> :white_check_mark: Логи успешно отключены.",
+  INVALID_CHANNEL: "> :x: Указан неверный канал.",
+  MODLOGS_FAILED: ":x: Не удалось настроить логи.",
+  MODLOGS_DONT_HAVE_PERMS: "У меня нет права \"Отправлять сообщения\" и \"Встраивать ссылки\".",
+  MODLOGS_SUCCESS: channel => `> :white_check_mark: Логи успешно включены в канале **\"${channel}\"**!`,
 };

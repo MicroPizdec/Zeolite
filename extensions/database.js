@@ -26,5 +26,6 @@ module.exports.load = async client => {
     await prefixes.destroy({ where: { server: guild.id } });
     await tags.destroy({ where: { server: guild.id } });
     await languages.destroy({ where: { server: guild.id } });
+    await modlogs.destroy({ where: { server: guild.id } });
   });
 }

@@ -12,7 +12,7 @@ global.client = new CmdClient(config.token, {
   owners: config.owners,
   defaultImageSize: 1024,
   guildSubscriptions: false,
-  intents: [ "guilds", "guildMembers", "guildMessages" ],
+  intents: [ "guilds", "guildMembers", "guildBans", "guildMessages", "guildVoiceStates", "guildInvites" ],
   getAllUsers: true,
   db: config.db,
 });

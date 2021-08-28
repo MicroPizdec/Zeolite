@@ -1,6 +1,6 @@
 {
   "name": "zeolite",
-  "version": "3.5.0-p1",
+  "version": "3.5.1-legacy",
   "description": "",
   "main": "index.js",
   "scripts": {
