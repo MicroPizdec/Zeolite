@@ -4,7 +4,7 @@ module.exports = {
   description: "DICE_COMMAND_DESCRIPTION",
   usage: "DICE_COMMAND_USAGE",
   argsRequired: true,
-  cooldown: 10,
+  cooldown: 5,
   async run(client, msg, args, prefix, language) {
     if (!args.length)
       return msg.reply(msg.t("DICE_NO_ARGS_PROMPT", prefix));
