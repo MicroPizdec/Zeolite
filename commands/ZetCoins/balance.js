@@ -43,7 +43,7 @@ module.exports = {
         },
       ],
       footer: {
-        text: `${client.user.username} © ZariBros`,
+        text: `${client.user.username} © Fishyrene`,
         icon_url: client.user.avatarURL,
       },
     };

@@ -18,7 +18,7 @@ module.exports = {
         description: msg.t("WORK_COOLDOWN_DESC", minsLeft),
         color: await msg.author.embedColor(),
         footer: {
-          text: `${client.user.username} © ZariBros`,
+          text: `${client.user.username} © Fishyrene`,
           icon_url: client.user.avatarURL,
         },
       };
@@ -48,7 +48,7 @@ module.exports = {
       description: msg.t("WORK_EMBED_DESCRIPTION", amount, userBalance.balance ),
       color: await msg.author.embedColor(),
       footer: {
-        text: `${client.user.username} © ZariBros`,
+        text: `${client.user.username} © Fishyrene`,
         icon_url: client.user.avatarURL,
       },
     };

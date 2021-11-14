@@ -50,7 +50,7 @@ module.exports = {
       title: msg.t("STATS_EMBED_TITLE"),
       color: await msg.author.embedColor(),
       footer: {
-        text: `${client.user.username} v${package.version} © ZariBros`,
+        text: `${client.user.username} v${package.version} © Fishyrene`,
         icon_url: client.user.avatarURL,
       },
       fields: [

@@ -185,7 +185,7 @@ module.exports = {
             ],
             color: await msg.author.embedColor(),
             footer: {
-              text: `${client.user.username} © ZariBros`,
+              text: `${client.user.username} © Fishyrene`,
               icon_url: client.user.avatarURL,
             },
           };

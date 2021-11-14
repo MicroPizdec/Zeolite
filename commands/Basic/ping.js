@@ -11,7 +11,7 @@ module.exports = {
       description: msg.t("PING_API", msg.guild.shard.latency),
       color: await msg.author.embedColor(),
       footer: {
-        text: `${client.user.username} © ZariBros`,
+        text: `${client.user.username} © Fishyrene`,
         icon_url: client.user.avatarURL,
       },
     };

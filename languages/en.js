@@ -559,7 +559,7 @@ module.exports = {
   MODLOGS_DESCRIPTION: "Lets you to manage the logs.",
   MODLOGS_USAGE: "[channel: mention or id]",
   MODLOGS_ENABLED: channel => `Logs are enabled in channel ${channel}.`,
-  MODLOGS_DISABLED: "Logs are disbaled.",
+  MODLOGS_DISABLED: "Logs are disabled.",
   MODLOGS_FOOTER: prefix => `You can enable logs or change the logs channel by using ${prefix}modlogs [channel]. Or type ${prefix}modlogs disable to disable the logs.`,
   MODLOGS_DISABLE_SUCCESS: "> :white_check_mark: Logs have been disabled.",
   INVALID_CHANNEL: "> :x: Invalid channel provided.",

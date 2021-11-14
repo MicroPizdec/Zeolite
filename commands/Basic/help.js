@@ -13,7 +13,7 @@ module.exports = {
       fields: [],
       color: await msg.author.embedColor(),
       footer: {
-        text: `${client.user.username} © ZariBros`,
+        text: `${client.user.username} © Fishyrene`,
         icon_url: client.user.avatarURL,
       },
     };
@@ -51,7 +51,7 @@ module.exports = {
           description: msg.t("HELP_COMMAND_DOESNT_EXIST_DESC", prefix),
           color: 0xff1835,
           footer: {
-            text: `${client.user.username} © ZariBros`,
+            text: `${client.user.username} © Fishyrene`,
             icon_url: client.user.avatarURL,
           }
         };
@@ -77,7 +77,7 @@ module.exports = {
           },
         ],
         footer: {
-          text: `${client.user.username} © ZariBros`,
+          text: `${client.user.username} © Fishyrene`,
           icon_url: client.user.avatarURL,
         }
       };

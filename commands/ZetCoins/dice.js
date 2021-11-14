@@ -31,7 +31,7 @@ module.exports = {
       description: msg.t("DICE_WIN_MESSAGE", amount, userBalance.balance),
       color: 0x1cac78,
       footer: {
-        text: `${client.user.username} © ZariBros`,
+        text: `${client.user.username} © Fishyrene`,
         icon_url: client.user.avatarURL,
       },
     };
@@ -44,7 +44,7 @@ module.exports = {
       description: msg.t("DICE_LOSS_MESSAGE", amount, userBalance.balance),
       color: 0xcc0605,
       footer: {
-        text: `${client.user.username} © ZariBros`,
+        text: `${client.user.username} © Fishyrene`,
         icon_url: client.user.avatarURL,
       },
     };
