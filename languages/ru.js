@@ -362,6 +362,7 @@ module.exports = {
   PURGE_AMOUNT_MORE_THAN_100: "> :x: Кол-во не должно быть больше 100.",
   PURGE_SUCCESS: amount => `:white_check_mark: Успешно удалено ${amount} сообщений.`,
   PURGE_EMBED_DESC: "Это сообщение удалится через 5 секунд.",
+  PURGE_DONT_HAVE_PERMS: "> :x: Я не могу очистить сообщения, у меня нет права \`Управлять сообщениями\`.",
 
   SOFTBAN_DESCRIPTION: "софтбанит указанного пользователя",
   SOFTBAN_NO_ARGS: prefix => `> :x: Кого вы хотите софтбанить? Используйте \`${prefix}softban <пользователь> [причина]\``,

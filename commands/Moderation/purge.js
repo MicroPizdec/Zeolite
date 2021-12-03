@@ -20,6 +20,8 @@ module.exports = {
       return msg.reply(msg.t("PURGE_AMOUNT_LESS_THAN_1"));
     } else if (amount > 100) {
       return msg.reply(msg.t("PURGE_AMOUNT_MORE_THAN_100"));
+    } else if (!msg.guild.me.permission.has("manageMessages")) {
+      return msg.reply(msg.t("PURGE_DONT_HAVE_PERMS"));
     }
 
     await msg.channel.purge(amount + 1);

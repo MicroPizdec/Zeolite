@@ -363,6 +363,7 @@ module.exports = {
   PURGE_AMOUNT_MORE_THAN_100: "> :x: Amount must be not more than 100.",
   PURGE_SUCCESS: amount => `:white_check_mark: Successfully deleted ${amount} messages.`,
   PURGE_EMBED_DESC: "This message will be deleted in 5 seconds.",
+  PURGE_DONT_HAVE_PERMS: "> :x: I can't delete messages, I don't have the \`Manage Messages\` permission.",
 
   SOFTBAN_DESCRIPTION: "softbans the specified user",
   SOFTBAN_NO_ARGS: prefix => `> :x: What user do you want to softban? Use \`${prefix}softban <user> [reason]\``,
