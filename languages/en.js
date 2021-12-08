@@ -5,6 +5,8 @@ module.exports = {
   INVALID_USER_PROVIDED: "> :x: Invalid user provided.",
   DAYS_AGO: days => `(${days} days ago)`,
   COOLDOWN: time => `> :x: You can use this command again in ${time} seconds.`,
+  SOMETHING_WENT_WRONG: "Something went wrong, try again later.",
+  USER_IS_OWNER: "This user is a server owner.",
 
   BASIC_GROUP: "Basic commands",
   FUN_GROUP: "Fun commands",
@@ -567,4 +569,25 @@ module.exports = {
   MODLOGS_FAILED: ":x: Failed to set up the logs.",
   MODLOGS_DONT_HAVE_PERMS: "I don't have the \"Send messages\" and \"Embed links\" permissions to do this.",
   MODLOGS_SUCCESS: channel => `> :white_check_mark: Successfully enabled logs in channel **\"${channel}\"**!`,
+
+  HACKBAN_DESCRIPTION: "Hackbans the specified user",
+  HACKBAN_USAGE: "<user id> [reason]",
+  HACKBAN_ALREADY_IN_SERVER: "> :x: This user is already a member of this server, use \`ban\` command instead.",
+  HACKBAN_SUCCESS: user => `:white_check_mark: Successfully hackbanned ${user.tag}`,
+
+  MUTE_DESCRIPTION: "Mutes the specified user.\nAllowed time settings: Ns, Nm, Nh, Nd, where N is a number",
+  MUTE_USAGE: "<user> [time] [reason]",
+  MUTE_TOO_LONG: "> :warning: Mute time shouldn't be more than 7 days.",
+  CANT_MUTE_YOURSELF: "> :x: You can't mute yourself.",
+  CANT_MUTE_BOT: "> :x: You can't mute a bot.",
+  USER_ALREADY_MUTED: "> :x: User is already muted.",
+  MUTE_SUCCESS: user => `:white_check_mark: Sleep well, ${user.tag}`,
+  CAN_UNMUTE_FOOTER: prefix => `You can unmute the user, by typing ${prefix}unmute <user>.`,
+  MUTE_DONT_HAVE_PERMS: "I don't have the \`Manage Roles\` permission to do this.",
+  MUTE_FAIL: ":x: Failed to mute the user",
+
+  UNMUTE_DESCRIPTION: "Unmutes the specified user",
+  USER_NOT_MUTED: "> :x: User is not muted.",
+  UNMUTE_SUCCESS: user => `:white_check_mark: OK, ${user.tag} has been unmuted.`,
+  UNMUTE_FAIL: ":x: Unmute failed",
 };

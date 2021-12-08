@@ -4,6 +4,8 @@ module.exports = {
   INVALID_USER_PROVIDED: "> :x: Данного пользователя не существует.",
   DAYS_AGO: days => `(${days} дней назад)`,
   COOLDOWN: time => `> :x: Вы сможете снова использовать эту команду через ${time} секунд.`,
+  SOMETHING_WENT_WRONG: "Что-то пошло не так, повторите попытку позже.",
+  USER_IS_OWNER: "Этот пользователь является владельцем сервера.",
 
   BASIC_GROUP: "Основные команды",
   FUN_GROUP: "Развлекательные команды",
@@ -552,7 +554,7 @@ module.exports = {
 
   SOLO_DESCRIPTION: "Получает случайное соло-изображение.\nЭту команду можно использовать только в каналах помеченных как NSFW",
 
-  MODLOGS_DESCRIPTION: "Позволяет управлять логами.",
+  MODLOGS_DESCRIPTION: "Позволяет управлять логами",
   MODLOGS_USAGE: "[канал: упоминание или id]",
   MODLOGS_ENABLED: channel => `Логи включены в канале ${channel}.`,
   MODLOGS_DISABLED: "Логи отключены.",
@@ -562,4 +564,26 @@ module.exports = {
   MODLOGS_FAILED: ":x: Не удалось настроить логи.",
   MODLOGS_DONT_HAVE_PERMS: "У меня нет права \"Отправлять сообщения\" и \"Встраивать ссылки\".",
   MODLOGS_SUCCESS: channel => `> :white_check_mark: Логи успешно включены в канале **\"${channel}\"**!`,
+
+  HACKBAN_DESCRIPTION: "Хакбанит указанного пользователя",
+  HACKBAN_USAGE: "<id пользователя> [причина]",
+  HACKBAN_ALREADY_IN_SERVER: "> :x: Этот пользователь уже находится на сервере, используйте \`ban\` вместо этой.",
+  HACKBAN_FAILED: ":x: Хакбан не удался",
+  HACKBAN_SUCCESS: user => `:white_check_mark: ${user.tag} успешно хакбанен`,
+
+  MUTE_DESCRIPTION: "Заглушает указанного пользователя\nРазрешенные настройки времени: Ns, Nm, Nh, Nd, где N - число.",
+  MUTE_USAGE: "<пользователь> [время] [причина]",
+  MUTE_TOO_LONG: "> :warning: Время заглушения должно быть не более 7 дней",
+  CANT_MUTE_YOURSELF: "> :x: Вы не можете заглушить самого себя.",
+  CANT_MUTE_BOT: "> :x: Вы не можете заглушить бота.",
+  USER_ALREADY_MUTED: "> :x: Пользователь уже заглушен.",
+  MUTE_SUCCESS: user => `:white_check_mark: Спи спокойно, ${user.tag}`,
+  CAN_UNMUTE_FOOTER: prefix => `Вы можете размутить пользователя, введя ${prefix}unmute <пользователь>.`,
+  MUTE_DONT_HAVE_PERMS: "У меня нет права \"Управлять ролями\".",
+  MUTE_FAIL: ":x: Не удалось заглушить пользователя",
+
+  UNMUTE_DESCRIPTION: "Размутит указанного пользователя",
+  USER_NOT_MUTED: "> :x: Пользователь не был заглушен.",
+  UNMUTE_SUCCESS: user => `:white_check_mark: Ладно, ${user.tag} успешно размучен.`,
+  UNMUTE_FAIL: ":x: Размут не удался",
 };
