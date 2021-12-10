@@ -3,6 +3,7 @@ import {
   ChatInputApplicationCommandData,
   ApplicationCommandOptionData} from "discord.js";
 import ZeoliteClient from "./ZeoliteClient";
+import ZeoliteContext from "./ZeoliteContext";
 
 export default class ZeoliteCommand {
   name: string = "";
@@ -15,7 +16,7 @@ export default class ZeoliteCommand {
     this.client = client;
   }
 
-  async run(ctx: Interaction) {
+  async run(ctx: ZeoliteContext) {
     throw new Error("abstract class method.");
   }
 

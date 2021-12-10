@@ -6,6 +6,7 @@ import ZeoliteExtension from "./ZeoliteExtension";
 import Logger, { LoggerLevel } from "./Logger";
 import fs from "fs";
 import path from "path";
+import ZeoliteContext from "./ZeoliteContext";
 
 export default class ZeoliteClient extends Client {
   commands = new Collection<string | undefined, ZeoliteCommand>();
@@ -29,11 +30,13 @@ export default class ZeoliteClient extends Client {
     this.logger.info("ZeoliteClient initialized.");
   }
 
-  async handleCommand(ctx: Interaction) {
-    if (!ctx.isCommand()) return;
+  async handleCommand(interaction: Interaction) {
+    if (!interaction.isCommand()) return;
 
-    const cmd: ZeoliteCommand | undefined = this.commands.get(ctx.commandName);
+    const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.commandName);
     if (!cmd) return;
+
+    const ctx = new ZeoliteContext(this, interaction);
 
     if (cmd.ownerOnly && !this.isOwner(ctx.user)) {
       this.emit("ownerOnlyCommand", ctx);

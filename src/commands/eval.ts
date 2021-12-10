@@ -1,6 +1,7 @@
 import { CommandInteraction } from "discord.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import util from "util";
+import ZeoliteContext from "../core/ZeoliteContext";
 
 export default class EvalCommand extends ZeoliteCommand {
   name = "eval";
@@ -15,8 +16,8 @@ export default class EvalCommand extends ZeoliteCommand {
   ];
   ownerOnly = true;
 
-  async run(ctx: CommandInteraction) {
-    const code = ctx.options.getString("code");
+  async run(ctx: ZeoliteContext) {
+    const code = ctx.interaction.options.getString("code");
     const asyncified = `(async () => {\n${code}\n})()`;
 
     try {
