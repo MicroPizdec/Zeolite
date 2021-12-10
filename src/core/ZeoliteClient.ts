@@ -23,7 +23,13 @@ export default class ZeoliteClient extends Client {
     this.extDirPath = options.extDirPath;
     this.owners = options.owners;
 
-    this.on("ready", () => this.logger.info(`Logged in as ${this.user?.username}.`));
+    this.on("ready", () => {
+      this.logger.info(`Logged in as ${this.user?.username}.`);
+
+      for (const cmd of this.commands.values()) {
+        this.application?.commands.create(cmd.json());
+      }
+    });
 
     this.on("interactionCreate", this.handleCommand);
 
@@ -66,8 +72,6 @@ export default class ZeoliteClient extends Client {
     const cmd = new cmdCls(this);
       
     this.commands.set(cmd.name, cmd);
-    console.log(cmd.json());
-    console.log(await this.application?.commands.create(cmd.json()));
 
     this.logger.info(`Loaded command ${name}.`);
   }

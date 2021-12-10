@@ -9,6 +9,6 @@ const client = new ZeoliteClient({
   owners: config.owners,
 });
 
-client.on("ready", () => client.loadAllCommands());
+client.loadAllCommands();
 
 client.login(config.token);
