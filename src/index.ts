@@ -10,5 +10,6 @@ const client = new ZeoliteClient({
 });
 
 client.loadAllCommands();
+client.loadAllExtensions();
 
 client.login(config.token);
