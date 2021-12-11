@@ -26,6 +26,10 @@ export default class ZeoliteContext {
     return this.interaction.channel;
   }
 
+  get commandName(): string {
+    return this.interaction.commandName;
+  }
+
   async reply(options: InteractionReplyOptions): Promise<Message | void> {
     return this.interaction.reply(options);
   }

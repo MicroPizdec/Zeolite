@@ -8,7 +8,7 @@ export default class DatabaseExtension extends ZeoliteExtension {
   sequelize: Sequelize;
 
   async onLoad() {
-    this.sequelize = new Sequelize(config.dbUri, {
+    this.sequelize = new Sequelize(config.dbUri || "sqlite:bot.db", {
       logging: false,
     });
     this.sequelize.addModels([ path.join(__dirname, "..", "dbModels") ]);
