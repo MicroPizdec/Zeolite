@@ -1,6 +1,7 @@
 import ZeoliteClient from "./core/ZeoliteClient";
 import path from "path";
 import config from "../config.json";
+import ZeoliteContext from "./core/ZeoliteContext";
 
 const client = new ZeoliteClient({
   cmdDirPath: path.join(__dirname, "commands"),
@@ -11,5 +12,9 @@ const client = new ZeoliteClient({
 
 client.loadAllCommands();
 client.loadAllExtensions();
+
+client.on("ownerOnlyCommand", (ctx: ZeoliteContext) => {
+  ctx.reply({ content: "> :x: You aren't the bot owner!", ephemeral: true });
+});
 
 client.login(config.token);

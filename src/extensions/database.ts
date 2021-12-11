@@ -8,10 +8,15 @@ export default class DatabaseExtension extends ZeoliteExtension {
   sequelize: Sequelize;
 
   async onLoad() {
-    this.sequelize = new Sequelize(config.dbUri);
+    this.sequelize = new Sequelize(config.dbUri, {
+      logging: false,
+    });
     this.sequelize.addModels([ path.join(__dirname, "..", "dbModels") ]);
 
-    this.client.once("ready", () => this.sequelize.sync()
-      .then(() => this.client.logger.info("DB: connected.")))
+    this.client.once("ready", () => {
+      this.sequelize.sync()
+        .then(() => this.client.logger.info("DB: connected."))
+        .catch(err => this.client.logger.error(`DB: failed to connect:\n${err.stack}`));
+    });
   }
 }
