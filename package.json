@@ -19,7 +19,6 @@
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.11.0",
     "sequelize-typescript": "^2.1.1",
-    "sqlite3": "^5.0.2",
-    "yaml": "^1.10.2"
+    "sqlite3": "^5.0.2"
   }
 }
