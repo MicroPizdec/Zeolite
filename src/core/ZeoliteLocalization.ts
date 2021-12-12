@@ -37,7 +37,7 @@ export default class ZeoliteLocalization {
     const lang = this.userLanguages[user.id];
     const langStrs = this.languageStrings[lang as string];
 
-    return langStrs[str] ? util.format(langStrs[str]) : str;
+    return langStrs[str] ? util.format(langStrs[str], ...args) : str;
   }
 
   loadLanguages() {

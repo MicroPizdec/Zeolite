@@ -14,7 +14,7 @@ client.loadAllCommands();
 client.loadAllExtensions();
 
 client.on("ownerOnlyCommand", (ctx: ZeoliteContext) => {
-  ctx.reply({ content: "> :x: You aren't the bot owner!", ephemeral: true });
+  ctx.reply({ content: ctx.t("notBotOwner"), ephemeral: true });
 });
 
 client.login(config.token);
