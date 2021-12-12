@@ -8,7 +8,7 @@ import ZeoliteContext from "./ZeoliteContext";
 export default class ZeoliteCommand {
   name: string = "";
   description: string = "";
-  options?: Array<ApplicationCommandOptionData>;
+  options?: ApplicationCommandOptionData[];
   ownerOnly?: boolean;
   readonly client: ZeoliteClient;
 

@@ -7,10 +7,9 @@ export default class TestCommand extends ZeoliteCommand {
   description = "Test command";
 
   async run(ctx: ZeoliteContext) {
-    throw new Error("test");
     const embed = new MessageEmbed()
-      .setTitle("Работаем...")
-      .setDescription("на TypeScript епта)")
+      .setTitle(ctx.t("testString"))
+      .setDescription(ctx.t("testStringWithError"));
     
     await ctx.reply({ embeds: [ embed ] });
   }

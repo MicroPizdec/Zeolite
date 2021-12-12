@@ -33,4 +33,8 @@ export default class ZeoliteContext {
   async reply(options: InteractionReplyOptions): Promise<Message | void> {
     return this.interaction.reply(options);
   }
+
+  t(str: string, ...args: any[]): string {
+    return this.client.localization.getString(this.user, str, ...args);
+  }
 }

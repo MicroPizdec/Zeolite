@@ -7,10 +7,12 @@ import Logger, { LoggerLevel } from "./Logger";
 import fs from "fs";
 import path from "path";
 import ZeoliteContext from "./ZeoliteContext";
+import ZeoliteLocalization from "./ZeoliteLocalization";
 
 export default class ZeoliteClient extends Client {
   commands = new Collection<string | undefined, ZeoliteCommand>();
   extensions = new Collection<string, ZeoliteExtension>();
+  localization: ZeoliteLocalization;
   logger = new Logger(LoggerLevel.Debug);
   cmdDirPath: string;
   extDirPath: string;
@@ -33,7 +35,11 @@ export default class ZeoliteClient extends Client {
 
     this.on("interactionCreate", this.handleCommand);
 
+    this.localization = new ZeoliteLocalization(this);
+
     this.logger.info("ZeoliteClient initialized.");
+
+    this.localization.loadLanguages();
   }
 
   async handleCommand(interaction: Interaction) {
@@ -54,6 +60,7 @@ export default class ZeoliteClient extends Client {
       this.emit("commandSuccess", ctx);
     } catch (error: any) {
       this.emit("commandError", ctx, error);
+      console.error(error);
     }
   }
 
