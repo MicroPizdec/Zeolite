@@ -1,6 +1,6 @@
 import ZeoliteClient from "./core/ZeoliteClient";
 import path from "path";
-import config from "../config.json";
+import config from "./config";
 import ZeoliteContext from "./core/ZeoliteContext";
 
 const client = new ZeoliteClient({

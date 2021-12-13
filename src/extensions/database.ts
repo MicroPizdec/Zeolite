@@ -1,7 +1,7 @@
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import { Sequelize, Model } from "sequelize-typescript";
 import path from "path";
-import config from "../../config.json";
+import config from "../config";
 
 export default class DatabaseExtension extends ZeoliteExtension {
   name = "database";
