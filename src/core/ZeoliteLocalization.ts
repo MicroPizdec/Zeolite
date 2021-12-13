@@ -1,6 +1,6 @@
 import ZeoliteClient from "./ZeoliteClient";
 import Languages from "../dbModels/Languages";
-import { User } from "discord.js";
+import { User } from "discord.js-light";
 import fs from "fs";
 import path from "path";
 import util from "util";

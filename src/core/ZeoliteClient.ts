@@ -1,4 +1,4 @@
-import { Client, Interaction, User } from "discord.js";
+import { Client, Interaction, User } from "discord.js-light";
 import { Collection } from "@discordjs/collection";
 import ZeoliteCommand from "./ZeoliteCommand";
 import ZeoliteClientOptions from "./ZeoliteClientOptions";
@@ -60,6 +60,8 @@ export default class ZeoliteClient extends Client {
       this.emit("commandSuccess", ctx);
     } catch (error: any) {
       this.emit("commandError", ctx, error);
+
+      this.logger.error(`Error in command ${cmd.name}:`);
       console.error(error);
     }
   }

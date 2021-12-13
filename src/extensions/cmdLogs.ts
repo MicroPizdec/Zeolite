@@ -1,4 +1,4 @@
-import { GuildChannel, MessageEmbed, WebhookClient } from "discord.js";
+import { GuildChannel, MessageEmbed, WebhookClient } from "discord.js-light";
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import config from "../../config.json";
 import ZeoliteContext from "../core/ZeoliteContext";
@@ -20,6 +20,14 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   async onCommandError(ctx: ZeoliteContext, error: any) {
+    const errEmbed = new MessageEmbed()
+      .setTitle(ctx.t("commandError"))
+      .setDescription(ctx.t("commandErrorDesc"))
+      .setColor("RED")
+      .setFooter("Zeolite © Fishyrene", self.client.user?.displayAvatarURL());
+    
+    await ctx.reply({ embeds: [ errEmbed ], ephemeral: true });
+
     const embed = new MessageEmbed()
       .setTitle(`:x: An error occurred while executing command \`${ctx.commandName}\``)
       .setColor("RED")
@@ -33,7 +41,6 @@ export default class CmdLogsExtension extends ZeoliteExtension {
 
   async onLoad() {
     this.webhook = new WebhookClient({ url: config.webhookUrl });
-    console.log(this.webhook);
 
     self = this;
 

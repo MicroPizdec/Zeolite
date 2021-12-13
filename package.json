@@ -16,6 +16,7 @@
   },
   "dependencies": {
     "discord.js": "^13.3.1",
+    "discord.js-light": "^4.3.1",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.11.0",
     "sequelize-typescript": "^2.1.1",

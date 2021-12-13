@@ -1,5 +1,5 @@
 import ZeoliteClient from "./ZeoliteClient";
-import { GuildMember, CommandInteraction, User, Guild, TextBasedChannels, Message, InteractionReplyOptions } from "discord.js";
+import { GuildMember, CommandInteraction, User, Guild, TextBasedChannels, Message, InteractionReplyOptions } from "discord.js-light";
 
 export default class ZeoliteContext {
   readonly client: ZeoliteClient;

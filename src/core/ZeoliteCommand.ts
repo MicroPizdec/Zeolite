@@ -1,7 +1,7 @@
 import { 
   Interaction,
   ChatInputApplicationCommandData,
-  ApplicationCommandOptionData} from "discord.js";
+  ApplicationCommandOptionData} from "discord.js-light";
 import ZeoliteClient from "./ZeoliteClient";
 import ZeoliteContext from "./ZeoliteContext";
 
