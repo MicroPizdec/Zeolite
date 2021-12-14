@@ -10,6 +10,7 @@ export default {
   stats: "Stats",
   statsUptime: "Uptime",
   statsRamUsed: "RAM used",
+  statsPing: "Ping",
   statsServers: "Servers",
   statsUsers: "Users",
   statsChannels: "Channels",

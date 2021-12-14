@@ -66,18 +66,18 @@ export default class ZeoliteClient extends Client {
     }
   }
 
-  async loadAllCommands() {
+  loadAllCommands() {
     const files = fs.readdirSync(this.cmdDirPath).map(cmd => cmd.replace(".js", ""));
 
     for (const file of files) {
-      await this.loadCommand(file);
+      this.loadCommand(file);
     }
 
     this.logger.info("Loaded all commands.");
   }
 
-  async loadCommand(name: string) {
-    const cmdCls: typeof ZeoliteCommand = await import(path.join(this.cmdDirPath, name)).then(c => c.default);
+  loadCommand(name: string) {
+    const cmdCls: typeof ZeoliteCommand = require(path.join(this.cmdDirPath, name)).default;
     const cmd = new cmdCls(this);
       
     this.commands.set(cmd.name, cmd);
@@ -104,8 +104,8 @@ export default class ZeoliteClient extends Client {
     this.logger.info("Loaded extensions.");
   }
 
-  async loadExtension(name: string) {
-    const extCls: typeof ZeoliteExtension = await import(path.join(this.extDirPath, name)).then(c => c.default);
+  loadExtension(name: string) {
+    const extCls: typeof ZeoliteExtension = require(path.join(this.extDirPath, name)).default;
     const ext = new extCls(this);
 
     this.extensions.set(ext.name, ext);

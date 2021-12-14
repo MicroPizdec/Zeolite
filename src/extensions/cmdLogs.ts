@@ -15,6 +15,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     const embed = new MessageEmbed()
       .setTitle(`Command \`${ctx.commandName}\` used`)
       .setDescription(`/${ctx.commandName} ${options.join(" ")}`)
+      .setColor(0x9f00ff)
       .addField("User", `${ctx.user.tag} (ID: ${ctx.user.id})`)
       .addField("Channel", `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
       .addField("Guild", `${ctx.guild?.name} (ID: ${ctx.guild?.id})`);
