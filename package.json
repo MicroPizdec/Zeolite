@@ -4,7 +4,7 @@
   "description": "Discord bot",
   "main": "./dist/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node .",
     "build": "npx tsc"
   },
   "author": "1z3ngero, alyzter",
