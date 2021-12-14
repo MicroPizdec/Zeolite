@@ -3,7 +3,6 @@ import path from "path";
 import config from "./config";
 import ZeoliteContext from "./core/ZeoliteContext";
 import { Options } from "discord.js-light";
-import { error } from "console";
 
 const client = new ZeoliteClient({
   cmdDirPath: path.join(__dirname, "commands"),
