@@ -15,4 +15,10 @@ export default {
   statsUsers: "Users",
   statsChannels: "Channels",
   statsCpu: "CPU",
+
+  userBadges: "Badges",
+  userBadgesNone: "None",
+  userFooter: `ID: %s\nRegistered %d days ago`,
+  userJoinDate: "Join date",
+  userRoles: "Roles",
 }
