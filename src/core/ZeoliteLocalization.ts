@@ -5,7 +5,6 @@ import fs from "fs";
 import path from "path";
 import util from "util";
 
-type L10nFunc = string | ((...args: any[]) => string);
 let self: ZeoliteLocalization;
 
 export default class ZeoliteLocalization {

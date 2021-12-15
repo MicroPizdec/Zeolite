@@ -29,4 +29,14 @@ export default {
   infoSupportServer: "Support server",
   infoRepository: "GitHub repository",
   infoDonate: "Donate",
+
+  serverOwner: "Owner",
+  serverVerificationLevel: "Verification level",
+  serverChannels: "Channels",
+  serverChannelsDesc: "text - %d\nvoice - %d",
+  serverMembers: "Members",
+  serverEmojis: "Emojis",
+  serverEmojisDesc: "static - %d\nanimated - %d",
+  serverRolesCount: "Roles count",
+  serverFooter: "ID: %s\nCreated %d days ago",
 }
