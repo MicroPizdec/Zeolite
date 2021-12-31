@@ -5,6 +5,7 @@
   "main": "./dist/index.js",
   "scripts": {
     "start": "node .",
+    "start:dev": "npx ts-node src/index",
     "build": "npx tsc"
   },
   "author": "1z3ngero, alyzter",
@@ -13,6 +14,7 @@
     "@types/luxon": "^2.0.8",
     "@types/node": "^16.11.12",
     "@types/validator": "^13.7.0",
+    "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   },
   "dependencies": {

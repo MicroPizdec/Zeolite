@@ -40,7 +40,7 @@ export default class ZeoliteLocalization {
   }
 
   loadLanguages() {
-    const langs = fs.readdirSync(path.join(__dirname, "..", "languages")).map(f => f.replace(".js", ""));
+    const langs = fs.readdirSync(path.join(__dirname, "..", "languages")).map(i => i.split(".")[0]);
 
     for (const lang of langs) {
       import(path.join("..", "languages", lang))

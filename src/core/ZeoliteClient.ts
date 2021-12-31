@@ -67,7 +67,7 @@ export default class ZeoliteClient extends Client {
   }
 
   loadAllCommands() {
-    const files = fs.readdirSync(this.cmdDirPath).map(cmd => cmd.replace(".js", ""));
+    const files = fs.readdirSync(this.cmdDirPath);
 
     for (const file of files) {
       this.loadCommand(file);
@@ -82,7 +82,7 @@ export default class ZeoliteClient extends Client {
       
     this.commands.set(cmd.name, cmd);
 
-    this.logger.info(`Loaded command ${name}.`);
+    this.logger.info(`Loaded command ${cmd.name}.`);
   }
 
   async login(token: string): Promise<string> {
@@ -95,7 +95,7 @@ export default class ZeoliteClient extends Client {
   }
 
   loadAllExtensions() {
-    const files = fs.readdirSync(this.extDirPath).map(cmd => cmd.replace(".js", ""));
+    const files = fs.readdirSync(this.extDirPath);
 
     for (const file of files) {
       this.loadExtension(file);
