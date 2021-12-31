@@ -1,5 +1,15 @@
 import ZeoliteClient from "./ZeoliteClient";
-import { GuildMember, CommandInteraction, User, Guild, TextBasedChannels, Message, InteractionReplyOptions } from "discord.js-light";
+import {
+  GuildMember,
+  CommandInteraction, 
+  User, 
+  Guild, 
+  TextBasedChannel, 
+  Message, 
+  InteractionReplyOptions,
+  InteractionDeferReplyOptions
+} from "discord.js";
+import { APIMessage } from "discord-api-types";
 
 export default class ZeoliteContext {
   readonly client: ZeoliteClient;
@@ -22,7 +32,7 @@ export default class ZeoliteContext {
     return this.interaction.guild;
   }
 
-  get channel(): TextBasedChannels | null {
+  get channel(): TextBasedChannel | null {
     return this.interaction.channel;
   }
 
@@ -32,6 +42,14 @@ export default class ZeoliteContext {
 
   async reply(options: InteractionReplyOptions): Promise<Message | void> {
     return this.interaction.reply(options);
+  }
+
+  async deferReply(options?: InteractionDeferReplyOptions): Promise<Message | void> {
+    return this.interaction.deferReply(options);
+  }
+
+  async followUp(options: InteractionReplyOptions): Promise<Message | APIMessage | void> {
+    return this.interaction.followUp(options);
   }
 
   t(str: string, ...args: any[]): string {

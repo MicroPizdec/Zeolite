@@ -40,4 +40,7 @@ export default {
   serverEmojisDesc: "static - %d\nanimated - %d",
   serverRolesCount: "Roles count",
   serverFooter: "ID: %s\nCreated %d days ago",
+
+  demotivatorInvalidURL: "> :x: Invalid image URL provided.",
+  demotivatorCreator: "Created by %s",
 }
