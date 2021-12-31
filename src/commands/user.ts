@@ -74,7 +74,7 @@ export default class UserCommand extends ZeoliteCommand {
       .setThumbnail(user.displayAvatarURL())
       .setColor(member?.displayColor || 0x9f00ff)
       .addField(ctx.t("userBadges"), getUserBadges(user) || ctx.t("userBadgesNone"))
-      .setFooter(ctx.t("userFooter", user.id, registeredDays))
+      .setFooter({ text: ctx.t("userFooter", user.id, registeredDays) })
       .setTimestamp(user.createdAt);
     
     if (member) {

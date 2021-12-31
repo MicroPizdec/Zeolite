@@ -31,7 +31,7 @@ export default class ServerCommand extends ZeoliteCommand {
       .addField(ctx.t("serverMembers"), ctx.guild.memberCount.toString(), true)
       .addField(ctx.t("serverEmojis"), ctx.t("serverEmojisDesc", staticEmojis, animatedEmojis), true)
       .addField(ctx.t("serverRolesCount"), ctx.guild.roles.cache.size.toString())
-      .setFooter(ctx.t("serverFooter", ctx.guild.id, createdDays))
+      .setFooter({ text: ctx.t("serverFooter", ctx.guild.id, createdDays) })
       .setTimestamp(ctx.guild.createdAt);
     
     await ctx.reply({ embeds: [ embed ] });
