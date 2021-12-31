@@ -2,6 +2,7 @@ export default {
   langName: "en",
   testString: "Test string",
   notBotOwner: "> :x: You aren't the bot owner!",
+  guildOnlyCommand: "> :x: You can't use this command in PM!",
   commandError: ":x: An error occurred while running the command.",
   commandErrorDesc: "This error was sent to the bot developers and will be fixed as soon as possible.",
 
