@@ -42,14 +42,13 @@ export default class DemotivatorCommand extends ZeoliteCommand {
     const imageURL = ctx.interaction.options.getString("imageurl") as string;
     const isWhite = ctx.interaction.options.getBoolean("white") || false;
 
-    const msg = await ctx.deferReply({ fetchReply: true });
-    console.log(msg);
+    await ctx.deferReply();
 
     let image: Canvas.Image | undefined;
     try {
       image = await Canvas.loadImage(imageURL);
     } catch {
-      await (msg as Message).edit({ content: ctx.t("demotivatorInvalidURL") });
+      await ctx.editReply({ content: ctx.t("demotivatorInvalidURL") });
       return;
     }
 
