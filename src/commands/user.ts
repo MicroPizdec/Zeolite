@@ -70,7 +70,7 @@ export default class UserCommand extends ZeoliteCommand {
     const registeredDays = Math.floor((Date.now() - user.createdTimestamp) / (1000 * 86400));
 
     const embed = new MessageEmbed()
-      .setAuthor(user.tag)
+      .setAuthor({ name: user.tag })
       .setThumbnail(user.displayAvatarURL())
       .setColor(member?.displayColor || 0x9f00ff)
       .addField(ctx.t("userBadges"), getUserBadges(user) || ctx.t("userBadgesNone"))

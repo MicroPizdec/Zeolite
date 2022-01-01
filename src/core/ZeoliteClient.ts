@@ -16,7 +16,7 @@ export default class ZeoliteClient extends Client {
   logger = new Logger(LoggerLevel.Debug);
   cmdDirPath: string;
   extDirPath: string;
-  owners: Array<string>;
+  owners: string[];
 
   constructor(options: ZeoliteClientOptions) {
     super(options);

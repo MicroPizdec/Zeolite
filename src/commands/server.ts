@@ -22,7 +22,7 @@ export default class ServerCommand extends ZeoliteCommand {
     const animatedEmojis = ctx.guild.emojis.cache.filter(e => e.animated as boolean).size;
 
     const embed = new MessageEmbed()
-      .setAuthor(ctx.guild.name)
+      .setAuthor({ name: ctx.guild.name })
       .setThumbnail(ctx.guild.iconURL() as string)
       .setColor(0x9f00ff)
       .addField(ctx.t("serverOwner"), owner.user.tag)

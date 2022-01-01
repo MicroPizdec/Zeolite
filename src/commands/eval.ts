@@ -16,6 +16,8 @@ export default class EvalCommand extends ZeoliteCommand {
   ownerOnly = true;
 
   async run(ctx: ZeoliteContext) {
+    await ctx.deferReply();
+
     const code = ctx.interaction.options.getString("code");
     const asyncified = `(async () => {\n${code}\n})()`;
 
@@ -25,9 +27,9 @@ export default class EvalCommand extends ZeoliteCommand {
         result = util.inspect(result);
       }
 
-      await ctx.reply({ content: `\`\`\`js\n${result}\n\`\`\`` });
+      await ctx.editReply({ content: `\`\`\`js\n${result}\n\`\`\`` });
     } catch (error: any) {
-      await ctx.reply({ content: `\`\`\`js\n${error}\n\`\`\`` });
+      await ctx.editReply({ content: `\`\`\`js\n${error}\n\`\`\`` });
     }
   }
 }

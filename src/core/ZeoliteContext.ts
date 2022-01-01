@@ -7,7 +7,8 @@ import {
   TextBasedChannel, 
   Message, 
   InteractionReplyOptions,
-  InteractionDeferReplyOptions
+  InteractionDeferReplyOptions,
+  WebhookEditMessageOptions
 } from "discord.js";
 import { APIMessage } from "discord-api-types";
 
@@ -40,12 +41,16 @@ export default class ZeoliteContext {
     return this.interaction.commandName;
   }
 
-  async reply(options: InteractionReplyOptions): Promise<Message | void> {
+  async reply(options: string | InteractionReplyOptions): Promise<Message | void> {
     return this.interaction.reply(options);
   }
 
   async deferReply(options?: InteractionDeferReplyOptions): Promise<Message | void> {
     return this.interaction.deferReply(options);
+  }
+
+  async editReply(options: string | WebhookEditMessageOptions): Promise<Message | APIMessage> {
+    return this.interaction.editReply(options);
   }
 
   async followUp(options: InteractionReplyOptions): Promise<Message | APIMessage | void> {
