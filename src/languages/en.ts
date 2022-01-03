@@ -43,4 +43,6 @@ export default {
 
   demotivatorInvalidURL: "> :x: Invalid image URL provided.",
   demotivatorCreator: "Created by %s",
+
+  embedInvalidJSON: "> :x: Invalid JSON string provided.",
 }
