@@ -7,7 +7,7 @@ import { Options } from "discord.js-light";
 const client = new ZeoliteClient({
   cmdDirPath: path.join(__dirname, "commands"),
   extDirPath: path.join(__dirname, "extensions"),
-  intents: [ "GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES" ],
+  intents: [ "GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_VOICE_STATES" ],
   owners: config.owners,
   makeCache: Options.cacheWithLimits({
     ChannelManager: Infinity,
