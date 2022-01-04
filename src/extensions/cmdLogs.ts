@@ -30,7 +30,11 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setColor("RED")
       .setFooter("Zeolite © Fishyrene", self.client.user?.displayAvatarURL());
     
-    await ctx.reply({ embeds: [ errEmbed ], ephemeral: true });
+    if (ctx.interaction.deferred) {
+      await ctx.editReply({ embeds: [ errEmbed ] });
+    } else {
+      await ctx.reply({ embeds: [ errEmbed ], ephemeral: true });
+    }
 
     const options = ctx.interaction.options.data.map(d => `${d.name}: ${d.value}`);
 
