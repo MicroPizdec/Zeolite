@@ -18,7 +18,7 @@ export default class AvatarCommand extends ZeoliteCommand {
     let user = ctx.interaction.options.getUser("user") || ctx.user;
 
     const embed = new MessageEmbed()
-      .setTitle(ctx.t("avatarTitle", user.tag))
+      .setAuthor({ name: ctx.t("avatarTitle", user.tag) })
       .setColor(0x9f00ff)
       .setImage(user.displayAvatarURL({ size: 2048 }));
     
