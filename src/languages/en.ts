@@ -45,4 +45,10 @@ export default {
   demotivatorCreator: "Created by %s",
 
   embedInvalidJSON: "> :x: Invalid JSON string provided.",
+
+  npmPackageNotFound: "> :x: Package not found.",
+  npmVersion: "Version",
+  npmModifiedAt: "Modified at",
+  npmLicense: "License",
+  npmKeywords: "Keywords",
 }
