@@ -57,4 +57,9 @@ export default {
   urbanExample: "Пример",
   urbanRating: "Рейтинг",
   urbanAuthor: "Автор: %s",
+
+  langAvailableLanguages: "Доступные языки",
+  langYourLanguage: "Ваш язык",
+  langInvalid: "> :x: Указан неверный язык.",
+  langSuccess: "> :white_check_mark: Ваш язык изменён на `%s`",
 }

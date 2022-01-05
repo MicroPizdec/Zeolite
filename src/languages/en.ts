@@ -58,4 +58,9 @@ export default {
   urbanExample: "Example",
   urbanRating: "Rating",
   urbanAuthor: "Author: %s",
+
+  langAvailableLanguages: "Available languages",
+  langYourLanguage: "Your language",
+  langInvalid: "> :x: Invalid language provided.",
+  langSuccess: "> :white_check_mark: Your language has been changed to `%s`",
 }
