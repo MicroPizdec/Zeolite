@@ -2,10 +2,12 @@ import ZeoliteExtension from "../core/ZeoliteExtension";
 import { Sequelize, Model } from "sequelize-typescript";
 import path from "path";
 import config from "../config";
+import Logger, { LoggerLevel } from "../core/Logger";
 
 export default class DatabaseExtension extends ZeoliteExtension {
   name = "database";
   sequelize: Sequelize;
+  logger = new Logger(LoggerLevel.Info, "DatabaseExtension");
 
   async onLoad() {
     this.sequelize = new Sequelize(config.dbUri || "sqlite:bot.db", {
@@ -15,8 +17,8 @@ export default class DatabaseExtension extends ZeoliteExtension {
 
     this.client.once("ready", () => {
       this.sequelize.sync()
-        .then(() => this.client.logger.info("DB: connected."))
-        .catch(err => this.client.logger.error(`DB: failed to connect:\n${err.stack}`));
+        .then(() => this.logger.info("DB: connected."))
+        .catch(err => this.logger.error(`DB: failed to connect:\n${err.stack}`));
     });
   }
 }

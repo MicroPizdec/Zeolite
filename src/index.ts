@@ -12,6 +12,7 @@ const client = new ZeoliteClient({
   makeCache: Options.cacheWithLimits({
     ChannelManager: Infinity,
   }),
+  debug: config.debug,
 });
 
 client.loadAllCommands();
