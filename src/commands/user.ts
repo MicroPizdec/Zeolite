@@ -78,11 +78,7 @@ export default class UserCommand extends ZeoliteCommand {
       .setTimestamp(user.createdAt);
     
     if (member) {
-      const formattedJoinDate = DateTime.fromMillis(member.joinedTimestamp as number)
-        .setLocale(ctx.t("langName"))
-        .toFormat("fff");
-
-      embed.addField(ctx.t("userJoinDate"), formattedJoinDate)
+      embed.addField(ctx.t("userJoinDate"), `<t:${Math.floor((member.joinedTimestamp as number) / 1000)}>`)
         .addField(ctx.t("userRoles"), member.roles.cache.filter(r => r.name != "@everyone").map(r => r.toString()).join(", ") || ctx.t("userBadgesNone"));
     }
     
