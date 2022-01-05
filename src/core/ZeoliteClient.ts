@@ -13,7 +13,9 @@ export default class ZeoliteClient extends Client {
   commands = new Collection<string | undefined, ZeoliteCommand>();
   extensions = new Collection<string, ZeoliteExtension>();
   localization: ZeoliteLocalization;
-  logger = new Logger(LoggerLevel.Debug);
+  private debug = false;
+  logger: Logger;
+  private djsLogger: Logger;
   cmdDirPath: string;
   extDirPath: string;
   owners: string[];
@@ -24,6 +26,9 @@ export default class ZeoliteClient extends Client {
     this.cmdDirPath = options.cmdDirPath;
     this.extDirPath = options.extDirPath;
     this.owners = options.owners;
+    this.debug = options.debug || false;
+
+    this.logger = new Logger(this.debug ? LoggerLevel.Debug : LoggerLevel.Info, "ZeoliteClient");
 
     this.on("ready", () => {
       this.logger.info(`Logged in as ${this.user?.username}.`);
@@ -32,6 +37,12 @@ export default class ZeoliteClient extends Client {
         this.application?.commands.create(cmd.json());
       }
     });
+
+    if (this.debug) {
+      this.djsLogger = new Logger(LoggerLevel.Debug, "discord.js");
+
+      this.on("debug", msg => this.djsLogger.debug(msg));
+    }
 
     this.on("interactionCreate", this.handleCommand);
 
@@ -82,7 +93,27 @@ export default class ZeoliteClient extends Client {
       
     this.commands.set(cmd.name, cmd);
 
-    this.logger.info(`Loaded command ${cmd.name}.`);
+    this.logger.debug(`Loaded command ${cmd.name}.`);
+  }
+
+  unloadCommand(name: string) {
+    if (!this.commands.has(name)) {
+      throw new Error("this command does not exist.");
+    }
+
+    const cmd = this.commands.get(name) as ZeoliteCommand;
+
+    const cmdPath = require.resolve(path.join(this.cmdDirPath, name));
+
+    delete require.cache[cmdPath];
+    this.commands.delete(name);
+
+    this.logger.debug(`Unloaded command ${name}.`);
+  }
+
+  reloadCommand(name: string) {
+    this.unloadCommand(name);
+    this.loadCommand(name);
   }
 
   async login(token: string): Promise<string> {
@@ -110,5 +141,7 @@ export default class ZeoliteClient extends Client {
 
     this.extensions.set(ext.name, ext);
     ext.onLoad();
+
+    this.logger.debug(`Loaded extension ${name}`);
   }
 }
