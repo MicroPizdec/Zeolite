@@ -16,7 +16,7 @@ export default class LanguageCommand extends ZeoliteCommand {
   ];
 
   async run(ctx: ZeoliteContext) {
-    let language = ctx.interaction.options.getString("language");
+    let language = ctx.interaction.options.getString("lang");
     let dbLang = await Languages.findOne({ where: { userID: ctx.user.id } });
     
     if (!language) {
@@ -36,6 +36,7 @@ export default class LanguageCommand extends ZeoliteCommand {
       }
       
       await dbLang?.update({ language });
+      this.client.localization.userLanguages[ctx.user.id] = language;
       await ctx.reply({ content: ctx.t("langSuccess", language), ephemeral: true });
     }
   }
