@@ -1,8 +1,14 @@
 import ZeoliteClient from "./core/ZeoliteClient";
 import path from "path";
-import config from "./config";
 import ZeoliteContext from "./core/ZeoliteContext";
 import { Options } from "discord.js-light";
+import ConfigLoader, { Config } from "./utils/ConfigLoader";
+
+declare global {
+  var config: Config;
+}
+
+global.config = new ConfigLoader().loadConfig(path.join(__dirname, "..", "config.yml"));
 
 const client = new ZeoliteClient({
   cmdDirPath: path.join(__dirname, "commands"),

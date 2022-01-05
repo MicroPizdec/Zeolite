@@ -1,6 +1,5 @@
 import { GuildChannel, MessageEmbed, WebhookClient } from "discord.js-light";
 import ZeoliteExtension from "../core/ZeoliteExtension";
-import config from "../config";
 import ZeoliteContext from "../core/ZeoliteContext";
 
 let self: CmdLogsExtension;
@@ -51,7 +50,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   async onLoad() {
-    this.webhook = new WebhookClient({ url: config.webhookUrl });
+    if (config.webhookUrl) this.webhook = new WebhookClient({ url: config.webhookUrl });
 
     self = this;
 

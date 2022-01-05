@@ -1,4 +1,4 @@
 dist/
 node_modules/
-src/config.ts
+config.yml
 bot.db

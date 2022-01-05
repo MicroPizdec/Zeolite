@@ -1,7 +1,6 @@
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import { Sequelize, Model } from "sequelize-typescript";
 import path from "path";
-import config from "../config";
 import Logger, { LoggerLevel } from "../core/Logger";
 
 export default class DatabaseExtension extends ZeoliteExtension {
