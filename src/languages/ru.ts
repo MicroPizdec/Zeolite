@@ -31,6 +31,7 @@ export default {
   infoSupportServer: "Сервер поддержки",
   infoRepository: "Репозиторий GitHub",
   infoDonate: "Пожертвовать",
+  infoDevs: "Разработчики",
 
   serverOwner: "Владелец",
   serverVerificationLevel: "Verification level",
