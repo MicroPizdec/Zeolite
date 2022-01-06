@@ -20,5 +20,6 @@ export interface Config {
   owners: string[];
   dbUri: string;
   webhookUrl?: string;
+  defaultColor?: number;
   debug?: boolean;
 }

@@ -13,7 +13,7 @@ export default class ZeoliteClient extends Client {
   commands = new Collection<string | undefined, ZeoliteCommand>();
   extensions = new Collection<string, ZeoliteExtension>();
   localization: ZeoliteLocalization;
-  private debug = false;
+  private debug: boolean;
   logger: Logger;
   private djsLogger: Logger;
   cmdDirPath: string;

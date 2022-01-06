@@ -11,6 +11,7 @@ import {
   WebhookEditMessageOptions
 } from "discord.js";
 import { APIMessage } from "discord-api-types";
+import EmbedColors from "../dbModels/EmbedColors";
 
 export default class ZeoliteContext {
   readonly client: ZeoliteClient;
@@ -60,4 +61,12 @@ export default class ZeoliteContext {
   t(str: string, ...args: any[]): string {
     return this.client.localization.getString(this.user, str, ...args);
   }
+
+  async embColor(): Promise<number> {
+    const color = await EmbedColors.findOne({ where: { userID: this.user.id } });
+
+    return color ? 
+      color.random ? Math.round(Math.random() * 16777216) : color.color :
+      config.defaultColor || 0x9f00ff;
+  } 
 }

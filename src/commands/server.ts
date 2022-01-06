@@ -24,7 +24,7 @@ export default class ServerCommand extends ZeoliteCommand {
     const embed = new MessageEmbed()
       .setAuthor({ name: ctx.guild.name })
       .setThumbnail(ctx.guild.iconURL() as string)
-      .setColor(0x9f00ff)
+      .setColor(await ctx.embColor())
       .addField(ctx.t("serverOwner"), owner.user.tag)
       .addField(ctx.t("serverVerificationLevel"), ctx.guild.verificationLevel)
       .addField(ctx.t("serverChannels"), ctx.t("serverChannelsDesc", textChannels, voiceChannels), true)

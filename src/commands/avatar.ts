@@ -32,7 +32,7 @@ export default class AvatarCommand extends ZeoliteCommand {
 
     const embed = new MessageEmbed()
       .setAuthor({ name: ctx.t("avatarTitle", user.tag) })
-      .setColor(0x9f00ff)
+      .setColor(await ctx.embColor())
       .setImage(user.displayAvatarURL({ dynamic: format, size: 2048 }));
     
     await ctx.reply({ embeds: [ embed ], components: [linkButton] });

@@ -22,7 +22,7 @@ export default class InfoCommand extends ZeoliteCommand {
     const embed = new MessageEmbed()
       .setTitle(ctx.t("infoTitle"))
       .setDescription(ctx.t("infoDesc"))
-      .setColor(0x9f00ff)
+      .setColor(await ctx.embColor())
       .addField(ctx.t("infoDevs"), devs.map(d => d?.tag).join(", "))
       .addField(ctx.t("infoLinks"), `[${ctx.t("infoInvite")}](${link})\n` +
       `[${ctx.t("infoSupportServer")}](https://discord.gg/ZKChwBD)\n` + 
