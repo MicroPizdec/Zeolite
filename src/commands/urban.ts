@@ -40,10 +40,7 @@ export default class UrbanCommand extends ZeoliteCommand {
     }
 
     if ((!data.definition?.length || data.definition.length > 3920) || data.example.length > 1000) {
-      const defErrorEmbed = new MessageEmbed()
-        .setDescription(ctx.t("urbanCantShowDefinition", data.permalink))
-        .setColor("RED")
-      await ctx.editReply({ embeds: [ defErrorEmbed ] })
+      await ctx.editReply(ctx.t("urbanCantShowDefinition", data.permalink));
       return;
     }    
     const embed = new MessageEmbed()

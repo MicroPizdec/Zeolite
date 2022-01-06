@@ -53,7 +53,7 @@ export default {
 
   urbanSomethingWentWrong: "> :x: Что-то пошло не так.",
   urbanWordNotFound: "> :x: Слово не найдено.",
-  urbanCantShowDefinition: ":x: Невозможно показать определение здесь, но есть ссылка на это [определение](%s)",
+  urbanCantShowDefinition: "> :x: Невозможно показать определение здесь, но есть ссылка на это [определение](%s)",
   urbanExample: "Пример",
   urbanRating: "Рейтинг",
   urbanAuthor: "Автор: %s",

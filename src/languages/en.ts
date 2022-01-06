@@ -54,7 +54,7 @@ export default {
 
   urbanSomethingWentWrong: "> :x: Something went wrong.",
   urbanWordNotFound: "> :x: Word not found.",
-  urbanCantShowDefinition: ":x: I can't show the definition here, but there is a link for this [definiton](%s)",
+  urbanCantShowDefinition: "> :x: I can't show the definition here, but there is a link for this [definiton](%s)",
   urbanExample: "Example",
   urbanRating: "Rating",
   urbanAuthor: "Author: %s",
