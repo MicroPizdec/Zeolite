@@ -7,6 +7,7 @@ export default {
   commandErrorDesc: "This error was sent to the bot developers and will be fixed as soon as possible.",
 
   avatarTitle: "Avatar of %s",
+  avatarURL: "Avatar URL",
 
   stats: "Stats",
   statsUptime: "Uptime",
