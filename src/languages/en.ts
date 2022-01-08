@@ -65,4 +65,15 @@ export default {
   langYourLanguage: "Your language",
   langInvalid: "> :x: Invalid language provided.",
   langSuccess: "> :white_check_mark: Your language has been changed to `%s`",
+
+  embedcolorYourColor: "Your embed color",
+  embedcolorRandom: "random",
+  embedcolorDefault: "default",
+  embedcolorNoOptions: "> :warning: No options provided.",
+  embedcolorOnlyOneOption: "> :warning: You can provide only one option.",
+  embedcolorIsNaN: "> :x: Provided color is not a number.",
+  embedcolorTooBig: "> :x: Provided color is bigger than 16777216.",
+  embedcolorSuccess: "> :white_check_mark: Set the embed color to `#%s`.",
+  embedcolorRandomSuccess: "> :white_check_mark: Set the embed color to `random`.",
+  embedcolorResetSuccess: "> :white_check_mark: Reset the embed color to default.",
 }

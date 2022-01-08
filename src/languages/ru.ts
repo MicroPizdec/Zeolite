@@ -64,4 +64,15 @@ export default {
   langYourLanguage: "Ваш язык",
   langInvalid: "> :x: Указан неверный язык.",
   langSuccess: "> :white_check_mark: Ваш язык изменён на `%s`",
+
+  embedcolorYourColor: "Ваш цвет эмбедов",
+  embedcolorRandom: "случайный",
+  embedcolorDefault: "по умолчанию",
+  embedcolorNoOptions: "> :warning: Опции не предоставлены.",
+  embedcolorOnlyOneOption: "> :warning: Вы можете предоставить только одну опцию.",
+  embedcolorIsNaN: "> :x: Предоставленный цвет не является числом.",
+  embedcolorTooBig: "> :x: Предоставленный цвет больше, чем 16777216.",
+  embedcolorSuccess: "> :white_check_mark: Ваш цвет эмбедов изменен на `#%s`.",
+  embedcolorRandomSuccess: "> :white_check_mark: Ваш цвет эмбедов изменен на `случайный`.",
+  embedcolorResetSuccess: "> :white_check_mark: Ваш цвет эмбедов был сброшен.",
 }

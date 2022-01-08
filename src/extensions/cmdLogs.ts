@@ -8,12 +8,30 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   name = "cmdLogs";
   webhook: WebhookClient;
 
+  parseOptions(ctx: ZeoliteContext): string {
+    let options: string[] = [];
+
+    const subcommand = ctx.interaction.options.getSubcommand(false);
+    if (subcommand) {
+      options.push(subcommand);
+      if (!ctx.interaction.options.data[0].options) return options.join(" ");
+
+      for (const opt of ctx.interaction.options.data[0].options) {
+        options.push(`${opt.name}: ${opt.value}`);
+      }
+    } else {
+      options = ctx.interaction.options.data.map(opt => `${opt.name}: ${opt.value}`);
+    }
+
+    return options.join(" ");
+  }
+
   async onCommandSuccess(ctx: ZeoliteContext) {
-    const options = ctx.interaction.options.data.map(d => `${d.name}: ${d.value}`);
+    const options = self.parseOptions(ctx);
 
     const embed = new MessageEmbed()
       .setTitle(`Command \`${ctx.commandName}\` used`)
-      .setDescription(`/${ctx.commandName} ${options.join(" ")}`)
+      .setDescription(`/${ctx.commandName} ${options}`)
       .setColor(0x9f00ff)
       .addField("User", `${ctx.user.tag} (ID: ${ctx.user.id})`)
       .addField("Channel", `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
@@ -35,11 +53,11 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       await ctx.reply({ embeds: [ errEmbed ], ephemeral: true });
     }
 
-    const options = ctx.interaction.options.data.map(d => `${d.name}: ${d.value}`);
+    const options = self.parseOptions(ctx);
 
     const embed = new MessageEmbed()
       .setTitle(`:x: An error occurred while executing command \`${ctx.commandName}\``)
-      .setDescription(`/${ctx.commandName} ${options.join(" ")}`)
+      .setDescription(`/${ctx.commandName} ${options}`)
       .setColor("RED")
       .addField("Error", `\`\`\`${error}\`\`\``)
       .addField("User", `${ctx.user.tag} (ID: ${ctx.user.id})`)

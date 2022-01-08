@@ -66,7 +66,7 @@ export default class ZeoliteContext {
     const color = await EmbedColors.findOne({ where: { userID: this.user.id } });
 
     return color ? 
-      color.random ? Math.round(Math.random() * 16777216) : color.color :
+      color.random ? Math.round(Math.random() * 16777216) : color.color || config.defaultColor || 0x9f00ff :
       config.defaultColor || 0x9f00ff;
   } 
 }
