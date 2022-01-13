@@ -64,6 +64,7 @@ export default class EmbedcolorCommand extends ZeoliteCommand {
         await ctx.reply({ embeds: [ embed ], ephemeral: true });
         break;
       }
+
       case "set": {
         const newColor = ctx.interaction.options.getString("color");
         const isRandom = ctx.interaction.options.getBoolean("random");
@@ -104,6 +105,7 @@ export default class EmbedcolorCommand extends ZeoliteCommand {
 
         break;
       }
+      
       case "reset": {
         await color.destroy();
         await ctx.reply({ content: ctx.t("embedcolorResetSuccess"), ephemeral: true });

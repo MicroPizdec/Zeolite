@@ -1,4 +1,4 @@
-import { GuildChannel, MessageEmbed, WebhookClient } from "discord.js-light";
+import { GuildChannel, MessageEmbed, WebhookClient, Guild } from "discord.js";
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import ZeoliteContext from "../core/ZeoliteContext";
 
@@ -67,6 +67,26 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     await self.webhook.send({ embeds: [ embed ] });
   }
 
+  async onGuildCreate(guild: Guild) {
+    const embed = new MessageEmbed()
+      .setTitle("New server:")
+      .setDescription(`${guild.name} (ID: ${guild.id})`)
+      .setColor(0x9f00ff)
+      .setThumbnail(guild.iconURL() as string);
+    
+    await self.webhook.send({ embeds: [ embed ]});
+  }
+
+  async onGuildDelete(guild: Guild) {
+    const embed = new MessageEmbed()
+      .setTitle("Removed from server:")
+      .setDescription(`${guild.name} (ID: ${guild.id})`)
+      .setColor(0x9f00ff)
+      .setThumbnail(guild.iconURL() as string);
+    
+    await self.webhook.send({ embeds: [ embed ]});
+  }
+
   async onLoad() {
     if (config.webhookUrl) this.webhook = new WebhookClient({ url: config.webhookUrl });
 
@@ -74,6 +94,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
 
     this.client.on("commandSuccess", this.onCommandSuccess);
     this.client.on("commandError", this.onCommandError);
+    this.client.on("guildCreate", this.onGuildCreate);
   }
 
   async onUnload() {
