@@ -8,7 +8,8 @@ import {
   Message, 
   InteractionReplyOptions,
   InteractionDeferReplyOptions,
-  WebhookEditMessageOptions
+  WebhookEditMessageOptions,
+  CommandInteractionOptionResolver
 } from "discord.js";
 import { APIMessage } from "discord-api-types";
 import EmbedColors from "../dbModels/EmbedColors";
@@ -40,6 +41,10 @@ export default class ZeoliteContext {
 
   get commandName(): string {
     return this.interaction.commandName;
+  }
+
+  get options(): Omit<CommandInteractionOptionResolver, "getMessage" | "getFocused"> {
+    return this.interaction.options;
   }
 
   async reply(options: string | InteractionReplyOptions): Promise<Message | void> {

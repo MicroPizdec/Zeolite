@@ -8,6 +8,12 @@ export default {
 
   avatarTitle: "Аватар пользователя %s",
   avatarURL: "Ссылка на аватар",
+  avatarNoServerIcon: "> :x: Сервер не имеет иконку.",
+  avatarServerIcon: "Иконка сервера",
+  avatarIconURL: "Ссылка на иконку",
+  avatarNoBanner: "> :x: Сервер не имеет баннер.",
+  avatarBanner: "Баннер",
+  avatarBannerURL: "Ссылка на баннер",
 
   stats: "Статистика",
   statsUptime: "Аптайм",

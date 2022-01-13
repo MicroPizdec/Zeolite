@@ -85,8 +85,28 @@ export default class AvatarCommand extends ZeoliteCommand {
       }
 
       case "banner": {
-        // TODO: banner subcommand
-        await ctx.reply("Trolled");
+        const url = ctx.guild?.bannerURL();
+
+        if (!url) {
+          await ctx.reply({ content: ctx.t("avatarNoBanner"), ephemeral: true });
+          return;
+        }
+
+        const embed = new MessageEmbed()
+          .setAuthor({ name: ctx.t("avatarBanner") })
+          .setColor(await ctx.embColor())
+          .setImage(url);
+        
+        const actionRow = new MessageActionRow()
+          .addComponents(
+            new MessageButton()
+              .setLabel(ctx.t("avatarBannerURL"))
+              .setStyle("LINK")
+              .setURL(url)
+          );
+        
+        await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
+        break;
       }
     }
   }

@@ -8,6 +8,12 @@ export default {
 
   avatarTitle: "Avatar of %s",
   avatarURL: "Avatar URL",
+  avatarNoServerIcon: "> :x: The server does not have an icon.",
+  avatarServerIcon: "Server icon",
+  avatarIconURL: "Icon URL",
+  avatarNoBanner: "> :x: The server does not have a banner.",
+  avatarBanner: "Server banner",
+  avatarBannerURL: "Banner URL",
 
   stats: "Stats",
   statsUptime: "Uptime",
