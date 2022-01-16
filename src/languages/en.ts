@@ -82,4 +82,6 @@ export default {
   embedcolorSuccess: "> :white_check_mark: Set the embed color to `#%s`.",
   embedcolorRandomSuccess: "> :white_check_mark: Set the embed color to `random`.",
   embedcolorResetSuccess: "> :white_check_mark: Reset the embed color to default.",
+
+  colorNumber: "Number",
 }

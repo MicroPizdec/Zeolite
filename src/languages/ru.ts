@@ -81,4 +81,6 @@ export default {
   embedcolorSuccess: "> :white_check_mark: Ваш цвет эмбедов изменен на `#%s`.",
   embedcolorRandomSuccess: "> :white_check_mark: Ваш цвет эмбедов изменен на `случайный`.",
   embedcolorResetSuccess: "> :white_check_mark: Ваш цвет эмбедов был сброшен.",
+
+  colorNumber: "Число",
 }

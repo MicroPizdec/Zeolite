@@ -51,12 +51,12 @@ function getUserBadges(user: User): string {
 
 export default class UserCommand extends ZeoliteCommand {
   name = "user";
-  description = "Information about provided user. Defaults to you.";
+  description = "Information about provided user";
   options = [
     {
       type: 6,
       name: "user",
-      description: "A user",
+      description: "A user. Default is you",
       required: false,
     },
   ];

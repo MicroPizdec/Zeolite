@@ -2,16 +2,7 @@ import { MessageEmbed } from "discord.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import EmbedColors from "../dbModels/EmbedColors";
-
-function intToHex(num: number): string {
-  let hex = num.toString(16);
-
-  while (hex.length < 6) {
-    hex = "0" + hex;
-  }
-
-  return hex;
-}
+import intToHex from "../utils/intToHex";
 
 export default class EmbedcolorCommand extends ZeoliteCommand {
   name = "embedcolor";
