@@ -63,11 +63,13 @@ export default class PayCommand extends ZeoliteCommand {
         new MessageButton()
           .setLabel(ctx.t("payYes"))
           .setStyle("SUCCESS")
-          .setCustomId("yes"),
+          .setCustomId("yes")
+          .setEmoji("<:success:933053645078007839>"),
         new MessageButton()
           .setLabel(ctx.t("payNo"))
           .setStyle("DANGER")
           .setCustomId("no")
+          .setEmoji("<:fail:933053644948004954>")
       );
     
     const message = await ctx.reply({ embeds: [ confirmEmbed ], components: [ actionRow ], fetchReply: true });
