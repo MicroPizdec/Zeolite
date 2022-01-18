@@ -84,4 +84,16 @@ export default {
   embedcolorResetSuccess: "> :white_check_mark: Reset the embed color to default.",
 
   colorNumber: "Number",
+
+  payCantSendToYourself: "> :x: You can't send money to self.",
+  payCantSendToBot: "> :x: You can't send money to bot.",
+  payInvalidAmount: "> :x: Money amount is less than or equal to 0.",
+  payInsufficientFunds: "> :x: You have insufficient funds. Your balance: %d %s.",
+  payConfirmationTitle: "Are you really want to send %d %s to **%s**?", 
+  payConfirmationDesc: "You have 5 minutes to agree.",
+  payYes: "Yes",
+  payNo: "No",
+  payTimeExpired: ":x: Time expired.",
+  paySuccessfullySent: ":white_check_mark: Sent %d %s to **%s**.",
+  payCancelled: ":x: Transaction is cancelled by user",
 }
