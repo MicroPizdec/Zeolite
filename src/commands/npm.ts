@@ -18,7 +18,7 @@ export default class NpmCommand extends ZeoliteCommand {
   async run(ctx: ZeoliteContext) {
     await ctx.deferReply();
 
-    const query = ctx.interaction.options.getString("package") as string;
+    const query = ctx.interaction.options.getString("package", true);
 
     let response: any;
     try {

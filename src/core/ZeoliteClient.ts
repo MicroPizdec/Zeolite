@@ -66,6 +66,11 @@ export default class ZeoliteClient extends Client {
       return;
     }
 
+    if (cmd.guildOnly && !ctx.guild) {
+      this.emit("guildOnlyCommand", ctx);
+      return;
+    }
+
     try {
       await cmd.run(ctx);
       this.emit("commandSuccess", ctx);

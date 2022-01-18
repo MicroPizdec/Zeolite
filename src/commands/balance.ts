@@ -15,6 +15,7 @@ export default class BalanceCommand extends ZeoliteCommand {
       required: false,
     },
   ];
+  guildOnly = true;
 
   async run(ctx: ZeoliteContext) {
     const user = ctx.interaction.options.getUser("user", false) || ctx.user;

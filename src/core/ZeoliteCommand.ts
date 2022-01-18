@@ -11,6 +11,7 @@ export default class ZeoliteCommand {
   description: string = "";
   options?: ApplicationCommandOptionData[];
   ownerOnly?: boolean;
+  guildOnly?: boolean;
   readonly client: ZeoliteClient;
 
   constructor(client: ZeoliteClient) {
