@@ -18,7 +18,7 @@ export default class UrbanCommand extends ZeoliteCommand {
   async run(ctx: ZeoliteContext) {
     await ctx.deferReply();
 
-    const word = ctx.interaction.options.getString("word") as string;
+    const word = ctx.interaction.options.getString("word", true);
 
     const params = new URLSearchParams();
     params.append("term", word);

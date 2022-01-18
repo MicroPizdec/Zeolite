@@ -37,9 +37,9 @@ export default class DemotivatorCommand extends ZeoliteCommand {
   ];
 
   async run(ctx: ZeoliteContext) {
-    const text = ctx.interaction.options.getString("text") as string;
+    const text = ctx.interaction.options.getString("text", true);
     const bottomText = ctx.interaction.options.getString("bottomtext");
-    const imageURL = ctx.interaction.options.getString("imageurl") as string;
+    const imageURL = ctx.interaction.options.getString("imageurl", true);
     const isWhite = ctx.interaction.options.getBoolean("white") || false;
 
     await ctx.deferReply();

@@ -20,7 +20,8 @@ export default class PayCommand extends ZeoliteCommand {
       description: "Amount of ZetCoins to send",
       required: true,
     },
-  ]
+  ];
+  guildOnly = true;
 
   async run(ctx: ZeoliteContext) {
     const user = ctx.options.getUser("user", true);
