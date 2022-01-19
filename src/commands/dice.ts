@@ -1,4 +1,4 @@
-import { ApplicationCommandOptionData, MessageEmbed } from "discord.js"; // нам возможно только MessageEmbed пригодится
+import { ApplicationCommandOptionData, MessageEmbed } from "discord.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import ZetCoins from "../dbModels/ZetCoins"; 

@@ -88,7 +88,7 @@ export default {
   payCantSendToBot: "> :x: Вы не можете отправить деньги боту.",
   payInvalidAmount: "> :x: Количество денег меньше либо равно нулю.",
   payInsufficientFunds: "> :x: Недостаточно средств. Ваш баланс: %d %s.",
-  payConfirmationTitle: "Вы уверены что хотите передать %d %s пользователю **%s**?", // ща)
+  payConfirmationTitle: "Вы уверены что хотите передать %d %s пользователю **%s**?",
   payConfirmationDesc: "Вы имеете 5 минут для подтверждения.",
   payYes: "Да",
   payNo: "Нет",
