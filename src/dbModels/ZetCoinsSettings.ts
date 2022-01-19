@@ -28,4 +28,10 @@ export default class ZetCoinsSettings extends Model {
     defaultValue: 300,
   })
   workMaxAmount: number;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: true,
+  })
+  diceEnabled: boolean;
 }

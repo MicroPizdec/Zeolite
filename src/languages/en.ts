@@ -101,4 +101,10 @@ export default {
   workCooldown: "You can work again <t:%d:R>.",
   workDisabled: "> :x: Work is disabled by administrator.",
   workDesc: "You earned **%d** %s\nYour balance: **%d** %s",
+
+  diceDisabled: "> :x: Dice is disabled by administrator.",
+  diceWin: "Win!",
+  diceWinDesc: "You won **%d** %s\nYour balance: **%d** %s",
+  diceLoss: "Loss",
+  diceLossDesc: "You lost **%d** %s\nYour balance: **%d** %s",
 }
