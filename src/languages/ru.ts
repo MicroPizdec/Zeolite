@@ -95,4 +95,9 @@ export default {
   payTimeExpired: ":x: Время вышло.",
   paySuccessfullySent: ":white_check_mark: Отправлено %d %s пользователю **%s**.",
   payCancelled: ":x: Перевод отменен пользователем",
+
+  workCooldownTitle: ":timer: Не так быстро!",
+  workCooldown: "Вы можете работать снова <t:%d:R>.",
+  workDisabled: "> :x: Работа выключена администратором.",
+  workDesc: "Вы заработали **%d** %s\nВаш баланс: **%d** %s",
 }

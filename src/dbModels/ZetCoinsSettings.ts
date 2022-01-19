@@ -10,4 +10,22 @@ export default class ZetCoinsSettings extends Model {
     defaultValue: "<:zetcoins:929419222436708373>",
   })
   icon: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: true,
+  })
+  workEnabled: boolean;
+
+  @Column({
+    type: DataType.NUMBER,
+    defaultValue: 50,
+  })
+  workMinAmount: number;
+
+  @Column({
+    type: DataType.NUMBER,
+    defaultValue: 300,
+  })
+  workMaxAmount: number;
 }

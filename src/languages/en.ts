@@ -96,4 +96,9 @@ export default {
   payTimeExpired: ":x: Time expired.",
   paySuccessfullySent: ":white_check_mark: Sent %d %s to **%s**.",
   payCancelled: ":x: Transaction is cancelled by user",
+
+  workCooldownTitle: ":timer: Not so fast!",
+  workCooldown: "You can work again <t:%d:R>.",
+  workDisabled: "> :x: Work is disabled by administrator.",
+  workDesc: "You earned **%d** %s\nYour balance: **%d** %s",
 }

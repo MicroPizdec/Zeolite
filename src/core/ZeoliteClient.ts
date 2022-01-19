@@ -10,8 +10,9 @@ import ZeoliteContext from "./ZeoliteContext";
 import ZeoliteLocalization from "./ZeoliteLocalization";
 
 export default class ZeoliteClient extends Client {
-  commands = new Collection<string | undefined, ZeoliteCommand>();
-  extensions = new Collection<string, ZeoliteExtension>();
+  commands: Collection<string | undefined, ZeoliteCommand> = new Collection<string | undefined, ZeoliteCommand>();
+  extensions: Collection<string, ZeoliteExtension> = new Collection<string, ZeoliteExtension>();
+  cooldowns: Collection<string, Collection<string, number>> = new Collection<string, Collection<string, number>>();
   localization: ZeoliteLocalization;
   private debug: boolean;
   logger: Logger;
@@ -71,9 +72,31 @@ export default class ZeoliteClient extends Client {
       return;
     }
 
+    if (cmd.cooldown) {
+      if (!this.cooldowns.has(cmd.name)) {
+        this.cooldowns.set(cmd.name, new Collection<string, number>());
+      }
+
+      let cmdCooldowns = this.cooldowns.get(cmd.name);
+      let now = Date.now();
+      if (cmdCooldowns?.has(ctx.user.id)) {
+        let expiration = (cmdCooldowns.get(ctx.user.id) as number) + (cmd.cooldown * 1000);
+        if (now < expiration) {
+          let secsLeft = Math.floor((expiration - now) / 1000);
+          this.emit("commandCooldown", ctx, secsLeft);
+          return;
+        }
+      }
+    }
+
     try {
       await cmd.run(ctx);
       this.emit("commandSuccess", ctx);
+      if (cmd.cooldown) {
+        const cmdCooldowns = this.cooldowns.get(cmd.name);
+        cmdCooldowns?.set(ctx.user.id, Date.now());
+        setTimeout(() => cmdCooldowns?.delete(ctx.user.id), cmd.cooldown * 1000);
+      }
     } catch (error: any) {
       this.emit("commandError", ctx, error);
 
