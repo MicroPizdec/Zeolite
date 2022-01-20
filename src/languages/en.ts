@@ -112,4 +112,11 @@ export default {
   invalidEmoji: "> :x: Invalid emoji provided.",
   setcurrencySuccess: "> :white_check_mark: Successfully changed the currency icon to %s.",
   setcurrencyResetSuccess: "> :white_check_mark: Successfully reset the currency icon to default.",
+
+  roleCreatedAt: "Created at",
+  roleHoisted: "Hoisted?",
+  roleManaged: "Managed by application?",
+  roleColor: "Color",
+  roleColorDefault: "default",
+  daysAgo: "(%d days ago)",
 }

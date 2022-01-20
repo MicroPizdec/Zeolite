@@ -111,4 +111,11 @@ export default {
   invalidEmoji: "> :x: Неверный эмодзи предоставлен.",
   setcurrencySuccess: "> :white_check_mark: Иконка валюты изменена на %s.",
   setcurrencyResetSuccess: "> :white_check_mark: Иконка валюты сброшена на стандартную.",
+
+  roleCreatedAt: "Создана",
+  roleHoisted: "Показывается отдельно?",
+  roleManaged: "Управляется приложением?",
+  roleColor: "Цвет",
+  roleColorDefault: "по умолчанию",
+  daysAgo: "(%d дней назад)",
 }
