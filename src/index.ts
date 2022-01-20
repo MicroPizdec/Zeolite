@@ -1,6 +1,5 @@
 import ZeoliteClient from "./core/ZeoliteClient";
 import path from "path";
-import ZeoliteContext from "./core/ZeoliteContext";
 import { Options } from "discord.js-light";
 import ConfigLoader, { Config } from "./utils/ConfigLoader";
 
@@ -26,22 +25,6 @@ const client = new ZeoliteClient({
 
 client.loadAllCommands();
 client.loadAllExtensions();
-
-client.on("ownerOnlyCommand", (ctx: ZeoliteContext) => {
-  ctx.reply({ content: ctx.t("notBotOwner"), ephemeral: true });
-});
-
-client.on("commandCooldown", (ctx: ZeoliteContext, secsLeft: number) => {
-  ctx.reply({ content: ctx.t("cooldown", secsLeft), ephemeral: true });
-});
-
-client.on("guildOnlyCommand", (ctx: ZeoliteContext) => {
-  ctx.reply({ content: ctx.t("guildOnlyCommand"), ephemeral: true });
-});
-
-client.on("noPermissions", (ctx: ZeoliteContext, permissions: string[]) => {
-  ctx.reply({ content: ctx.t("noPermissions", permissions.join()), ephemeral: true });
-})
 
 process.on("uncaughtException", error => console.error(error));
 process.on("unhandledRejection", error => console.error(error));
