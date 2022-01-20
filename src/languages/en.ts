@@ -3,6 +3,7 @@ export default {
   testString: "Test string",
   notBotOwner: "> :x: You aren't the bot owner!",
   guildOnlyCommand: "> :x: You can't use this command in PM!",
+  noPermissions: "> :x: You don't have permissions to use this command. Required permissions: `%s`",
   commandError: ":x: An error occurred while running the command.",
   commandErrorDesc: "This error was sent to the bot developers and will be fixed as soon as possible.",
 
@@ -107,4 +108,8 @@ export default {
   diceWinDesc: "You won **%d** %s\nYour balance: **%d** %s",
   diceLoss: "Loss",
   diceLossDesc: "You lost **%d** %s\nYour balance: **%d** %s",
+
+  invalidEmoji: "> :x: Invalid emoji provided.",
+  setcurrencySuccess: "> :white_check_mark: Successfully changed the currency icon to %s.",
+  setcurrencyResetSuccess: "> :white_check_mark: Successfully reset the currency icon to default.",
 }

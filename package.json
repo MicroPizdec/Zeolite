@@ -25,6 +25,7 @@
     "color-convert": "^2.0.1",
     "discord.js": "^13.5.0",
     "discord.js-light": "^4.5.0",
+    "emoji-regex": "^10.0.0",
     "js-yaml": "^4.1.0",
     "luxon": "^2.2.0",
     "reflect-metadata": "^0.1.13",

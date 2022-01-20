@@ -1,4 +1,4 @@
-import { Client, Interaction, User } from "discord.js-light";
+import { Client, Interaction, User, GuildMember } from "discord.js-light";
 import { Collection } from "@discordjs/collection";
 import ZeoliteCommand from "./ZeoliteCommand";
 import ZeoliteClientOptions from "./ZeoliteClientOptions";
@@ -33,10 +33,13 @@ export default class ZeoliteClient extends Client {
 
     this.on("ready", () => {
       this.logger.info(`Logged in as ${this.user?.username}.`);
-
       for (const cmd of this.commands.values()) {
         this.application?.commands.create(cmd.json());
       }
+
+      this.user?.setPresence({
+        activities: [ { name: "Более нормальный бот чем у конкурентов с подписками за 11 даларов", type: "PLAYING" } ],
+      });
     });
 
     if (this.debug) {
@@ -90,6 +93,11 @@ export default class ZeoliteClient extends Client {
     }
 
     try {
+      if (!this.validatePermissions(ctx.member, cmd.requiredPermissions)) {
+        this.emit("noPermissions", ctx, cmd.requiredPermissions);
+        return;
+      }
+
       await cmd.run(ctx);
       this.emit("commandSuccess", ctx);
       if (cmd.cooldown) {
@@ -103,6 +111,14 @@ export default class ZeoliteClient extends Client {
       this.logger.error(`Error in command ${cmd.name}:`);
       console.error(error);
     }
+  }
+
+  validatePermissions(member: GuildMember, perms: string[]): boolean {
+    for (const perm of perms) {
+      if (!member.permissions.has("ADMINISTRATOR")) return false;
+    }
+
+    return true;
   }
 
   loadAllCommands() {

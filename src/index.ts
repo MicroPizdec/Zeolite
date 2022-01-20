@@ -19,6 +19,9 @@ const client = new ZeoliteClient({
     ChannelManager: Infinity,
   }),
   debug: config.debug,
+  ws: {
+    properties: { $browser: "Discord Android" },
+  },
 });
 
 client.loadAllCommands();
@@ -34,6 +37,10 @@ client.on("commandCooldown", (ctx: ZeoliteContext, secsLeft: number) => {
 
 client.on("guildOnlyCommand", (ctx: ZeoliteContext) => {
   ctx.reply({ content: ctx.t("guildOnlyCommand"), ephemeral: true });
+});
+
+client.on("noPermissions", (ctx: ZeoliteContext, permissions: string[]) => {
+  ctx.reply({ content: ctx.t("noPermissions", permissions.join()), ephemeral: true });
 })
 
 process.on("uncaughtException", error => console.error(error));

@@ -13,6 +13,8 @@ export default class ZeoliteCommand {
   ownerOnly?: boolean;
   guildOnly?: boolean;
   cooldown?: number;
+  requiredPermissions: string[] = [];
+
   readonly client: ZeoliteClient;
 
   constructor(client: ZeoliteClient) {

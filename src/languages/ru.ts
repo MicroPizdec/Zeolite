@@ -3,6 +3,7 @@ export default {
   testString: "Русский, ёпта)",
   notBotOwner: "> :x: Вы не являетесь владельцем бота!",
   guildOnlyCommand: "> :x: Вы не можете использовать эту команду в личных сообщениях!",
+  noPermissions: "> :x: Вы не имеете права на использование этой команды. Требуются права: `%s`",
   commandError: ":x: Произошла ошибка при выполнении команды.",
   commandErrorDesc: "Информация об ошибке была выслана разработчикам бота и будет исправлена в скором будущем.",
 
@@ -106,4 +107,8 @@ export default {
   diceWinDesc: "Вы выиграли **%d** %s\nВаш баланс: **%d** %s",
   diceLoss: "Проигрыш",
   diceLossDesc: "Вы проиграли **%d** %s\nВаш баланс: **%d** %s",
+
+  invalidEmoji: "> :x: Неверный эмодзи предоставлен.",
+  setcurrencySuccess: "> :white_check_mark: Иконка валюты изменена на %s.",
+  setcurrencyResetSuccess: "> :white_check_mark: Иконка валюты сброшена на стандартную.",
 }
