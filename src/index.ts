@@ -3,7 +3,6 @@ import path from "path";
 import ZeoliteContext from "./core/ZeoliteContext";
 import { Options } from "discord.js-light";
 import ConfigLoader, { Config } from "./utils/ConfigLoader";
-import { CITEXT } from "sequelize/types";
 
 declare global {
   var config: Config;
