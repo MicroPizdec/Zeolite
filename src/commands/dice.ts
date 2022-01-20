@@ -16,6 +16,7 @@ export default class DiceCommand extends ZeoliteCommand {
     },
   ];
   guildOnly = true;
+  cooldown = 5;
   
   async run(ctx: ZeoliteContext) {
     const amount = ctx.options.getInteger("amount", true);
