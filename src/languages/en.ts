@@ -6,6 +6,7 @@ export default {
   noPermissions: "> :x: You don't have permissions to use this command. Required permissions: `%s`",
   commandError: ":x: An error occurred while running the command.",
   commandErrorDesc: "This error was sent to the bot developers and will be fixed as soon as possible.",
+  cooldown: "> :warning: You can use this command after %d seconds.",
 
   avatarTitle: "Avatar of %s",
   avatarURL: "Avatar URL",

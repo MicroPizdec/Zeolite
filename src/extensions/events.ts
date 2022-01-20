@@ -16,7 +16,7 @@ export default class EventsExtension extends ZeoliteExtension {
     await ctx.reply({ content: ctx.t("guildOnlyCommand"), ephemeral: true });
   }
   
-  async noPermissions(ctx: ZeoliteContext, permissions: string[]) {
+  async noPermissions(ctx: ZeoliteContext, permissions: string[]) {5
     await ctx.reply({ content: ctx.t("noPermissions", permissions.join()), ephemeral: true });
   }
 
