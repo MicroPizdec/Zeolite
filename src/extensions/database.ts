@@ -16,8 +16,8 @@ export default class DatabaseExtension extends ZeoliteExtension {
 
     this.client.once("ready", () => {
       this.sequelize.sync()
-        .then(() => this.logger.info("DB: connected."))
-        .catch(err => this.logger.error(`DB: failed to connect:\n${err.stack}`));
+        .then(() => this.logger.info("Connected to DB."))
+        .catch(err => this.logger.error(`Failed to connect to DB:\n${err.stack}`));
     });
   }
 }
