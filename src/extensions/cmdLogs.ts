@@ -32,7 +32,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     const embed = new MessageEmbed()
       .setTitle(`Command \`${ctx.commandName}\` used`)
       .setDescription(`/${ctx.commandName} ${options}`)
-      .setColor(0x9f00ff)
+      .setColor(config.defaultColor || 0x9f00ff)
       .addField("User", `${ctx.user.tag} (ID: ${ctx.user.id})`)
       .addField("Channel", `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
       .addField("Guild", `${ctx.guild?.name} (ID: ${ctx.guild?.id})`);
@@ -45,7 +45,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setTitle(ctx.t("commandError"))
       .setDescription(ctx.t("commandErrorDesc"))
       .setColor("RED")
-      .setFooter("Zeolite © Fishyrene", self.client.user?.displayAvatarURL());
+      .setFooter({ text: "Zeolite © Fishyrene", iconURL: self.client.user?.displayAvatarURL() });
     
     if (ctx.interaction.deferred) {
       await ctx.editReply({ embeds: [ errEmbed ] });
@@ -71,7 +71,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     const embed = new MessageEmbed()
       .setTitle("New server:")
       .setDescription(`${guild.name} (ID: ${guild.id})`)
-      .setColor(0x9f00ff)
+      .setColor(config.defaultColor || 0x9f00ff)
       .setThumbnail(guild.iconURL() as string);
     
     await self.webhook.send({ embeds: [ embed ]});
@@ -81,7 +81,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     const embed = new MessageEmbed()
       .setTitle("Removed from server:")
       .setDescription(`${guild.name} (ID: ${guild.id})`)
-      .setColor(0x9f00ff)
+      .setColor(config.defaultColor || 0x9f00ff)
       .setThumbnail(guild.iconURL() as string);
     
     await self.webhook.send({ embeds: [ embed ]});
@@ -95,10 +95,13 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     this.client.on("commandSuccess", this.onCommandSuccess);
     this.client.on("commandError", this.onCommandError);
     this.client.on("guildCreate", this.onGuildCreate);
+    this.client.on("guildDelete", this.onGuildDelete);
   }
 
   async onUnload() {
     this.client.off("commandSuccess", this.onCommandSuccess);
     this.client.off("commandError", this.onCommandError);
+    this.client.off("guildCreate", this.onGuildCreate);
+    this.client.off("guildDelete", this.onGuildDelete);
   }
 }
