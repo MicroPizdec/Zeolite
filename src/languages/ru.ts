@@ -52,6 +52,7 @@ export default {
   serverFooter: "ID: %s\nСоздан %d дней назад",
 
   demotivatorInvalidURL: "> :x: Предоставлена неверная ссылка на изображение.",
+  demotivatorCreator: "Создано %s",
 
   embedInvalidJSON: "> :x: Предоставлена неверная JSON-строка.",
 

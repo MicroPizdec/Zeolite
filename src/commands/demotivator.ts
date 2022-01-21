@@ -74,6 +74,14 @@ export default class DemotivatorCommand extends ZeoliteCommand {
 
     const buffer = canvas.toBuffer();
 
-    await ctx.editReply({ files: [ new MessageAttachment(buffer, "demotivator.png") ] });
+    const embed = new MessageEmbed()
+      .setColor(await ctx.embColor())
+      .setImage("attachment://demotivator.png")
+      .setFooter({ text: ctx.t("demotivatorCreator", ctx.user.tag), iconURL: ctx.user.displayAvatarURL() });
+
+    await ctx.editReply({ 
+      embeds: [ embed ],
+      files: [ new MessageAttachment(buffer, "demotivator.png") ],
+    });
   }
 }
