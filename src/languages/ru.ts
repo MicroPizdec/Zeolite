@@ -120,4 +120,8 @@ export default {
   roleColor: "Цвет",
   roleColorDefault: "по умолчанию",
   daysAgo: "(%d дней назад)",
+
+  topTitle: "Топ-10 богатых участников сервера %s",
+  topEmpty: "Пусто",
+  topFooter: "Вы находитесь на %d месте. Ваш баланс: %d.",
 }

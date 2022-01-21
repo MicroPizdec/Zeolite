@@ -1,5 +1,4 @@
 import { 
-  Interaction,
   ChatInputApplicationCommandData,
   ApplicationCommandOptionData
 } from "discord.js-light";

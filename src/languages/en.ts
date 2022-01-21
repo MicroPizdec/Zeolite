@@ -120,4 +120,8 @@ export default {
   roleColor: "Color",
   roleColorDefault: "default",
   daysAgo: "(%d days ago)",
+
+  topTitle: "Top-10 of richest members in %s",
+  topEmpty: "Empty",
+  topFooter: "Your position is %d, and your balance is %d.",
 }
