@@ -52,7 +52,7 @@ export default class SetCurrencyCommand extends ZeoliteCommand {
       }
       case "reset": {
         await settings.update({ icon: "<:zetcoins:929419222436708373>" });
-        await ctx.reply({ content: ctx.t("setcurrencyReset"), ephemeral: true });
+        await ctx.reply({ content: ctx.t("setcurrencyResetSuccess"), ephemeral: true });
         break;
       }
     }
