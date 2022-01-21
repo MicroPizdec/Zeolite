@@ -1,4 +1,4 @@
-import { Client, Interaction, User, GuildMember } from "discord.js-light";
+import { Client, Interaction, User, GuildMember, PermissionResolvable } from "discord.js-light";
 import { Collection } from "@discordjs/collection";
 import ZeoliteCommand from "./ZeoliteCommand";
 import ZeoliteClientOptions from "./ZeoliteClientOptions";
@@ -115,7 +115,7 @@ export default class ZeoliteClient extends Client {
 
   validatePermissions(member: GuildMember, perms: string[]): boolean {
     for (const perm of perms) {
-      if (!member.permissions.has("ADMINISTRATOR")) return false;
+      if (!member.permissions.has(perm as PermissionResolvable)) return false;
     }
 
     return true;
