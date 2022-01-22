@@ -126,7 +126,7 @@ export default {
   topFooter: "Your position is %d, and your balance is %d.",
 
   depositInfo: "Deposit info",
-  depositInfoDesc: "You can put your money to the deposit.\nHowever, you won't be able to use them, and this sum won't be counted in the top.\nEvery 4 hours 1% of the sum on deposit will be charged. Limit is 250000 ZetCoins.",
+  depositInfoDesc: "You can put your money to the deposit.\nHowever, you won't be able to use them, and this sum won't be counted in the top.\nEvery 4 hours 1% of the sum on deposit will be charged. Limit is 250000 %s.",
   depositPutDesc: "Successfully put %d %s to the deposit!\nYour balance: %d %s\nYour deposit: %d %s",
   depositInsufficientFunds: "> :x: You have insufficient funds on your deposit. Your deposit: %d %s",
   depositWithdrawDesc: "Successfully withdrew %d %s from deposit!\nYour balance: %d %s\nYour deposit: %d %s",

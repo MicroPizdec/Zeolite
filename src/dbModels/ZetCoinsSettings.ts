@@ -7,7 +7,7 @@ export default class ZetCoinsSettings extends Model {
 
   @Column({
     type: DataType.STRING,
-    defaultValue: "<:zetcoins:929419222436708373>",
+    defaultValue: "<:zetcoins:934491646182187039>",
   })
   icon: string;
 

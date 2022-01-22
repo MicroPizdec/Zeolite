@@ -54,7 +54,7 @@ export default class DepositCommand extends ZeoliteCommand {
       case "info": {
         const embed = new MessageEmbed()
           .setTitle(ctx.t("depositInfo"))
-          .setDescription(ctx.t("depositInfoDesc"))
+          .setDescription(ctx.t("depositInfoDesc", settings.icon))
           .setColor(await ctx.embColor())
           .setFooter({ text: "Zeolite © Fishyrene", iconURL: this.client.user?.displayAvatarURL() });
 
