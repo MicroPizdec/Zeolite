@@ -14,4 +14,11 @@ export default class ZetCoins extends Model {
     defaultValue: 0,
   })
   balance: number;
+
+  @Column({
+    type: DataType.FLOAT,
+    allowNull: false,
+    defaultValue: 0,
+  })
+  depositBal: number;
 }

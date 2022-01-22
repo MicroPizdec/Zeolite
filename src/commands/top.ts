@@ -23,8 +23,6 @@ export default class TopCommand extends ZeoliteCommand {
 
     const description = balances.splice(0, 10)
       .map((bal, index) => `${++index}. <@${bal.userID}> - ${bal.balance} ${settings.icon}`);
-
-      console.log(balances.length);
     
     const embed = new MessageEmbed()
       .setTitle(ctx.t("topTitle", ctx.guild?.name))
