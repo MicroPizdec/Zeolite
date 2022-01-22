@@ -130,4 +130,5 @@ export default {
   depositPutDesc: "Успешно внесено %d %s на депозит!\nВаш баланс: %d %s\nДепозит: %d %s",
   depositInsufficientFunds: "> :x: Недостаточно средств на депозите. Сумма на депозите: %d %s",
   depositWithdrawDesc: "Успешно снято %d %s с депозита!\nВаш баланс: %d %s\nДепозит: %d %s",
+  balanceDeposit: "Депозит",
 }
