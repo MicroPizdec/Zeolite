@@ -68,6 +68,11 @@ export default class ZeoliteClient extends Client {
 
     const ctx = new ZeoliteContext(this, interaction);
 
+    for (const hook of this.beforeCommandHooks) {
+      const result = await hook(ctx);
+      if (!result) return;
+    }
+
     if (cmd.ownerOnly && !this.isOwner(ctx.user)) {
       this.emit("ownerOnlyCommand", ctx);
       return;
@@ -76,11 +81,6 @@ export default class ZeoliteClient extends Client {
     if (cmd.guildOnly && !ctx.guild) {
       this.emit("guildOnlyCommand", ctx);
       return;
-    }
-
-    for (const hook of this.beforeCommandHooks) {
-      const result = await hook(ctx);
-      if (!result) return;
     }
 
     if (cmd.cooldown) {
