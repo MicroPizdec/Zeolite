@@ -16,14 +16,12 @@ export default class ZeoliteLocalization {
     this.client = client;
     self = this;
 
-    this.client.off("interactionCreate", this.client.handleCommand);
-
-    this.client.on("interactionCreate", async interaction => {
-      if (!self.userLanguages[interaction.user.id]) {
-        self.userLanguages[interaction.user.id] = await self.getUserLanguage(interaction.user);
+    this.client.addBeforeCommandHook(async ctx => {
+      if (!self.userLanguages[ctx.user.id]) {
+        self.userLanguages[ctx.user.id] = await self.getUserLanguage(ctx.user);
       }
 
-      await self.client.handleCommand(interaction);
+      return true;
     });
   }
 

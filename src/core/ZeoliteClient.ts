@@ -9,6 +9,8 @@ import path from "path";
 import ZeoliteContext from "./ZeoliteContext";
 import ZeoliteLocalization from "./ZeoliteLocalization";
 
+type BeforeCommandHook = (ctx: ZeoliteContext) => Promise<boolean>;
+
 export default class ZeoliteClient extends Client {
   commands: Collection<string | undefined, ZeoliteCommand> = new Collection<string | undefined, ZeoliteCommand>();
   extensions: Collection<string, ZeoliteExtension> = new Collection<string, ZeoliteExtension>();
@@ -20,6 +22,7 @@ export default class ZeoliteClient extends Client {
   cmdDirPath: string;
   extDirPath: string;
   owners: string[];
+  beforeCommandHooks: BeforeCommandHook[] = [];
 
   constructor(options: ZeoliteClientOptions) {
     super(options);
@@ -73,6 +76,11 @@ export default class ZeoliteClient extends Client {
     if (cmd.guildOnly && !ctx.guild) {
       this.emit("guildOnlyCommand", ctx);
       return;
+    }
+
+    for (const hook of this.beforeCommandHooks) {
+      const result = await hook(ctx);
+      if (!result) return;
     }
 
     if (cmd.cooldown) {
@@ -145,12 +153,11 @@ export default class ZeoliteClient extends Client {
       throw new Error("this command does not exist.");
     }
 
-    const cmd = this.commands.get(name) as ZeoliteCommand;
-
-    const cmdPath = require.resolve(path.join(this.cmdDirPath, name));
+    const cmd = this.commands.get(name);
+    const cmdPath = require.resolve(path.join(this.cmdDirPath, cmd!.name));
 
     delete require.cache[cmdPath];
-    this.commands.delete(name);
+    this.commands.delete(cmd!.name);
 
     this.logger.debug(`Unloaded command ${name}.`);
   }
@@ -187,5 +194,28 @@ export default class ZeoliteClient extends Client {
     ext.onLoad();
 
     this.logger.debug(`Loaded extension ${name}`);
+  }
+
+  unloadExtension(name: string) {
+    if (!this.extensions.has(name)) {
+      throw new Error("this extension does not exist.");
+    }
+
+    const ext = this.extensions.get(name);
+    const extPath = require.resolve(path.join(this.cmdDirPath, ext!.name));
+
+    delete require.cache[extPath];
+    this.extensions.delete(ext!.name);
+
+    this.logger.debug(`Unloaded extension ${name}.`);
+  }
+
+  reloadExtension(name: string) {
+    this.unloadExtension(name);
+    this.loadExtension(name);
+  }
+
+  addBeforeCommandHook(hook: BeforeCommandHook) {
+    this.beforeCommandHooks.push(hook);
   }
 }

@@ -75,8 +75,9 @@ export default class PayCommand extends ZeoliteCommand {
     const message = await ctx.reply({ embeds: [ confirmEmbed ], components: [ actionRow ], fetchReply: true });
 
     const component = await message?.awaitMessageComponent({
+      componentType: "BUTTON",
       filter: i => i.user.id == ctx.user.id,
-      time: 300000, 
+      time: 300000,
     });
 
     if (!component) {

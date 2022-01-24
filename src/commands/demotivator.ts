@@ -1,7 +1,7 @@
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import * as Canvas from "canvas";
-import { Message, MessageAttachment, MessageEmbed } from "discord.js";
+import { MessageAttachment, MessageEmbed } from "discord.js";
 
 Canvas.registerFont("./assets/arial.ttf", { family: "Arial" });
 Canvas.registerFont("./assets/times.ttf", { family: "Times New Roman" });

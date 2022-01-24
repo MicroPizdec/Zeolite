@@ -1,12 +1,14 @@
 import { GuildChannel, MessageEmbed, WebhookClient, Guild } from "discord.js";
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import ZeoliteContext from "../core/ZeoliteContext";
+import Logger, { LoggerLevel } from "../core/Logger";
 
 let self: CmdLogsExtension;
 
 export default class CmdLogsExtension extends ZeoliteExtension {
   name = "cmdLogs";
   webhook: WebhookClient;
+  logger: Logger = new Logger(LoggerLevel.Info, this.constructor.name);
 
   parseOptions(ctx: ZeoliteContext): string {
     let options: string[] = [];
@@ -88,7 +90,11 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   async onLoad() {
-    if (config.webhookUrl) this.webhook = new WebhookClient({ url: config.webhookUrl });
+    if (!config.webhookUrl) {
+      return this.logger.warn("Webhook URL is missing.");
+    } 
+    
+    this.webhook = new WebhookClient({ url: config.webhookUrl });
 
     self = this;
 
