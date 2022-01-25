@@ -139,13 +139,15 @@ export default class ZeoliteClient extends Client {
     this.logger.info("Loaded all commands.");
   }
 
-  loadCommand(name: string) {
+  loadCommand(name: string): ZeoliteCommand {
     const cmdCls: typeof ZeoliteCommand = require(path.join(this.cmdDirPath, name)).default;
     const cmd = new cmdCls(this);
       
     this.commands.set(cmd.name, cmd);
 
     this.logger.debug(`Loaded command ${cmd.name}.`);
+
+    return cmd;
   }
 
   unloadCommand(name: string) {
@@ -162,9 +164,9 @@ export default class ZeoliteClient extends Client {
     this.logger.debug(`Unloaded command ${name}.`);
   }
 
-  reloadCommand(name: string) {
+  reloadCommand(name: string): ZeoliteCommand {
     this.unloadCommand(name);
-    this.loadCommand(name);
+    return this.loadCommand(name);
   }
 
   async login(token: string): Promise<string> {
@@ -186,7 +188,7 @@ export default class ZeoliteClient extends Client {
     this.logger.info("Loaded extensions.");
   }
 
-  loadExtension(name: string) {
+  loadExtension(name: string): ZeoliteExtension {
     const extCls: typeof ZeoliteExtension = require(path.join(this.extDirPath, name)).default;
     const ext = new extCls(this);
 
@@ -194,6 +196,8 @@ export default class ZeoliteClient extends Client {
     ext.onLoad();
 
     this.logger.debug(`Loaded extension ${name}`);
+
+    return ext;
   }
 
   unloadExtension(name: string) {
@@ -210,9 +214,9 @@ export default class ZeoliteClient extends Client {
     this.logger.debug(`Unloaded extension ${name}.`);
   }
 
-  reloadExtension(name: string) {
+  reloadExtension(name: string): ZeoliteExtension {
     this.unloadExtension(name);
-    this.loadExtension(name);
+    return this.loadExtension(name);
   }
 
   addBeforeCommandHook(hook: BeforeCommandHook) {

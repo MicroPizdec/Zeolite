@@ -15,14 +15,6 @@ export default class ZeoliteLocalization {
   constructor(client: ZeoliteClient) {
     this.client = client;
     self = this;
-
-    this.client.addBeforeCommandHook(async ctx => {
-      if (!self.userLanguages[ctx.user.id]) {
-        self.userLanguages[ctx.user.id] = await self.getUserLanguage(ctx.user);
-      }
-
-      return true;
-    });
   }
 
   async getUserLanguage(user: User): Promise<string | undefined> {

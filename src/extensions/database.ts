@@ -19,5 +19,13 @@ export default class DatabaseExtension extends ZeoliteExtension {
         .then(() => this.logger.info("Connected to DB."))
         .catch(err => this.logger.error(`Failed to connect to DB:\n${err.stack}`));
     });
+
+    this.client.addBeforeCommandHook(async ctx => {
+      if (!this.client.localization.userLanguages[ctx.user.id]) {
+        this.client.localization.userLanguages[ctx.user.id] = await this.client.localization.getUserLanguage(ctx.user);
+      }
+
+      return true;
+    });
   }
 }

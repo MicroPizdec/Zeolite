@@ -1,6 +1,7 @@
 import { 
   ChatInputApplicationCommandData,
-  ApplicationCommandOptionData
+  ApplicationCommandOptionData,
+  ApplicationCommand
 } from "discord.js-light";
 import ZeoliteClient from "./ZeoliteClient";
 import ZeoliteContext from "./ZeoliteContext";
@@ -24,13 +25,8 @@ export default class ZeoliteCommand {
     throw new Error("abstract class method.");
   }
 
-  async update(data: ChatInputApplicationCommandData) {
-    const cmd = this.client.application?.commands.cache.find(c => c.name == this.name);
-    await cmd?.edit(data);
-
-    this.name = data.name;
-    this.description = data.description;
-    this.options = data.options;
+  async update(): Promise<ApplicationCommand | undefined> {
+    return this.client.application?.commands.create(this.json());
   }
 
   json(): ChatInputApplicationCommandData {
