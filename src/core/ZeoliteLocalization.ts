@@ -1,5 +1,4 @@
 import ZeoliteClient from "./ZeoliteClient";
-import Languages from "../dbModels/Languages";
 import { User } from "discord.js-light";
 import fs from "fs";
 import path from "path";
@@ -17,14 +16,9 @@ export default class ZeoliteLocalization {
     self = this;
   }
 
-  async getUserLanguage(user: User): Promise<string | undefined> {
-    return Languages.findOrCreate({ where: { userID: user.id } })
-      .then(i => i[0]?.language);
-  }
-
   getString(user: User, str: string, ...args: any[]): string {
-    const lang = this.userLanguages[user.id];
-    const langStrs = this.languageStrings[lang as string];
+    const lang = this.userLanguages[user.id] || "en";
+    const langStrs = this.languageStrings[lang];
 
     return langStrs[str] ? util.format(langStrs[str], ...args) : `${str} ${args.join(" ")}`;
   }

@@ -9,7 +9,7 @@ import path from "path";
 import ZeoliteContext from "./ZeoliteContext";
 import ZeoliteLocalization from "./ZeoliteLocalization";
 
-type BeforeCommandHook = (ctx: ZeoliteContext) => Promise<boolean>;
+type CheckFunc = (ctx: ZeoliteContext) => Promise<boolean>;
 
 export default class ZeoliteClient extends Client {
   commands: Collection<string | undefined, ZeoliteCommand> = new Collection<string | undefined, ZeoliteCommand>();
@@ -22,7 +22,7 @@ export default class ZeoliteClient extends Client {
   cmdDirPath: string;
   extDirPath: string;
   owners: string[];
-  beforeCommandHooks: BeforeCommandHook[] = [];
+  checks: CheckFunc[] = [];
 
   constructor(options: ZeoliteClientOptions) {
     super(options);
@@ -68,8 +68,8 @@ export default class ZeoliteClient extends Client {
 
     const ctx = new ZeoliteContext(this, interaction);
 
-    for (const hook of this.beforeCommandHooks) {
-      const result = await hook(ctx);
+    for (const check of this.checks) {
+      const result = await check(ctx);
       if (!result) return;
     }
 
@@ -219,7 +219,7 @@ export default class ZeoliteClient extends Client {
     return this.loadExtension(name);
   }
 
-  addBeforeCommandHook(hook: BeforeCommandHook) {
-    this.beforeCommandHooks.push(hook);
+  addCommandCheck(checkFunc: CheckFunc) {
+    this.checks.push(checkFunc);
   }
 }

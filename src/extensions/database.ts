@@ -1,5 +1,5 @@
 import ZeoliteExtension from "../core/ZeoliteExtension";
-import { Sequelize, Model } from "sequelize-typescript";
+import { Sequelize } from "sequelize-typescript";
 import path from "path";
 import Logger, { LoggerLevel } from "../core/Logger";
 
@@ -20,9 +20,11 @@ export default class DatabaseExtension extends ZeoliteExtension {
         .catch(err => this.logger.error(`Failed to connect to DB:\n${err.stack}`));
     });
 
-    this.client.addBeforeCommandHook(async ctx => {
+    this.client.addCommandCheck(async ctx => {
       if (!this.client.localization.userLanguages[ctx.user.id]) {
-        this.client.localization.userLanguages[ctx.user.id] = await this.client.localization.getUserLanguage(ctx.user);
+        const lang = await this.sequelize.models.Languages.findOrCreate({ where: { userID: ctx.user.id } })
+          .then(l => l[0]);
+        this.client.localization.userLanguages[ctx.user.id] = lang.getDataValue("language");
       }
 
       return true;
