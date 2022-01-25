@@ -28,7 +28,7 @@ export default class RoleCommand extends ZeoliteCommand {
       .addField(ctx.t("roleHoisted"), role.hoist ? ctx.t("payYes") : ctx.t("payNo"))
       .addField(ctx.t("roleManaged"), role.managed ? ctx.t("payYes") : ctx.t("payNo")) 
       .addField(ctx.t("roleColor"), role.color ? `#${intToHex(role.color)}` : ctx.t("roleColorDefault"))
-      .setFooter({ text: "Zeolite © Fishyrene", iconURL: this.client.user?.displayAvatarURL() }); // ну поiхали
+      .setFooter({ text: "Zeolite © Fishyrene", iconURL: this.client.user?.displayAvatarURL() }); // ВЫ НЕ ПОНИМАЕТЕ ЭТО ДРУГОЕ
     
     await ctx.reply({ embeds: [ embed ] });
   }

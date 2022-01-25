@@ -42,7 +42,7 @@ export default {
   infoDevs: "Разработчики",
 
   serverOwner: "Владелец",
-  serverVerificationLevel: "Verification level",
+  serverVerificationLevel: "Уровень верификации",
   serverChannels: "Каналы",
   serverChannelsDesc: "текстовые - %d\nголосовые - %d",
   serverMembers: "Участники",
@@ -50,6 +50,12 @@ export default {
   serverEmojisDesc: "статичные - %d\nанимированные - %d",
   serverRolesCount: "Кол-во ролей",
   serverFooter: "ID: %s\nСоздан %d дней назад",
+
+  NONE: "Отсутствует",
+  LOW: "Низкий",
+  MEDIUM: "Средний",
+  HIGH: "Высокий",
+  VERY_HIGH: "Очень высокий",
 
   demotivatorInvalidURL: "> :x: Предоставлена неверная ссылка на изображение.",
   demotivatorCreator: "Создано %s",
@@ -131,4 +137,7 @@ export default {
   depositInsufficientFunds: "> :x: Недостаточно средств на депозите. Сумма на депозите: %d %s",
   depositWithdrawDesc: "Успешно снято %d %s с депозита!\nВаш баланс: %d %s\nДепозит: %d %s",
   balanceDeposit: "Депозит",
+
+  workAmountSetSuccess: "> :white_check_mark: Диапазон зарабатываемых денег установлен на %d-%d.",
+  workAmountResetSuccess: "> :white_check_mark: Диапазон зарабатываемых денег сброшен.",
 }

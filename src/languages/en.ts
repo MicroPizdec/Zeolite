@@ -51,6 +51,12 @@ export default {
   serverRolesCount: "Roles count",
   serverFooter: "ID: %s\nCreated %d days ago",
 
+  NONE: "None",
+  LOW: "Low",
+  MEDIUM: "Medium",
+  HIGH: "High",
+  VERY_HIGH: "Very high",
+
   demotivatorInvalidURL: "> :x: Invalid image URL provided.",
   demotivatorCreator: "Created by %s",
 
@@ -131,4 +137,7 @@ export default {
   depositInsufficientFunds: "> :x: You have insufficient funds on your deposit. Your deposit: %d %s",
   depositWithdrawDesc: "Successfully withdrew %d %s from deposit!\nYour balance: %d %s\nYour deposit: %d %s",
   balanceDeposit: "Deposit",
+
+  workAmountSetSuccess: "> :white_check_mark: Set the work amount to %d-%d.",
+  workAmountResetSuccess: "> :white_check_mark: Reset the work amount.",
 }

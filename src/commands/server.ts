@@ -22,7 +22,7 @@ export default class ServerCommand extends ZeoliteCommand {
       .setThumbnail(ctx.guild?.iconURL()!)
       .setColor(await ctx.embColor())
       .addField(ctx.t("serverOwner"), owner.user.tag)
-      .addField(ctx.t("serverVerificationLevel"), ctx.guild!.verificationLevel)
+      .addField(ctx.t("serverVerificationLevel"), ctx.t(ctx.guild!.verificationLevel))
       .addField(ctx.t("serverChannels"), ctx.t("serverChannelsDesc", textChannels, voiceChannels), true)
       .addField(ctx.t("serverMembers"), ctx.guild!.memberCount.toString(), true)
       .addField(ctx.t("serverEmojis"), ctx.t("serverEmojisDesc", staticEmojis, animatedEmojis), true)
