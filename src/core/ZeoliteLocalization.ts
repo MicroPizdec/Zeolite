@@ -19,16 +19,27 @@ export default class ZeoliteLocalization {
   getString(user: User, str: string, ...args: any[]): string {
     const lang = this.userLanguages[user.id] || "en";
     const langStrs = this.languageStrings[lang];
-
     return langStrs[str] ? util.format(langStrs[str], ...args) : `${str} ${args.join(" ")}`;
+  }
+
+  reloadLanguages() {
+    const langs = Object.keys(this.languageStrings);
+
+    for (const lang of langs) {
+      const langPath = require.resolve(path.join(__dirname, "..", "languages", lang));
+      delete require.cache[langPath];
+      delete this.languageStrings[lang];
+    }
+
+    this.loadLanguages();
   }
 
   loadLanguages() {
     const langs = fs.readdirSync(path.join(__dirname, "..", "languages")).map(i => i.split(".")[0]);
 
     for (const lang of langs) {
-      import(path.join("..", "languages", lang))
-        .then(l => self.languageStrings[lang] = l.default);
+      const strs = require(path.join("..", "languages", lang)).default;
+      self.languageStrings[lang] = strs;
     }
 
     this.client.logger.info("Loaded all language files.");

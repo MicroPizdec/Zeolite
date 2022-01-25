@@ -140,4 +140,10 @@ export default {
 
   workAmountSetSuccess: "> :white_check_mark: Диапазон зарабатываемых денег установлен на %d-%d.",
   workAmountResetSuccess: "> :white_check_mark: Диапазон зарабатываемых денег сброшен.",
+
+  reloadCommandDoesntExist: "> :x: Такой команды не существует.",
+  reloadSuccess: "> :white_check_mark: Команда `%s` перезагружена.",
+  reloadExtensionDoesntExist: "> :x: Такого расширения не существует.",
+  reloadExtensionSuccess: "> :white_check_mark: Расширение `%s` перезагружено.",
+  reloadLanguagesSuccess: "> :white_check_mark: Языки перезагружены.",
 }

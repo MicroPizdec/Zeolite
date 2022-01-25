@@ -140,4 +140,10 @@ export default {
 
   workAmountSetSuccess: "> :white_check_mark: Set the work amount to %d-%d.",
   workAmountResetSuccess: "> :white_check_mark: Reset the work amount.",
+
+  reloadCommandDoesntExist: "> :x: Command doesn't exist.",
+  reloadSuccess: "> :white_check_mark: Command `%s` reloaded.",
+  reloadExtensionDoesntExist: "> :x: Extension doesn't exist",
+  reloadExtensionSuccess: "> :white_check_mark: Extension `%s` reloaded.",
+  reloadLanguagesSuccess: "> :white_check_mark: Languages reloaded.",
 }
