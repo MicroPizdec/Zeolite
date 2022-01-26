@@ -51,7 +51,7 @@ export default class AvatarCommand extends ZeoliteCommand {
 
         const embed = new MessageEmbed()
           .setAuthor({ name: ctx.t("avatarTitle", user.tag) })
-          .setColor(await ctx.embColor())
+          .setColor(ctx.get("embColor"))
           .setImage(url);
     
         await ctx.reply({ embeds: [ embed ], components: [ linkButton ] });
@@ -69,7 +69,7 @@ export default class AvatarCommand extends ZeoliteCommand {
 
         const embed = new MessageEmbed()
           .setAuthor({ name: ctx.t("avatarServerIcon") })
-          .setColor(await ctx.embColor())
+          .setColor(ctx.get("embColor"))
           .setImage(url);
         
         const actionRow = new MessageActionRow()
@@ -94,7 +94,7 @@ export default class AvatarCommand extends ZeoliteCommand {
 
         const embed = new MessageEmbed()
           .setAuthor({ name: ctx.t("avatarBanner") })
-          .setColor(await ctx.embColor())
+          .setColor(ctx.get("embColor"))
           .setImage(url);
         
         const actionRow = new MessageActionRow()

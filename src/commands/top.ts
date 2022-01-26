@@ -28,7 +28,7 @@ export default class TopCommand extends ZeoliteCommand {
       .setTitle(ctx.t("topTitle", ctx.guild?.name))
       .setDescription(description.length ? description.join("\n") : ctx.t("topEmpty"))
       .setFooter({ text: ctx.t("topFooter", authorPos, authorBal.balance), iconURL: ctx.user.displayAvatarURL() })
-      .setColor(await ctx.embColor());
+      .setColor(ctx.get("embColor"));
     
     await ctx.reply({ embeds: [ embed ] });
   }

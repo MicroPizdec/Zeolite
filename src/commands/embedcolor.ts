@@ -50,7 +50,7 @@ export default class EmbedcolorCommand extends ZeoliteCommand {
         const embed = new MessageEmbed()
           .setTitle(ctx.t("embedcolorYourColor"))
           .setDescription(`\`${color.random ? ctx.t("embedcolorRandom") : color.color ? `#${intToHex(color.color)}` : ctx.t("embedcolorDefault")}\``)
-          .setColor(await ctx.embColor());
+          .setColor(ctx.get("embColor"));
         
         await ctx.reply({ embeds: [ embed ], ephemeral: true });
         break;

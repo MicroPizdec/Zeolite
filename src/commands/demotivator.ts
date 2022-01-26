@@ -75,7 +75,7 @@ export default class DemotivatorCommand extends ZeoliteCommand {
     const buffer = canvas.toBuffer();
 
     const embed = new MessageEmbed()
-      .setColor(await ctx.embColor())
+      .setColor(ctx.get("embColor"))
       .setImage("attachment://demotivator.png")
       .setFooter({ text: ctx.t("demotivatorCreator", ctx.user.tag), iconURL: ctx.user.displayAvatarURL() });
 

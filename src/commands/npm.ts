@@ -35,7 +35,7 @@ export default class NpmCommand extends ZeoliteCommand {
       .setTitle(pkg.name)
       .setDescription(pkg.description)
       .setURL(`https://www.npmjs.org/package/${pkg.name}`)
-      .setColor(await ctx.embColor())
+      .setColor(ctx.get("embColor"))
       .addField(ctx.t("npmVersion"), pkg.version)
       .setFooter({ text: ctx.t("npmModifiedAt") })
       .setTimestamp(new Date(response.time.modified));

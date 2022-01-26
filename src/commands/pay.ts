@@ -56,7 +56,7 @@ export default class PayCommand extends ZeoliteCommand {
     const confirmEmbed = new MessageEmbed()
       .setTitle(ctx.t("payConfirmationTitle", amount, settings?.icon, user.tag))
       .setDescription(ctx.t("payConfirmationDesc"))
-      .setColor(await ctx.embColor())
+      .setColor(ctx.get("embColor"))
 
     const actionRow = new MessageActionRow()
       .addComponents(
@@ -83,7 +83,7 @@ export default class PayCommand extends ZeoliteCommand {
     if (!component) {
       const timeExpiredEmbed = new MessageEmbed()
         .setTitle(ctx.t("payTimeExpired"))
-        .setColor(await ctx.embColor());
+        .setColor(ctx.get("embColor"));
       
       await ctx.editReply({ embeds: [ timeExpiredEmbed ] });
     }

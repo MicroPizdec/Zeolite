@@ -40,7 +40,7 @@ export default class LanguageCommand extends ZeoliteCommand {
         .setDescription(availableLangs.map(l => `\`${l}\``).join(", "))
         .setAuthor({ name: ctx.user.tag, iconURL: ctx.user.displayAvatarURL() })
         .addField(ctx.t("langYourLanguage"), `\`${dbLang?.language}\``)
-        .setColor(await ctx.embColor())
+        .setColor(ctx.get("embColor"))
       
       await ctx.reply({ embeds: [ embed ], ephemeral: true });
     } else {

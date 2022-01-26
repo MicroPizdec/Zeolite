@@ -22,7 +22,7 @@ export default class RoleCommand extends ZeoliteCommand {
 
     const embed = new MessageEmbed()
       .setTitle(role.name)
-      .setColor(role.color || await ctx.embColor())
+      .setColor(role.color || ctx.get("embColor"))
       .addField("ID", role.id)
       .addField(ctx.t("roleCreatedAt"), `<t:${Math.floor(role.createdTimestamp / 1000)}> ${ctx.t("daysAgo", createdDays)}`)
       .addField(ctx.t("roleHoisted"), role.hoist ? ctx.t("payYes") : ctx.t("payNo"))

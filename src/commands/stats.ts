@@ -28,7 +28,7 @@ export default class StatsCommand extends ZeoliteCommand {
 
     const embed = new MessageEmbed()
       .setTitle(ctx.t("stats"))
-      .setColor(await ctx.embColor())
+      .setColor(ctx.get("embColor"))
       .addField(ctx.t("statsUptime"), parseUptime(this.client.uptime as number), true)
       .addField(ctx.t("statsRamUsed"), `${ramUsed.toFixed(1)} MB`, true)
       .addField(ctx.t("statsPing"), `${this.client.ws.ping} ms`, true)

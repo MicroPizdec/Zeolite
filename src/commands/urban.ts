@@ -46,7 +46,7 @@ export default class UrbanCommand extends ZeoliteCommand {
     const embed = new MessageEmbed()
       .setTitle(data.word)
       .setDescription(data.definition)
-      .setColor(await ctx.embColor())
+      .setColor(ctx.get("embColor"))
       .setURL(data.permalink)
       .addField(ctx.t("urbanRating"), `${data.thumbs_up} :thumbsup:\n${data.thumbs_down} :thumbsdown:`)
       .setFooter({ text: ctx.t("urbanAuthor", data.author) })

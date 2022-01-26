@@ -55,7 +55,7 @@ export default class DepositCommand extends ZeoliteCommand {
         const embed = new MessageEmbed()
           .setTitle(ctx.t("depositInfo"))
           .setDescription(ctx.t("depositInfoDesc", settings.icon))
-          .setColor(await ctx.embColor())
+          .setColor(ctx.get("embColor"))
           .setFooter({ text: "Zeolite © Fishyrene", iconURL: this.client.user?.displayAvatarURL() });
 
         await ctx.reply({ embeds: [ embed ] });
@@ -85,7 +85,7 @@ export default class DepositCommand extends ZeoliteCommand {
             userBal.balance, settings.icon, 
             userBal.depositBal, settings.icon
           ))
-          .setColor(await ctx.embColor());
+          .setColor(ctx.get("embColor"));
 
         await ctx.reply({ embeds: [ embed ], ephemeral: true });
         break;
@@ -114,7 +114,7 @@ export default class DepositCommand extends ZeoliteCommand {
             userBal.balance, settings.icon, 
             userBal.depositBal, settings.icon
           ))
-          .setColor(await ctx.embColor());
+          .setColor(ctx.get("embColor"));
 
         await ctx.reply({ embeds: [ embed ] });
         break;

@@ -20,7 +20,7 @@ export default class WorkCommand extends ZeoliteCommand {
         .setTitle(ctx.t("workCooldownTitle"))
         .setDescription(ctx.t("workCooldown", minsLeft))
         .setAuthor({ name: ctx.user.tag, iconURL: ctx.user.displayAvatarURL() })
-        .setColor(await ctx.embColor());
+        .setColor(ctx.get("embColor"));
       
       await ctx.reply({ embeds: [ embed ], ephemeral: true });
       return;
@@ -43,7 +43,7 @@ export default class WorkCommand extends ZeoliteCommand {
     const embed = new MessageEmbed()
       .setDescription(ctx.t("workDesc", amount, settings.icon, userBal.balance, settings.icon))
       .setAuthor({ name: ctx.user.tag, iconURL: ctx.user.displayAvatarURL() })
-      .setColor(await ctx.embColor());
+      .setColor(ctx.get("embColor"));
 
     await ctx.reply({ embeds: [ embed ] });
 

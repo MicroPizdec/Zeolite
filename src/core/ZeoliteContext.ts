@@ -12,11 +12,13 @@ import {
   CommandInteractionOptionResolver
 } from "discord.js";
 import { APIMessage } from "discord-api-types";
-import EmbedColors from "../dbModels/EmbedColors";
+import { Collection } from "discord.js";
 
 export default class ZeoliteContext {
   readonly client: ZeoliteClient;
   readonly interaction: CommandInteraction;
+  
+  public data: Collection<string, any> = new Collection<string, any>();
 
   constructor(client: ZeoliteClient, interaction: CommandInteraction) {
     this.client = client;
@@ -67,11 +69,11 @@ export default class ZeoliteContext {
     return this.client.localization.getString(this.user, str, ...args);
   }
 
-  async embColor(): Promise<number> {
-    const color = await EmbedColors.findOne({ where: { userID: this.user.id } });
+  set(key: string, data: any) {
+    this.data.set(key, data);
+  }
 
-    return color ? 
-      color.random ? Math.round(Math.random() * 16777216) : color.color || config.defaultColor || 0x9f00ff :
-      config.defaultColor || 0x9f00ff;
-  } 
+  get(key: string): any {
+    return this.data.get(key);
+  }
 }

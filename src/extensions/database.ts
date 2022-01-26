@@ -29,5 +29,16 @@ export default class DatabaseExtension extends ZeoliteExtension {
 
       return true;
     });
+
+    this.client.addCommandCheck(async ctx => {
+      const color = await this.sequelize.models.EmbedColors.findOne({ where: { userID: ctx.user.id } });
+
+      ctx.set("embColor", color ? 
+        color.getDataValue("random") ? Math.round(Math.random() * 16777216) : color.getDataValue("color") || config.defaultColor || 0x9f00ff :
+        config.defaultColor || 0x9f00ff
+      );
+
+      return true;
+    })
   }
 }
