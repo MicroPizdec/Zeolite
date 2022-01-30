@@ -1,6 +1,5 @@
 export default {
   langName: "en",
-  testString: "Test string",
   notBotOwner: "> :x: You aren't the bot owner!",
   guildOnlyCommand: "> :x: You can't use this command in PM!",
   noPermissions: "> :x: You don't have permissions to use this command. Required permissions: `%s`",
