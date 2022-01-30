@@ -149,4 +149,17 @@ export default {
 
   setbalanceBot: "> :x: Вы не можете изменить баланс боту!",
   setbalanceSuccess: "> :white_check_mark: Успешно изменен баланс пользователя **%s** на **%d** %s",
+
+  cantWarnYourself: "> :x: Вы не можете предупредить себя.",
+  cantWarnBot: "> :x: You can't warn a bot",
+  warnLimit: "> :x: Вы больше не можете добавить предупреждений этому пользователю.",
+  warnAdded: "%s успешно предупреждён",
+  reason: "Причина: %s",
+  reasonNone: "Причина не указана",
+  warnID: "ID предупреждений: %d",
+  warnInvalidID: "> :x: Этого предупреждения не существует или оно расположено на другом сервере.",
+  warnDeleted: "> :white_check_mark: Предупреждение с ID `%d` удалено.",
+  warnList: "Список предупреждений %s",
+  warnCount: "Всего предупреждений: %d",
+  warnField: "ID предупреждения: %d (предупреждён %s)",
 }

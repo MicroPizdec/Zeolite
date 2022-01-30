@@ -149,4 +149,17 @@ export default {
 
   setbalanceBot: "> :x: You can't set the balance for a bot!",
   setbalanceSuccess: "> :white_check_mark: Successfully set **%s**'s balance to **%d** %s",
+
+  cantWarnYourself: "> :x: You can't warn yourself",
+  cantWarnBot: "> :x: You can't warn a bot",
+  warnLimit: "> :x: You can't add more warns to this user.",
+  warnAdded: "%s has been successfully warned",
+  reason: "Reason: %s",
+  reasonNone: "No reason provided",
+  warnID: "Warn ID: %d",
+  warnInvalidID: "> :x: This warn doesn't exist or located on another server.",
+  warnDeleted: "> :white_check_mark: Deleted warn with ID `%d`.",
+  warnList: "%s's warn list",
+  warnCount: "Total warns: %d",
+  warnField: "Warn ID: %d (warned by %s)",
 }
