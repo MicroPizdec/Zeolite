@@ -146,4 +146,7 @@ export default {
   reloadExtensionDoesntExist: "> :x: Extension doesn't exist",
   reloadExtensionSuccess: "> :white_check_mark: Extension `%s` reloaded.",
   reloadLanguagesSuccess: "> :white_check_mark: Languages reloaded.",
+
+  setbalanceBot: "> :x: You can't set the balance for a bot!",
+  setbalanceSuccess: "> :white_check_mark: Successfully set **%s**'s balance to **%d** %s",
 }

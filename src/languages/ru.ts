@@ -146,4 +146,7 @@ export default {
   reloadExtensionDoesntExist: "> :x: Такого расширения не существует.",
   reloadExtensionSuccess: "> :white_check_mark: Расширение `%s` перезагружено.",
   reloadLanguagesSuccess: "> :white_check_mark: Языки перезагружены.",
+
+  setbalanceBot: "> :x: Вы не можете изменить баланс боту!",
+  setbalanceSuccess: "> :white_check_mark: Успешно изменен баланс пользователя **%s** на **%d** %s",
 }

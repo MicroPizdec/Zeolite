@@ -9,20 +9,21 @@ import path from "path";
 import ZeoliteContext from "./ZeoliteContext";
 import ZeoliteLocalization from "./ZeoliteLocalization";
 
-type CheckFunc = (ctx: ZeoliteContext) => Promise<boolean>;
+export type CheckFunc = (ctx: ZeoliteContext) => Promise<boolean>;
 
 export default class ZeoliteClient extends Client {
-  commands: Collection<string | undefined, ZeoliteCommand> = new Collection<string | undefined, ZeoliteCommand>();
+  commands: Collection<string, ZeoliteCommand> = new Collection<string, ZeoliteCommand>();
   extensions: Collection<string, ZeoliteExtension> = new Collection<string, ZeoliteExtension>();
   cooldowns: Collection<string, Collection<string, number>> = new Collection<string, Collection<string, number>>();
   localization: ZeoliteLocalization;
-  private debug: boolean;
   logger: Logger;
-  private djsLogger: Logger;
   cmdDirPath: string;
   extDirPath: string;
   owners: string[];
   checks: CheckFunc[] = [];
+
+  private debug: boolean;
+  private djsLogger: Logger;
 
   constructor(options: ZeoliteClientOptions) {
     super(options);
@@ -199,7 +200,7 @@ export default class ZeoliteClient extends Client {
 
     return ext;
   }
-
+  
   unloadExtension(name: string) {
     if (!this.extensions.has(name)) {
       throw new Error("this extension does not exist.");
