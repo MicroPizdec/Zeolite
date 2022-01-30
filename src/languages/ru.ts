@@ -151,7 +151,7 @@ export default {
   setbalanceSuccess: "> :white_check_mark: Успешно изменен баланс пользователя **%s** на **%d** %s",
 
   cantWarnYourself: "> :x: Вы не можете предупредить себя.",
-  cantWarnBot: "> :x: You can't warn a bot",
+  cantWarnBot: "> :x: Вы не можете предупредить бота.",
   warnLimit: "> :x: Вы больше не можете добавить предупреждений этому пользователю.",
   warnAdded: "%s успешно предупреждён",
   reason: "Причина: %s",
