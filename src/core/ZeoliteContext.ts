@@ -9,10 +9,10 @@ import {
   InteractionReplyOptions,
   InteractionDeferReplyOptions,
   WebhookEditMessageOptions,
-  CommandInteractionOptionResolver
+  CommandInteractionOptionResolver,
+  Collection
 } from "discord.js";
 import { APIMessage } from "discord-api-types";
-import { Collection } from "discord.js";
 
 export default class ZeoliteContext {
   readonly client: ZeoliteClient;
@@ -73,7 +73,7 @@ export default class ZeoliteContext {
     this.data.set(key, data);
   }
 
-  get(key: string): any {
-    return this.data.get(key);
+  get<T>(key: string): T {
+    return this.data.get(key) as T;
   }
 }

@@ -161,4 +161,16 @@ export default {
   warnList: "Список предупреждений %s",
   warnCount: "Всего предупреждений: %d",
   warnField: "ID предупреждения: %d (предупреждён %s)",
+
+  playLoadFail: "> :x: Не удалось загрузить трек. `%s`",
+  playPlaylistIsNotSupported: "> :x: Плейлисты не поддерживаются.",
+  playTrackNotFound: "> :x: Трек не найден.",
+  playAddedToQueue: "> Добавлено в очередь: `%s`",
+
+  nowPlaying: ":arrow_forward: Сейчас играет",
+  playAuthor: "Автор: %s",
+  playFailed: ":x: Не удалось воспроизвести трек",
+  playFailedDesc: "Трек имеет возрастное ограничение, заблокирован или находится в ограниченном доступе.",
+  allTracksPlayed: "> :stop_button: Все треки проиграны.",
+  duration: "Длительность",
 }

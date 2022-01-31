@@ -161,4 +161,16 @@ export default {
   warnList: "%s's warn list",
   warnCount: "Total warns: %d",
   warnField: "Warn ID: %d (warned by %s)",
+
+  playLoadFail: "> :x: Failed to load the track. `%s`",
+  playPlaylistIsNotSupported: "> :x: Playlists aren't supported.",
+  playTrackNotFound: "> :x: Track not found.",
+  playAddedToQueue: "> Added to queue: `%s`",
+
+  nowPlaying: ":arrow_forward: Now playing",
+  playAuthor: "Uploaded by: %s",
+  playFailed: ":x: Failed to play the track",
+  playFailedDesc: "This track is age-restricted, blocked or has limited access.",
+  allTracksPlayed: "> :stop_button: All tracks have been played.",
+  duration: "Duration",
 }

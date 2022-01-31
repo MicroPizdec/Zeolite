@@ -23,4 +23,11 @@ export interface Config {
   webhookUrl?: string;
   defaultColor?: number;
   debug?: boolean;
+  lavalinkNodes?: LavalinkNode[];
+}
+
+export interface LavalinkNode {
+  host: string;
+  port: number;
+  password: string;
 }
