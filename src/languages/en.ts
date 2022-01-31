@@ -166,11 +166,25 @@ export default {
   playPlaylistIsNotSupported: "> :x: Playlists aren't supported.",
   playTrackNotFound: "> :x: Track not found.",
   playAddedToQueue: "> Added to queue: `%s`",
+  playNotInVoiceChannel: "> :x: You are not in voice channel or not in the same channel with me.",
 
   nowPlaying: ":arrow_forward: Now playing",
+  duration: "Duration",
   playAuthor: "Uploaded by: %s",
   playFailed: ":x: Failed to play the track",
   playFailedDesc: "This track is age-restricted, blocked or has limited access.",
   allTracksPlayed: "> :stop_button: All tracks have been played.",
-  duration: "Duration",
+
+  notPlaying: "> :mute: Nothing is playing now.",
+  alreadyPaused: "> :pause_button: Track is already paused!",
+  paused: "> :pause_button: Paused. Use `/resume` to resume.",
+
+  alreadyPlaying: "> :arrow_forward: Already playing the track!",
+  resumed: "> :arrow_forward: Resumed.",
+
+  skipping: "> :fast_forward: Skipping...",
+  
+  currentVolume: ":loud_sound: Current volume is %d%",
+  volumeFooter: "You can use /volume set [volume] to set the new volume.",
+  volumeChanged: "> :loud_sound: Новая громкость задана на %d%",
 }

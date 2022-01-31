@@ -2,9 +2,9 @@ import { Manager } from "erela.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 
-export default class ResumeCommand extends ZeoliteCommand {
-  name = "resume";
-  description = "Resumes the track";
+export default class SkipCommand extends ZeoliteCommand {
+  name = "skip";
+  description = "Skips the track";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {
@@ -20,13 +20,8 @@ export default class ResumeCommand extends ZeoliteCommand {
       return;
     }
 
-    if (player.playing) {
-      await ctx.reply({ content: ctx.t("alreadyPlaying"), ephemeral: true })
-      return;
-    }
+    player.stop()
 
-    player.pause(false);
-
-    await ctx.reply(ctx.t("resumed"));
+    await ctx.reply(ctx.t("skipping"));
   }
 }

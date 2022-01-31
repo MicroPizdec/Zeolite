@@ -166,11 +166,25 @@ export default {
   playPlaylistIsNotSupported: "> :x: Плейлисты не поддерживаются.",
   playTrackNotFound: "> :x: Трек не найден.",
   playAddedToQueue: "> Добавлено в очередь: `%s`",
+  playNotInVoiceChannel: "> :x: Вы не находитесь в голосовом канале, либо не находитесь в таком же канале со мной.",
 
   nowPlaying: ":arrow_forward: Сейчас играет",
   playAuthor: "Автор: %s",
+  duration: "Длительность",
   playFailed: ":x: Не удалось воспроизвести трек",
   playFailedDesc: "Трек имеет возрастное ограничение, заблокирован или находится в ограниченном доступе.",
   allTracksPlayed: "> :stop_button: Все треки проиграны.",
-  duration: "Длительность",
+
+  notPlaying: "> :mute: Сейчас ничего не играет.",
+  alreadyPaused: "> :pause_button: Трек уже на паузе!",
+  paused: "> :pause_button: На паузе. Используйте `/resume` для продолжения воспроизведения.",
+
+  alreadyPlaying: "> :arrow_forward: Трек уже воспроизводится!",
+  resumed: "> :arrow_forward: Воспроизведение продолжено.",
+
+  skipping: "> :fast_forward: Пропущено...",
+
+  currentVolume: ":loud_sound: Текущая громкость: %d%",
+  volumeFooter: "Вы можете использовать /volume set [громкость] чтобы задать новую громкость.",
+  volumeChanged: "> :loud_sound: Новая громкость задана на %d%",
 }
