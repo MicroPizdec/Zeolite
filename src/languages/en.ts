@@ -187,4 +187,15 @@ export default {
   currentVolume: ":loud_sound: Current volume is %d%",
   volumeFooter: "You can use /volume set [volume] to set the new volume.",
   volumeChanged: "> :loud_sound: Новая громкость задана на %d%",
+
+  loopEnabled: "> :repeat: Loop enabled.",
+  loopDisabled: "> :repeat: Loop disabled.",
+
+  queueEmpty: "> :x: Queue is empty.",
+  queue: "Track queue",
+  durationRequestedBy: "Duration: %s (requested by %s)",
+  queueFooter: "Page %d of %d",
+  back: "Back",
+  forward: "Forward",
+  close: "Close",
 }

@@ -24,7 +24,7 @@ export default class PlayCommand extends ZeoliteCommand {
     const query = ctx.options.getString("track", true);
     const manager: Manager = ctx.get("manager");
 
-    const res = await manager.search(query);
+    const res = await manager.search(query, ctx.user);
     if (res.loadType == "LOAD_FAILED") {
       await ctx.reply({ content: ctx.t("playLoadFail", res.exception?.message), ephemeral: true });
       return;

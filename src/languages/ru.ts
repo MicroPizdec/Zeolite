@@ -187,4 +187,15 @@ export default {
   currentVolume: ":loud_sound: Текущая громкость: %d%",
   volumeFooter: "Вы можете использовать /volume set [громкость] чтобы задать новую громкость.",
   volumeChanged: "> :loud_sound: Новая громкость задана на %d%",
+  
+  loopEnabled: "> :repeat: Повторение включено.",
+  loopDisabled: "> :repeat: Повторение выключено.",
+
+  queueEmpty: "> :x: Очередь пустая.",
+  queue: "Очередь",
+  durationRequestedBy: "Длительность: %s (запросил %s)",
+  queueFooter: "Страница %d из %d",
+  back: "Назад",
+  forward: "Вперед",
+  close: "Закрыть",
 }
