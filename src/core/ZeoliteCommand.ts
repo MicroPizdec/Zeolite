@@ -9,6 +9,7 @@ import ZeoliteContext from "./ZeoliteContext";
 export default class ZeoliteCommand {
   name: string;
   description: string;
+  group?: string;
   options?: ApplicationCommandOptionData[];
   ownerOnly?: boolean;
   guildOnly?: boolean;

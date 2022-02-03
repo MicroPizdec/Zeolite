@@ -4,6 +4,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class EmbedCommand extends ZeoliteCommand {
   name = "embed";
   description = "Creates an embed from JSON";
+  group = "other";
   options = [
     {
       type: 3,

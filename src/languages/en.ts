@@ -198,4 +198,13 @@ export default {
   back: "Back",
   forward: "Forward",
   close: "Close",
+
+  commands: "Commands",
+  generalGroup: "General",
+  economyGroup: "Economy",
+  musicGroup: "Music",
+  funGroup: "Fun",
+  otherGroup: "Other",
+  settingsGroup: "Settings",
+  devGroup: "Don't touch this",
 }

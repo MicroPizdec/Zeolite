@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class ResumeCommand extends ZeoliteCommand {
   name = "resume";
   description = "Resumes the track";
+  group = "music";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {

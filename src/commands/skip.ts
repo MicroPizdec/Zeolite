@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class SkipCommand extends ZeoliteCommand {
   name = "skip";
   description = "Skips the track";
+  group = "music";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {

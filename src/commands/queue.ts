@@ -15,6 +15,7 @@ import Utils from "../utils/Utils";
 export default class QueueCommand extends ZeoliteCommand {
   name = "queue";
   description = "Shows the track queue";
+  group = "music";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {

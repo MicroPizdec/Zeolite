@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class AvatarCommand extends ZeoliteCommand {
   name = "avatar";
   description = "Shows user's avatar";
+  group = "general";
   options = [
     {
       type: 1,

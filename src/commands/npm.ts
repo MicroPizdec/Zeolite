@@ -6,6 +6,7 @@ import { MessageEmbed } from "discord.js";
 export default class NpmCommand extends ZeoliteCommand {
   name = "npm";
   description = "Searches by provided package name in NPM registry";
+  group = "other";
   options = [
     {
       type: 3,

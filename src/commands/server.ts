@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class ServerCommand extends ZeoliteCommand {
   name = "server";
   description = "Shows server info";
+  group = "general";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {

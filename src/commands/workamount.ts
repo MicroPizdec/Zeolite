@@ -6,6 +6,7 @@ import ZetCoinsSettings from "../dbModels/ZetCoinsSettings";
 export default class WorkAmountCommand extends ZeoliteCommand {
   name = "workamount";
   description = "workamount command";
+  group = "economy";
   options = [
     {
       type: 1,

@@ -198,4 +198,13 @@ export default {
   back: "Назад",
   forward: "Вперед",
   close: "Закрыть",
+
+  commands: "Команды",
+  generalGroup: "Основные",
+  economyGroup: "Экономика",
+  musicGroup: "Музыка",
+  funGroup: "Развлекательные",
+  otherGroup: "Другие",
+  settingsGroup: "Настройки",
+  devGroup: "Не трогай это",
 }

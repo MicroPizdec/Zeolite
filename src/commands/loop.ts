@@ -6,6 +6,7 @@ export default class LoopCommand extends ZeoliteCommand {
   name = "loop";
   description = "Toggles looping for the currently playing track";
   guildOnly = true;
+  group = "music";
 
   async run(ctx: ZeoliteContext) {
     if (!ctx.member.voice.channel || ctx.member.voice.channelId != ctx.guild!.me?.voice.channelId) {

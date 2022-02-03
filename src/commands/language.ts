@@ -6,6 +6,7 @@ import Languages from "../dbModels/Languages";
 export default class LanguageCommand extends ZeoliteCommand {
   name = "language";
   description = "Changes your language or shows a list of them";
+  group = "settings";
   options = [
     {
       type: 1,

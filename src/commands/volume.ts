@@ -6,6 +6,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class VolumeCommand extends ZeoliteCommand {
   name = "volume";
   description = "Бесполезно";
+  group = "music";
   options = [
     {
       type: 1,

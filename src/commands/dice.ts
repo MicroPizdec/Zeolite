@@ -7,6 +7,7 @@ import ZetCoinsSettings from "../dbModels/ZetCoinsSettings";
 export default class DiceCommand extends ZeoliteCommand {
   name = "dice";
   description = "Win or lose the amount of money";
+  group = "economy";
   options = [
     {
       type: 4,

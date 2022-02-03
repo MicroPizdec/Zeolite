@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class EvalCommand extends ZeoliteCommand {
   name = "eval";
   description = "Executes provided code. Owner only.";
+  group = "dev";
   options = [
     {
       type: 3,

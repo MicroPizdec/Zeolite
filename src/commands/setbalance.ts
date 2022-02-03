@@ -6,6 +6,7 @@ import ZetCoinsSettings from "../dbModels/ZetCoinsSettings";
 export default class SetBalanceCommand extends ZeoliteCommand {
   name = "setbalance";
   description = "Sets the provided user's balance. Administrator only.";
+  group = "economy";
   options = [
     {
       type: 6,

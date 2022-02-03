@@ -7,6 +7,7 @@ import { MessageEmbed } from "discord.js";
 export default class ColorCommand extends ZeoliteCommand {
   name = "color";
   description = "Shows info about provided color and converts it to another formats";
+  group = "general";
   options = [
     {
       type: 3,

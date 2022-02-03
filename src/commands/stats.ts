@@ -21,6 +21,7 @@ function parseUptime(time: number): string {
 export default class StatsCommand extends ZeoliteCommand {
   name = "stats";
   description = "Shows bot stats";
+  group = "general";
 
   async run(ctx: ZeoliteContext) {
     const ramUsed = process.memoryUsage().heapUsed / 1048576;

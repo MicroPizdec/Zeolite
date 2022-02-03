@@ -4,6 +4,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class ReloadCommand extends ZeoliteCommand {
   name = "reload";
   description = "Не трожь сука это для разрабов!!!";
+  group = "dev";
   options = [
     {
       type: 1,

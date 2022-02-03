@@ -6,6 +6,7 @@ import Utils from "../utils/Utils";
 export default class RoleCommand extends ZeoliteCommand {
   name = "role";
   description = "Information about role";
+  group = "general";
   options = [
     {
       type: 8,

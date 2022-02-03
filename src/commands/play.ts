@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class PlayCommand extends ZeoliteCommand {
   name = "play";
   description = "Plays a track in voice channel";
+  group = "music";
   options = [
     {
       type: 3,

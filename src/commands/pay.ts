@@ -7,6 +7,7 @@ import ZetCoinsSettings from "../dbModels/ZetCoinsSettings";
 export default class PayCommand extends ZeoliteCommand {
   name = "pay";
   description = "Sends the provided amount of ZetCoins to specified user";
+  group = "economy";
   options = [
     {
       type: 6,

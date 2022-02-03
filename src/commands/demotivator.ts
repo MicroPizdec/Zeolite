@@ -9,6 +9,7 @@ Canvas.registerFont("./assets/times.ttf", { family: "Times New Roman" });
 export default class DemotivatorCommand extends ZeoliteCommand {
   name = "demotivator";
   description = "Creates a demotivator from provided text and image";
+  group = "fun";
   options = [
     {
       type: 3,

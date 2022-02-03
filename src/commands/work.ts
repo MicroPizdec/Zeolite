@@ -8,6 +8,7 @@ import Utils from "../utils/Utils";
 export default class WorkCommand extends ZeoliteCommand {
   name = "work";
   description = "Earn a random amount of money";
+  group = "economy";
   guildOnly = true;
 
   cooldowns: Map<string, number> = new Map<string, number>();

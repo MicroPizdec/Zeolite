@@ -7,6 +7,7 @@ import ZetCoinsSettings from "../dbModels/ZetCoinsSettings";
 export default class TopCommand extends ZeoliteCommand {
   name = "top";
   description = "Shows top-10 of richest members in the server";
+  group = "economy";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {

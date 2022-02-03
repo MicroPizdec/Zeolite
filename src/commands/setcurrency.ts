@@ -8,6 +8,7 @@ import emojiRegex from "emoji-regex";
 export default class SetCurrencyCommand extends ZeoliteCommand {
   name = "setcurrency";
   description = "Sets the currency icon. Can only be used by administrators";
+  group = "economy";
   options = [
     {
       type: 1,

@@ -7,6 +7,7 @@ import Utils from "../utils/Utils";
 export default class EmbedcolorCommand extends ZeoliteCommand {
   name = "embedcolor";
   description = "Changes your embed color or restores it to default";
+  group = "settings";
   options = [
     {
       type: 1,

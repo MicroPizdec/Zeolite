@@ -7,6 +7,7 @@ import { MessageEmbed } from "discord.js";
 export default class DepositCommand extends ZeoliteCommand {
   name = "deposit";
   description = "Deposit command";
+  group = "economy";
   options = [
     {
       type: 1,

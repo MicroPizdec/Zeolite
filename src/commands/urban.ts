@@ -6,6 +6,7 @@ import { MessageEmbed } from "discord.js";
 export default class UrbanCommand extends ZeoliteCommand {
   name = "urban";
   description = "Searches the definition by provided word in Urban Dictionary";
+  group = "other";
   options = [
     {
       type: 3,

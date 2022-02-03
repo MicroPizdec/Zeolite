@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class InfoCommand extends ZeoliteCommand {
   name = "info";
   description = "Information about bot";
+  group = "general";
 
   async run(ctx: ZeoliteContext) {
     const link = this.client.generateInvite({ scopes: [ "bot", "applications.commands" ] });

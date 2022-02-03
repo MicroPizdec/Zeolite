@@ -5,6 +5,7 @@ import ZeoliteContext from "../core/ZeoliteContext";
 export default class PauseCommand extends ZeoliteCommand {
   name = "pause";
   description = "Pauses the current track";
+  group = "music";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {

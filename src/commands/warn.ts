@@ -6,6 +6,7 @@ import Warns from "../dbModels/Warns";
 export default class WarnCommand extends ZeoliteCommand {
   name = "warn";
   description = "юзлесс все равно у нас субкоманды будут";
+  group = "moderation";
   options = [
     {
       type: 1,

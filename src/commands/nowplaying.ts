@@ -7,6 +7,7 @@ import Utils from "../utils/Utils";
 export default class NowPlayingCommand extends ZeoliteCommand {
   name = "nowplaying";
   description = "Shows the currently playing track";
+  group = "music";
   guildOnly = true;
 
   async run(ctx: ZeoliteContext) {
