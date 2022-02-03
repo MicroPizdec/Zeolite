@@ -3,7 +3,6 @@ import { Manager } from "erela.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 
-
 export default class VolumeCommand extends ZeoliteCommand {
   name = "volume";
   description = "Бесполезно";

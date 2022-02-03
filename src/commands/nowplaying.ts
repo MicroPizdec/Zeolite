@@ -2,7 +2,7 @@ import { MessageEmbed } from "discord.js";
 import { Manager } from "erela.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
-import parseTime from "../utils/parseTime";
+import Utils from "../utils/Utils";
 
 export default class NowPlayingCommand extends ZeoliteCommand {
   name = "nowplaying";
@@ -24,8 +24,8 @@ export default class NowPlayingCommand extends ZeoliteCommand {
 
     const track = player.queue.current;
 
-    const trackDuration = parseTime(Math.floor(track!.duration! / 1000)); 
-    const playerPos = parseTime(Math.floor(player.position / 1000));
+    const trackDuration = Utils.parseTime(Math.floor(track!.duration! / 1000)); 
+    const playerPos = Utils.parseTime(Math.floor(player.position / 1000));
 
     const embed = new MessageEmbed()
       .setTitle(ctx.t("nowPlaying"))

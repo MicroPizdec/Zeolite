@@ -1,7 +1,7 @@
 import { MessageEmbed, Role } from "discord.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
-import intToHex from "../utils/intToHex";
+import Utils from "../utils/Utils";
 
 export default class RoleCommand extends ZeoliteCommand {
   name = "role";
@@ -27,7 +27,7 @@ export default class RoleCommand extends ZeoliteCommand {
       .addField(ctx.t("roleCreatedAt"), `<t:${Math.floor(role.createdTimestamp / 1000)}> ${ctx.t("daysAgo", createdDays)}`)
       .addField(ctx.t("roleHoisted"), role.hoist ? ctx.t("payYes") : ctx.t("payNo"))
       .addField(ctx.t("roleManaged"), role.managed ? ctx.t("payYes") : ctx.t("payNo")) 
-      .addField(ctx.t("roleColor"), role.color ? `#${intToHex(role.color)}` : ctx.t("roleColorDefault"))
+      .addField(ctx.t("roleColor"), role.color ? `#${Utils.intToHex(role.color)}` : ctx.t("roleColorDefault"))
       .setFooter({ text: "Zeolite © Fishyrene", iconURL: this.client.user?.displayAvatarURL() }); // ВЫ НЕ ПОНИМАЕТЕ ЭТО ДРУГОЕ
     
     await ctx.reply({ embeds: [ embed ] });

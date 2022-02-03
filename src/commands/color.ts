@@ -1,7 +1,7 @@
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import convert from "color-convert";
-import intToHex from "../utils/intToHex";
+import Utils from "../utils/Utils";
 import { MessageEmbed } from "discord.js";
 
 export default class ColorCommand extends ZeoliteCommand {
@@ -33,12 +33,12 @@ export default class ColorCommand extends ZeoliteCommand {
       return;
     }
 
-    const rgb = convert.hex.rgb(intToHex(colorNum));
+    const rgb = convert.hex.rgb(Utils.intToHex(colorNum));
     const hsl = convert.rgb.hsl(rgb);
     const cmyk = convert.rgb.cmyk(rgb);
 
     const embed = new MessageEmbed()
-      .setTitle(`#${intToHex(colorNum)}`)
+      .setTitle(`#${Utils.intToHex(colorNum)}`)
       .setColor(colorNum)
       .addField("RGB", rgb.join())
       .addField("HSL", hsl.map(c => c == hsl[0] ? c : `${c}%`).join(), true)

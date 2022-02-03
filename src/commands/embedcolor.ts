@@ -2,7 +2,7 @@ import { MessageEmbed } from "discord.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import EmbedColors from "../dbModels/EmbedColors";
-import intToHex from "../utils/intToHex";
+import Utils from "../utils/Utils";
 
 export default class EmbedcolorCommand extends ZeoliteCommand {
   name = "embedcolor";
@@ -49,7 +49,7 @@ export default class EmbedcolorCommand extends ZeoliteCommand {
       case "get": {
         const embed = new MessageEmbed()
           .setTitle(ctx.t("embedcolorYourColor"))
-          .setDescription(`\`${color.random ? ctx.t("embedcolorRandom") : color.color ? `#${intToHex(color.color)}` : ctx.t("embedcolorDefault")}\``)
+          .setDescription(`\`${color.random ? ctx.t("embedcolorRandom") : color.color ? `#${Utils.intToHex(color.color)}` : ctx.t("embedcolorDefault")}\``)
           .setColor(ctx.get("embColor"));
         
         await ctx.reply({ embeds: [ embed ], ephemeral: true });
@@ -86,7 +86,7 @@ export default class EmbedcolorCommand extends ZeoliteCommand {
           }
 
           await color.update({ color: colorNum, random: false });
-          await ctx.reply({ content: ctx.t("embedcolorSuccess", intToHex(colorNum)), ephemeral: true });
+          await ctx.reply({ content: ctx.t("embedcolorSuccess", Utils.intToHex(colorNum)), ephemeral: true });
         }
 
         if (isRandom) {

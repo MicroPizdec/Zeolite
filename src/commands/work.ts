@@ -3,6 +3,7 @@ import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import ZetCoins from "../dbModels/ZetCoins"; 
 import ZetCoinsSettings from "../dbModels/ZetCoinsSettings";
+import Utils from "../utils/Utils";
 
 export default class WorkCommand extends ZeoliteCommand {
   name = "work";
@@ -36,7 +37,7 @@ export default class WorkCommand extends ZeoliteCommand {
       return;
     }
     
-    const amount = this.randInt(settings.workMinAmount, settings.workMaxAmount);
+    const amount = Utils.randInt(settings.workMinAmount, settings.workMaxAmount);
 
     await userBal.update({ balance: userBal.balance + amount });
 
@@ -49,9 +50,5 @@ export default class WorkCommand extends ZeoliteCommand {
 
     this.cooldowns.set(ctx.user.id, Date.now() + 3600000);
     setTimeout(() => this.cooldowns.delete(ctx.user.id), 3600000);
-  }
-
-  randInt(min: number, max: number): number {
-    return Math.floor(Math.random() * (max - min + 1)) + min;
   }
 }

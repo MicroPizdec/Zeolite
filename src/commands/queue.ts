@@ -10,7 +10,7 @@ import {
 import { Manager } from "erela.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
-import parseTime from "../utils/parseTime";
+import Utils from "../utils/Utils";
 
 export default class QueueCommand extends ZeoliteCommand {
   name = "queue";
@@ -39,7 +39,7 @@ export default class QueueCommand extends ZeoliteCommand {
     for (const track of player.queue) {
       fields.push({
         name: `${++index}: ${track.title}`,
-        value: ctx.t("durationRequestedBy", parseTime(Math.floor(track.duration! / 1000)), (track.requester as User).tag),
+        value: ctx.t("durationRequestedBy", Utils.parseTime(Math.floor(track.duration! / 1000)), (track.requester as User).tag),
       });
     }
 

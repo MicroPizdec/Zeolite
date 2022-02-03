@@ -3,7 +3,7 @@ import Logger, { LoggerLevel } from "../core/Logger";
 import { Manager } from "erela.js";
 import { MessageEmbed, TextBasedChannel } from "discord.js";
 import util from "util";
-import parseTime from "../utils/parseTime";
+import Utils from "../utils/Utils";
 
 let self: MusicExtension;
 
@@ -46,7 +46,7 @@ export default class MusicExtension extends ZeoliteExtension {
         .setTitle(lang.nowPlaying)
         .setDescription(`[${track.title}](${track.uri})`) 
         .setThumbnail(track.thumbnail as string) 
-        .addField(lang.duration, parseTime(Math.floor(track.duration / 1000)))
+        .addField(lang.duration, Utils.parseTime(Math.floor(track.duration / 1000)))
         .setFooter({ text: util.format(lang.playAuthor, track.author) });
 
       await (self.client.channels.cache.get(player.textChannel as string) as TextBasedChannel)?.send({ embeds: [ embed ] });  
