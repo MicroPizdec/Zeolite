@@ -10,7 +10,7 @@ export default class InfoCommand extends ZeoliteCommand {
   async run(ctx: ZeoliteContext) {
     const link = this.client.generateInvite({ scopes: [ "bot", "applications.commands" ] });
 
-    const devIds = [ "800053727988809748", "412503784455929857", "330153333962702850" ];
+    const devIds: string[] = [ "800053727988809748", "412503784455929857", "330153333962702850" ];
     const devs: (User | undefined)[] = [];
     for (const id of devIds) {
       const user = this.client.users.cache.has(id) ?

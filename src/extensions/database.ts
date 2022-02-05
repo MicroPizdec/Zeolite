@@ -6,7 +6,7 @@ import Logger, { LoggerLevel } from "../core/Logger";
 export default class DatabaseExtension extends ZeoliteExtension {
   name = "database";
   sequelize: Sequelize;
-  logger = new Logger(LoggerLevel.Info, "DatabaseExtension");
+  logger: Logger = new Logger(LoggerLevel.Info, "DatabaseExtension");
 
   async onLoad() {
     this.sequelize = new Sequelize(config.dbUri || "sqlite:bot.db", {

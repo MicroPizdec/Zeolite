@@ -24,6 +24,7 @@ export default {
   statsUsers: "Пользователи",
   statsChannels: "Каналы",
   statsCpu: "Процессов",
+  statsCommandsUsed: "Команд использовано",
 
   userBadges: "Значки",
   userBadgesNone: "Нет",

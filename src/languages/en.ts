@@ -24,6 +24,7 @@ export default {
   statsUsers: "Users",
   statsChannels: "Channels",
   statsCpu: "CPU",
+  statsCommandsUsed: "Commands used",
 
   userBadges: "Badges",
   userBadgesNone: "None",

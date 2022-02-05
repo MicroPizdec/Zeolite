@@ -5,6 +5,7 @@ import ConfigLoader, { Config } from "./utils/ConfigLoader";
 
 declare global {
   var config: Config;
+  var commandsUsed: number;
 }
 
 global.config = new ConfigLoader().loadConfig(path.join(__dirname, "..", "config.yml"));
@@ -25,6 +26,9 @@ const client = new ZeoliteClient({
 
 client.loadAllCommands();
 client.loadAllExtensions();
+
+commandsUsed = 0;
+client.on("commandSuccess", () => void commandsUsed++);
 
 process.on("uncaughtException", error => console.error(error));
 process.on("unhandledRejection", error => console.error(error));
