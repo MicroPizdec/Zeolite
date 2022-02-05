@@ -201,6 +201,7 @@ export default {
   close: "Close",
 
   commands: "Commands",
+  helpDesc: "To get more information about some command use [our wiki](https://github.com/MicroPizdec/Zeolite/wiki/Commands-list-(EN)).\nAny questions about bot? Join [our support server](https://discord.gg/ZKChwBD).",
   generalGroup: "General",
   economyGroup: "Economy",
   musicGroup: "Music",
