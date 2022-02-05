@@ -27,7 +27,7 @@ const client = new ZeoliteClient({
 client.loadAllCommands();
 client.loadAllExtensions();
 
-commandsUsed = 0;
+global.commandsUsed = 0;
 client.on("commandSuccess", () => void commandsUsed++);
 
 process.on("uncaughtException", error => console.error(error));
