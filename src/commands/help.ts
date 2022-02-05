@@ -10,7 +10,7 @@ export default class HelpCommand extends ZeoliteCommand {
   async run(ctx: ZeoliteContext) { 
     const embed = new MessageEmbed()
       .setTitle(ctx.t("commands"))
-      .setDescription("There will be something soon /shrug")
+      .setDescription(ctx.t("helpDesc"))
       .addField(ctx.t("generalGroup"), this.client.commands.filter(c => c.group == "general").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("economyGroup"), this.client.commands.filter(c => c.group == "economy").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("musicGroup"), this.client.commands.filter(c => c.group == "music").map(c => `\`${c.name}\``).join(", "))
