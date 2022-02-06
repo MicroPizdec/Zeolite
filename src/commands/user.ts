@@ -58,7 +58,7 @@ export default class UserCommand extends ZeoliteCommand {
     const embed = new MessageEmbed()
       .setAuthor({ name: user.tag })
       .setThumbnail(user.displayAvatarURL())
-      .setColor(member?.displayColor || ctx.get("embColor"))
+      .setColor(ctx.get("embColor"))
       .addField(ctx.t("userBadges"), getUserBadges(user) || ctx.t("userBadgesNone"))
       .setFooter({ text: ctx.t("userFooter", user.id, registeredDays) })
       .setTimestamp(user.createdAt);
