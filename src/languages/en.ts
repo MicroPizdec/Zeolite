@@ -130,6 +130,7 @@ export default {
   topTitle: "Top-10 of richest members in %s",
   topEmpty: "Empty",
   topFooter: "Your position is %d, and your balance is %d.",
+  topFooterNonTop: "Currently you aren't in the top.",
 
   depositInfo: "Deposit info",
   depositInfoDesc: "You can put your money to the deposit.\nHowever, you won't be able to use them, and this sum won't be counted in the top.\nEvery 4 hours 1% of the sum on deposit will be charged. Limit is 250000 %s.",
