@@ -16,6 +16,7 @@
     "@types/luxon": "^2.0.8",
     "@types/node": "^16.11.12",
     "@types/validator": "^13.7.0",
+    "@types/qrcode": "^1.4.2",
     "ts-node": "^10.4.0",
     "typescript": "^4.5.2"
   },
@@ -29,6 +30,7 @@
     "erela.js": "^2.3.3",
     "js-yaml": "^4.1.0",
     "luxon": "^2.2.0",
+    "qrcode": "^1.5.0",
     "reflect-metadata": "^0.1.13",
     "sequelize": "^6.11.0",
     "sequelize-typescript": "^2.1.1",

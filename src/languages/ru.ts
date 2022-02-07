@@ -210,4 +210,6 @@ export default {
   otherGroup: "Другие",
   settingsGroup: "Настройки",
   devGroup: "Не трогай это",
+
+  generationTime: "Заняло %d мс.",
 }
