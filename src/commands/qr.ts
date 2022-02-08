@@ -16,7 +16,7 @@ export default class QrCommand extends ZeoliteCommand {
     },
   ];
 
-  async run (ctx: ZeoliteContext) {
+  async run(ctx: ZeoliteContext) {
     const text = ctx.options.getString("text", true);
 
     await ctx.deferReply();
@@ -29,7 +29,7 @@ export default class QrCommand extends ZeoliteCommand {
     const embed = new MessageEmbed()
       .setColor(ctx.get("embColor"))
       .setImage("attachment://qr.png")
-      .setFooter({ text: ctx.t("generationTime", finishTime) })
+      .setFooter({ text: ctx.t("generationTime", finishTime) });
 
     await ctx.editReply({
       embeds: [ embed ],
