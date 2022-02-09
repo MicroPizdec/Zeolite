@@ -212,4 +212,10 @@ export default {
   devGroup: "Не трогай это",
 
   generationTime: "Заняло %d мс.",
+
+  invalidInvite: "> :x: Предоставлен неверный инвайт.",
+  inviteMembersCount: "%d (в сети: %d)",
+  inviteChannel: "Канал",
+  inviteFooter: "Сервер создан:",
+  inviteInviter: "Приглашающий:",
 }

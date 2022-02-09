@@ -21,7 +21,7 @@ export default class QrCommand extends ZeoliteCommand {
 
     await ctx.deferReply();
     
-    const startTime = Date.now()
+    const startTime = Date.now();
     const qr = await QRCode.toDataURL(text)
       .then(q => q.replace("data:image/png;base64,", ""));
     const finishTime = Date.now() - startTime;

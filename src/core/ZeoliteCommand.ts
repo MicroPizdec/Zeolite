@@ -32,7 +32,6 @@ export default class ZeoliteCommand {
 
   json(): ChatInputApplicationCommandData {
     return {
-      type: 1,
       name: this.name,
       description: this.description,
       options: this.options,

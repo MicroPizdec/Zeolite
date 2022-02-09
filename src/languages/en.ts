@@ -212,4 +212,10 @@ export default {
   devGroup: "Don't touch this",
 
   generationTime: "Took %d ms.",
+
+  invalidInvite: "> :x: Invalid invite provided.",
+  inviteMembersCount: "%d (%d online)",
+  inviteChannel: "Channel",
+  inviteFooter: "Server created at:",
+  inviteInviter: "Inviter",
 }
