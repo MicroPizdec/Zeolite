@@ -20,6 +20,7 @@ export default class ServerCommand extends ZeoliteCommand {
 
     const embed = new MessageEmbed()
       .setAuthor({ name: ctx.guild!.name })
+      .setDescription(ctx.guild?.description!)
       .setThumbnail(ctx.guild?.iconURL()!)
       .setColor(ctx.get("embColor"))
       .addField(ctx.t("serverOwner"), owner.user.tag)
