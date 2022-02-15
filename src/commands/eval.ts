@@ -13,13 +13,22 @@ export default class EvalCommand extends ZeoliteCommand {
       description: "Code",
       required: true,
     },
+    {
+      type: 5,
+      name: "silent",
+      description: "Response with an ephemeral message",
+      required: false,
+    },
   ];
   ownerOnly = true;
 
   async run(ctx: ZeoliteContext) {
-    await ctx.deferReply();
+    const silent = ctx.options.getBoolean("silent") || false;
 
-    const code = ctx.interaction.options.getString("code");
+    await ctx.deferReply({ ephemeral: silent });
+
+    const code = ctx.options.getString("code", true);
+
     const asyncified = `(async () => {\n${code}\n})()`;
 
     try {

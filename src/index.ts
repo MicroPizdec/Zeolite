@@ -1,3 +1,4 @@
+// на этой ноте передаю привет котфиксу
 import ZeoliteClient from "./core/ZeoliteClient";
 import path from "path";
 import { Options } from "discord.js-light";

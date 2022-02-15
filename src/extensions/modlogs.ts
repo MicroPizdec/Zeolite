@@ -34,4 +34,8 @@ export default class ModlogsExtension extends ZeoliteExtension {
     await (this.client.channels.cache.get(channel) as TextBasedChannel).send({ embeds: [ embed ] })
       .catch(() => {});
   }
+
+  onLoad() {
+    
+  }
 }
