@@ -16,7 +16,7 @@ export default class EvalCommand extends ZeoliteCommand {
     {
       type: 5,
       name: "silent",
-      description: "Response with an ephemeral message",
+      description: "Respond with an ephemeral message",
       required: false,
     },
   ];
