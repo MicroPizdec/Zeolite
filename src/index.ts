@@ -14,7 +14,10 @@ global.config = new ConfigLoader().loadConfig(path.join(__dirname, "..", "config
 const client = new ZeoliteClient({
   cmdDirPath: path.join(__dirname, "commands"),
   extDirPath: path.join(__dirname, "extensions"),
-  intents: [ "GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES", "GUILD_VOICE_STATES" ],
+  intents: [
+    "GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES",
+    "GUILD_VOICE_STATES", "GUILD_INVITES", "GUILD_BANS",
+  ],
   owners: config.owners,
   makeCache: Options.cacheWithLimits({
     ChannelManager: Infinity,

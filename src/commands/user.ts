@@ -67,6 +67,10 @@ export default class UserCommand extends ZeoliteCommand {
       embed.addField(ctx.t("userJoinDate"), `<t:${Math.floor((member.joinedTimestamp as number) / 1000)}>`)
         .addField(ctx.t("userRoles"), member.roles.cache.filter(r => r.name != "@everyone").map(r => r.toString()).join(", ") || ctx.t("userBadgesNone"));
     }
+
+    if (member?.voice.channelId) {
+      embed.addField(ctx.t("userVoiceChannel"), `<#${member?.voice.channelId}>`);
+    }
     
     await ctx.reply({ embeds: [ embed ] });
   }

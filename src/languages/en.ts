@@ -31,6 +31,7 @@ export default {
   userFooter: `ID: %s\nRegistered %d days ago`,
   userJoinDate: "Join date",
   userRoles: "Roles",
+  userVoiceChannel: "Voice channel",
 
   infoTitle: "About bot",
   infoDesc: "**Let your journey begin.**\nA multipurpose bot that simple in terms of economy, moderation, and more, written on TypeScript with discord.js library.",
@@ -218,4 +219,12 @@ export default {
   inviteChannel: "Channel",
   inviteFooter: "Server created at:",
   inviteInviter: "Inviter",
+
+  modlogsEnabled: "Modlogs are enabled in channel <#%s>.",
+  modlogsDisabled: "Modlogs are disabled.",
+  modlogsFooter: "Use /modlogs set or /modlogs disable to manage modlogs.",
+  modlogsNonTextChannel: "> :x: Non-text channel provided.",
+  modlogsNoPermsForBot: "> :x: I don't have Send Messages and/or Embed Links permissions in provided channel!",
+  modlogsSuccess: "> :white_check_mark: Modlogs enabled in channel **%s**.",
+  modlogsDisableSuccess: "> :white_check_mark: Modlogs disabled.",
 }

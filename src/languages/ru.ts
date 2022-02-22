@@ -31,6 +31,7 @@ export default {
   userFooter: `ID: %s\nЗарегистрировался %d дней назад`,
   userJoinDate: "Дата входа на сервер",
   userRoles: "Роли",
+  userVoiceChannel: "Голосовой канал",
 
   infoTitle: "О боте",
   infoDesc: "**Пусть ваше путешествие начнётся.**\nПростой в плане экономики, модерации и много чего бот, написанный на TypeScript с использованием библиотеки discord.js.",
@@ -218,4 +219,12 @@ export default {
   inviteChannel: "Канал",
   inviteFooter: "Сервер создан:",
   inviteInviter: "Приглашающий:",
+
+  modlogsEnabled: "Модлоги включены в канале <#%s>.",
+  modlogsDisabled: "Модлоги выключены.",
+  modlogsFooter: "Используйте /modlogs set или /modlogs disable для управления модлогами.",
+  modlogsNonTextChannel: "> :x: Предоставлен нетекстовый канал.",
+  modlogsNoPermsForBot: "> :x: У меня нет прав на отправку сообщений и встраивании ссылок в предоставленном канале!",
+  modlogsSuccess: "> :white_check_mark: Модлоги включены в канале **%s**.",
+  modlogsDisableSuccess: "> :white_check_mark: Модлоги выключены.",
 }
