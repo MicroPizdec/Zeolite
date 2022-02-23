@@ -11,11 +11,11 @@ export default class WorkCommand extends ZeoliteCommand {
   group = "economy";
   guildOnly = true;
 
-  cooldowns: Map<string, number> = new Map<string, number>();
+  cooldowns: Map<string, Map<string, number>> = new Map();
   
   async run(ctx: ZeoliteContext) {
-    if (this.cooldowns.has(ctx.user.id)) {
-      const cooldown = this.cooldowns?.get(ctx.user.id);
+    if (this.cooldowns.has(ctx.guild?.id!) && this.cooldowns.get(ctx.guild?.id!)?.has(ctx.user.id)) {
+      const cooldown = this.cooldowns.get(ctx.guild?.id!)?.get(ctx.user.id);
       const minsLeft = Math.floor((cooldown as number) / 1000);
 
       const embed = new MessageEmbed()
@@ -49,7 +49,8 @@ export default class WorkCommand extends ZeoliteCommand {
 
     await ctx.reply({ embeds: [ embed ] });
 
-    this.cooldowns.set(ctx.user.id, Date.now() + 3600000);
-    setTimeout(() => this.cooldowns.delete(ctx.user.id), 3600000);
+    if (!this.cooldowns.has(ctx.guild?.id!)) this.cooldowns.set(ctx.guild?.id!, new Map());
+    this.cooldowns.get(ctx.guild?.id!)?.set(ctx.user.id, Date.now() + 3600000);
+    setTimeout(() => this.cooldowns.get(ctx.guild?.id!)?.delete(ctx.user.id), 3600000);
   }
 }
