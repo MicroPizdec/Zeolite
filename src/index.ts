@@ -33,6 +33,11 @@ client.loadAllExtensions();
 
 global.commandsUsed = 0;
 client.on("commandSuccess", () => void commandsUsed++);
+client.on("ready", () => {
+  client.user?.setPresence({
+    activities: [ { name: "Более нормальный бот чем у конкурентов с подписками за 11 даларов", type: "PLAYING" } ],
+  });
+});
 
 process.on("uncaughtException", error => console.error(error));
 process.on("unhandledRejection", error => console.error(error));

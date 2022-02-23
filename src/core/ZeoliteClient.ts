@@ -40,10 +40,6 @@ export default class ZeoliteClient extends Client {
       for (const cmd of this.commands.values()) {
         this.application?.commands.create(cmd.json());
       }
-
-      this.user?.setPresence({
-        activities: [ { name: "Более нормальный бот чем у конкурентов с подписками за 11 даларов", type: "PLAYING" } ],
-      });
     });
 
     if (this.debug) {

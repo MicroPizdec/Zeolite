@@ -10,7 +10,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   webhook: WebhookClient;
   logger: Logger = new Logger(LoggerLevel.Info, this.constructor.name);
 
-  parseOptions(ctx: ZeoliteContext): string {
+  private parseOptions(ctx: ZeoliteContext): string {
     let options: string[] = [];
 
     const subcommand = ctx.interaction.options.getSubcommand(false);
