@@ -5,7 +5,7 @@ import ZetCoins from "../dbModels/ZetCoins";
 export default class DepositHandlerExtension extends ZeoliteExtension {
   name = "depositHandler";
   private timer: NodeJS.Timer;
-  private logger: Logger = new Logger(LoggerLevel.Info, "DepositHandlerExtension");
+  private logger: Logger = new Logger(LoggerLevel.Info, "DepositHandler");
 
   private async handleDeposits() {
     const bals = await ZetCoins.findAll();

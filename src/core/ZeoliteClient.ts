@@ -116,9 +116,6 @@ export default class ZeoliteClient extends Client {
       }
     } catch (error: any) {
       this.emit("commandError", ctx, error);
-
-      this.logger.error(`Error in command ${cmd.name}:`);
-      console.error(error);
     }
   }
 

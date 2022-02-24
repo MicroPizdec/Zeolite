@@ -16,7 +16,7 @@ export default class MusicExtension extends ZeoliteExtension {
 
     if (!config.lavalinkNodes) return;
 
-    const logger = new Logger(LoggerLevel.Info, "MusicExtension");
+    const logger = new Logger(LoggerLevel.Info, "Music");
 
     this.manager = new Manager({
       nodes: config.lavalinkNodes,

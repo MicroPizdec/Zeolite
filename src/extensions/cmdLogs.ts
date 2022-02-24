@@ -8,7 +8,7 @@ let self: CmdLogsExtension;
 export default class CmdLogsExtension extends ZeoliteExtension {
   name = "cmdLogs";
   public webhook?: WebhookClient;
-  public logger: Logger = new Logger(LoggerLevel.Info, this.constructor.name);
+  public logger: Logger = new Logger(LoggerLevel.Info, "CmdLogs");
 
   private parseOptions(ctx: ZeoliteContext): string {
     let options: string[] = [];
@@ -29,6 +29,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   private async onCommandSuccess(ctx: ZeoliteContext) {
+    self.logger.info(`${ctx.user.tag} used /${ctx.commandName} in ${ctx.guild?.name || "bot DM"}`);
     const options = self.parseOptions(ctx);
 
     const embed = new MessageEmbed()
@@ -43,6 +44,9 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   private async onCommandError(ctx: ZeoliteContext, error: any) {
+    self.logger.error(`Error in command ${ctx.commandName}:`);
+    console.error(error);
+
     const errEmbed = new MessageEmbed()
       .setTitle(ctx.t("commandError"))
       .setDescription(ctx.t("commandErrorDesc"))
