@@ -7,30 +7,30 @@ import ZeoliteClient from "./ZeoliteClient";
 import ZeoliteContext from "./ZeoliteContext";
 
 export default class ZeoliteCommand {
-  name: string;
-  description: string;
-  group?: string;
-  options?: ApplicationCommandOptionData[];
-  ownerOnly?: boolean;
-  guildOnly?: boolean;
-  cooldown?: number;
-  requiredPermissions: string[] = [];
+  public name: string;
+  public description: string;
+  public group?: string;
+  public options?: ApplicationCommandOptionData[];
+  public ownerOnly?: boolean;
+  public guildOnly?: boolean;
+  public cooldown?: number;
+  public requiredPermissions: string[] = [];
 
-  readonly client: ZeoliteClient;
+  public readonly client: ZeoliteClient;
 
-  constructor(client: ZeoliteClient) {
+  public constructor(client: ZeoliteClient) {
     this.client = client;
   }
 
-  async run(ctx: ZeoliteContext) {
+  public async run(ctx: ZeoliteContext) {
     throw new Error("abstract class method.");
   }
 
-  async update(): Promise<ApplicationCommand | undefined> {
+  public async update(): Promise<ApplicationCommand | undefined> {
     return this.client.application?.commands.create(this.json());
   }
 
-  json(): ChatInputApplicationCommandData {
+  public json(): ChatInputApplicationCommandData {
     return {
       name: this.name,
       description: this.description,

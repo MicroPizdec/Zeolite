@@ -12,21 +12,25 @@ import ZeoliteLocalization from "./ZeoliteLocalization";
 export type CheckFunc = (ctx: ZeoliteContext) => Promise<boolean>;
 
 export default class ZeoliteClient extends Client {
-  commands: Collection<string, ZeoliteCommand> = new Collection<string, ZeoliteCommand>();
-  extensions: Collection<string, ZeoliteExtension> = new Collection<string, ZeoliteExtension>();
-  cooldowns: Collection<string, Collection<string, number>> = new Collection<string, Collection<string, number>>();
-  localization: ZeoliteLocalization;
-  logger: Logger;
-  cmdDirPath: string;
-  extDirPath: string;
-  owners: string[];
-  checks: CheckFunc[] = [];
+  public commands: Collection<string, ZeoliteCommand>;
+  public extensions: Collection<string, ZeoliteExtension>;
+  public cooldowns: Collection<string, Collection<string, number>>;
+  public localization: ZeoliteLocalization;
+  public logger: Logger;
+  public cmdDirPath: string;
+  public extDirPath: string;
+  public owners: string[];
+  public checks: CheckFunc[] = [];
 
   private debug: boolean;
   private djsLogger: Logger;
 
-  constructor(options: ZeoliteClientOptions) {
+  public constructor(options: ZeoliteClientOptions) {
     super(options);
+
+    this.commands = new Collection();
+    this.extensions = new Collection();
+    this.cooldowns = new Collection();
     
     this.cmdDirPath = options.cmdDirPath;
     this.extDirPath = options.extDirPath;
@@ -118,7 +122,7 @@ export default class ZeoliteClient extends Client {
     }
   }
 
-  validatePermissions(member: GuildMember, perms: string[]): boolean {
+  public validatePermissions(member: GuildMember, perms: string[]): boolean {
     for (const perm of perms) {
       if (!member.permissions.has(perm as PermissionResolvable)) return false;
     }
@@ -126,7 +130,7 @@ export default class ZeoliteClient extends Client {
     return true;
   }
 
-  loadAllCommands() {
+  public loadAllCommands() {
     const files = fs.readdirSync(this.cmdDirPath);
 
     for (const file of files) {
@@ -136,7 +140,7 @@ export default class ZeoliteClient extends Client {
     this.logger.info("Loaded all commands.");
   }
 
-  loadCommand(name: string): ZeoliteCommand {
+  public loadCommand(name: string): ZeoliteCommand {
     const cmdCls: typeof ZeoliteCommand = require(path.join(this.cmdDirPath, name)).default;
     const cmd = new cmdCls(this);
       
@@ -147,7 +151,7 @@ export default class ZeoliteClient extends Client {
     return cmd;
   }
 
-  unloadCommand(name: string) {
+  public unloadCommand(name: string) {
     if (!this.commands.has(name)) {
       throw new Error("this command does not exist.");
     }
@@ -161,21 +165,21 @@ export default class ZeoliteClient extends Client {
     this.logger.debug(`Unloaded command ${name}.`);
   }
 
-  reloadCommand(name: string): ZeoliteCommand {
+  public reloadCommand(name: string): ZeoliteCommand {
     this.unloadCommand(name);
     return this.loadCommand(name);
   }
 
-  async login(token: string): Promise<string> {
+  public async login(token: string): Promise<string> {
     this.logger.info("Logging in...");
     return super.login(token);
   }
 
-  isOwner(user: User): boolean {
+  public isOwner(user: User): boolean {
     return this.owners.includes(user.id);
   }
 
-  loadAllExtensions() {
+  public loadAllExtensions() {
     const files = fs.readdirSync(this.extDirPath);
 
     for (const file of files) {
@@ -185,7 +189,7 @@ export default class ZeoliteClient extends Client {
     this.logger.info("Loaded extensions.");
   }
 
-  loadExtension(name: string): ZeoliteExtension {
+  public loadExtension(name: string): ZeoliteExtension {
     const extCls: typeof ZeoliteExtension = require(path.join(this.extDirPath, name)).default;
     const ext = new extCls(this);
 
@@ -197,7 +201,7 @@ export default class ZeoliteClient extends Client {
     return ext;
   }
   
-  unloadExtension(name: string) {
+  public unloadExtension(name: string) {
     if (!this.extensions.has(name)) {
       throw new Error("this extension does not exist.");
     }
@@ -211,12 +215,12 @@ export default class ZeoliteClient extends Client {
     this.logger.debug(`Unloaded extension ${name}.`);
   }
 
-  reloadExtension(name: string): ZeoliteExtension {
+  public reloadExtension(name: string): ZeoliteExtension {
     this.unloadExtension(name);
     return this.loadExtension(name);
   }
 
-  addCommandCheck(checkFunc: CheckFunc) {
+  public addCommandCheck(checkFunc: CheckFunc) {
     this.checks.push(checkFunc);
   }
 }

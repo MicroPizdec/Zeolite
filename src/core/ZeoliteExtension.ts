@@ -1,18 +1,18 @@
 import ZeoliteClient from "./ZeoliteClient";
 
 export default class ZeoliteExtension {
-  readonly client: ZeoliteClient;
-  name: string = "";
+  public readonly client: ZeoliteClient;
+  public name: string;
 
-  constructor(client: ZeoliteClient) {
+  public constructor(client: ZeoliteClient) {
     this.client = client;
   }
 
-  onLoad() {
+  public onLoad() {
     throw new Error("abstract class method.");
   }
 
-  onUnload() {
+  public onUnload() {
     throw new Error("abstract class method.");
   }
 }

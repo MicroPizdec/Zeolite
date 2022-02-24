@@ -235,7 +235,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  onLoad() {
+  public onLoad() {
     self = this;
 
     this.client.on("guildMemberAdd", this.onGuildMemberAdd);
@@ -248,7 +248,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
     this.client.on("inviteDelete", this.onInviteDelete);
   }
 
-  onUnload() {
+  public onUnload() {
     this.client.off("guildMemberAdd", this.onGuildMemberAdd);
     this.client.off("guildMemberRemove", this.onGuildMemberRemove);
     this.client.off("guildBanRemove", this.onGuildBanRemove);

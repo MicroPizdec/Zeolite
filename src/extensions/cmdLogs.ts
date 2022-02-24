@@ -7,8 +7,8 @@ let self: CmdLogsExtension;
 
 export default class CmdLogsExtension extends ZeoliteExtension {
   name = "cmdLogs";
-  webhook: WebhookClient;
-  logger: Logger = new Logger(LoggerLevel.Info, this.constructor.name);
+  public webhook?: WebhookClient;
+  public logger: Logger = new Logger(LoggerLevel.Info, this.constructor.name);
 
   private parseOptions(ctx: ZeoliteContext): string {
     let options: string[] = [];
@@ -28,7 +28,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     return options.join(" ");
   }
 
-  async onCommandSuccess(ctx: ZeoliteContext) {
+  private async onCommandSuccess(ctx: ZeoliteContext) {
     const options = self.parseOptions(ctx);
 
     const embed = new MessageEmbed()
@@ -39,10 +39,10 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .addField("Channel", `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
       .addField("Guild", `${ctx.guild?.name} (ID: ${ctx.guild?.id})`);
 
-    await self.webhook.send({ embeds: [ embed ] });
+    await self.webhook?.send({ embeds: [ embed ] });
   }
 
-  async onCommandError(ctx: ZeoliteContext, error: any) {
+  private async onCommandError(ctx: ZeoliteContext, error: any) {
     const errEmbed = new MessageEmbed()
       .setTitle(ctx.t("commandError"))
       .setDescription(ctx.t("commandErrorDesc"))
@@ -66,30 +66,30 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .addField("Channel", `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
       .addField("Guild", `${ctx.guild?.name} (ID: ${ctx.guild?.id})`);
     
-    await self.webhook.send({ embeds: [ embed ] });
+    await self.webhook?.send({ embeds: [ embed ] });
   }
 
-  async onGuildCreate(guild: Guild) {
+  private async onGuildCreate(guild: Guild) {
     const embed = new MessageEmbed()
       .setTitle("New server:")
       .setDescription(`${guild.name} (ID: ${guild.id})`)
       .setColor(config.defaultColor || 0x9f00ff)
       .setThumbnail(guild.iconURL() as string);
     
-    await self.webhook.send({ embeds: [ embed ]});
+    await self.webhook?.send({ embeds: [ embed ]});
   }
 
-  async onGuildDelete(guild: Guild) {
+  private async onGuildDelete(guild: Guild) {
     const embed = new MessageEmbed()
       .setTitle("Removed from server:")
       .setDescription(`${guild.name} (ID: ${guild.id})`)
       .setColor(config.defaultColor || 0x9f00ff)
       .setThumbnail(guild.iconURL() as string);
     
-    await self.webhook.send({ embeds: [ embed ]});
+    await self.webhook?.send({ embeds: [ embed ]});
   }
 
-  async onLoad() {
+  public async onLoad() {
     if (!config.webhookUrl) {
       return this.logger.warn("Webhook URL is missing.");
     } 
@@ -104,7 +104,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     this.client.on("guildDelete", this.onGuildDelete);
   }
 
-  async onUnload() {
+  public async onUnload() {
     this.client.off("commandSuccess", this.onCommandSuccess);
     this.client.off("commandError", this.onCommandError);
     this.client.off("guildCreate", this.onGuildCreate);

@@ -9,9 +9,9 @@ let self: MusicExtension;
 
 export default class MusicExtension extends ZeoliteExtension {
   name = "music";
-  manager: Manager;
+  public manager: Manager;
 
-  async onLoad() {
+  public async onLoad() {
     self = this;
 
     if (!config.lavalinkNodes) return;
@@ -87,7 +87,7 @@ export default class MusicExtension extends ZeoliteExtension {
     });
   } 
 
-  async onUnload() {
+  public async onUnload() {
     for (const player of this.manager.players.values()) {
       player.queue.clear();
       player.stop();

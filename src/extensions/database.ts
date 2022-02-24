@@ -5,10 +5,10 @@ import Logger, { LoggerLevel } from "../core/Logger";
 
 export default class DatabaseExtension extends ZeoliteExtension {
   name = "database";
-  sequelize: Sequelize;
-  logger: Logger = new Logger(LoggerLevel.Info, "DatabaseExtension");
+  public sequelize: Sequelize;
+  private logger: Logger = new Logger(LoggerLevel.Info, "DatabaseExtension");
 
-  async onLoad() {
+  public async onLoad() {
     this.sequelize = new Sequelize(config.dbUri || "sqlite:bot.db", {
       logging: false,
     });

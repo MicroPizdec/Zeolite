@@ -15,65 +15,65 @@ import {
 import { APIMessage } from "discord-api-types";
 
 export default class ZeoliteContext {
-  readonly client: ZeoliteClient;
-  readonly interaction: CommandInteraction;
+  public readonly client: ZeoliteClient;
+  public readonly interaction: CommandInteraction;
   
   public data: Collection<string, any> = new Collection<string, any>();
 
-  constructor(client: ZeoliteClient, interaction: CommandInteraction) {
+  public constructor(client: ZeoliteClient, interaction: CommandInteraction) {
     this.client = client;
     this.interaction = interaction;
   }
 
-  get user(): User {
+  public get user(): User {
     return this.interaction.user;
   }
 
-  get member(): GuildMember {
+  public get member(): GuildMember {
     return this.interaction.member as GuildMember;
   }
 
-  get guild(): Guild | null {
+  public get guild(): Guild | null {
     return this.interaction.guild;
   }
 
-  get channel(): TextBasedChannel | null {
+  public get channel(): TextBasedChannel | null {
     return this.interaction.channel;
   }
 
-  get commandName(): string {
+  public get commandName(): string {
     return this.interaction.commandName;
   }
 
-  get options(): Omit<CommandInteractionOptionResolver, "getMessage" | "getFocused"> {
+  public get options(): Omit<CommandInteractionOptionResolver, "getMessage" | "getFocused"> {
     return this.interaction.options;
   }
 
-  async reply(options: string | InteractionReplyOptions): Promise<Message | void> {
+  public async reply(options: string | InteractionReplyOptions): Promise<Message | void> {
     return this.interaction.reply(options);
   }
 
-  async deferReply(options?: InteractionDeferReplyOptions): Promise<Message | void> {
+  public async deferReply(options?: InteractionDeferReplyOptions): Promise<Message | void> {
     return this.interaction.deferReply(options);
   }
 
-  async editReply(options: string | WebhookEditMessageOptions): Promise<Message | APIMessage> {
+  public async editReply(options: string | WebhookEditMessageOptions): Promise<Message | APIMessage> {
     return this.interaction.editReply(options);
   }
 
-  async followUp(options: InteractionReplyOptions): Promise<Message | APIMessage | void> {
+  public async followUp(options: InteractionReplyOptions): Promise<Message | APIMessage | void> {
     return this.interaction.followUp(options);
   }
 
-  t(str: string, ...args: any[]): string {
+  public t(str: string, ...args: any[]): string {
     return this.client.localization.getString(this.user, str, ...args);
   }
 
-  set(key: string, data: any) {
+  public set(key: string, data: any) {
     this.data.set(key, data);
   }
 
-  get<T>(key: string): T {
+  public get<T>(key: string): T {
     return this.data.get(key) as T;
   }
 }
