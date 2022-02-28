@@ -61,7 +61,7 @@ export default class ZeoliteClient extends Client {
     this.localization.loadLanguages();
   }
 
-  async handleCommand(interaction: Interaction) {
+  public async handleCommand(interaction: Interaction) {
     if (!interaction.isCommand()) return;
 
     const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.commandName);
@@ -193,7 +193,7 @@ export default class ZeoliteClient extends Client {
     this.extensions.set(ext.name, ext);
     ext.onLoad();
 
-    this.logger.debug(`Loaded extension ${name}`);
+    this.logger.debug(`Loaded extension ${ext.name}`);
 
     return ext;
   }
@@ -204,12 +204,12 @@ export default class ZeoliteClient extends Client {
     }
 
     const ext = this.extensions.get(name);
-    const extPath = require.resolve(path.join(this.cmdDirPath, ext!.name));
+    const extPath = require.resolve(path.join(this.extDirPath, ext!.name));
 
     delete require.cache[extPath];
     this.extensions.delete(ext!.name);
 
-    this.logger.debug(`Unloaded extension ${name}.`);
+    this.logger.debug(`Unloaded extension ${ext!.name}.`);
   }
 
   public reloadExtension(name: string): ZeoliteExtension {

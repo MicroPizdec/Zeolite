@@ -18,7 +18,7 @@ export default class ZeoliteContext {
   public readonly client: ZeoliteClient;
   public readonly interaction: CommandInteraction;
   
-  public data: Collection<string, any> = new Collection<string, any>();
+  private data: Collection<string, any> = new Collection<string, any>();
 
   public constructor(client: ZeoliteClient, interaction: CommandInteraction) {
     this.client = client;
