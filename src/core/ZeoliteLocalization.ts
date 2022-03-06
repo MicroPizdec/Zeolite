@@ -40,6 +40,7 @@ export default class ZeoliteLocalization {
     for (const lang of langs) {
       const strs = require(path.join("..", "languages", lang)).default;
       self.languageStrings[lang] = strs;
+      this.client.logger.debug(`Loaded language ${lang}`);
     }
 
     this.client.logger.info("Loaded all language files.");
