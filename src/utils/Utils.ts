@@ -12,12 +12,7 @@ export default class Utils {
 
   static intToHex(num: number): string {
     let hex = num.toString(16);
-  
-    while (hex.length < 6) {
-      hex = "0" + hex;
-    }
-  
-    return hex;
+    return hex.padStart(6, "0");
   }
 
   static randInt(min: number, max: number): number {
