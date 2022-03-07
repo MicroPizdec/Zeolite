@@ -6,7 +6,6 @@
   "scripts": {
     "start": "node .",
     "start:dev": "npx ts-node src/index",
-    "prebuild": "node -p \"'export const VERSION = ' + JSON.stringify(require('./package.json').version) + ';'\" > ./src/VERSION.generated.ts",
     "build": "npx tsc"
   },
   "author": "1z3ngero, alyzter",
