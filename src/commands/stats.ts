@@ -3,6 +3,11 @@ import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import os from "os";
 
+let VERSION: string;
+try {
+  VERSION = require("../VERSION.generated").VERSION;
+} catch {}
+
 function parseUptime(time: number): string {
   const obj = new Date(time);
 
@@ -38,7 +43,7 @@ export default class StatsCommand extends ZeoliteCommand {
       .addField(ctx.t("statsChannels"), this.client.channels.cache.size.toString(), true)
       .addField(ctx.t("statsCommandsUsed"), commandsUsed.toString(), true)
       .addField(ctx.t("statsCpu"), `\`${cpu ? cpu.model : ctx.t("unableToGetCpuInfo")}\``)
-      .setFooter({ text: `Zeolite v${process.env.npm_package_version} © Fishyrene`, iconURL: this.client.user?.displayAvatarURL() });
+      .setFooter({ text: `Zeolite${VERSION ? " v" + VERSION : ""} © Fishyrene`, iconURL: this.client.user?.displayAvatarURL() });
     
     await ctx.reply({ embeds: [ embed ] });
   }

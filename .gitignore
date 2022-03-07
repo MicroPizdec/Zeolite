@@ -2,3 +2,4 @@ dist/
 node_modules/
 config.yml
 bot.db
+src/VERSION.generated.ts
