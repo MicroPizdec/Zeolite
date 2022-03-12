@@ -211,6 +211,7 @@ export default {
   otherGroup: "Other",
   settingsGroup: "Settings",
   devGroup: "Don't touch this",
+  moderationGroup: "Moderation",
 
   generationTime: "Took %d ms.",
 

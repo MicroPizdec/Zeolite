@@ -16,6 +16,7 @@ export default class HelpCommand extends ZeoliteCommand {
       .addField(ctx.t("musicGroup"), this.client.commands.filter(c => c.group == "music").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("funGroup"), this.client.commands.filter(c => c.group == "fun").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("otherGroup"), this.client.commands.filter(c => c.group == "other").map(c => `\`${c.name}\``).join(", "))
+      .addField(ctx.t("moderationGroup"), this.client.commands.filter(c => c.group == "moderation").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("settingsGroup"), this.client.commands.filter(c => c.group == "settings").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("devGroup"), this.client.commands.filter(c => c.group == "dev").map(c => `\`${c.name}\``).join(", "))
       .setColor(ctx.get("embColor"))
