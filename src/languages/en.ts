@@ -243,4 +243,13 @@ export default {
   tagOwnerInfo: "> :information_source: Tag `%s` is owned by %s.",
   tagDeleted: "> :white_check_mark: Tag `%s` sucessfully deleted.",
   tagsList: "Tags list",
+
+  githubStars: "Stars",
+  githubForks: "Forks",
+  githubWatchers: "Watchers",
+  githubArchived: "(archived)",
+  githubCreatedAt: "Created at:",
+  githubTopics: "Topics",
+  githubLicense: "License",
+  githubLanguage: "Language",
 }

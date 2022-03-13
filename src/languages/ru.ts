@@ -243,4 +243,13 @@ export default {
   tagOwnerInfo: "> :information_source: Тег `%s` создан пользователем %s.",
   tagDeleted: "> :white_check_mark: Тег `%s` успешно удалён.",
   tagsList: "Список тегов",
+
+  githubStars: "Звезды",
+  githubForks: "Форки",
+  githubWatchers: "Наблюдатели",
+  githubArchived: "(архивировано)",
+  githubCreatedAt: "Создано:",
+  githubTopics: "Топики",
+  githubLicense: "Лицензия",
+  githubLanguage: "Язык",
 }

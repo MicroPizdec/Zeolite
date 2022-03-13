@@ -24,6 +24,7 @@ export interface Config {
   defaultColor?: number;
   debug?: boolean;
   lavalinkNodes?: LavalinkNode[];
+  githubApiKey?: string;
 }
 
 export interface LavalinkNode {
