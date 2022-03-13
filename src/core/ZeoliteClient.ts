@@ -128,7 +128,7 @@ export default class ZeoliteClient extends Client {
   }
 
   public loadAllCommands() {
-    const files = fs.readdirSync(this.cmdDirPath);
+    const files = fs.readdirSync(this.cmdDirPath).filter(f => !f.endsWith(".js.map"));
 
     for (const file of files) {
       this.loadCommand(file);
@@ -177,7 +177,7 @@ export default class ZeoliteClient extends Client {
   }
 
   public loadAllExtensions() {
-    const files = fs.readdirSync(this.extDirPath);
+    const files = fs.readdirSync(this.extDirPath).filter(f => !f.endsWith(".js.map"));
 
     for (const file of files) {
       this.loadExtension(file);
