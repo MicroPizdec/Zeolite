@@ -252,4 +252,7 @@ export default {
   githubTopics: "Топики",
   githubLicense: "Лицензия",
   githubLanguage: "Язык",
+
+  purgeNoBotPerms: "> :x: У меня нет прав на чистку сообщений в этом канале!",
+  purgeSuccess: "> :white_check_mark: Удалено %d сообщений.",
 }

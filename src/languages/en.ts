@@ -252,4 +252,7 @@ export default {
   githubTopics: "Topics",
   githubLicense: "License",
   githubLanguage: "Language",
+
+  purgeNoBotPerms: "> :x: I don't have permissions to clean messages in this channel!",
+  purgeSuccess: "> :white_check_mark: Deleted %d messages.",
 }
