@@ -244,6 +244,7 @@ export default {
   tagDeleted: "> :white_check_mark: Tag `%s` sucessfully deleted.",
   tagsList: "Tags list",
 
+  githubRepoNotFound: "> :x: Repo not found.",
   githubStars: "Stars",
   githubForks: "Forks",
   githubWatchers: "Watchers",

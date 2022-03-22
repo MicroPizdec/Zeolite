@@ -31,7 +31,7 @@ export default class GithubCommand extends ZeoliteCommand {
     }).then(r => r.data);
 
     if (!response.total_count) {
-      await ctx.reply({ content: ctx.t("githubRepoNotFound"), ephemeral: true });
+      await ctx.editReply(ctx.t("githubRepoNotFound"));
       return;
     }
 

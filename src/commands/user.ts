@@ -49,15 +49,15 @@ export default class UserCommand extends ZeoliteCommand {
 
   async run(ctx: ZeoliteContext) {
     const user = ctx.interaction.options.getUser("user") || ctx.user;
-    const member = ctx.guild?.members.cache.has(user.id) ?
-      ctx.guild.members.cache.get(user.id) :
-      await ctx.guild?.members.fetch(user).catch(() => {});
+    const member = ctx.guild?.members.cache.has(user.id)
+      ? ctx.guild.members.cache.get(user.id)
+      : await ctx.guild?.members.fetch(user).catch(() => {});
 
     const registeredDays = Math.floor((Date.now() - user.createdTimestamp) / (1000 * 86400));
 
     const embed = new MessageEmbed()
       .setAuthor({ name: user.tag })
-      .setThumbnail(user.displayAvatarURL())
+      .setThumbnail(member!.displayAvatarURL())
       .setColor(ctx.get("embColor"))
       .addField(ctx.t("userBadges"), getUserBadges(user) || ctx.t("userBadgesNone"))
       .setFooter({ text: ctx.t("userFooter", user.id, registeredDays) })

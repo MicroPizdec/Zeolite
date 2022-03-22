@@ -18,6 +18,12 @@ export default class AvatarCommand extends ZeoliteCommand {
           description: "A user. Default is you",
           required: false,
         },
+        {
+          type: 5,
+          name: "forceuseravatar",
+          description: "Whether the user's avatar will be shown instead of server avatar",
+          required: false,
+        }
       ],
     },
     {
@@ -37,10 +43,15 @@ export default class AvatarCommand extends ZeoliteCommand {
 
     switch (subcommand) {
       case "user": {
-        let user = ctx.interaction.options.getUser("user") || ctx.user;
+        const user = ctx.interaction.options.getUser("user") || ctx.user;
+        const member = ctx.guild?.members.cache.has(user.id)
+          ? ctx.guild.members.cache.get(user.id)
+          : await ctx.guild?.members.fetch(user).catch(() => {});
+        const forceUserAvatar = ctx.options.getBoolean("forceuseravatar") || false;
 
-        const dynamic = user.avatar?.startsWith("a_");
-        const url = user.displayAvatarURL({ dynamic, size: 2048 });
+        const dynamic = member!.avatar?.startsWith("a_") || user.avatar?.startsWith("a_");
+        const url = forceUserAvatar ? user.displayAvatarURL({ dynamic, size: 2048 })
+          : member!.displayAvatarURL({ dynamic, size: 2048 });
 
         const linkButton = new MessageActionRow()
           .addComponents(

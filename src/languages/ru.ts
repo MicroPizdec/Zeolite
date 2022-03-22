@@ -244,6 +244,7 @@ export default {
   tagDeleted: "> :white_check_mark: Тег `%s` успешно удалён.",
   tagsList: "Список тегов",
 
+  githubRepoNotFound: "> :x: Репозиторий не найден.",
   githubStars: "Звезды",
   githubForks: "Форки",
   githubWatchers: "Наблюдатели",
