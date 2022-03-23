@@ -1,4 +1,4 @@
-import { GuildChannel, MessageEmbed, WebhookClient, Guild } from "discord.js";
+import { GuildChannel, MessageEmbed, WebhookClient, Guild, MessageAttachment } from "discord.js";
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import ZeoliteContext from "../core/ZeoliteContext";
 import Logger, { LoggerLevel } from "../core/Logger";
@@ -69,8 +69,10 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .addField("User", `${ctx.user.tag} (ID: ${ctx.user.id})`)
       .addField("Channel", `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
       .addField("Guild", `${ctx.guild?.name} (ID: ${ctx.guild?.id})`);
+
+    const stack = new MessageAttachment(Buffer.from(error.stack), "error.txt");
     
-    await self.webhook?.send({ embeds: [ embed ] });
+    await self.webhook?.send({ embeds: [ embed ], files: [ stack ] });
   }
 
   private async onGuildCreate(guild: Guild) {
