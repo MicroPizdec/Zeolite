@@ -44,9 +44,7 @@ export default class AvatarCommand extends ZeoliteCommand {
     switch (subcommand) {
       case "user": {
         const user = ctx.interaction.options.getUser("user") || ctx.user;
-        const member = ctx.guild?.members.cache.has(user.id)
-          ? ctx.guild.members.cache.get(user.id)
-          : await ctx.guild?.members.fetch(user).catch(() => {});
+        const member = await ctx.getOrFetchMember(user.id);
         const forceUserAvatar = ctx.options.getBoolean("forceuseravatar") || false;
 
         const dynamic = member!.avatar?.startsWith("a_") || user.avatar?.startsWith("a_");

@@ -51,6 +51,8 @@ export default {
   serverEmojisDesc: "статичные - %d\nанимированные - %d",
   serverRolesCount: "Кол-во ролей",
   serverFooter: "ID: %s\nСоздан %d дней назад",
+  serverBoostLevel: "Уровень бустов",
+  serverBoosts: "Бусты",
 
   NONE: "Отсутствует",
   LOW: "Низкий",

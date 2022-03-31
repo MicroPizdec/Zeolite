@@ -76,4 +76,10 @@ export default class ZeoliteContext {
   public get<T>(key: string): T {
     return this.data.get(key) as T;
   }
+
+  public async getOrFetchMember(id: string): Promise<GuildMember | void> {
+    return this.guild?.members.cache.has(id)
+      ? this.guild.members.cache.get(id)
+      : await this.guild?.members.fetch(id).catch(() => {});
+  }
 }

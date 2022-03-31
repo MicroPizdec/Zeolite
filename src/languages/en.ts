@@ -51,6 +51,8 @@ export default {
   serverEmojisDesc: "static - %d\nanimated - %d",
   serverRolesCount: "Roles count",
   serverFooter: "ID: %s\nCreated %d days ago",
+  serverBoostLevel: "Boost level",
+  serverBoosts: "Boosts",
 
   NONE: "None",
   LOW: "Low",

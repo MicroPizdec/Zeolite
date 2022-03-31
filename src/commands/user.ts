@@ -49,9 +49,7 @@ export default class UserCommand extends ZeoliteCommand {
 
   async run(ctx: ZeoliteContext) {
     const user = ctx.interaction.options.getUser("user") || ctx.user;
-    const member = ctx.guild?.members.cache.has(user.id)
-      ? ctx.guild.members.cache.get(user.id)
-      : await ctx.guild?.members.fetch(user).catch(() => {});
+    const member = await ctx.getOrFetchMember(user.id);
 
     const registeredDays = Math.floor((Date.now() - user.createdTimestamp) / (1000 * 86400));
 

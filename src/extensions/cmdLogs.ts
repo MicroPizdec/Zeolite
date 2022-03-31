@@ -76,6 +76,8 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   private async onGuildCreate(guild: Guild) {
+    self.logger.info(`New server: ${guild.name} (ID: ${guild.id})`);
+
     const embed = new MessageEmbed()
       .setTitle("New server:")
       .setDescription(`${guild.name} (ID: ${guild.id})`)
@@ -86,6 +88,8 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   private async onGuildDelete(guild: Guild) {
+    self.logger.info(`Removed from server: ${guild.name} (ID: ${guild.id})`);
+    
     const embed = new MessageEmbed()
       .setTitle("Removed from server:")
       .setDescription(`${guild.name} (ID: ${guild.id})`)
