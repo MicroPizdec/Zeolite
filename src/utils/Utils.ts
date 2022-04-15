@@ -1,11 +1,9 @@
 export default class Utils {
   static parseTime(num: number): string {
+    // yeah i know that this is a shitcode, but at least it works
     const hours = Math.floor(num / 3600);
-    let minutes: string | number = Math.floor((num - (hours * 3600)) / 60) ;
-    let seconds: string | number  = num - (hours * 3600) - (minutes * 60);
-  
-    if (hours && minutes < 10) minutes = "0" + minutes;
-    if (seconds < 10) seconds = "0" + seconds;
+    let minutes = Math.floor((num - (hours * 3600)) / 60).toString().padStart(2, "0");
+    let seconds = (num - (hours * 3600) - (parseInt(minutes) * 60)).toString().padStart(2, "0");
   
     return hours ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
   }

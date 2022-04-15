@@ -42,4 +42,8 @@ client.on("ready", () => {
 process.on("uncaughtException", error => console.error(error));
 process.on("unhandledRejection", error => console.error(error));
 
-client.login(config.token);
+client.login(config.token).catch(err => {
+  client.logger.error("An error occurred while logging in:");
+  console.error(err);
+  process.exit(1);
+});
