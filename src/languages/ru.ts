@@ -25,6 +25,7 @@ export default {
   statsChannels: "Каналы",
   statsCpu: "Процессов",
   statsCommandsUsed: "Команд использовано",
+  statsPlatform: "Платформа",
 
   userBadges: "Значки",
   userBadgesNone: "Нет",
@@ -258,4 +259,8 @@ export default {
 
   purgeNoBotPerms: "> :x: У меня нет прав на чистку сообщений в этом канале!",
   purgeSuccess: "> :white_check_mark: Удалено %d сообщений.",
+
+  emojiNotFound: "> :x: Эмодзи не найдено.",
+  emojiAnimated: "Анимировано",
+  emojiLink: "Ссылка на эмодзи",
 }

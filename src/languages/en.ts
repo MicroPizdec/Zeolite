@@ -25,6 +25,7 @@ export default {
   statsChannels: "Channels",
   statsCpu: "CPU",
   statsCommandsUsed: "Commands used",
+  statsPlatform: "Platform",
 
   userBadges: "Badges",
   userBadgesNone: "None",
@@ -258,4 +259,8 @@ export default {
 
   purgeNoBotPerms: "> :x: I don't have permissions to clean messages in this channel!",
   purgeSuccess: "> :white_check_mark: Deleted %d messages.",
+
+  emojiNotFound: "> :x: Emoji not found.",
+  emojiAnimated: "Animated",
+  emojiLink: "Emoji URL",
 }
