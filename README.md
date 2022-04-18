@@ -1,4 +1,4 @@
-![logo](https://user-images.githubusercontent.com/65908023/146636353-89b482a9-4458-44e6-9fbc-197c3aa58693.png)
+![logo](https://user-images.githubusercontent.com/53137848/163799242-f9072e46-28ef-469f-8102-6e6a67a84353.png)
 
 # Let your journey begin
 
