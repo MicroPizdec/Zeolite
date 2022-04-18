@@ -23,7 +23,7 @@ export default {
   statsServers: "Серверы",
   statsUsers: "Пользователи",
   statsChannels: "Каналы",
-  statsCpu: "Процессов",
+  statsCpu: "Процессор",
   statsCommandsUsed: "Команд использовано",
   statsPlatform: "Платформа",
 
