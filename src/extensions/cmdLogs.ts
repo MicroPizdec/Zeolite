@@ -11,6 +11,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   public logger: Logger = new Logger(LoggerLevel.Info, "CmdLogs");
 
   private parseOptions(ctx: ZeoliteContext): string {
+    // я мажу жопу костылями
     let options: string[] = [];
 
     const subcommand = ctx.interaction.options.getSubcommand(false);
@@ -37,8 +38,9 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setDescription(`/${ctx.commandName} ${options}`)
       .setColor(config.defaultColor || 0x9f00ff)
       .addField("User", `${ctx.user.tag} (ID: ${ctx.user.id})`)
-      .addField("Channel", `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
-      .addField("Guild", `${ctx.guild?.name} (ID: ${ctx.guild?.id})`);
+      .addField("Channel", `${(ctx.channel as GuildChannel)?.name || "Bot DM"} (ID: ${ctx.channel?.id})`)
+      
+    if (ctx.guild) embed.addField("Guild", `${ctx.guild.name} (ID: ${ctx.guild.id})`);
 
     await self.webhook?.send({ embeds: [ embed ] });
   }

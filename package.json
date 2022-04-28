@@ -8,7 +8,7 @@
     "start:dev": "npx ts-node src/index",
     "build": "npx tsc"
   },
-  "author": "1z3ngero, alyzter",
+  "author": "w3lcharm, alyzter",
   "license": "MIT",
   "devDependencies": {
     "@types/color-convert": "^2.0.0",
