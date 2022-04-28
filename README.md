@@ -4,4 +4,4 @@
 
 Zeolite is a multipurpose Discord bot that is simple in terms of economy, moderation, etc.
 
-Zeolite v4.0 WIP, we'll release it in Q2 2022
+Zeolite v4.0 released, you can add it by [clicking here](https://discord.com/api/oauth2/authorize?client_id=679692205736460301&scope=bot+applications.commands)

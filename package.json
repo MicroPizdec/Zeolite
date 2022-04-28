@@ -1,6 +1,6 @@
 {
   "name": "zeolite",
-  "version": "4.0.0-rc1",
+  "version": "4.0.0",
   "description": "Discord bot",
   "main": "./dist/index.js",
   "scripts": {
