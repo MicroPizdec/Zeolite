@@ -22,6 +22,10 @@ export default class ZeoliteCommand {
     this.client = client;
   }
 
+  public preLoad(): boolean {
+    return true;
+  }
+
   public async run(ctx: ZeoliteContext) {
     throw new Error("abstract class method.");
   }

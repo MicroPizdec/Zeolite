@@ -2,6 +2,7 @@ import ZeoliteExtension from "../core/ZeoliteExtension";
 import { Sequelize } from "sequelize-typescript";
 import path from "path";
 import Logger, { LoggerLevel } from "../core/Logger";
+import ZeoliteContext from "../core/ZeoliteContext";
 
 export default class DatabaseExtension extends ZeoliteExtension {
   name = "database";
@@ -20,17 +21,17 @@ export default class DatabaseExtension extends ZeoliteExtension {
         .catch(err => this.logger.error(`Failed to connect to DB:\n${err.stack}`));
     });
 
-    this.client.addCommandCheck(async ctx => {
+    this.client.addMiddleware(async (ctx: ZeoliteContext, next) => {
       if (!this.client.localization.userLanguages[ctx.user.id]) {
         const lang = await this.sequelize.models.Languages.findOrCreate({ where: { userID: ctx.user.id } })
           .then(l => l[0]);
         this.client.localization.userLanguages[ctx.user.id] = lang.getDataValue("language");
       }
 
-      return true;
+      await next();
     });
 
-    this.client.addCommandCheck(async ctx => {
+    this.client.addMiddleware(async (ctx: ZeoliteContext, next) => {
       const color = await this.sequelize.models.EmbedColors.findOne({ where: { userID: ctx.user.id } });
 
       ctx.set("embColor", color ? 
@@ -38,7 +39,7 @@ export default class DatabaseExtension extends ZeoliteExtension {
         config.defaultColor || 0x9f00ff
       );
 
-      return true;
+      await next();
     })
   }
 }

@@ -9,7 +9,7 @@ import path from "path";
 import ZeoliteContext from "./ZeoliteContext";
 import ZeoliteLocalization from "./ZeoliteLocalization";
 
-export type CheckFunc = (ctx: ZeoliteContext) => Promise<boolean>;
+type MiddlewareFunc = (ctx: ZeoliteContext, next: () => Promise<void> | void) => Promise<void> | void;
 
 export default class ZeoliteClient extends Client {
   public commands: Collection<string, ZeoliteCommand>;
@@ -19,8 +19,8 @@ export default class ZeoliteClient extends Client {
   public logger: Logger;
   public cmdDirPath: string;
   public extDirPath: string;
-  public owners: string[];
-  public checks: CheckFunc[] = [];
+  public owners: string[] = [];
+  public middlewares: MiddlewareFunc[] = [];
 
   private debug: boolean;
   private djsLogger: Logger;
@@ -69,10 +69,7 @@ export default class ZeoliteClient extends Client {
 
     const ctx = new ZeoliteContext(this, interaction);
 
-    for (const check of this.checks) {
-      const result = await check(ctx);
-      if (!result) return;
-    }
+    await this.handleMiddlewares(ctx);
 
     if (cmd.ownerOnly && !this.isOwner(ctx.user)) {
       this.emit("ownerOnlyCommand", ctx);
@@ -119,6 +116,23 @@ export default class ZeoliteClient extends Client {
     }
   }
 
+  private async handleMiddlewares(ctx: ZeoliteContext) {
+    let prevIndex = -1;
+    let stack = this.middlewares;
+
+    async function runner(index: number) {
+      prevIndex = index;
+
+      const middleware = stack[index];
+
+      if (middleware) await middleware(ctx, () => runner(index + 1));
+      
+      console.log("middleware called");
+    }
+
+    await runner(0);
+  }
+
   public validatePermissions(member: GuildMember, perms: string[]): boolean {
     for (const perm of perms) {
       if (!member.permissions.has(perm as PermissionResolvable)) return false;
@@ -140,6 +154,11 @@ export default class ZeoliteClient extends Client {
   public loadCommand(name: string): ZeoliteCommand {
     const cmdCls: typeof ZeoliteCommand = require(path.join(this.cmdDirPath, name)).default;
     const cmd = new cmdCls(this);
+
+    if (!cmd.preLoad()) {
+      this.logger.warn(`Command ${cmd.name} didn't loaded due to failed pre-load check.`);
+      return cmd;
+    }
       
     this.commands.set(cmd.name, cmd);
 
@@ -217,7 +236,7 @@ export default class ZeoliteClient extends Client {
     return this.loadExtension(name);
   }
 
-  public addCommandCheck(checkFunc: CheckFunc) {
-    this.checks.push(checkFunc);
+  public addMiddleware(func: MiddlewareFunc) {
+    this.middlewares.push(func);
   }
 }

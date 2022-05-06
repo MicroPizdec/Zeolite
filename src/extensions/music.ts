@@ -30,9 +30,9 @@ export default class MusicExtension extends ZeoliteExtension {
       self.manager.init(self.client.user?.id);
     });
 
-    this.client.addCommandCheck(async ctx => {
-      ctx.set("manager", this.manager);
-      return true;
+    this.client.addMiddleware(async (ctx, next) => {
+      ctx.set("manager", self.manager);
+      await next();
     })
 
     this.client.on("raw", d => self.manager.updateVoiceState(d));
