@@ -1,4 +1,4 @@
-import { MessageEmbed, User } from "discord.js";
+import { MessageEmbed, User, MessageActionRow, MessageButton } from "discord.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 
@@ -24,12 +24,28 @@ export default class InfoCommand extends ZeoliteCommand {
       .setTitle(ctx.t("infoTitle"))
       .setDescription(ctx.t("infoDesc"))
       .setColor(ctx.get("embColor"))
-      .addField(ctx.t("infoDevs"), devs.map(d => d?.tag).join(", "))
-      .addField(ctx.t("infoLinks"), `[${ctx.t("infoInvite")}](${link})\n` +
-      `[${ctx.t("infoSupportServer")}](https://discord.gg/ZKChwBD)\n` + 
-      `[${ctx.t("infoRepository")}](https://github.com/MicroPizdec/Zeolite)\n` +
-      `[${ctx.t("infoDonate")}](https://www.donationalerts.com/r/fishyrene)\n`);
+      .addField(ctx.t("infoDevs"), devs.map(d => d?.tag).join(", "));
+
+    const actionRow = new MessageActionRow()
+      .addComponents(
+        new MessageButton()
+          .setLabel(ctx.t("infoInvite"))
+          .setStyle("LINK")
+          .setURL(link),
+        new MessageButton()
+          .setLabel(ctx.t("infoSupportServer"))
+          .setStyle("LINK")
+          .setURL("https://discord.gg/ZKChwBD"),
+        new MessageButton()
+          .setLabel(ctx.t("infoRepository"))
+          .setStyle("LINK")
+          .setURL("https://github.com/MicroPizdec/Zeolite"),
+        new MessageButton()
+          .setLabel(ctx.t("infoDonate"))
+          .setStyle("LINK")
+          .setURL("https://www.donationalerts.com/r/fishyrene")
+      );
     
-    await ctx.reply({ embeds: [ embed ] });
+    await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
   }
 }

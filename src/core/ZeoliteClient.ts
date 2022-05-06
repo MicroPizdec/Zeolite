@@ -67,29 +67,49 @@ export default class ZeoliteClient extends Client {
     const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.commandName);
     if (!cmd) return;
 
-    const ctx = new ZeoliteContext(this, interaction);
+    const ctx = new ZeoliteContext(this, interaction, cmd);
 
-    await this.handleMiddlewares(ctx);
+    await this.handleMiddlewares(cmd, ctx);
+  }
 
-    if (cmd.ownerOnly && !this.isOwner(ctx.user)) {
+  private async handleMiddlewares(cmd: ZeoliteCommand, ctx: ZeoliteContext) {
+    let prevIndex = -1;
+    let stack = [ ...this.middlewares, this.runCommand.bind(this) ];
+    console.log(stack);
+
+    const runner = async (index: number) => {
+      prevIndex = index;
+
+      const middleware = stack[index];
+
+      if (middleware) {
+        await middleware(ctx, () => runner(index + 1));
+      }
+    }
+
+    await runner(0);
+  }
+
+  private async runCommand(ctx: ZeoliteContext, next: () => Promise<void> | void) {
+    if (ctx.command.ownerOnly && !this.isOwner(ctx.user)) {
       this.emit("ownerOnlyCommand", ctx);
       return;
     }
 
-    if (cmd.guildOnly && !ctx.guild) {
+    if (ctx.command.guildOnly && !ctx.guild) {
       this.emit("guildOnlyCommand", ctx);
       return;
     }
 
-    if (cmd.cooldown) {
-      if (!this.cooldowns.has(cmd.name)) {
-        this.cooldowns.set(cmd.name, new Collection<string, number>());
+    if (ctx.command.cooldown) {
+      if (!this.cooldowns.has(ctx.command.name)) {
+        this.cooldowns.set(ctx.command.name, new Collection<string, number>());
       }
 
-      let cmdCooldowns = this.cooldowns.get(cmd.name);
+      let cmdCooldowns = this.cooldowns.get(ctx.command.name);
       let now = Date.now();
       if (cmdCooldowns?.has(ctx.user.id)) {
-        let expiration = (cmdCooldowns.get(ctx.user.id) as number) + (cmd.cooldown * 1000);
+        let expiration = (cmdCooldowns.get(ctx.user.id) as number) + (ctx.command.cooldown * 1000);
         if (now < expiration) {
           let secsLeft = Math.floor((expiration - now) / 1000);
           this.emit("commandCooldown", ctx, secsLeft);
@@ -99,36 +119,21 @@ export default class ZeoliteClient extends Client {
     }
 
     try {
-      if (!this.validatePermissions(ctx.member, cmd.requiredPermissions)) {
-        this.emit("noPermissions", ctx, cmd.requiredPermissions);
+      if (!this.validatePermissions(ctx.member, ctx.command.requiredPermissions)) {
+        this.emit("noPermissions", ctx, ctx.command.requiredPermissions);
         return;
       }
 
-      await cmd.run(ctx);
+      await ctx.command.run(ctx);
       this.emit("commandSuccess", ctx);
-      if (cmd.cooldown) {
-        const cmdCooldowns = this.cooldowns.get(cmd.name);
+      if (ctx.command.cooldown) {
+        const cmdCooldowns = this.cooldowns.get(ctx.command.name);
         cmdCooldowns?.set(ctx.user.id, Date.now());
-        setTimeout(() => cmdCooldowns?.delete(ctx.user.id), cmd.cooldown * 1000);
+        setTimeout(() => cmdCooldowns?.delete(ctx.user.id), ctx.command.cooldown * 1000);
       }
     } catch (error: any) {
       this.emit("commandError", ctx, error);
     }
-  }
-
-  private async handleMiddlewares(ctx: ZeoliteContext) {
-    let prevIndex = -1;
-    let stack = this.middlewares;
-
-    async function runner(index: number) {
-      prevIndex = index;
-
-      const middleware = stack[index];
-
-      if (middleware) await middleware(ctx, () => runner(index + 1));
-    }
-
-    await runner(0);
   }
 
   public validatePermissions(member: GuildMember, perms: string[]): boolean {

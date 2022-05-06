@@ -13,17 +13,17 @@ import {
   Collection
 } from "discord.js";
 import { APIMessage } from "discord-api-types";
+import ZeoliteCommand from "./ZeoliteCommand";
+import { throws } from "assert";
 
 export default class ZeoliteContext {
-  public readonly client: ZeoliteClient;
-  public readonly interaction: CommandInteraction;
-  
-  private data: Collection<string, any> = new Collection<string, any>();
+    private data: Collection<string, any> = new Collection<string, any>();
 
-  public constructor(client: ZeoliteClient, interaction: CommandInteraction) {
-    this.client = client;
-    this.interaction = interaction;
-  }
+  public constructor(
+    public readonly client: ZeoliteClient,
+    public readonly interaction: CommandInteraction,
+    public readonly command: ZeoliteCommand
+  ) {}
 
   public get user(): User {
     return this.interaction.user;

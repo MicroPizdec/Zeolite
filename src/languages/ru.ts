@@ -37,7 +37,7 @@ export default {
   infoTitle: "О боте",
   infoDesc: "**Пусть ваше путешествие начнётся.**\nПростой в плане экономики, модерации и много чего бот, написанный на TypeScript с использованием библиотеки discord.js.",
   infoLinks: "Ссылки",
-  infoInvite: "Добавить меня на ваш сервер",
+  infoInvite: "Добавить на сервер",
   infoSupportServer: "Сервер поддержки",
   infoRepository: "Репозиторий GitHub",
   infoDonate: "Пожертвовать",
