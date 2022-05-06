@@ -126,8 +126,6 @@ export default class ZeoliteClient extends Client {
       const middleware = stack[index];
 
       if (middleware) await middleware(ctx, () => runner(index + 1));
-      
-      console.log("middleware called");
     }
 
     await runner(0);
