@@ -2,7 +2,7 @@ import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import convert from "color-convert";
 import Utils from "../utils/Utils";
-import { MessageEmbed } from "discord.js";
+import { MessageEmbed } from "discord.js-light";
 
 export default class ColorCommand extends ZeoliteCommand {
   name = "color";

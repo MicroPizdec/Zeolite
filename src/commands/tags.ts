@@ -6,7 +6,7 @@ import {
   User,
   InteractionCollector,
   ButtonInteraction
-} from "discord.js";
+} from "discord.js-light";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import Tags from "../dbModels/Tags";

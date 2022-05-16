@@ -1,4 +1,4 @@
-import { GuildChannel, MessageEmbed, WebhookClient, Guild, MessageAttachment } from "discord.js";
+import { GuildChannel, MessageEmbed, WebhookClient, Guild, MessageAttachment } from "discord.js-light";
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import ZeoliteContext from "../core/ZeoliteContext";
 import Logger, { LoggerLevel } from "../core/Logger";

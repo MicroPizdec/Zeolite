@@ -61,7 +61,7 @@ export default class ZeoliteClient extends Client {
     this.localization.loadLanguages();
   }
 
-  public async handleCommand(interaction: Interaction) {
+  private async handleCommand(interaction: Interaction) {
     if (!interaction.isCommand()) return;
 
     const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.commandName);
@@ -76,7 +76,7 @@ export default class ZeoliteClient extends Client {
     let prevIndex = -1;
     let stack = [ ...this.middlewares, this.runCommand.bind(this) ];
 
-    const runner = async (index: number) => {
+    async function runner(index: number) {
       prevIndex = index;
 
       const middleware = stack[index];

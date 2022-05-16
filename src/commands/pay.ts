@@ -1,4 +1,4 @@
-import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js";
+import { MessageEmbed, MessageActionRow, MessageButton } from "discord.js-light";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import ZetCoins from "../dbModels/ZetCoins";

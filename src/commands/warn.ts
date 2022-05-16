@@ -1,4 +1,4 @@
-import { MessageEmbed, User, GuildMember, ApplicationCommandOptionData } from "discord.js";
+import { MessageEmbed, User, GuildMember, ApplicationCommandOptionData } from "discord.js-light";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import Warns from "../dbModels/Warns";

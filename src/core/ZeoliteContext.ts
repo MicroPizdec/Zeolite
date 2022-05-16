@@ -11,10 +11,9 @@ import {
   WebhookEditMessageOptions,
   CommandInteractionOptionResolver,
   Collection
-} from "discord.js";
+} from "discord.js-light";
 import { APIMessage } from "discord-api-types";
 import ZeoliteCommand from "./ZeoliteCommand";
-import { throws } from "assert";
 
 export default class ZeoliteContext {
     private data: Collection<string, any> = new Collection<string, any>();

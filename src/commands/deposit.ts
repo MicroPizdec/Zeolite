@@ -2,7 +2,7 @@ import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import ZetCoinsSettings from "../dbModels/ZetCoinsSettings";
 import ZetCoins from "../dbModels/ZetCoins";
-import { MessageEmbed } from "discord.js";
+import { MessageEmbed } from "discord.js-light";
 
 export default class DepositCommand extends ZeoliteCommand {
   name = "deposit";

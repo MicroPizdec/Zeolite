@@ -9,7 +9,7 @@ import {
   Guild,
   PartialGuildMember,
   PartialMessage
-} from "discord.js";
+} from "discord.js-light";
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import Modlogs from "../dbModels/Modlogs";
 

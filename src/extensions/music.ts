@@ -1,7 +1,7 @@
 import ZeoliteExtension from "../core/ZeoliteExtension";
 import Logger, { LoggerLevel } from "../core/Logger";
 import { Manager } from "erela.js";
-import { MessageEmbed, TextBasedChannel } from "discord.js";
+import { MessageEmbed, TextBasedChannel } from "discord.js-light";
 import util from "util";
 import Utils from "../utils/Utils";
 

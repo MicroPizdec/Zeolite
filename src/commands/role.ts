@@ -1,4 +1,4 @@
-import { MessageEmbed, Role } from "discord.js";
+import { MessageEmbed, Role } from "discord.js-light";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import Utils from "../utils/Utils";

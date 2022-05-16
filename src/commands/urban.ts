@@ -1,7 +1,7 @@
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import axios from "axios";
-import { MessageEmbed } from "discord.js";
+import { MessageEmbed } from "discord.js-light";
 
 export default class UrbanCommand extends ZeoliteCommand {
   name = "urban";

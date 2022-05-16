@@ -1,4 +1,4 @@
-import { Invite, MessageEmbed } from "discord.js";
+import { Invite, MessageEmbed } from "discord.js-light";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 

@@ -6,7 +6,7 @@ import {
   User,
   InteractionCollector,
   ButtonInteraction
-} from "discord.js";
+} from "discord.js-light";
 import { Manager } from "erela.js";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";

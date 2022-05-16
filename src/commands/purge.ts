@@ -1,4 +1,4 @@
-import { TextChannel } from "discord.js";
+import { TextChannel } from "discord.js-light";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 

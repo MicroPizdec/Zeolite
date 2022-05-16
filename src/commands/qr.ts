@@ -1,7 +1,7 @@
 import * as QRCode from "qrcode";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
-import { MessageEmbed, MessageAttachment } from "discord.js";
+import { MessageEmbed, MessageAttachment } from "discord.js-light";
 
 export default class QrCommand extends ZeoliteCommand {
   name = "qr";
