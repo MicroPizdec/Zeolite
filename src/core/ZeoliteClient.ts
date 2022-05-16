@@ -75,7 +75,6 @@ export default class ZeoliteClient extends Client {
   private async handleMiddlewares(cmd: ZeoliteCommand, ctx: ZeoliteContext) {
     let prevIndex = -1;
     let stack = [ ...this.middlewares, this.runCommand.bind(this) ];
-    console.log(stack);
 
     const runner = async (index: number) => {
       prevIndex = index;

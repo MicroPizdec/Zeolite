@@ -1,10 +1,10 @@
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
-import * as Canvas from "canvas";
+//import * as Canvas from "canvas";
 import { MessageAttachment, MessageEmbed } from "discord.js";
 
-Canvas.registerFont("./assets/arial.ttf", { family: "Arial" });
-Canvas.registerFont("./assets/times.ttf", { family: "Times New Roman" });
+//Canvas.registerFont("./assets/arial.ttf", { family: "Arial" });
+//Canvas.registerFont("./assets/times.ttf", { family: "Times New Roman" });
 
 export default class DemotivatorCommand extends ZeoliteCommand {
   name = "demotivator";
@@ -37,7 +37,11 @@ export default class DemotivatorCommand extends ZeoliteCommand {
     },
   ];
 
-  async run(ctx: ZeoliteContext) {
+  public preLoad(): boolean {
+    return false;
+  }
+
+/*  async run(ctx: ZeoliteContext) {
     const text = ctx.interaction.options.getString("text", true);
     const bottomText = ctx.interaction.options.getString("bottomtext");
     const imageURL = ctx.interaction.options.getString("imageurl", true);
@@ -84,5 +88,5 @@ export default class DemotivatorCommand extends ZeoliteCommand {
       embeds: [ embed ],
       files: [ new MessageAttachment(buffer, "demotivator.png") ],
     });
-  }
+  } */
 }
