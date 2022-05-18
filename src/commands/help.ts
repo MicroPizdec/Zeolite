@@ -14,7 +14,7 @@ export default class HelpCommand extends ZeoliteCommand {
       .addField(ctx.t("generalGroup"), this.client.commands.filter(c => c.group == "general").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("economyGroup"), this.client.commands.filter(c => c.group == "economy").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("musicGroup"), this.client.commands.filter(c => c.group == "music").map(c => `\`${c.name}\``).join(", "))
-      .addField(ctx.t("funGroup"), this.client.commands.filter(c => c.group == "fun").map(c => `\`${c.name}\``).join(", "))
+      //.addField(ctx.t("funGroup"), this.client.commands.filter(c => c.group == "fun").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("otherGroup"), this.client.commands.filter(c => c.group == "other").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("moderationGroup"), this.client.commands.filter(c => c.group == "moderation").map(c => `\`${c.name}\``).join(", "))
       .addField(ctx.t("settingsGroup"), this.client.commands.filter(c => c.group == "settings").map(c => `\`${c.name}\``).join(", "))
