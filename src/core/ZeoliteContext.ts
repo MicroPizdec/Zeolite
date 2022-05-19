@@ -1,22 +1,10 @@
 import ZeoliteClient from "./ZeoliteClient";
-import {
-  GuildMember,
-  CommandInteraction, 
-  User, 
-  Guild, 
-  TextBasedChannel, 
-  Message, 
-  InteractionReplyOptions,
-  InteractionDeferReplyOptions,
-  WebhookEditMessageOptions,
-  CommandInteractionOptionResolver,
-  Collection
-} from "discord.js-light";
+import { CommandInteraction, User, Member, Guild, TextableChannel, InteractionDataOptions, InteractionOptions, InteractionContent, InteractionEditContent, Message } from "eris";
 import { APIMessage } from "discord-api-types";
 import ZeoliteCommand from "./ZeoliteCommand";
 
 export default class ZeoliteContext {
-    private data: Collection<string, any> = new Collection<string, any>();
+  private data: Map<string, any> = new Map<string, any>();
 
   public constructor(
     public readonly client: ZeoliteClient,
@@ -24,48 +12,48 @@ export default class ZeoliteContext {
     public readonly command: ZeoliteCommand
   ) {}
 
-  public get user(): User {
+  public get user(): User | undefined {
     return this.interaction.user;
   }
 
-  public get member(): GuildMember {
-    return this.interaction.member as GuildMember;
+  public get member(): Member | undefined {
+    return this.interaction.member;
   }
 
-  public get guild(): Guild | null {
-    return this.interaction.guild;
+  public get guild(): Guild | undefined {
+    return this.client.guilds.get(this.interaction.guildID!);
   }
 
-  public get channel(): TextBasedChannel | null {
+  public get channel(): TextableChannel {
     return this.interaction.channel;
   }
 
   public get commandName(): string {
-    return this.interaction.commandName;
+    return this.interaction.data.name;
   }
 
-  public get options(): Omit<CommandInteractionOptionResolver, "getMessage" | "getFocused"> {
-    return this.interaction.options;
+  public get options(): InteractionDataOptions[] | undefined {
+    return this.interaction.data.options;
   }
 
-  public async reply(options: string | InteractionReplyOptions): Promise<Message | void> {
-    return this.interaction.reply(options);
+  public async reply(options: string | InteractionContent) {
+    return this.interaction.createMessage(options);
   }
 
-  public async deferReply(options?: InteractionDeferReplyOptions): Promise<Message | void> {
-    return this.interaction.deferReply(options);
+  public async defer(flags?: number) {
+    return this.interaction.defer(flags);
   }
 
-  public async editReply(options: string | WebhookEditMessageOptions): Promise<Message | APIMessage> {
-    return this.interaction.editReply(options);
+  public async editReply(options: string | InteractionEditContent) {
+    return this.interaction.editOriginalMessage(options)
   }
 
-  public async followUp(options: InteractionReplyOptions): Promise<Message | APIMessage | void> {
-    return this.interaction.followUp(options);
+  public async followUp(options: string | InteractionContent): Promise<Message> {
+    return this.interaction.createFollowup(options)
   }
 
   public t(str: string, ...args: any[]): string {
-    return this.client.localization.getString(this.user, str, ...args);
+    return this.client.localization.getString(this.member || this.user!, str, ...args);
   }
 
   public set(key: string, data: any) {
@@ -74,11 +62,5 @@ export default class ZeoliteContext {
 
   public get<T>(key: string): T {
     return this.data.get(key) as T;
-  }
-
-  public async getOrFetchMember(id: string): Promise<GuildMember | void> {
-    return this.guild?.members.cache.has(id)
-      ? this.guild.members.cache.get(id)
-      : await this.guild?.members.fetch(id).catch(() => {});
   }
 }

@@ -1,4 +1,4 @@
-import { ClientOptions } from "discord.js-light";
+import { ClientOptions } from "eris";
 
 export default interface ZeoliteClientOptions extends ClientOptions {
   cmdDirPath: string;

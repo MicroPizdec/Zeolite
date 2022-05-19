@@ -11,39 +11,29 @@ declare global {
 
 global.config = new ConfigLoader().loadConfig(path.join(__dirname, "..", "config.yml"));
 
-const client = new ZeoliteClient({
+const client = new ZeoliteClient(config.token, {
   cmdDirPath: path.join(__dirname, "commands"),
   extDirPath: path.join(__dirname, "extensions"),
   intents: [
-    "GUILDS", "GUILD_MEMBERS", "GUILD_MESSAGES",
-    "GUILD_VOICE_STATES", "GUILD_INVITES", "GUILD_BANS",
+    "guilds", "guildMembers", "guildMessages",
+    "guildVoiceStates", "guildInvites", "guildBans",
   ],
   owners: config.owners,
-  makeCache: Options.cacheWithLimits({
-    ChannelManager: Infinity,
-  }),
   debug: config.debug,
-  ws: {
-    properties: { $browser: "Discord Android" },
-  },
 });
 
 client.loadAllCommands();
-client.loadAllExtensions();
+//client.loadAllExtensions();
 
 global.commandsUsed = 0;
 client.on("commandSuccess", () => void commandsUsed++);
-client.on("ready", () => {
+/*client.on("ready", () => {
   client.user?.setPresence({
     activities: [ { name: "Более нормальный бот чем у конкурентов с подписками за 11 даларов", type: "PLAYING" } ],
   });
-});
+});*/
 
 process.on("uncaughtException", error => console.error(error));
 process.on("unhandledRejection", error => console.error(error));
 
-client.login(config.token).catch(err => {
-  client.logger.error("An error occurred while logging in:");
-  console.error(err);
-  process.exit(1);
-});
+client.connect();

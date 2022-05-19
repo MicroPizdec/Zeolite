@@ -1,5 +1,5 @@
 import ZeoliteClient from "./ZeoliteClient";
-import { User } from "discord.js-light";
+import { Member, User } from "eris";
 import fs from "fs";
 import path from "path";
 import util from "util";
@@ -16,7 +16,7 @@ export default class ZeoliteLocalization {
     self = this;
   }
 
-  public getString(user: User, str: string, ...args: any[]): string {
+  public getString(user: Member | User, str: string, ...args: any[]): string {
     const lang = this.userLanguages[user.id] || "en";
     const langStrs = this.languageStrings[lang];
     return langStrs[str] ? util.format(langStrs[str], ...args) : `${str} ${args.join(" ")}`;

@@ -1,5 +1,4 @@
-import { Client, Interaction, User, GuildMember, PermissionResolvable } from "discord.js-light";
-import { Collection } from "@discordjs/collection";
+import { Client, CommandInteraction, Interaction, User, Member, Constants } from "eris";
 import ZeoliteCommand from "./ZeoliteCommand";
 import ZeoliteClientOptions from "./ZeoliteClientOptions";
 import ZeoliteExtension from "./ZeoliteExtension";
@@ -12,9 +11,9 @@ import ZeoliteLocalization from "./ZeoliteLocalization";
 type MiddlewareFunc = (ctx: ZeoliteContext, next: () => Promise<void> | void) => Promise<void> | void;
 
 export default class ZeoliteClient extends Client {
-  public commands: Collection<string, ZeoliteCommand>;
-  public extensions: Collection<string, ZeoliteExtension>;
-  public cooldowns: Collection<string, Collection<string, number>>;
+  public commands: Map<string, ZeoliteCommand>;
+  public extensions: Map<string, ZeoliteExtension>;
+  public cooldowns: Map<string, Map<string, number>>;
   public localization: ZeoliteLocalization;
   public logger: Logger;
   public cmdDirPath: string;
@@ -25,12 +24,12 @@ export default class ZeoliteClient extends Client {
   private debug: boolean;
   private djsLogger: Logger;
 
-  public constructor(options: ZeoliteClientOptions) {
-    super(options);
+  public constructor(token: string, options: ZeoliteClientOptions) {
+    super(token, options);
 
-    this.commands = new Collection();
-    this.extensions = new Collection();
-    this.cooldowns = new Collection();
+    this.commands = new Map();
+    this.extensions = new Map();
+    this.cooldowns = new Map();
     
     this.cmdDirPath = options.cmdDirPath;
     this.extDirPath = options.extDirPath;
@@ -42,7 +41,7 @@ export default class ZeoliteClient extends Client {
     this.on("ready", () => {
       this.logger.info(`Logged in as ${this.user?.username}.`);
       for (const cmd of this.commands.values()) {
-        this.application?.commands.create(cmd.json());
+        this.createCommand(cmd.json());
       }
     });
 
@@ -61,10 +60,10 @@ export default class ZeoliteClient extends Client {
     this.localization.loadLanguages();
   }
 
-  private async handleCommand(interaction: Interaction) {
-    if (!interaction.isCommand()) return;
+  private async handleCommand(interaction: CommandInteraction) {
+    if (interaction.type != 2) return;
 
-    const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.commandName);
+    const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.data.name);
     if (!cmd) return;
 
     const ctx = new ZeoliteContext(this, interaction, cmd);
@@ -90,7 +89,7 @@ export default class ZeoliteClient extends Client {
   }
 
   private async runCommand(ctx: ZeoliteContext, next: () => Promise<void> | void) {
-    if (ctx.command.ownerOnly && !this.isOwner(ctx.user)) {
+    if (ctx.command.ownerOnly && !this.isOwner(ctx.member || ctx.user!)) {
       this.emit("ownerOnlyCommand", ctx);
       return;
     }
@@ -102,13 +101,13 @@ export default class ZeoliteClient extends Client {
 
     if (ctx.command.cooldown) {
       if (!this.cooldowns.has(ctx.command.name)) {
-        this.cooldowns.set(ctx.command.name, new Collection<string, number>());
+        this.cooldowns.set(ctx.command.name, new Map<string, number>());
       }
 
       let cmdCooldowns = this.cooldowns.get(ctx.command.name);
       let now = Date.now();
-      if (cmdCooldowns?.has(ctx.user.id)) {
-        let expiration = (cmdCooldowns.get(ctx.user.id) as number) + (ctx.command.cooldown * 1000);
+      if (cmdCooldowns?.has((ctx.member || ctx.user!).id)) {
+        let expiration = (cmdCooldowns.get((ctx.member || ctx.user!).id) as number) + (ctx.command.cooldown * 1000);
         if (now < expiration) {
           let secsLeft = Math.floor((expiration - now) / 1000);
           this.emit("commandCooldown", ctx, secsLeft);
@@ -118,7 +117,7 @@ export default class ZeoliteClient extends Client {
     }
 
     try {
-      if (!this.validatePermissions(ctx.member, ctx.command.requiredPermissions)) {
+      if (ctx.command.guildOnly && this.validatePermissions(ctx.member!, ctx.command.requiredPermissions)) {
         this.emit("noPermissions", ctx, ctx.command.requiredPermissions);
         return;
       }
@@ -127,17 +126,17 @@ export default class ZeoliteClient extends Client {
       this.emit("commandSuccess", ctx);
       if (ctx.command.cooldown) {
         const cmdCooldowns = this.cooldowns.get(ctx.command.name);
-        cmdCooldowns?.set(ctx.user.id, Date.now());
-        setTimeout(() => cmdCooldowns?.delete(ctx.user.id), ctx.command.cooldown * 1000);
+        cmdCooldowns?.set((ctx.member || ctx.user!).id, Date.now());
+        setTimeout(() => cmdCooldowns?.delete((ctx.member || ctx.user!).id), ctx.command.cooldown * 1000);
       }
     } catch (error: any) {
       this.emit("commandError", ctx, error);
     }
   }
 
-  public validatePermissions(member: GuildMember, perms: string[]): boolean {
+  public validatePermissions(member: Member, perms: (keyof Constants["Permissions"])[]): boolean {
     for (const perm of perms) {
-      if (!member.permissions.has(perm as PermissionResolvable)) return false;
+      if (!member.permissions.has(perm)) return false;
     }
 
     return true;
@@ -188,12 +187,12 @@ export default class ZeoliteClient extends Client {
     return this.loadCommand(name);
   }
 
-  public async login(token: string): Promise<string> {
+  public async connect() {
     this.logger.info("Logging in...");
-    return super.login(token);
+    return super.connect();
   }
 
-  public isOwner(user: User): boolean {
+  public isOwner(user: Member | User): boolean {
     return this.owners.includes(user.id);
   }
 
