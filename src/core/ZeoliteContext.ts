@@ -2,15 +2,19 @@ import ZeoliteClient from "./ZeoliteClient";
 import { CommandInteraction, User, Member, Guild, TextableChannel, InteractionDataOptions, InteractionOptions, InteractionContent, InteractionEditContent, Message } from "eris";
 import { APIMessage } from "discord-api-types";
 import ZeoliteCommand from "./ZeoliteCommand";
+import ZeoliteCommandOptions from "./ZeoliteCommandOptions";
 
 export default class ZeoliteContext {
   private data: Map<string, any> = new Map<string, any>();
+  public options: ZeoliteCommandOptions;
 
   public constructor(
     public readonly client: ZeoliteClient,
     public readonly interaction: CommandInteraction,
     public readonly command: ZeoliteCommand
-  ) {}
+  ) {
+    this.options = new ZeoliteCommandOptions(client, interaction.data.options);
+  }
 
   public get user(): User | undefined {
     return this.interaction.user;
@@ -30,10 +34,6 @@ export default class ZeoliteContext {
 
   public get commandName(): string {
     return this.interaction.data.name;
-  }
-
-  public get options(): InteractionDataOptions[] | undefined {
-    return this.interaction.data.options;
   }
 
   //public getOption<T>(name: string, required: true): T;

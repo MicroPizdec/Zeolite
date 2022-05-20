@@ -1,8 +1,8 @@
 // на этой ноте передаю привет котфиксу
 import ZeoliteClient from "./core/ZeoliteClient";
 import path from "path";
-import { Options } from "discord.js-light";
 import ConfigLoader, { Config } from "./utils/ConfigLoader";
+import ZeoliteContext from "./core/ZeoliteContext";
 
 declare global {
   var config: Config;
@@ -20,10 +20,16 @@ const client = new ZeoliteClient(config.token, {
   ],
   owners: config.owners,
   debug: config.debug,
+  restMode: true,
+  getAllUsers: true,
 });
 
 client.loadAllCommands();
 client.loadAllExtensions();
+
+client.on("commandError", (ctx: ZeoliteContext, error: any) => {
+  console.log(error);
+});
 
 global.commandsUsed = 0;
 client.on("commandSuccess", () => void commandsUsed++);

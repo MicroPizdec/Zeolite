@@ -1,7 +1,6 @@
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import util from "util";
 import ZeoliteContext from "../core/ZeoliteContext";
-import { ApplicationCommandOptions } from "eris";
 import ZeoliteClient from "../core/ZeoliteClient";
 
 export default class EvalCommand extends ZeoliteCommand {
@@ -29,12 +28,13 @@ export default class EvalCommand extends ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    console.log(ctx.options);
-    /*const silent = ctx.options. || false;
+    const silent = ctx.options.getBoolean("silent") || false;
+    console.log(silent);
 
-    await ctx.deferReply({ ephemeral: silent });
+    await ctx.defer(silent ? 64 : undefined);
+    console.log("deferred");
 
-    const code = ctx.options.getString("code", true);
+    const code = ctx.options.getString("code")!;
 
     const asyncified = `(async () => {\n${code}\n})()`;
 
@@ -47,6 +47,6 @@ export default class EvalCommand extends ZeoliteCommand {
       await ctx.editReply({ content: `\`\`\`js\n${result}\n\`\`\`` });
     } catch (error: any) {
       await ctx.editReply({ content: `\`\`\`js\n${error}\n\`\`\`` });
-    }*/
+    }
   }
 }
