@@ -23,7 +23,7 @@ const client = new ZeoliteClient(config.token, {
 });
 
 client.loadAllCommands();
-//client.loadAllExtensions();
+client.loadAllExtensions();
 
 global.commandsUsed = 0;
 client.on("commandSuccess", () => void commandsUsed++);

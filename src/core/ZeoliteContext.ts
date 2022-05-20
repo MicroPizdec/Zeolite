@@ -36,6 +36,11 @@ export default class ZeoliteContext {
     return this.interaction.data.options;
   }
 
+  //public getOption<T>(name: string, required: true): T;
+  //public getOption<T>(name: string, required?: boolean): T | undefined {
+    //return this.options?.find(opt => opt.name == name) as T;
+  //}
+
   public async reply(options: string | InteractionContent) {
     return this.interaction.createMessage(options);
   }

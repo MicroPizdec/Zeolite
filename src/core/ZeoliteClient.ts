@@ -22,7 +22,7 @@ export default class ZeoliteClient extends Client {
   public middlewares: MiddlewareFunc[] = [];
 
   private debug: boolean;
-  private djsLogger: Logger;
+  private erisLogger: Logger;
 
   public constructor(token: string, options: ZeoliteClientOptions) {
     super(token, options);
@@ -46,9 +46,9 @@ export default class ZeoliteClient extends Client {
     });
 
     if (this.debug) {
-      this.djsLogger = new Logger(LoggerLevel.Debug, "discord.js");
+      this.erisLogger = new Logger(LoggerLevel.Debug, "eris");
 
-      this.on("debug", msg => this.djsLogger.debug(msg));
+      this.on("debug", msg => this.erisLogger.debug(msg));
     }
 
     this.on("interactionCreate", this.handleCommand);
@@ -62,6 +62,8 @@ export default class ZeoliteClient extends Client {
 
   private async handleCommand(interaction: CommandInteraction) {
     if (interaction.type != 2) return;
+
+    console.log(interaction.data.options);
 
     const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.data.name);
     if (!cmd) return;

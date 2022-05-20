@@ -1,33 +1,48 @@
-import { ChatInputApplicationCommandStructure, ApplicationCommand, ApplicationCommandOption, ApplicationCommandOptionWithMinMax, ApplicationCommandOptions, Constants } from "eris";
+import { ChatInputApplicationCommandStructure, ApplicationCommand, ApplicationCommandOptions, Constants } from "eris";
 import ZeoliteClient from "./ZeoliteClient";
 import ZeoliteContext from "./ZeoliteContext";
 
-type OptionType = 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-
-export interface ZeoliteCommandOption<T extends number = OptionType> {
-  type: T;
-  name: string;
-  description: string;
-  required?: boolean;
-  options?: ZeoliteCommandOption<T>[];
-  min_value: number;
-  max_value: number;
-}
-
 export default class ZeoliteCommand {
-  public name: string;
-  public description: string;
-  public group?: string;
-  public options?: ApplicationCommandOptions[];
-  public ownerOnly?: boolean;
-  public guildOnly?: boolean;
-  public cooldown?: number;
-  public requiredPermissions: (keyof Constants["Permissions"])[] = [];
-
+  public data: ZeoliteCommandStructure;
   public readonly client: ZeoliteClient;
 
-  public constructor(client: ZeoliteClient) {
+  public constructor(client: ZeoliteClient, data?: ZeoliteCommandStructure) {
     this.client = client;
+    this.data = data!;
+  }
+
+  public get name(): string {
+    return this.data.name;
+  }
+
+  public get description(): string {
+    return this.data.description;
+  }
+
+  public get group(): string | undefined {
+    return this.data.group;
+  }
+
+  public get options(): ApplicationCommandOptions[] | undefined {
+    return this.data.options;
+  }
+
+  public get ownerOnly(): boolean | undefined {
+    return this.data.ownerOnly;
+  }
+
+  public get guildOnly(): boolean | undefined {
+    return this.data.guildOnly;
+  }
+
+  public get cooldown(): number | undefined {
+    return this.data.cooldown;
+  }
+
+  public get requiredPermissions(): (keyof Constants["Permissions"])[] {
+    return this.data.requiredPermissions 
+      ? this.data.requiredPermissions
+      : this.data.requiredPermissions = [];
   }
 
   public preLoad(): boolean {
@@ -50,4 +65,15 @@ export default class ZeoliteCommand {
       options: this.options,
     };
   }
+}
+
+interface ZeoliteCommandStructure {
+  name: string;
+  description: string;
+  group?: string;
+  options?: ApplicationCommandOptions[];
+  ownerOnly?: boolean;
+  guildOnly?: boolean;
+  cooldown?: number;
+  requiredPermissions?: (keyof Constants["Permissions"])[];
 }
