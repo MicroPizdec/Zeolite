@@ -63,7 +63,7 @@ export default class ZeoliteClient extends Client {
   private async handleCommand(interaction: CommandInteraction) {
     if (interaction.type != 2) return;
 
-    console.log(interaction.data.options);
+    console.log(interaction);
 
     const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.data.name);
     if (!cmd) return;

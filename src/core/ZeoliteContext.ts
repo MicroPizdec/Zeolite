@@ -13,11 +13,11 @@ export default class ZeoliteContext {
     public readonly interaction: CommandInteraction,
     public readonly command: ZeoliteCommand
   ) {
-    this.options = new ZeoliteCommandOptions(client, interaction.data.options);
+    this.options = new ZeoliteCommandOptions(client, interaction.data.options, interaction.data.resolved);
   }
 
   public get user(): User | undefined {
-    return this.interaction.user;
+    return this.interaction.member?.user || this.interaction.user;
   }
 
   public get member(): Member | undefined {

@@ -29,10 +29,8 @@ export default class EvalCommand extends ZeoliteCommand {
 
   public async run(ctx: ZeoliteContext) {
     const silent = ctx.options.getBoolean("silent") || false;
-    console.log(silent);
 
     await ctx.defer(silent ? 64 : undefined);
-    console.log("deferred");
 
     const code = ctx.options.getString("code")!;
 
