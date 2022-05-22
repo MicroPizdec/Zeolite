@@ -63,8 +63,6 @@ export default class ZeoliteClient extends Client {
   private async handleCommand(interaction: CommandInteraction) {
     if (interaction.type != 2) return;
 
-    console.log(interaction);
-
     const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.data.name);
     if (!cmd) return;
 
@@ -119,7 +117,7 @@ export default class ZeoliteClient extends Client {
     }
 
     try {
-      if (ctx.command.guildOnly && this.validatePermissions(ctx.member!, ctx.command.requiredPermissions)) {
+      if (ctx.command.guildOnly && !this.validatePermissions(ctx.member!, ctx.command.requiredPermissions)) {
         this.emit("noPermissions", ctx, ctx.command.requiredPermissions);
         return;
       }

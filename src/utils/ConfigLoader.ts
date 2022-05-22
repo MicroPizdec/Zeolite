@@ -9,8 +9,9 @@ export default class ConfigLoader {
     try {
       this.logger.info("Loading config...");
       return load(fs.readFileSync(cfgPath, { encoding: "utf-8" })) as Config;
-    } catch {
+    } catch (err) {
       this.logger.error("Config file invalid or does not exist. Exiting...");
+      console.log(err);
       process.exit(1);
     }
   }
@@ -20,7 +21,8 @@ export interface Config {
   token: string;
   owners: string[];
   dbUri: string;
-  webhookUrl?: string;
+  webhookID?: string;
+  webhookToken?: string;
   defaultColor?: number;
   debug?: boolean;
   lavalinkNodes?: LavalinkNode[];
