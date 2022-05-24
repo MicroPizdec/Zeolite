@@ -22,6 +22,7 @@ const client = new ZeoliteClient(config.token, {
   debug: config.debug,
   restMode: true,
   getAllUsers: true,
+  defaultImageSize: 2048,
 });
 
 client.loadAllCommands();

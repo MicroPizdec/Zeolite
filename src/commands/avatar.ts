@@ -1,0 +1,128 @@
+import ZeoliteClient from "../core/ZeoliteClient";
+import ZeoliteCommand from "../core/ZeoliteCommand";
+import ZeoliteContext from "../core/ZeoliteContext";
+import Embed from "../utils/Embed";
+
+export default class AvatarCommand extends ZeoliteCommand {
+  public constructor(client: ZeoliteClient) {
+    super(client, {
+      name: "avatar",
+      description: "Shows user's avatar",
+      group: "general",
+      options: [
+        {
+          type: 1,
+          name: "user",
+          description: "Shows an user's avatar",
+          options: [
+            {
+              type: 6,
+              name: "user",
+              description: "A user. Default is you",
+              required: false,
+            },
+            {
+              type: 5,
+              name: "forceuseravatar",
+              description: "Whether the user's avatar will be shown instead of server avatar",
+              required: false,
+            }
+          ],
+        },
+        {
+          type: 1,
+          name: "server",
+          description: "Shows a server icon",
+        },
+        {
+          type: 1,
+          name: "banner",
+          description: "Shows a server banner",
+        },
+      ],
+    });
+  }
+
+  public async run(ctx: ZeoliteContext) {
+    const subcommand = ctx.options.getSubcommand();
+
+    switch (subcommand) {
+      case "user": {
+        const user = await ctx.options.getUser("user") || ctx.user;
+        const member = await ctx.guild?.members.get(user!.id);
+        const forceUserAvatar = ctx.options.getBoolean("forceuseravatar") || false;
+
+        const dynamic = member?.avatar?.startsWith("a_") || user?.avatar?.startsWith("a_");
+        const url = forceUserAvatar ? user?.dynamicAvatarURL(dynamic ? "gif" : "png", 2048)
+          : member?.avatarURL;
+
+        /*const linkButton = new MessageActionRow()
+          .addComponents(
+            new MessageButton()
+              .setLabel(ctx.t("avatarURL"))
+              .setStyle('LINK')
+              .setURL(url)
+          ); */
+          
+        const embed = new Embed()
+          .setAuthor({ name: ctx.t("avatarTitle", `${user?.username}#${user?.discriminator}`) })
+          .setColor(ctx.get("embColor"))
+          .setImage(url!);
+    
+        await ctx.reply({ embeds: [ embed ] });
+        break;
+      }
+
+      /*case "server": {
+        const dynamic = ctx.guild?.icon?.startsWith("a_");
+        const url = ctx.guild?.iconURL({ size: 2048, dynamic });
+
+        if (!url) {
+          await ctx.reply({ content: ctx.t("avatarNoServerIcon"), ephemeral: true });
+          return;
+        }
+
+        const embed = new MessageEmbed()
+          .setAuthor({ name: ctx.t("avatarServerIcon") })
+          .setColor(ctx.get("embColor"))
+          .setImage(url);
+        
+        const actionRow = new MessageActionRow()
+          .addComponents(
+            new MessageButton()
+              .setLabel(ctx.t("avatarIconURL"))
+              .setStyle("LINK")
+              .setURL(url)
+          );
+        
+        await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
+        break;
+      }
+
+      case "banner": {
+        const url = ctx.guild?.bannerURL();
+
+        if (!url) {
+          await ctx.reply({ content: ctx.t("avatarNoBanner"), ephemeral: true });
+          return;
+        }
+
+        const embed = new MessageEmbed()
+          .setAuthor({ name: ctx.t("avatarBanner") })
+          .setColor(ctx.get("embColor"))
+          .setImage(url);
+        
+        const actionRow = new MessageActionRow()
+          .addComponents(
+            new MessageButton()
+              .setLabel(ctx.t("avatarBannerURL"))
+              .setStyle("LINK")
+              .setURL(url)
+          );
+        
+        await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
+        break;
+      } */
+    }
+  }
+}
