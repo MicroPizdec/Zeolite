@@ -1,7 +1,9 @@
 import ZeoliteClient from "../core/ZeoliteClient";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
-import Embed from "../utils/Embed";
+import Embed from "../core/Embed";
+import ActionRow from "../core/ActionRow";
+import Button from "../core/Button";
 
 export default class AvatarCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -55,6 +57,13 @@ export default class AvatarCommand extends ZeoliteCommand {
         const dynamic = member?.avatar?.startsWith("a_") || user?.avatar?.startsWith("a_");
         const url = forceUserAvatar ? user?.dynamicAvatarURL(dynamic ? "gif" : "png", 2048)
           : member?.avatarURL;
+
+        const actionRow = new ActionRow(
+          new Button()
+            .setLabel(ctx.t("avatarURL"))
+            .setStyle('link')
+            .setURL(url)
+        );
 
         /*const linkButton = new MessageActionRow()
           .addComponents(

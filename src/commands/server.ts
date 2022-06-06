@@ -1,4 +1,4 @@
-import Embed from "../utils/Embed";
+import Embed from "../core/Embed";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import ZeoliteClient from "../core/ZeoliteClient";

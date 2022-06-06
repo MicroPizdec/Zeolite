@@ -1,7 +1,7 @@
 import ZeoliteClient from "../core/ZeoliteClient";
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
-import Embed from "../utils/Embed";
+import Embed from "../core/Embed";
 import { User, Constants } from "eris";
 
 export default class UserCommand extends ZeoliteCommand {

@@ -1,7 +1,7 @@
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
 import os from "os";
-import Embed from "../utils/Embed";
+import Embed from "../core/Embed";
 import ZeoliteClient from "../core/ZeoliteClient";
 
 export default class StatsCommand extends ZeoliteCommand {

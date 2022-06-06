@@ -7,7 +7,7 @@ import {
   InteractionDataOptionsWithValue,
   Guild
 } from "eris";
-import Embed from "../utils/Embed";
+import Embed from "../core/Embed";
 
 let self: CmdLogsExtension;
 

@@ -1,8 +1,24 @@
 import ZeoliteClient from "./ZeoliteClient";
-import { CommandInteraction, User, Member, Guild, TextableChannel, InteractionDataOptions, InteractionOptions, InteractionContent, InteractionEditContent, Message } from "eris";
-import { APIMessage } from "discord-api-types";
+import {
+  CommandInteraction,
+  User, 
+  Member,
+  Guild,
+  TextableChannel,
+  InteractionContent,
+  InteractionEditContent,
+  Message,
+  ComponentInteraction
+} from "eris";
 import ZeoliteCommand from "./ZeoliteCommand";
 import ZeoliteCommandOptions from "./ZeoliteCommandOptions";
+
+type Filter = (interaction: ComponentInteraction) => boolean;
+interface CollectButtonOptions {
+  filter: Filter;
+  messageID: string;
+  timeout?: number;
+}
 
 export default class ZeoliteContext {
   private data: Map<string, any> = new Map<string, any>();
@@ -67,5 +83,24 @@ export default class ZeoliteContext {
 
   public get<T>(key: string): T {
     return this.data.get(key) as T;
+  }
+
+  public async collectButton({ filter, messageID, timeout }: CollectButtonOptions): Promise<ComponentInteraction | void> {
+    return new Promise<ComponentInteraction | undefined>((resolve, reject) => {
+      const listener = async (interaction: ComponentInteraction) => {
+        if (interaction.type != 3 && interaction.message.id != messageID && !filter(interaction)) return;
+
+        const timer = setTimeout(() => {
+          this.client.off("interactionCreate", listener);
+          resolve(undefined);
+        }, timeout);
+
+        this.client.off("interactionCreate", listener);
+        clearTimeout(timer);
+        resolve(interaction);
+      }
+
+      this.client.on("interactionCreate", listener);
+    });
   }
 }

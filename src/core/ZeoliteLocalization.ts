@@ -16,6 +16,11 @@ export default class ZeoliteLocalization {
     self = this;
   }
 
+  // this method should be overridden by developer
+  public getUserLanguage(user: Member | User): string {
+    return "en";
+  }
+
   public getString(user: Member | User, str: string, ...args: any[]): string {
     const lang = this.userLanguages[user.id] || "en";
     const langStrs = this.languageStrings[lang];
