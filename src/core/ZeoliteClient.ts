@@ -240,4 +240,11 @@ export default class ZeoliteClient extends Client {
   public addMiddleware(func: MiddlewareFunc) {
     this.middlewares.push(func);
   }
+
+  public generateInvite(permissions?: number, scopes?: string[]): string {
+    let link = `https://discord.com/api/oauth2/authorize?client_id=${this.application?.id}`;
+    if (permissions) link += `&permissions=${permissions}`;
+    if (scopes) link += `&scopes=${scopes.join("%20")}`;
+    return link;
+  }
 }

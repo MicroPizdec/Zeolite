@@ -58,13 +58,6 @@ export default class AvatarCommand extends ZeoliteCommand {
         const url = forceUserAvatar ? user?.dynamicAvatarURL(dynamic ? "gif" : "png", 2048)
           : member?.avatarURL;
 
-        const actionRow = new ActionRow(
-          new Button()
-            .setLabel(ctx.t("avatarURL"))
-            .setStyle('link')
-            .setURL(url)
-        );
-
         /*const linkButton = new MessageActionRow()
           .addComponents(
             new MessageButton()
@@ -72,66 +65,71 @@ export default class AvatarCommand extends ZeoliteCommand {
               .setStyle('LINK')
               .setURL(url)
           ); */
+
+        const actionRow = new ActionRow({
+          type: 2,
+          label: ctx.t("avatarURL"),
+          style: 5,
+          url: url!,
+        });
           
         const embed = new Embed()
           .setAuthor({ name: ctx.t("avatarTitle", `${user?.username}#${user?.discriminator}`) })
           .setColor(ctx.get("embColor"))
           .setImage(url!);
     
-        await ctx.reply({ embeds: [ embed ] });
+        await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
         break;
       }
 
-      /*case "server": {
+      case "server": {
         const dynamic = ctx.guild?.icon?.startsWith("a_");
-        const url = ctx.guild?.iconURL({ size: 2048, dynamic });
+        const url = ctx.guild?.iconURL;
 
         if (!url) {
-          await ctx.reply({ content: ctx.t("avatarNoServerIcon"), ephemeral: true });
+          await ctx.reply({ content: ctx.t("avatarNoServerIcon"), flags: 64 });
           return;
         }
 
-        const embed = new MessageEmbed()
+        const embed = new Embed()
           .setAuthor({ name: ctx.t("avatarServerIcon") })
           .setColor(ctx.get("embColor"))
           .setImage(url);
         
-        const actionRow = new MessageActionRow()
-          .addComponents(
-            new MessageButton()
-              .setLabel(ctx.t("avatarIconURL"))
-              .setStyle("LINK")
-              .setURL(url)
-          );
+        const actionRow = new ActionRow({
+          type: 2,
+          label: ctx.t("avatarIconURL"),
+          style: 5,
+          url,
+        });
         
         await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
         break;
       }
 
       case "banner": {
-        const url = ctx.guild?.bannerURL();
+        const url = ctx.guild?.bannerURL;
 
         if (!url) {
-          await ctx.reply({ content: ctx.t("avatarNoBanner"), ephemeral: true });
+          await ctx.reply({ content: ctx.t("avatarNoBanner"), flags: 64 });
           return;
         }
 
-        const embed = new MessageEmbed()
+        const embed = new Embed()
           .setAuthor({ name: ctx.t("avatarBanner") })
           .setColor(ctx.get("embColor"))
           .setImage(url);
         
-        const actionRow = new MessageActionRow()
-          .addComponents(
-            new MessageButton()
-              .setLabel(ctx.t("avatarBannerURL"))
-              .setStyle("LINK")
-              .setURL(url)
-          );
+        const actionRow = new ActionRow({
+          type: 2,
+          label: ctx.t("avatarBannerURL"),
+          style: 5,
+          url,
+        });
         
         await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
         break;
-      } */
+      }
     }
   }
 }

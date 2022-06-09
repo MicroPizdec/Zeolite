@@ -39,7 +39,7 @@ export default class UserCommand extends ZeoliteCommand {
 
   public async run(ctx: ZeoliteContext) {
     const user = await ctx.options.getUser("user") || ctx.user;
-    const member = await ctx.options.getMember("user") || ctx.member;
+    const member = await ctx.guild?.getRESTMember(user?.id!).catch(() => {});
 
     const registeredDays = Math.floor((Date.now() - user!.createdAt) / (1000 * 86400));
 
@@ -71,7 +71,11 @@ export default class UserCommand extends ZeoliteCommand {
     }
   
     for (const flag in Constants.UserFlags) {
-      if (!!((user.publicFlags as number) & Constants.UserFlags[flag as keyof Constants["UserFlags"]])) {
+      if (
+        !!((user.publicFlags as number) & Constants.UserFlags[flag as keyof Constants["UserFlags"]])
+        && (flag as keyof Constants["UserFlags"] != "TEAM_USER"
+        && flag as keyof Constants["UserFlags"] != "TEAM_PSEUDO_USER")
+      ) {
         badges.push(this.badgeEmojis[flag]);
       }
     }

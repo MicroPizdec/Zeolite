@@ -1,10 +1,10 @@
-import Button from "./Button";
+import { ActionRowComponents } from "eris";
 
 export default class ActionRow {
-  public readonly type: number = 1;
-  public components: Button[];
+  public readonly type: 1 = 1;
+  public components: ActionRowComponents[];
 
-  public constructor(...buttons: Button[]) {
+  public constructor(...buttons: ActionRowComponents[]) {
     this.components = buttons;
   }
 }
