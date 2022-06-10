@@ -23,7 +23,7 @@ export default class InviteCommand extends ZeoliteCommand {
     });
   }
 
-  async run(ctx: ZeoliteContext) {
+  public async run(ctx: ZeoliteContext) {
     const url = ctx.options.getString("invite")!;
 
     let invite: Invite<"withCount", InviteChannel> | undefined;

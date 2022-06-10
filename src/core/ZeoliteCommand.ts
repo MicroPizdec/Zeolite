@@ -67,7 +67,7 @@ export default class ZeoliteCommand {
   }
 }
 
-interface ZeoliteCommandStructure {
+export interface ZeoliteCommandStructure {
   name: string;
   description: string;
   group?: string;

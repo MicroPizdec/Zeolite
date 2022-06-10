@@ -24,7 +24,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       options.push(subcommand);
       if (!(ctx.interaction.data.options as (InteractionDataOptionsSubCommand[] | undefined))?.[0].options) return options.join(" ");
 
-      for (const opt of (ctx.interaction.data.options as InteractionDataOptionsWithValue[] | undefined)?.splice(1) || []) {
+      for (const opt of (ctx.interaction.data.options as InteractionDataOptionsSubCommand[] | undefined)?.[0].options as InteractionDataOptionsWithValue[] || []) {
         options.push(`${opt.name}: ${opt.value}`);
       }
     } else {
