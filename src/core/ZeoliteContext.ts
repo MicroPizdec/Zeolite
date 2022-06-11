@@ -8,7 +8,8 @@ import {
   InteractionContent,
   InteractionEditContent,
   Message,
-  ComponentInteraction
+  ComponentInteraction,
+  FileContent
 } from "eris";
 import ZeoliteCommand from "./ZeoliteCommand";
 import ZeoliteCommandOptions from "./ZeoliteCommandOptions";
@@ -33,7 +34,7 @@ export default class ZeoliteContext {
   }
 
   public get user(): User | undefined {
-    return this.interaction.member?.user || this.interaction.user;
+    return this.interaction.member?.user || this.interaction.user!;
   }
 
   public get member(): Member | undefined {
@@ -52,21 +53,16 @@ export default class ZeoliteContext {
     return this.interaction.data.name;
   }
 
-  //public getOption<T>(name: string, required: true): T;
-  //public getOption<T>(name: string, required?: boolean): T | undefined {
-    //return this.options?.find(opt => opt.name == name) as T;
-  //}
-
-  public async reply(options: string | InteractionContent) {
-    return this.interaction.createMessage(options);
+  public async reply(options: string | InteractionContent, files?: FileContent | FileContent[]) {
+    return this.interaction.createMessage(options, files);
   }
 
   public async defer(flags?: number) {
     return this.interaction.defer(flags);
   }
 
-  public async editReply(options: string | InteractionEditContent) {
-    return this.interaction.editOriginalMessage(options)
+  public async editReply(options: string | InteractionEditContent, files?: FileContent | FileContent[]) {
+    return this.interaction.editOriginalMessage(options, files);
   }
 
   public async followUp(options: string | InteractionContent): Promise<Message> {
