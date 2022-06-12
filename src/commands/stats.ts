@@ -1,14 +1,22 @@
 import ZeoliteCommand from "../core/ZeoliteCommand";
 import ZeoliteContext from "../core/ZeoliteContext";
+import ZeoliteClient from "../core/ZeoliteClient";
 import os from "os";
 import Embed from "../core/Embed";
-import ZeoliteClient from "../core/ZeoliteClient";
+import fs from "fs/promises";
+import path from "path";
 
 export default class StatsCommand extends ZeoliteCommand {
+  private buildDate: number;
+
   public constructor(client: ZeoliteClient) {
     super(client, {
       name: "stats",
       description: "Shows bot stats",
+    });
+
+    fs.readFile("./dist/buildDate.txt").then(file => {
+      this.buildDate = parseInt(file.toString());
     });
   }
   
@@ -28,6 +36,7 @@ export default class StatsCommand extends ZeoliteCommand {
       .addField(ctx.t("statsCommandsUsed"), commandsUsed.toString(), true)
       .addField(ctx.t("statsPlatform"), `${this.getPlatform()} ${os.release()}`)
       .addField(ctx.t("statsCpu"), `\`${cpu ? cpu.model : ctx.t("unableToGetCpuInfo")}\``)
+      .addField(ctx.t("statsBuildDate"), `<t:${Math.floor(this.buildDate / 1000)}>`)
       .setFooter({ text: `Zeolite v${process.env.npm_package_version} © Fishyrene`, icon_url: this.client.user.avatarURL });
 
     await ctx.reply({ embeds: [ embed ] });

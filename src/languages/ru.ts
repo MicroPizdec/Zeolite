@@ -26,6 +26,7 @@ export default {
   statsCpu: "Процессор",
   statsCommandsUsed: "Команд использовано",
   statsPlatform: "Платформа",
+  statsBuildDate: "Дата сборки",
 
   userBadges: "Значки",
   userBadgesNone: "Нет",

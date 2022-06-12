@@ -6,7 +6,8 @@
   "scripts": {
     "start": "node --enable-source-maps .",
     "start:dev": "npx ts-node src/index",
-    "build": "npx tsc"
+    "prebuild": "node scripts/generateBuildDate.js",
+    "build": "tsc"
   },
   "author": "w3lcharm, alyzter",
   "license": "MIT",

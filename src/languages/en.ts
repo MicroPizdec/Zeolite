@@ -26,6 +26,7 @@ export default {
   statsCpu: "CPU",
   statsCommandsUsed: "Commands used",
   statsPlatform: "Platform",
+  statsBuildDate: "Build date",
 
   userBadges: "Badges",
   userBadgesNone: "None",
