@@ -1,4 +1,4 @@
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table
 export default class Warns extends Model {
@@ -7,7 +7,7 @@ export default class Warns extends Model {
 
   @Column(DataType.STRING)
   userID: string;
-  
+
   @Column(DataType.STRING)
   moderatorID: string;
 

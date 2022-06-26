@@ -1,4 +1,4 @@
-export default class Logger {
+export default class ZeoliteLogger {
   private level: LoggerLevel;
   public name: string;
 

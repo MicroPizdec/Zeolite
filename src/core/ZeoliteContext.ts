@@ -1,7 +1,7 @@
-import ZeoliteClient from "./ZeoliteClient";
+import ZeoliteClient from './ZeoliteClient';
 import {
   CommandInteraction,
-  User, 
+  User,
   Member,
   Guild,
   TextableChannel,
@@ -9,10 +9,10 @@ import {
   InteractionEditContent,
   Message,
   ComponentInteraction,
-  FileContent
-} from "eris";
-import ZeoliteCommand from "./ZeoliteCommand";
-import ZeoliteCommandOptions from "./ZeoliteCommandOptions";
+  FileContent,
+} from 'eris';
+import ZeoliteCommand from './ZeoliteCommand';
+import ZeoliteCommandOptions from './ZeoliteCommandOptions';
 
 type Filter = (interaction: ComponentInteraction) => boolean;
 interface CollectButtonOptions {
@@ -28,12 +28,12 @@ export default class ZeoliteContext {
   public constructor(
     public readonly client: ZeoliteClient,
     public readonly interaction: CommandInteraction,
-    public readonly command: ZeoliteCommand
+    public readonly command: ZeoliteCommand,
   ) {
     this.options = new ZeoliteCommandOptions(client, interaction.data.options, interaction.data.resolved);
   }
 
-  public get user(): User | undefined {
+  public get user(): User {
     return this.interaction.member?.user || this.interaction.user!;
   }
 
@@ -66,7 +66,11 @@ export default class ZeoliteContext {
   }
 
   public async followUp(options: string | InteractionContent): Promise<Message> {
-    return this.interaction.createFollowup(options)
+    return this.interaction.createFollowup(options);
+  }
+
+  public async deleteReply() {
+    return this.interaction.deleteOriginalMessage();
   }
 
   public t(str: string, ...args: any[]): string {
@@ -81,22 +85,26 @@ export default class ZeoliteContext {
     return this.data.get(key) as T;
   }
 
-  public async collectButton({ filter, messageID, timeout }: CollectButtonOptions): Promise<ComponentInteraction | void> {
+  public async collectButton({
+    filter,
+    messageID,
+    timeout,
+  }: CollectButtonOptions): Promise<ComponentInteraction | void> {
     return new Promise<ComponentInteraction | undefined>((resolve, reject) => {
       const listener = async (interaction: ComponentInteraction) => {
-        if (interaction.type != 3 && interaction.message.id != messageID && !filter(interaction)) return;
+        if (interaction.type != 3 || interaction.message.id != messageID || !filter(interaction)) return;
 
         const timer = setTimeout(() => {
-          this.client.off("interactionCreate", listener);
+          this.client.off('interactionCreate', listener);
           resolve(undefined);
         }, timeout);
 
-        this.client.off("interactionCreate", listener);
+        this.client.off('interactionCreate', listener);
         clearTimeout(timer);
         resolve(interaction);
-      }
+      };
 
-      this.client.on("interactionCreate", listener);
+      this.client.on('interactionCreate', listener);
     });
   }
 }

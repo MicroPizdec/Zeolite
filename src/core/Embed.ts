@@ -55,11 +55,24 @@ export default class Embed {
     return this;
   }
 
+  public addFields(fields: EmbedField[]): this {
+    for (const field of fields) {
+      this.addField(field.name, field.value, field.inline);
+    }
+
+    return this;
+  }
+
   public addField(name: string, value: string, inline?: boolean): this {
     if (!this.fields) this.fields = [];
 
     this.fields.push({ name, value, inline });
 
+    return this;
+  }
+
+  public spliceFields(start: number, deleteCount: number, ...fields: EmbedField[]): this {
+    this.fields?.splice(start, deleteCount, ...fields);
     return this;
   }
 }

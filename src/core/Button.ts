@@ -1,13 +1,13 @@
-import emojiRegex from "emoji-regex";
+import emojiRegex from 'emoji-regex';
 
-type Style = "primary" | "secondary" | "success" | "danger" | "link";
+type Style = 'primary' | 'secondary' | 'success' | 'danger' | 'link';
 enum Styles {
   primary = 1,
   secondary,
   success,
   danger,
   link,
-};
+}
 
 interface Emoji {
   id: string | null;
@@ -55,10 +55,10 @@ export default class Button {
 
   public setEmoji(emoji: string): this {
     if (!/<a:.+?:\d+>|<:.+?:\d+>/g.test(emoji) && !emojiRegex().test(emoji)) {
-      throw new TypeError("invalid emoji");
+      throw new TypeError('invalid emoji');
     }
 
-    const id = emoji.match(/(?<=:)\d+/g)![0]
+    const id = emoji.match(/(?<=:)\d+/g)![0];
     const name = emoji.match(/(?<=:)\d+/g)![0] || emoji;
     const animated = /<a/.test(emoji);
 

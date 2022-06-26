@@ -1,4 +1,4 @@
-import { ActionRowComponents } from "eris";
+import { ActionRowComponents } from 'eris';
 
 export default class ActionRow {
   public readonly type: 1 = 1;

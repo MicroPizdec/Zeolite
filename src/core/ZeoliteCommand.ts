@@ -1,6 +1,6 @@
-import { ChatInputApplicationCommandStructure, ApplicationCommand, ApplicationCommandOptions, Constants } from "eris";
-import ZeoliteClient from "./ZeoliteClient";
-import ZeoliteContext from "./ZeoliteContext";
+import { ChatInputApplicationCommandStructure, ApplicationCommand, ApplicationCommandOptions, Constants } from 'eris';
+import ZeoliteClient from './ZeoliteClient';
+import ZeoliteContext from './ZeoliteContext';
 
 export default class ZeoliteCommand {
   public data: ZeoliteCommandStructure;
@@ -39,10 +39,8 @@ export default class ZeoliteCommand {
     return this.data.cooldown;
   }
 
-  public get requiredPermissions(): (keyof Constants["Permissions"])[] {
-    return this.data.requiredPermissions 
-      ? this.data.requiredPermissions
-      : this.data.requiredPermissions = [];
+  public get requiredPermissions(): (keyof Constants['Permissions'])[] {
+    return this.data.requiredPermissions ? this.data.requiredPermissions : (this.data.requiredPermissions = []);
   }
 
   public preLoad(): boolean {
@@ -50,7 +48,7 @@ export default class ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    throw new Error("abstract class method.");
+    throw new Error('abstract class method.');
   }
 
   public async update(): Promise<ApplicationCommand | undefined> {
@@ -75,5 +73,5 @@ export interface ZeoliteCommandStructure {
   ownerOnly?: boolean;
   guildOnly?: boolean;
   cooldown?: number;
-  requiredPermissions?: (keyof Constants["Permissions"])[];
+  requiredPermissions?: (keyof Constants['Permissions'])[];
 }

@@ -1,4 +1,4 @@
-import ZeoliteClient from "./ZeoliteClient";
+import ZeoliteClient from './ZeoliteClient';
 
 export default class ZeoliteExtension {
   public readonly client: ZeoliteClient;
@@ -9,10 +9,10 @@ export default class ZeoliteExtension {
   }
 
   public onLoad() {
-    throw new Error("abstract class method.");
+    throw new Error('abstract class method.');
   }
 
   public onUnload() {
-    throw new Error("abstract class method.");
+    throw new Error('abstract class method.');
   }
 }

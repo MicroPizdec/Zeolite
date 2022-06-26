@@ -1,22 +1,22 @@
-import ZeoliteClient from "../core/ZeoliteClient";
-import ZeoliteCommand from "../core/ZeoliteCommand";
-import ZeoliteContext from "../core/ZeoliteContext";
-import { Invite, InviteChannel, Constants } from "eris";
-import Embed from "../core/Embed";
+import ZeoliteClient from '../core/ZeoliteClient';
+import ZeoliteCommand from '../core/ZeoliteCommand';
+import ZeoliteContext from '../core/ZeoliteContext';
+import { Invite, InviteChannel, Constants } from 'eris';
+import Embed from '../core/Embed';
 
 export default class InviteCommand extends ZeoliteCommand {
   private inviteRegex: RegExp = /discord(?:(?:app)?\.com\/invite|\.gg(?:\/invite)?)\/([\w-]{2,255})/gi;
 
   public constructor(client: ZeoliteClient) {
     super(client, {
-      name: "invite",
-      description: "Shows information about provided invite",
-      group: "general",
+      name: 'invite',
+      description: 'Shows information about provided invite',
+      group: 'general',
       options: [
         {
           type: 3,
-          name: "invite",
-          description: "Invite code or URL",
+          name: 'invite',
+          description: 'Invite code or URL',
           required: true,
         },
       ],
@@ -24,26 +24,29 @@ export default class InviteCommand extends ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    const url = ctx.options.getString("invite")!;
+    const url = ctx.options.getString('invite')!;
 
-    let invite: Invite<"withCount", InviteChannel> | undefined;
+    let invite: Invite<'withCount', InviteChannel> | undefined;
     try {
       const code = this.getInviteCodeFromURL(url);
       invite = await this.client.getInvite(code, true);
     } catch {
-      await ctx.reply({ content: ctx.t("invalidInvite"), flags: 64 });
+      await ctx.reply({ content: ctx.t('invalidInvite'), flags: 64 });
       return;
     }
 
     const embed = new Embed()
       .setTitle(invite.guild!.name)
       .setThumbnail(invite.guild?.iconURL!)
-      .setColor(ctx.get("embColor"))
-      .addField(ctx.t("serverMembers"), ctx.t("inviteMembersCount", invite.memberCount, invite.presenceCount))
-      .addField(ctx.t("serverVerificationLevel"), ctx.t(Object.keys(Constants.VerificationLevels)[invite.guild!.verificationLevel]))
-      .addField("ID", invite.guild!.id)
-      .addField(ctx.t("inviteChannel"), `#${invite.channel.name} (ID: ${invite.channel.id})`)
-      .setFooter({ text: ctx.t("inviteFooter") })
+      .setColor(ctx.get('embColor'))
+      .addField(ctx.t('serverMembers'), ctx.t('inviteMembersCount', invite.memberCount, invite.presenceCount))
+      .addField(
+        ctx.t('serverVerificationLevel'),
+        ctx.t(Object.keys(Constants.VerificationLevels)[invite.guild!.verificationLevel]),
+      )
+      .addField('ID', invite.guild!.id)
+      .addField(ctx.t('inviteChannel'), `#${invite.channel.name} (ID: ${invite.channel.id})`)
+      .setFooter({ text: ctx.t('inviteFooter') })
       .setTimestamp(new Date(invite.guild!.createdAt).toISOString());
 
     if (invite.guild?.description) {
@@ -51,13 +54,16 @@ export default class InviteCommand extends ZeoliteCommand {
     }
 
     if (invite.inviter) {
-      embed.addField(ctx.t("inviteInviter"), `${invite.inviter.username}#${invite.inviter.discriminator} (ID: ${invite.inviter.id})`);
+      embed.addField(
+        ctx.t('inviteInviter'),
+        `${invite.inviter.username}#${invite.inviter.discriminator} (ID: ${invite.inviter.id})`,
+      );
     }
 
-    await ctx.reply({ embeds: [ embed ] });
+    await ctx.reply({ embeds: [embed] });
   }
 
   private getInviteCodeFromURL(url: string): string {
     return url.matchAll(this.inviteRegex).next().value?.[1] ?? url;
   }
- }
+}
