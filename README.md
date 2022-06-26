@@ -4,4 +4,4 @@
 
 Zeolite is a multipurpose Discord bot that is simple in terms of economy, moderation, etc.
 
-This is an experimental rewrite to Eris because discord.js is so shitty and it consumes too much RAM.
+You can add Zeolite to your server by [clicking here](https://discord.com/api/oauth2/authorize?client_id=679692205736460301&permissions=8&scope=applications.commands+bot)
