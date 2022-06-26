@@ -1,71 +1,80 @@
-import ZeoliteClient from "./ZeoliteClient";
+import ZeoliteClient from './ZeoliteClient';
 import {
-  GuildMember,
-  CommandInteraction, 
-  User, 
-  Guild, 
-  TextBasedChannel, 
-  Message, 
-  InteractionReplyOptions,
-  InteractionDeferReplyOptions,
-  WebhookEditMessageOptions,
-  CommandInteractionOptionResolver,
-  Collection
-} from "discord.js-light";
-import { APIMessage } from "discord-api-types";
-import ZeoliteCommand from "./ZeoliteCommand";
+  CommandInteraction,
+  User,
+  Member,
+  Guild,
+  TextableChannel,
+  InteractionContent,
+  InteractionEditContent,
+  Message,
+  ComponentInteraction,
+  FileContent,
+} from 'eris';
+import ZeoliteCommand from './ZeoliteCommand';
+import ZeoliteCommandOptions from './ZeoliteCommandOptions';
+
+type Filter = (interaction: ComponentInteraction) => boolean;
+interface CollectButtonOptions {
+  filter: Filter;
+  messageID: string;
+  timeout?: number;
+}
 
 export default class ZeoliteContext {
-    private data: Collection<string, any> = new Collection<string, any>();
+  private data: Map<string, any> = new Map<string, any>();
+  public options: ZeoliteCommandOptions;
 
   public constructor(
     public readonly client: ZeoliteClient,
     public readonly interaction: CommandInteraction,
-    public readonly command: ZeoliteCommand
-  ) {}
+    public readonly command: ZeoliteCommand,
+  ) {
+    this.options = new ZeoliteCommandOptions(client, interaction.data.options, interaction.data.resolved);
+  }
 
   public get user(): User {
-    return this.interaction.user;
+    return this.interaction.member?.user || this.interaction.user!;
   }
 
-  public get member(): GuildMember {
-    return this.interaction.member as GuildMember;
+  public get member(): Member | undefined {
+    return this.interaction.member;
   }
 
-  public get guild(): Guild | null {
-    return this.interaction.guild;
+  public get guild(): Guild | undefined {
+    return this.client.guilds.get(this.interaction.guildID!);
   }
 
-  public get channel(): TextBasedChannel | null {
+  public get channel(): TextableChannel {
     return this.interaction.channel;
   }
 
   public get commandName(): string {
-    return this.interaction.commandName;
+    return this.interaction.data.name;
   }
 
-  public get options(): Omit<CommandInteractionOptionResolver, "getMessage" | "getFocused"> {
-    return this.interaction.options;
+  public async reply(options: string | InteractionContent, files?: FileContent | FileContent[]) {
+    return this.interaction.createMessage(options, files);
   }
 
-  public async reply(options: string | InteractionReplyOptions): Promise<Message | void> {
-    return this.interaction.reply(options);
+  public async defer(flags?: number) {
+    return this.interaction.defer(flags);
   }
 
-  public async deferReply(options?: InteractionDeferReplyOptions): Promise<Message | void> {
-    return this.interaction.deferReply(options);
+  public async editReply(options: string | InteractionEditContent, files?: FileContent | FileContent[]) {
+    return this.interaction.editOriginalMessage(options, files);
   }
 
-  public async editReply(options: string | WebhookEditMessageOptions): Promise<Message | APIMessage> {
-    return this.interaction.editReply(options);
+  public async followUp(options: string | InteractionContent): Promise<Message> {
+    return this.interaction.createFollowup(options);
   }
 
-  public async followUp(options: InteractionReplyOptions): Promise<Message | APIMessage | void> {
-    return this.interaction.followUp(options);
+  public async deleteReply() {
+    return this.interaction.deleteOriginalMessage();
   }
 
   public t(str: string, ...args: any[]): string {
-    return this.client.localization.getString(this.user, str, ...args);
+    return this.client.localization.getString(this.member || this.user!, str, ...args);
   }
 
   public set(key: string, data: any) {
@@ -76,9 +85,26 @@ export default class ZeoliteContext {
     return this.data.get(key) as T;
   }
 
-  public async getOrFetchMember(id: string): Promise<GuildMember | void> {
-    return this.guild?.members.cache.has(id)
-      ? this.guild.members.cache.get(id)
-      : await this.guild?.members.fetch(id).catch(() => {});
+  public async collectButton({
+    filter,
+    messageID,
+    timeout,
+  }: CollectButtonOptions): Promise<ComponentInteraction | void> {
+    return new Promise<ComponentInteraction | undefined>((resolve, reject) => {
+      const listener = async (interaction: ComponentInteraction) => {
+        if (interaction.type != 3 || interaction.message.id != messageID || !filter(interaction)) return;
+
+        const timer = setTimeout(() => {
+          this.client.off('interactionCreate', listener);
+          resolve(undefined);
+        }, timeout);
+
+        this.client.off('interactionCreate', listener);
+        clearTimeout(timer);
+        resolve(interaction);
+      };
+
+      this.client.on('interactionCreate', listener);
+    });
   }
 }

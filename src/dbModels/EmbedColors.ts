@@ -1,4 +1,4 @@
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table
 export default class EmbedColors extends Model {

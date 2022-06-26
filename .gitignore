@@ -2,3 +2,5 @@ dist/
 node_modules/
 config.yml
 bot.db
+commands_old/
+extensions_old/

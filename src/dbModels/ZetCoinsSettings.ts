@@ -1,4 +1,4 @@
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table
 export default class ZetCoinsSettings extends Model {
@@ -7,7 +7,7 @@ export default class ZetCoinsSettings extends Model {
 
   @Column({
     type: DataType.STRING,
-    defaultValue: "<:zetcoins:934491646182187039>",
+    defaultValue: '<:zetcoins:934491646182187039>',
   })
   icon: string;
 

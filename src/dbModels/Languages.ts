@@ -1,4 +1,4 @@
-import { Model, Table, Column, DataType } from "sequelize-typescript";
+import { Model, Table, Column, DataType } from 'sequelize-typescript';
 
 @Table
 export default class Languages extends Model {
@@ -7,7 +7,7 @@ export default class Languages extends Model {
 
   @Column({
     type: DataType.STRING,
-    defaultValue: "en",
+    defaultValue: 'en',
   })
   language: string;
 }

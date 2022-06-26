@@ -1,37 +1,50 @@
-import { TextChannel } from "discord.js-light";
-import ZeoliteCommand from "../core/ZeoliteCommand";
-import ZeoliteContext from "../core/ZeoliteContext";
+import { TextChannel } from 'eris';
+import ZeoliteClient from '../core/ZeoliteClient';
+import ZeoliteCommand from '../core/ZeoliteCommand';
+import ZeoliteContext from '../core/ZeoliteContext';
 
 export default class PurgeCommand extends ZeoliteCommand {
-  name = "purge";
-  description = "Cleans the specified amount of messages in channel. Requires Manage Messages permission";
-  group = "moderation";
-  options = [
-    {
-      type: 4,
-      name: "amount",
-      description: "Amount of messages to clean (1-100)",
-      required: true,
-      minValue: 1,
-      maxValue: 100,
-    },
-  ]
-  guildOnly = true;
+  public constructor(client: ZeoliteClient) {
+    super(client, {
+      name: 'purge',
+      description: 'Cleans the specified amount of messages in channel. Requires Manage Messages permission',
+      group: 'moderation',
+      options: [
+        {
+          type: 4,
+          name: 'amount',
+          description: 'Amount of messages to clean (1-100)',
+          required: true,
+          // fuck eris types
+          // min_value: 1,
+          // max_value: 100,
+        },
+      ],
+      guildOnly: true,
+      requiredPermissions: ['manageMessages'],
+    });
+  }
 
   async run(ctx: ZeoliteContext) {
     const channel = ctx.channel as TextChannel;
-    if (!channel.permissionsFor(ctx.guild!.me!).has("MANAGE_MESSAGES")) {
-      await ctx.reply({ content: ctx.t("purgeNoBotPerms"), ephemeral: true });
+    if (!channel.permissionsOf(ctx.guild!.members.get(this.client.user.id)!).has('manageMessages')) {
+      await ctx.reply({ content: ctx.t('purgeNoBotPerms'), flags: 64 });
       return;
     }
 
-    if (!channel.permissionsFor(ctx.member).has("MANAGE_MESSAGES")) {
-      this.client.emit("noPermissions", ctx, [ "MANAGE_MESSAGES" ]);
+    if (!channel.permissionsOf(ctx.member!).has('manageMessages')) {
+      this.client.emit('noPermissions', ctx, ['manageMessages']);
       return;
     }
 
-    const amount = ctx.options.getInteger("amount", true);
-    await channel.bulkDelete(amount);
-    await ctx.reply(ctx.t("purgeSuccess", amount));
+    const amount = ctx.options.getInteger('amount')!;
+
+    if (amount < 1 || amount > 100) {
+      await ctx.reply({ content: ctx.t('purgeOutOfRange'), flags: 64 });
+      return;
+    }
+
+    await channel.purge({ limit: amount });
+    await ctx.reply(ctx.t('purgeSuccess', amount));
   }
 }

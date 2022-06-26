@@ -1,39 +1,44 @@
-import ZeoliteCommand from "../core/ZeoliteCommand";
-import util from "util";
-import ZeoliteContext from "../core/ZeoliteContext";
+import ZeoliteCommand from '../core/ZeoliteCommand';
+import util from 'util';
+import ZeoliteContext from '../core/ZeoliteContext';
+import ZeoliteClient from '../core/ZeoliteClient';
 
 export default class EvalCommand extends ZeoliteCommand {
-  name = "eval";
-  description = "Executes provided code. Owner only.";
-  group = "dev";
-  options = [
-    {
-      type: 3,
-      name: "code",
-      description: "Code",
-      required: true,
-    },
-    {
-      type: 5,
-      name: "silent",
-      description: "Respond with an ephemeral message",
-      required: false,
-    },
-  ];
-  ownerOnly = true;
+  public constructor(client: ZeoliteClient) {
+    super(client, {
+      name: 'eval',
+      description: 'Executes provided code. Owner only.',
+      group: 'dev',
+      options: [
+        {
+          type: 3,
+          name: 'code',
+          description: 'Code',
+          required: true,
+        },
+        {
+          type: 5,
+          name: 'silent',
+          description: 'Respond with an ephemeral message',
+          required: false,
+        },
+      ],
+      ownerOnly: true,
+    });
+  }
 
-  async run(ctx: ZeoliteContext) {
-    const silent = ctx.options.getBoolean("silent") || false;
+  public async run(ctx: ZeoliteContext) {
+    const silent = ctx.options.getBoolean('silent') || false;
 
-    await ctx.deferReply({ ephemeral: silent });
+    await ctx.defer(silent ? 64 : undefined);
 
-    const code = ctx.options.getString("code", true);
+    const code = ctx.options.getString('code')!;
 
     const asyncified = `(async () => {\n${code}\n})()`;
 
     try {
       let result: any = await eval(asyncified);
-      if (typeof result != "string") {
+      if (typeof result != 'string') {
         result = util.inspect(result);
       }
 

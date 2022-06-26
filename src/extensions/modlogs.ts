@@ -1,23 +1,24 @@
 import {
-  GuildAuditLogsEntry,
-  GuildBan,
-  GuildMember,
-  Message,
-  MessageEmbed,
-  TextBasedChannel,
-  Invite,
   Guild,
-  PartialGuildMember,
-  PartialMessage
-} from "discord.js-light";
-import ZeoliteExtension from "../core/ZeoliteExtension";
-import Modlogs from "../dbModels/Modlogs";
+  Member,
+  MemberPartial,
+  GuildAuditLogEntry,
+  User,
+  PossiblyUncachedMessage,
+  Message,
+  OldMessage,
+  OldMember,
+  Invite,
+} from 'eris';
+import ZeoliteExtension from '../core/ZeoliteExtension';
+import Modlogs from '../dbModels/Modlogs';
+import Embed from '../core/Embed';
 
 let self: ModlogsExtension;
 
 export default class ModlogsExtension extends ZeoliteExtension {
-  name = "modlogs";
-  
+  name = 'modlogs';
+
   public channelsCache: Record<string, string | undefined> = {};
 
   private async getModlogsChannel(guildID: string): Promise<string | undefined> {
@@ -26,8 +27,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
     if (this.channelsCache[guildID]) {
       channel = this.channelsCache[guildID];
     } else {
-      const ch = await Modlogs.findOne({ where: { guildID } })
-        .then(m => m?.channelID);
+      const ch = await Modlogs.findOne({ where: { guildID } }).then((m) => m?.channelID);
 
       if (ch) channel = this.channelsCache[guildID] = ch;
     }
@@ -35,227 +35,252 @@ export default class ModlogsExtension extends ZeoliteExtension {
     return channel;
   }
 
-  async onGuildMemberAdd(member: GuildMember) {
+  async onGuildMemberAdd(guild: Guild, member: Member) {
     const channel = await self.getModlogsChannel(member.guild.id);
     if (!channel) return;
 
-    const createdDays = Math.floor((Date.now() - member.user.createdTimestamp) / (1000 * 86400));
+    const createdDays = Math.floor((Date.now() - member.createdAt) / (1000 * 86400));
 
-    const embed = new MessageEmbed()
-      .setAuthor({ name: `${member.user.tag} joined the server`, iconURL: member.user.displayAvatarURL() })
-      .setColor("GREEN")
-      .addField("Registered at", `<t:${Math.floor((member.user.createdTimestamp as number) / 1000)}> (${createdDays} days ago)`)
+    const embed = new Embed()
+      .setAuthor({
+        name: `${member.user.username}#${member.user.discriminator} joined the server`,
+        icon_url: member.avatarURL,
+      })
+      .setColor(0x57f287)
+      .addField('Registered at', `<t:${Math.floor((member.createdAt as number) / 1000)}> (${createdDays} days ago)`)
       .setFooter({ text: `ID: ${member.user.id}` })
-      .setTimestamp(new Date());
+      .setTimestamp(new Date().toISOString());
 
     if (member.user.bot) {
-      embed.setAuthor({ name: `${member.user.tag} has been added to this server`, iconURL: member.user.displayAvatarURL() });
-      if (member.guild.me?.permissions.has("VIEW_AUDIT_LOG")) {
-        const entry = await member.guild.fetchAuditLogs({ type: "BOT_ADD" })
-          .then(a => a.entries.first());
+      embed.setAuthor({
+        name: `${member.user.username}#${member.user.discriminator} has been added to this server`,
+        icon_url: member.avatarURL,
+      });
+      if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
+        const entry = await guild.getAuditLog({ actionType: 28 }).then((a) => a.entries[0]);
 
-        embed.addField("Added by", `${entry?.executor?.tag} (${entry?.executor})`);
+        embed.addField('Added by', `${entry.user.username}#${entry.user.discriminator} (${entry.user.id})`);
       }
     }
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
-  async onGuildMemberRemove(member: GuildMember | PartialGuildMember) {
-    const channel = await self.getModlogsChannel(member.guild.id);
+  async onGuildMemberRemove(guild: Guild, member: Member | MemberPartial) {
+    const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    let entry: GuildAuditLogsEntry<"MEMBER_KICK" | "MEMBER_BAN_ADD", "MEMBER_KICK" | "MEMBER_BAN_ADD", "DELETE", "USER"> | undefined;
-    if (member.guild.me?.permissions.has("VIEW_AUDIT_LOG")) {
-      entry = await member.guild.fetchAuditLogs<"MEMBER_KICK" | "MEMBER_BAN_ADD">().then(a => a.entries.first());
+    let entry: GuildAuditLogEntry | undefined;
+    if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
+      entry = await guild.getAuditLog().then((l) => l.entries.find((e) => e.actionType == 20 || e.actionType == 22));
     }
 
-    const embed = new MessageEmbed()
-      .setAuthor({ name: `${member.user.tag} left the server`, iconURL: member.user.displayAvatarURL() })
-      .setColor("RED")
+    const embed = new Embed()
+      .setAuthor({
+        name: `${member.user.username}#${member.user.discriminator} left the server`,
+        icon_url: member.user.avatarURL,
+      })
+      .setColor(0xed4245)
       .setFooter({ text: `ID: ${member.user.id}` })
-      .setTimestamp(new Date());
+      .setTimestamp(new Date().toISOString());
 
     if (entry) {
-      if (entry.action == "MEMBER_KICK") {
-        embed.setAuthor({ name: `${member.user.tag} was kicked`, iconURL: member.user.displayAvatarURL() })
-          .setDescription(`Reason: ${entry.reason || "None"}`)
-          .addField("Kicked by", entry.executor?.tag!);
-      } else if (entry.action == "MEMBER_BAN_ADD") {
-        embed.setAuthor({ name: `${member.user.tag} was banned`, iconURL: member.user.displayAvatarURL() })
-          .setDescription(`Reason: ${entry.reason || "None"}`)
-          .addField("Banned by", entry.executor?.tag!);
+      if (entry.actionType == 20) {
+        embed
+          .setAuthor({
+            name: `${member.user.username}#${member.user.discriminator} was kicked`,
+            icon_url: member.user.avatarURL,
+          })
+          .setDescription(`Reason: ${entry.reason || 'None'}`)
+          .addField('Kicked by', `${entry.user.username}#${entry.user.discriminator}`);
+      } else if (entry.actionType == 22) {
+        embed
+          .setAuthor({
+            name: `${member.user.username}#${member.user.discriminator} was banned`,
+            icon_url: member.user.avatarURL,
+          })
+          .setDescription(`Reason: ${entry.reason || 'None'}`)
+          .addField('Banned by', `${entry.user.username}#${entry.user.discriminator}`);
       }
     }
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
-  async onGuildBanRemove(ban: GuildBan) {
-    const channel = await self.getModlogsChannel(ban.guild.id);
+  async onGuildBanRemove(guild: Guild, user: User) {
+    const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    let entry: GuildAuditLogsEntry<"MEMBER_BAN_REMOVE", "MEMBER_BAN_REMOVE", "CREATE", "USER"> | undefined;
-    if (ban.guild.me?.permissions.has("VIEW_AUDIT_LOG")) {
-      entry = await ban.guild.fetchAuditLogs({ type: "MEMBER_BAN_REMOVE" }).then(a => a.entries.first());
+    let entry: GuildAuditLogEntry | undefined;
+    if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
+      entry = await guild.getAuditLog({ actionType: 23 }).then((l) => l.entries[0]);
     }
 
-    const embed = new MessageEmbed()
-      .setAuthor({ name: `${ban.user.tag} was unbanned`, iconURL: ban.user.displayAvatarURL() })
-      .setColor("GOLD")
-      .setFooter({ text: `ID: ${ban.user.id} `})
-      .setTimestamp(new Date());
+    const embed = new Embed()
+      .setAuthor({
+        name: `${user.username}#${user.discriminator} was unbanned`,
+        icon_url: user.avatarURL,
+      })
+      .setColor(0xf1c40f)
+      .setFooter({ text: `ID: ${user.id} ` })
+      .setTimestamp(new Date().toISOString());
 
     if (entry) {
-      embed.addField("Unbanned by", entry.executor?.tag!);
+      embed.addField('Unbanned by', `${entry.user.username}#${entry.user.discriminator}`);
     }
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
-  async onMessageDelete(msg: Message | PartialMessage) {
-    if (!msg.guild) return;
-    const channel = await self.getModlogsChannel(msg.guild.id);
+  async onMessageDelete(msg: Message) {
+    if (!msg.guildID) return;
+    const channel = await self.getModlogsChannel(msg.guildID);
     if (!channel) return;
 
     if (!msg.author) return;
     if (msg.author.bot) return;
     if (!msg.content) return;
 
-    const embed = new MessageEmbed()
-      .setTitle("Message deleted")
-      .setDescription(msg.cleanContent || msg.content)
-      .setColor("RED")
-      .addField("Author", `${msg.author.tag} (${msg.author})`)
-      .addField("Channel", `${msg.channel}`)
+    const embed = new Embed()
+      .setTitle('Message deleted')
+      .setDescription(msg.content)
+      .setColor(0xed4245)
+      .addField('Author', `${msg.author.username}#${msg.author.discriminator} (${msg.author.mention})`)
+      .addField('Channel', `${msg.channel.mention}`)
       .setFooter({ text: `Message ID: ${msg.id}` })
-      .setTimestamp(new Date());
+      .setTimestamp(new Date().toISOString());
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
-  async onMessageUpdate(oldMsg: Message | PartialMessage, newMsg: Message | PartialMessage) {
-    if (!oldMsg.guild) return;
-    const channel = await self.getModlogsChannel(oldMsg.guild.id);
+  async onMessageUpdate(msg: Message, oldMsg: OldMessage) {
+    if (!oldMsg || !msg.guildID) return;
+    const channel = await self.getModlogsChannel(msg.guildID);
     if (!channel) return;
 
-    if (!oldMsg.author) return;
-    if (oldMsg.author.bot) return;
-    if (!oldMsg.content || oldMsg.content == newMsg.content) return;
+    if (!msg.author) return;
+    if (msg.author.bot) return;
+    if (!oldMsg.content || oldMsg.content == msg.content) return;
 
-    const embed = new MessageEmbed()
-      .setTitle("Message edited")
-      .setDescription(`[(jump)](${newMsg.url})`)
-      .setColor("GOLD")
-      .addField("Old content", oldMsg.content)
-      .addField("New content", newMsg.content!)
-      .addField("Author", `${newMsg.author?.tag} (${newMsg.author})`)
-      .addField("Channel", `${newMsg.channel}`)
-      .setFooter({ text: `Message ID: ${newMsg.id}` })
-      .setTimestamp(new Date());
+    const embed = new Embed()
+      .setTitle('Message edited')
+      .setDescription(`[(jump)](${msg.jumpLink})`)
+      .setColor(0xf1c40f)
+      .addField('Old content', oldMsg.content)
+      .addField('New content', msg.content!)
+      .addField('Author', `${msg.author.username}#${msg.author.discriminator} (${msg.author.mention})`)
+      .addField('Channel', `${msg.channel.mention}`)
+      .setFooter({ text: `Message ID: ${msg.id}` })
+      .setTimestamp(new Date().toISOString());
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
-  async onGuildMemberUpdate(oldMember: GuildMember | PartialGuildMember, newMember: GuildMember | PartialGuildMember) {
-    const channel = await self.getModlogsChannel(oldMember.guild.id);
+  async onGuildMemberUpdate(guild: Guild, member: Member, oldMember: OldMember | null) {
+    if (!oldMember) return;
+
+    const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    const embed = new MessageEmbed();
+    const embed = new Embed();
 
-    if (oldMember.nickname != newMember.nickname) {
-      embed.setAuthor({ name: oldMember.user.tag, iconURL: oldMember.user.displayAvatarURL() })
-        .setTitle("Nickname changed")
-        .setColor("GOLD")
-        .addField("Old nickname", oldMember.nickname || newMember.user.username, true)
-        .addField("New nickname", newMember.nickname || newMember.user.username, true)
-        .setFooter({ text: `Member ID: ${newMember.user.id}` })
-        .setTimestamp(new Date());
+    if (oldMember.nick != member.nick) {
+      embed
+        .setAuthor({
+          name: `${member.username}#${member.discriminator}`,
+          icon_url: member.avatarURL,
+        })
+        .setTitle('Nickname changed')
+        .setColor(0xf1c40f)
+        .addField('Old nickname', oldMember.nick || member.username, true)
+        .addField('New nickname', member.nick || member.username, true)
+        .setFooter({ text: `Member ID: ${member.user.id}` })
+        .setTimestamp(new Date().toISOString());
 
-      if (oldMember.guild.me?.permissions.has("VIEW_AUDIT_LOG")) {
-        const entry = await oldMember.guild.fetchAuditLogs({ type: "MEMBER_UPDATE" })
-          .then(a => a.entries.first());
+      if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
+        const entry = await guild.getAuditLog({ actionType: 24 }).then((a) => a.entries[0]);
 
-        if (entry?.target?.id == oldMember.user.id) {
-          embed.addField("Changed by", entry.executor?.tag!)
+        if (entry?.target?.id == member.id) {
+          embed.addField('Changed by', `${entry.user.username}#${entry.user.discriminator}`);
         }
       }
     } else {
-      const addedRoles = newMember.roles.cache.filter(r => !oldMember.roles.cache.has(r.id));
-      const removedRoles = oldMember.roles.cache.filter(r => !newMember.roles.cache.has(r.id));
+      const addedRoles = member.roles.filter((r) => !oldMember.roles.includes(r));
+      const removedRoles = oldMember.roles.filter((r) => !member.roles.includes(r));
 
-      const role = [...addedRoles.values()][0] || [...removedRoles.values()][0]; // Collection.first() gives us TypeError, idk why
+      const role = addedRoles[0] || removedRoles[0];
       if (!role) return;
 
-      embed.setAuthor({ name: oldMember.user.tag, iconURL: oldMember.user.displayAvatarURL() })
-        .setTitle("Member roles changed")
-        .setColor("GOLD")
-        .addField(addedRoles.size ? "Role added" : "Role removed", `${role}`)
-        .setFooter({ text: `Member ID: ${newMember.user.id}` })
-        .setTimestamp(new Date());
+      embed
+        .setAuthor({
+          name: `${member.username}#${member.discriminator}`,
+          icon_url: member.avatarURL,
+        })
+        .setTitle('Member roles changed')
+        .setColor(0xf1c40f)
+        .addField(addedRoles.length ? 'Role added' : 'Role removed', `<@&${role}>`)
+        .setFooter({ text: `Member ID: ${member.user.id}` })
+        .setTimestamp(new Date().toISOString());
     }
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
-  async onInviteCreate(invite: Invite) {
-    const channel = await self.getModlogsChannel(invite.guild?.id!);
+  async onInviteCreate(guild: Guild, invite: Invite) {
+    const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    const embed = new MessageEmbed()
-      .setAuthor({ name: `${invite.inviter?.tag} created an invite ${invite.code}`, iconURL: invite.inviter?.displayAvatarURL() })
-      .setDescription(`Channel: ${invite.channel}`)
-      .setColor("GREEN")
-      .setTimestamp(new Date());
+    const embed = new Embed()
+      .setAuthor({
+        name: `${invite.inviter?.username}#${invite.inviter?.discriminator} created an invite ${invite.code}`,
+        icon_url: invite.inviter?.avatarURL,
+      })
+      .setDescription(`Channel: #${invite.channel.name}`)
+      .setColor(0x57f287)
+      .setTimestamp(new Date().toISOString());
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
-  async onInviteDelete(invite: Invite) {
-    const channel = await self.getModlogsChannel(invite.guild?.id!);
+  async onInviteDelete(guild: Guild, invite: Invite) {
+    const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    if (!(invite.guild as Guild).me?.permissions.has("VIEW_AUDIT_LOG")) return;
-    const entry = await (invite.guild as Guild).fetchAuditLogs({ type: "INVITE_DELETE" })
-      .then(a => a.entries.first());
-    
-    const embed = new MessageEmbed()
-      .setAuthor({ name: `${entry?.executor?.tag} deleted an invite ${invite.code}`, iconURL: entry?.executor?.displayAvatarURL() })
-      .setColor("RED")
-      .setTimestamp(new Date());
+    if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) return;
+    const entry = await guild.getAuditLog({ actionType: 42 }).then((a) => a.entries[0]);
 
-    await (self.client.channels.cache.get(channel) as TextBasedChannel)?.send({ embeds: [ embed ] })
-      .catch(() => {});
+    const embed = new Embed()
+      .setAuthor({
+        name: `${entry.user.username}#${entry.user.discriminator} deleted an invite ${invite.code}`,
+        icon_url: entry.user.avatarURL,
+      })
+      .setColor(0xed4245)
+      .setTimestamp(new Date().toISOString());
+
+    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
   }
 
   public onLoad() {
     self = this;
 
-    this.client.on("guildMemberAdd", this.onGuildMemberAdd);
-    this.client.on("guildMemberRemove", this.onGuildMemberRemove);
-    this.client.on("guildBanRemove", this.onGuildBanRemove);
-    this.client.on("messageDelete", this.onMessageDelete);
-    this.client.on("messageUpdate", this.onMessageUpdate);
-    this.client.on("guildMemberUpdate", this.onGuildMemberUpdate);
-    this.client.on("inviteCreate", this.onInviteCreate);
-    this.client.on("inviteDelete", this.onInviteDelete);
+    this.client.on('guildMemberAdd', this.onGuildMemberAdd);
+    this.client.on('guildMemberRemove', this.onGuildMemberRemove);
+    this.client.on('guildBanRemove', this.onGuildBanRemove);
+    this.client.on('messageDelete', this.onMessageDelete);
+    this.client.on('messageUpdate', this.onMessageUpdate);
+    this.client.on('guildMemberUpdate', this.onGuildMemberUpdate);
+    this.client.on('inviteCreate', this.onInviteCreate);
+    this.client.on('inviteDelete', this.onInviteDelete);
   }
 
   public onUnload() {
-    this.client.off("guildMemberAdd", this.onGuildMemberAdd);
-    this.client.off("guildMemberRemove", this.onGuildMemberRemove);
-    this.client.off("guildBanRemove", this.onGuildBanRemove);
-    this.client.off("messageDelete", this.onMessageDelete);
-    this.client.off("messageUpdate", this.onMessageUpdate);
-    this.client.off("guildMemberUpdate", this.onGuildMemberUpdate);
-    this.client.off("inviteCreate", this.onInviteCreate);
-    this.client.off("inviteDelete", this.onInviteDelete);
+    this.client.off('guildMemberAdd', this.onGuildMemberAdd);
+    this.client.off('guildMemberRemove', this.onGuildMemberRemove);
+    this.client.off('guildBanRemove', this.onGuildBanRemove);
+    this.client.off('messageDelete', this.onMessageDelete);
+    this.client.off('messageUpdate', this.onMessageUpdate);
+    this.client.off('guildMemberUpdate', this.onGuildMemberUpdate);
+    this.client.off('inviteCreate', this.onInviteCreate);
+    this.client.off('inviteDelete', this.onInviteDelete);
   }
 }

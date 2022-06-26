@@ -1,70 +1,69 @@
-import { Client, Interaction, User, GuildMember, PermissionResolvable } from "discord.js-light";
-import { Collection } from "@discordjs/collection";
-import ZeoliteCommand from "./ZeoliteCommand";
-import ZeoliteClientOptions from "./ZeoliteClientOptions";
-import ZeoliteExtension from "./ZeoliteExtension";
-import Logger, { LoggerLevel } from "./Logger";
-import fs from "fs";
-import path from "path";
-import ZeoliteContext from "./ZeoliteContext";
-import ZeoliteLocalization from "./ZeoliteLocalization";
+import { Client, CommandInteraction, Interaction, User, Member, Constants } from 'eris';
+import ZeoliteCommand from './ZeoliteCommand';
+import ZeoliteClientOptions from './ZeoliteClientOptions';
+import ZeoliteExtension from './ZeoliteExtension';
+import ZeoliteLogger, { LoggerLevel } from './ZeoliteLogger';
+import fs from 'fs';
+import path from 'path';
+import ZeoliteContext from './ZeoliteContext';
+import ZeoliteLocalization from './ZeoliteLocalization';
 
 type MiddlewareFunc = (ctx: ZeoliteContext, next: () => Promise<void> | void) => Promise<void> | void;
 
 export default class ZeoliteClient extends Client {
-  public commands: Collection<string, ZeoliteCommand>;
-  public extensions: Collection<string, ZeoliteExtension>;
-  public cooldowns: Collection<string, Collection<string, number>>;
+  public commands: Map<string, ZeoliteCommand>;
+  public extensions: Map<string, ZeoliteExtension>;
+  public cooldowns: Map<string, Map<string, number>>;
   public localization: ZeoliteLocalization;
-  public logger: Logger;
+  public logger: ZeoliteLogger;
   public cmdDirPath: string;
   public extDirPath: string;
   public owners: string[] = [];
   public middlewares: MiddlewareFunc[] = [];
 
   private debug: boolean;
-  private djsLogger: Logger;
+  private erisLogger: ZeoliteLogger;
 
-  public constructor(options: ZeoliteClientOptions) {
-    super(options);
+  public constructor(token: string, options: ZeoliteClientOptions) {
+    super(token, options);
 
-    this.commands = new Collection();
-    this.extensions = new Collection();
-    this.cooldowns = new Collection();
-    
+    this.commands = new Map();
+    this.extensions = new Map();
+    this.cooldowns = new Map();
+
     this.cmdDirPath = options.cmdDirPath;
     this.extDirPath = options.extDirPath;
     this.owners = options.owners;
     this.debug = options.debug || false;
 
-    this.logger = new Logger(this.debug ? LoggerLevel.Debug : LoggerLevel.Info, "ZeoliteClient");
+    this.logger = new ZeoliteLogger(this.debug ? LoggerLevel.Debug : LoggerLevel.Info, 'ZeoliteClient');
 
-    this.on("ready", () => {
+    this.on('ready', () => {
       this.logger.info(`Logged in as ${this.user?.username}.`);
       for (const cmd of this.commands.values()) {
-        this.application?.commands.create(cmd.json());
+        this.createCommand(cmd.json());
       }
     });
 
     if (this.debug) {
-      this.djsLogger = new Logger(LoggerLevel.Debug, "discord.js");
+      this.erisLogger = new ZeoliteLogger(LoggerLevel.Debug, 'eris');
 
-      this.on("debug", msg => this.djsLogger.debug(msg));
+      this.on('debug', (msg) => this.erisLogger.debug(msg));
     }
 
-    this.on("interactionCreate", this.handleCommand);
+    this.on('interactionCreate', this.handleCommand);
 
     this.localization = new ZeoliteLocalization(this);
 
-    this.logger.info("ZeoliteClient initialized.");
+    this.logger.info('ZeoliteClient initialized.');
 
     this.localization.loadLanguages();
   }
 
-  private async handleCommand(interaction: Interaction) {
-    if (!interaction.isCommand()) return;
+  private async handleCommand(interaction: CommandInteraction) {
+    if (interaction.type != 2) return;
 
-    const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.commandName);
+    const cmd: ZeoliteCommand | undefined = this.commands.get(interaction.data.name);
     if (!cmd) return;
 
     const ctx = new ZeoliteContext(this, interaction, cmd);
@@ -74,7 +73,7 @@ export default class ZeoliteClient extends Client {
 
   private async handleMiddlewares(cmd: ZeoliteCommand, ctx: ZeoliteContext) {
     let prevIndex = -1;
-    let stack = [ ...this.middlewares, this.runCommand.bind(this) ];
+    let stack = [...this.middlewares, this.runCommand.bind(this)];
 
     async function runner(index: number) {
       prevIndex = index;
@@ -90,67 +89,67 @@ export default class ZeoliteClient extends Client {
   }
 
   private async runCommand(ctx: ZeoliteContext, next: () => Promise<void> | void) {
-    if (ctx.command.ownerOnly && !this.isOwner(ctx.user)) {
-      this.emit("ownerOnlyCommand", ctx);
+    if (ctx.command.ownerOnly && !this.isOwner(ctx.member || ctx.user!)) {
+      this.emit('ownerOnlyCommand', ctx);
       return;
     }
 
     if (ctx.command.guildOnly && !ctx.guild) {
-      this.emit("guildOnlyCommand", ctx);
+      this.emit('guildOnlyCommand', ctx);
       return;
     }
 
     if (ctx.command.cooldown) {
       if (!this.cooldowns.has(ctx.command.name)) {
-        this.cooldowns.set(ctx.command.name, new Collection<string, number>());
+        this.cooldowns.set(ctx.command.name, new Map<string, number>());
       }
 
       let cmdCooldowns = this.cooldowns.get(ctx.command.name);
       let now = Date.now();
-      if (cmdCooldowns?.has(ctx.user.id)) {
-        let expiration = (cmdCooldowns.get(ctx.user.id) as number) + (ctx.command.cooldown * 1000);
+      if (cmdCooldowns?.has((ctx.member || ctx.user!).id)) {
+        let expiration = (cmdCooldowns.get((ctx.member || ctx.user!).id) as number) + ctx.command.cooldown * 1000;
         if (now < expiration) {
           let secsLeft = Math.floor((expiration - now) / 1000);
-          this.emit("commandCooldown", ctx, secsLeft);
+          this.emit('commandCooldown', ctx, secsLeft);
           return;
         }
       }
     }
 
     try {
-      if (!this.validatePermissions(ctx.member, ctx.command.requiredPermissions)) {
-        this.emit("noPermissions", ctx, ctx.command.requiredPermissions);
+      if (ctx.command.guildOnly && !this.validatePermissions(ctx.member!, ctx.command.requiredPermissions)) {
+        this.emit('noPermissions', ctx, ctx.command.requiredPermissions);
         return;
       }
 
       await ctx.command.run(ctx);
-      this.emit("commandSuccess", ctx);
+      this.emit('commandSuccess', ctx);
       if (ctx.command.cooldown) {
         const cmdCooldowns = this.cooldowns.get(ctx.command.name);
-        cmdCooldowns?.set(ctx.user.id, Date.now());
-        setTimeout(() => cmdCooldowns?.delete(ctx.user.id), ctx.command.cooldown * 1000);
+        cmdCooldowns?.set((ctx.member || ctx.user!).id, Date.now());
+        setTimeout(() => cmdCooldowns?.delete((ctx.member || ctx.user!).id), ctx.command.cooldown * 1000);
       }
     } catch (error: any) {
-      this.emit("commandError", ctx, error);
+      this.emit('commandError', ctx, error);
     }
   }
 
-  public validatePermissions(member: GuildMember, perms: string[]): boolean {
+  public validatePermissions(member: Member, perms: (keyof Constants['Permissions'])[]): boolean {
     for (const perm of perms) {
-      if (!member.permissions.has(perm as PermissionResolvable)) return false;
+      if (!member.permissions.has(perm)) return false;
     }
 
     return true;
   }
 
   public loadAllCommands() {
-    const files = fs.readdirSync(this.cmdDirPath).filter(f => !f.endsWith(".js.map"));
+    const files = fs.readdirSync(this.cmdDirPath).filter((f) => !f.endsWith('.js.map'));
 
     for (const file of files) {
       this.loadCommand(file);
     }
 
-    this.logger.info("Loaded all commands.");
+    this.logger.info('Loaded all commands.');
   }
 
   public loadCommand(name: string): ZeoliteCommand {
@@ -161,7 +160,7 @@ export default class ZeoliteClient extends Client {
       this.logger.warn(`Command ${cmd.name} didn't loaded due to failed pre-load check.`);
       return cmd;
     }
-      
+
     this.commands.set(cmd.name, cmd);
 
     this.logger.debug(`Loaded command ${cmd.name}.`);
@@ -171,7 +170,7 @@ export default class ZeoliteClient extends Client {
 
   public unloadCommand(name: string) {
     if (!this.commands.has(name)) {
-      throw new Error("this command does not exist.");
+      throw new Error('this command does not exist.');
     }
 
     const cmd = this.commands.get(name);
@@ -188,23 +187,23 @@ export default class ZeoliteClient extends Client {
     return this.loadCommand(name);
   }
 
-  public async login(token: string): Promise<string> {
-    this.logger.info("Logging in...");
-    return super.login(token);
+  public async connect() {
+    this.logger.info('Logging in...');
+    return super.connect();
   }
 
-  public isOwner(user: User): boolean {
+  public isOwner(user: Member | User): boolean {
     return this.owners.includes(user.id);
   }
 
   public loadAllExtensions() {
-    const files = fs.readdirSync(this.extDirPath).filter(f => !f.endsWith(".js.map"));
+    const files = fs.readdirSync(this.extDirPath).filter((f) => !f.endsWith('.js.map'));
 
     for (const file of files) {
       this.loadExtension(file);
     }
 
-    this.logger.info("Loaded extensions.");
+    this.logger.info('Loaded extensions.');
   }
 
   public loadExtension(name: string): ZeoliteExtension {
@@ -218,10 +217,10 @@ export default class ZeoliteClient extends Client {
 
     return ext;
   }
-  
+
   public unloadExtension(name: string) {
     if (!this.extensions.has(name)) {
-      throw new Error("this extension does not exist.");
+      throw new Error('this extension does not exist.');
     }
 
     const ext = this.extensions.get(name);
@@ -240,5 +239,12 @@ export default class ZeoliteClient extends Client {
 
   public addMiddleware(func: MiddlewareFunc) {
     this.middlewares.push(func);
+  }
+
+  public generateInvite(permissions?: number, scopes?: string[]): string {
+    let link = `https://discord.com/api/oauth2/authorize?client_id=${this.application?.id}`;
+    if (permissions) link += `&permissions=${permissions}`;
+    if (scopes) link += `&scopes=${scopes.join('%20')}`;
+    return link;
   }
 }

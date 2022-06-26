@@ -26,7 +26,7 @@
       "cwd": "${workspaceFolder}",
       "args": [ "." ],
       "runtimeArgs": [ "--enable-source-maps" ],
-      "preLaunchTask": "tsc: build — tsconfig.json"
+      "preLaunchTask": "npm: build"
     }
   ]
 }

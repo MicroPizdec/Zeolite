@@ -1,51 +1,65 @@
-import { MessageEmbed, User, MessageActionRow, MessageButton } from "discord.js-light";
-import ZeoliteCommand from "../core/ZeoliteCommand";
-import ZeoliteContext from "../core/ZeoliteContext";
+import ZeoliteClient from '../core/ZeoliteClient';
+import ZeoliteCommand from '../core/ZeoliteCommand';
+import ZeoliteContext from '../core/ZeoliteContext';
+import Embed from '../core/Embed';
+import { User } from 'eris';
+import ActionRow from '../core/ActionRow';
 
 export default class InfoCommand extends ZeoliteCommand {
-  name = "info";
-  description = "Information about bot";
-  group = "general";
+  public constructor(client: ZeoliteClient) {
+    super(client, {
+      name: 'info',
+      description: 'Information about bot',
+      group: 'general',
+    });
+  }
 
-  async run(ctx: ZeoliteContext) {
-    const link = this.client.generateInvite({ scopes: [ "bot", "applications.commands" ] });
+  public async run(ctx: ZeoliteContext) {
+    const link = this.client.generateInvite(8, ['bot', 'applications.commands']);
 
-    const devIds: string[] = [ "800053727988809748", "527725849575686145", "330153333962702850" ];
+    const devIds: string[] = ['800053727988809748', '527725849575686145', '330153333962702850'];
     const devs: (User | undefined)[] = [];
     for (const id of devIds) {
-      const user = this.client.users.cache.has(id) ?
-        this.client.users.cache.get(id) :
-        await this.client.users.fetch(id).catch(() => {});
-      
+      const user = this.client.users.has(id)
+        ? this.client.users.get(id)
+        : await this.client.getRESTUser(id).catch(() => {});
+
       if (user) devs.push(user);
     }
 
-    const embed = new MessageEmbed()
-      .setTitle(ctx.t("infoTitle"))
-      .setDescription(ctx.t("infoDesc"))
-      .setColor(ctx.get("embColor"))
-      .addField(ctx.t("infoDevs"), devs.map(d => d?.tag).join(", "));
+    const embed = new Embed()
+      .setTitle(ctx.t('infoTitle'))
+      .setDescription(ctx.t('infoDesc'))
+      .setColor(ctx.get('embColor'))
+      .addField(ctx.t('infoDevs'), devs.map((d) => `${d?.username}#${d?.discriminator}`).join(', '));
 
-    const actionRow = new MessageActionRow()
-      .addComponents(
-        new MessageButton()
-          .setLabel(ctx.t("infoInvite"))
-          .setStyle("LINK")
-          .setURL(link),
-        new MessageButton()
-          .setLabel(ctx.t("infoSupportServer"))
-          .setStyle("LINK")
-          .setURL("https://discord.gg/ZKChwBD"),
-        new MessageButton()
-          .setLabel(ctx.t("infoRepository"))
-          .setStyle("LINK")
-          .setURL("https://github.com/MicroPizdec/Zeolite"),
-        new MessageButton()
-          .setLabel(ctx.t("infoDonate"))
-          .setStyle("LINK")
-          .setURL("https://www.donationalerts.com/r/fishyrene")
-      );
-    
-    await ctx.reply({ embeds: [ embed ], components: [ actionRow ] });
+    const actionRow = new ActionRow(
+      {
+        type: 2,
+        label: ctx.t('infoInvite'),
+        style: 5,
+        url: link,
+      },
+      {
+        type: 2,
+        label: ctx.t('infoSupportServer'),
+        style: 5,
+        url: 'https://discord.gg/ZKChwBD',
+      },
+      {
+        type: 2,
+        label: ctx.t('infoRepository'),
+        style: 5,
+        url: 'https://github.com/MicroPizdec/Zeolite',
+      },
+      {
+        type: 2,
+        label: ctx.t('infoDonate'),
+        style: 5,
+        url: 'https://www.donationalerts.com/r/fishyrene',
+      },
+    );
+
+    await ctx.reply({ embeds: [embed], components: [actionRow] });
   }
 }
