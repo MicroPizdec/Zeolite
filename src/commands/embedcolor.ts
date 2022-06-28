@@ -1,9 +1,6 @@
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import EmbedColors from '../dbModels/EmbedColors';
 import Utils from '../utils/Utils';
-import Embed from '../core/Embed';
 
 export default class EmbedcolorCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

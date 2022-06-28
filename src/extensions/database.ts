@@ -1,9 +1,6 @@
-import ZeoliteExtension from '../core/ZeoliteExtension';
+import { ZeoliteExtension, ZeoliteLogger, LoggerLevel, ZeoliteContext } from 'zeolitecore';
 import { Sequelize } from 'sequelize-typescript';
 import path from 'path';
-import ZeoliteLogger, { LoggerLevel } from '../core/ZeoliteLogger';
-import ZeoliteContext from '../core/ZeoliteContext';
-import { User } from 'eris';
 
 declare global {
   var a: number;

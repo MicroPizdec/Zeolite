@@ -1,9 +1,6 @@
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import convert from 'color-convert';
 import Utils from '../utils/Utils';
-import Embed from '../core/Embed';
-import ZeoliteClient from '../core/ZeoliteClient';
 
 export default class ColorCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

@@ -1,4 +1,4 @@
-import ZeoliteLogger, { LoggerLevel } from '../core/ZeoliteLogger';
+import { ZeoliteLogger, LoggerLevel } from 'zeolitecore';
 import fs from 'fs';
 import { load } from 'js-yaml';
 

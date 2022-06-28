@@ -1,9 +1,7 @@
-import ZeoliteExtension from '../core/ZeoliteExtension';
-import ZeoliteLogger, { LoggerLevel } from '../core/ZeoliteLogger';
+import { ZeoliteExtension, ZeoliteLogger, LoggerLevel, Embed } from 'zeolitecore';
 import { Manager } from 'erela.js';
 import util from 'util';
 import Utils from '../utils/Utils';
-import Embed from '../core/Embed';
 
 let self: MusicExtension;
 

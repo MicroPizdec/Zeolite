@@ -1,11 +1,6 @@
 import { Manager } from 'erela.js';
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
-import ZeoliteInteractionCollector from '../core/ZeoliteInteractionCollector';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow, ZeoliteInteractionCollector } from "zeolitecore";
 import Utils from '../utils/Utils';
-import Embed from '../core/Embed';
-import ActionRow from '../core/ActionRow';
 import { ComponentInteraction, User } from 'eris';
 
 export default class QueueCommand extends ZeoliteCommand {

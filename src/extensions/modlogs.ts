@@ -10,9 +10,8 @@ import {
   OldMember,
   Invite,
 } from 'eris';
-import ZeoliteExtension from '../core/ZeoliteExtension';
+import { ZeoliteExtension, Embed } from 'zeolitecore';
 import Modlogs from '../dbModels/Modlogs';
-import Embed from '../core/Embed';
 
 let self: ModlogsExtension;
 

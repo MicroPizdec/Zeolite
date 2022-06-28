@@ -1,7 +1,5 @@
 import { Manager } from 'erela.js';
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
 
 export default class PauseCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

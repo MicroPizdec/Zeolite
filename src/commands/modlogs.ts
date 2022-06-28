@@ -1,10 +1,6 @@
-import { MessageEmbed } from 'discord.js-light';
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import Modlogs from '../dbModels/Modlogs';
 import ModlogsExtension from '../extensions/modlogs';
-import Embed from '../core/Embed';
 
 export default class ModlogsCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

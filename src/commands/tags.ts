@@ -1,10 +1,5 @@
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow, ZeoliteInteractionCollector } from "zeolitecore";
 import Tags from '../dbModels/Tags';
-import Embed from '../core/Embed';
-import ActionRow from '../core/ActionRow';
-import ZeoliteInteractionCollector from '../core/ZeoliteInteractionCollector';
 import { ComponentInteraction } from 'eris';
 
 export default class TagsCommand extends ZeoliteCommand {

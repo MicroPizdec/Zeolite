@@ -1,9 +1,6 @@
 import { Guild } from 'eris';
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import Warns from '../dbModels/Warns';
-import Embed from '../core/Embed';
 
 export default class WarnCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

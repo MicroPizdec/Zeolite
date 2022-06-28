@@ -1,7 +1,5 @@
-import ZeoliteCommand from '../core/ZeoliteCommand';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
 import util from 'util';
-import ZeoliteContext from '../core/ZeoliteContext';
-import ZeoliteClient from '../core/ZeoliteClient';
 
 export default class EvalCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

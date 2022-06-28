@@ -1,7 +1,4 @@
-import Embed from '../core/Embed';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
-import ZeoliteClient from '../core/ZeoliteClient';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import { Constants } from 'eris';
 
 enum BoostLevels {

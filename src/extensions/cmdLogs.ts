@@ -1,8 +1,5 @@
-import ZeoliteExtension from '../core/ZeoliteExtension';
-import ZeoliteContext from '../core/ZeoliteContext';
-import ZeoliteLogger, { LoggerLevel } from '../core/ZeoliteLogger';
+import { ZeoliteExtension, ZeoliteLogger, LoggerLevel, Embed, ZeoliteContext } from 'zeolitecore';
 import { GuildChannel, InteractionDataOptionsSubCommand, InteractionDataOptionsWithValue, Guild } from 'eris';
-import Embed from '../core/Embed';
 
 let self: CmdLogsExtension;
 

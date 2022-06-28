@@ -1,8 +1,5 @@
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import axios from 'axios';
-import ZeoliteClient from '../core/ZeoliteClient';
-import Embed from '../core/Embed';
 
 export default class UrbanCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

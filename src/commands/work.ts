@@ -1,11 +1,7 @@
-import { MessageEmbed } from 'discord.js-light';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import ZetCoins from '../dbModels/ZetCoins';
 import ZetCoinsSettings from '../dbModels/ZetCoinsSettings';
 import Utils from '../utils/Utils';
-import Embed from '../core/Embed';
-import ZeoliteClient from '../core/ZeoliteClient';
 
 export default class WorkCommand extends ZeoliteCommand {
   private cooldowns: Map<string, Map<string, number>>;

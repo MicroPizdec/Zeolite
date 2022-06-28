@@ -1,9 +1,5 @@
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
-import Embed from '../core/Embed';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from "zeolitecore";
 import { User } from 'eris';
-import ActionRow from '../core/ActionRow';
 
 export default class InfoCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

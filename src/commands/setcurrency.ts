@@ -1,8 +1,6 @@
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
 import ZetCoinsSettings from '../dbModels/ZetCoinsSettings';
 import emojiRegex from 'emoji-regex';
-import ZeoliteClient from '../core/ZeoliteClient';
 
 export default class SetCurrencyCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

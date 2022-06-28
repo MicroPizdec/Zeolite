@@ -1,5 +1,4 @@
-import ZeoliteLogger, { LoggerLevel } from '../core/ZeoliteLogger';
-import ZeoliteExtension from '../core/ZeoliteExtension';
+import { ZeoliteExtension, ZeoliteLogger, LoggerLevel} from 'zeolitecore';
 import ZetCoins from '../dbModels/ZetCoins';
 
 let self: DepositHandlerExtension;

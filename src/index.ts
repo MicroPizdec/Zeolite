@@ -1,8 +1,7 @@
 // на этой ноте передаю привет котфиксу
-import ZeoliteClient from './core/ZeoliteClient';
+import { ZeoliteClient, ZeoliteContext } from 'zeolitecore';
 import path from 'path';
 import ConfigLoader, { Config } from './utils/ConfigLoader';
-import ZeoliteContext from './core/ZeoliteContext';
 
 declare global {
   var config: Config;
@@ -14,6 +13,7 @@ global.config = new ConfigLoader().loadConfig(path.join(__dirname, '..', 'config
 const client = new ZeoliteClient(config.token, {
   cmdDirPath: path.join(__dirname, 'commands'),
   extDirPath: path.join(__dirname, 'extensions'),
+  langsDirPath: path.join(__dirname, 'languages'),
   intents: ['guilds', 'guildMembers', 'guildMessages', 'guildVoiceStates', 'guildInvites', 'guildBans'],
   owners: config.owners,
   debug: config.debug,

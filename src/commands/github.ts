@@ -1,8 +1,5 @@
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import axios from 'axios';
-import Embed from '../core/Embed';
-import ZeoliteClient from '../core/ZeoliteClient';
 
 export default class GithubCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

@@ -1,7 +1,5 @@
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
 import { exec } from 'child_process';
-import ZeoliteClient from '../core/ZeoliteClient';
 
 export default class ExecCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

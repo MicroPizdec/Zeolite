@@ -1,9 +1,5 @@
-import { MessageEmbed } from 'discord.js-light';
-import ZeoliteClient from '../core/ZeoliteClient';
-import ZeoliteCommand from '../core/ZeoliteCommand';
-import ZeoliteContext from '../core/ZeoliteContext';
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
 import Languages from '../dbModels/Languages';
-import Embed from '../core/Embed';
 
 export default class LanguageCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
