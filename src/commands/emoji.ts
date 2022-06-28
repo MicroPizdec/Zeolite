@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from "zeolitecore";;
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from 'zeolitecore';
 
 export default class EmojiCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

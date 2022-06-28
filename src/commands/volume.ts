@@ -1,5 +1,5 @@
 import { Manager } from 'erela.js';
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 
 export default class VolumeCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

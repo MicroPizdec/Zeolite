@@ -1,5 +1,12 @@
 import { Manager } from 'erela.js';
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow, ZeoliteInteractionCollector } from "zeolitecore";
+import {
+  ZeoliteClient,
+  ZeoliteCommand,
+  ZeoliteContext,
+  Embed,
+  ActionRow,
+  ZeoliteInteractionCollector,
+} from 'zeolitecore';
 import Utils from '../utils/Utils';
 import { ComponentInteraction, User } from 'eris';
 

@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 import ZetCoinsSettings from '../dbModels/ZetCoinsSettings';
 import emojiRegex from 'emoji-regex';
 

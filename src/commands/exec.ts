@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 import { exec } from 'child_process';
 
 export default class ExecCommand extends ZeoliteCommand {

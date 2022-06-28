@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from 'zeolitecore';
 
 export default class AvatarCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

@@ -1,4 +1,11 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow, ZeoliteInteractionCollector } from "zeolitecore";
+import {
+  ZeoliteClient,
+  ZeoliteCommand,
+  ZeoliteContext,
+  Embed,
+  ActionRow,
+  ZeoliteInteractionCollector,
+} from 'zeolitecore';
 import Tags from '../dbModels/Tags';
 import { ComponentInteraction } from 'eris';
 

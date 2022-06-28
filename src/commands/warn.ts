@@ -1,5 +1,5 @@
 import { Guild } from 'eris';
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import Warns from '../dbModels/Warns';
 
 export default class WarnCommand extends ZeoliteCommand {

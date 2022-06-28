@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 
 export default class EmbedCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

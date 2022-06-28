@@ -1,4 +1,4 @@
-import { ZeoliteExtension, ZeoliteContext } from "zeolitecore";
+import { ZeoliteExtension, ZeoliteContext } from 'zeolitecore';
 
 export default class EventsExtension extends ZeoliteExtension {
   name = 'events';

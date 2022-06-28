@@ -1,5 +1,5 @@
 import * as QRCode from 'qrcode';
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 
 export default class QrCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

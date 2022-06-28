@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 import util from 'util';
 
 export default class EvalCommand extends ZeoliteCommand {

@@ -1,5 +1,5 @@
 import { TextChannel } from 'eris';
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 
 export default class PurgeCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

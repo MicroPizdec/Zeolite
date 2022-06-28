@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 
 export default class ReloadCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {

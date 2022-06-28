@@ -1,5 +1,5 @@
 // Мы <3 хардкодить
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 import ZetCoinsSettings from '../dbModels/ZetCoinsSettings';
 
 export default class WorkAmountCommand extends ZeoliteCommand {

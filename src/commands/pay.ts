@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from 'zeolitecore';
 import ZetCoins from '../dbModels/ZetCoins';
 import ZetCoinsSettings from '../dbModels/ZetCoinsSettings';
 

@@ -1,4 +1,4 @@
-import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from "zeolitecore";
+import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import { Invite, InviteChannel, Constants } from 'eris';
 
 export default class InviteCommand extends ZeoliteCommand {
