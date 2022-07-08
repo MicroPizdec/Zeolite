@@ -24,10 +24,12 @@ const client = new ZeoliteClient(config.token, {
 
 client.loadAllCommands();
 client.loadAllExtensions();
+client.localization.loadLanguages();
 
-client.on('commandError', (ctx: ZeoliteContext, error: any) => {
+client.on('commandError', (ctx, error) => {
   console.log(error);
 });
+client.on('warn', msg => client.logger.warn(msg));
 
 global.commandsUsed = 0;
 client.on('commandSuccess', () => void commandsUsed++);
