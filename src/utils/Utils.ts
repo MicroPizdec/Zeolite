@@ -7,7 +7,7 @@ export default class Utils {
       .padStart(2, '0');
     let seconds = (num - hours * 3600 - parseInt(minutes) * 60).toString().padStart(2, '0');
 
-    return hours ? `${hours}:${minutes}:${seconds}` : `${minutes}:${seconds}`;
+    return `${hours ? `${hours}:` : ''}${minutes}:${seconds}`;
   }
 
   static intToHex(num: number): string {

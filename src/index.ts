@@ -1,5 +1,5 @@
 // на этой ноте передаю привет котфиксу
-import { ZeoliteClient, ZeoliteContext } from 'zeolitecore';
+import { ZeoliteClient } from 'zeolitecore';
 import path from 'path';
 import ConfigLoader, { Config } from './utils/ConfigLoader';
 
@@ -29,7 +29,10 @@ client.localization.loadLanguages();
 client.on('commandError', (ctx, error) => {
   console.log(error);
 });
-client.on('warn', msg => client.logger.warn(msg));
+client.on('warn', (msg) => client.logger.warn(msg));
+client.on('error', (err, id) => {
+  console.log(err);
+});
 
 global.commandsUsed = 0;
 client.on('commandSuccess', () => void commandsUsed++);

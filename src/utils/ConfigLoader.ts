@@ -27,6 +27,13 @@ export interface Config {
   debug?: boolean;
   lavalinkNodes?: LavalinkNode[];
   githubApiKey?: string;
+  links: ConfigLinks;
+}
+
+export interface ConfigLinks {
+  support?: string;
+  repo?: string;
+  donate?: string;
 }
 
 export interface LavalinkNode {
