@@ -19,11 +19,12 @@ export default class StatsCommand extends ZeoliteCommand {
   public async run(ctx: ZeoliteContext) {
     const ramUsed = process.memoryUsage().heapUsed / 1048576;
     const cpu = os.cpus()[0];
+    const uptime = Math.floor(process.uptime() * 1000);
 
     const embed = new Embed()
       .setTitle(ctx.t('stats'))
       .setColor(ctx.get('embColor'))
-      .addField(ctx.t('statsUptime'), this.parseUptime(this.client.uptime), true)
+      .addField(ctx.t('statsUptime'), this.parseUptime(uptime), true)
       .addField(ctx.t('statsRamUsed'), `${ramUsed.toFixed(1)} MB`, true)
       .addField(ctx.t('statsPing'), `${(ctx.guild?.shard || this.client.shards.get(0)!).latency} ms`, true)
       .addField(ctx.t('statsServers'), this.client.guilds.size.toString(), true)
