@@ -26,21 +26,20 @@ client.loadAllCommands();
 client.loadAllExtensions();
 client.localization.loadLanguages();
 
-client.on('commandError', (ctx, error) => {
+// this will be moved to ZeoliteCore
+/*сlient.on('commandError', (ctx, error) => {
   console.log(error);
 });
 client.on('warn', (msg) => client.logger.warn(msg));
 client.on('error', (err, id) => {
   console.log(err);
-});
+}); */
 
 global.commandsUsed = 0;
 client.on('commandSuccess', () => void commandsUsed++);
-/*client.on("ready", () => {
-  client.user?.setPresence({
-    activities: [ { name: "Более нормальный бот чем у конкурентов с подписками за 11 даларов", type: "PLAYING" } ],
-  });
-});*/
+client.on('ready', async () => {
+  await client.editStatus('online', { type: 1, name: 'use /help' });
+});
 
 process.on('uncaughtException', (error) => console.error(error));
 process.on('unhandledRejection', (error) => console.error(error));
