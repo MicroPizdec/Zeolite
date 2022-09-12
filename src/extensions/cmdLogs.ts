@@ -53,9 +53,6 @@ export default class CmdLogsExtension extends ZeoliteExtension {
   }
 
   private async onCommandError(ctx: ZeoliteContext, error: any) {
-    self.logger.error(`Error in command ${ctx.commandName}:`);
-    console.error(error);
-
     if (!config.webhookID || !config.webhookToken) return;
 
     const errEmbed = new Embed()
