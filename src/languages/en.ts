@@ -37,7 +37,7 @@ export default {
 
   infoTitle: 'About bot',
   infoDesc:
-    '**Let your journey begin.**\nA multipurpose bot that simple in terms of economy, moderation, and more, written on TypeScript with discord.js library.',
+    '**Let your journey begin.**\nA multipurpose bot that simple in terms of economy, moderation, and more, written on TypeScript with Eris library.',
   infoLinks: 'Links',
   infoInvite: 'Add to your server',
   infoSupportServer: 'Support server',
