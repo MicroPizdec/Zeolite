@@ -22,7 +22,7 @@ export default class SetBalanceCommand extends ZeoliteCommand {
           required: true,
         },
       ],
-      requiredPermissions: ['administrator'],
+      requiredPermissions: ['ADMINISTRATOR'],
     });
   }
 
@@ -44,6 +44,6 @@ export default class SetBalanceCommand extends ZeoliteCommand {
 
     await userBalance.update({ balance: amount });
 
-    await ctx.reply(ctx.t('setbalanceSuccess', `${user.username}#${user.discriminator}`, amount, settings.icon));
+    await ctx.reply({ content: ctx.t('setbalanceSuccess', user.tag, amount, settings.icon) });
   }
 }

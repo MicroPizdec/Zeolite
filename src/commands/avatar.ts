@@ -41,16 +41,16 @@ export default class AvatarCommand extends ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'user': {
         const user = (await ctx.options.getUser('user')) || ctx.user;
         const member = await ctx.guild?.members.get(user!.id);
         const forceUserAvatar = ctx.options.getBoolean('forceuseravatar') || false;
 
         const dynamic = member?.avatar?.startsWith('a_') || user?.avatar?.startsWith('a_');
-        const url = forceUserAvatar ? user?.dynamicAvatarURL(dynamic ? 'gif' : 'png', 2048) : member?.avatarURL;
+        const url = (forceUserAvatar ? user : member)?.avatarURL(dynamic ? 'gif' : 'jpg', 4096);
 
         /*const linkButton = new MessageActionRow()
           .addComponents(
@@ -80,7 +80,7 @@ export default class AvatarCommand extends ZeoliteCommand {
 
       case 'server': {
         const dynamic = ctx.guild?.icon?.startsWith('a_');
-        const url = ctx.guild?.iconURL;
+        const url = ctx.guild?.iconURL(dynamic ? 'png' : 'jpg', 4096);
 
         if (!url) {
           await ctx.reply({ content: ctx.t('avatarNoServerIcon'), flags: 64 });
@@ -104,7 +104,7 @@ export default class AvatarCommand extends ZeoliteCommand {
       }
 
       case 'banner': {
-        const url = ctx.guild?.bannerURL;
+        const url = ctx.guild?.bannerURL();
 
         if (!url) {
           await ctx.reply({ content: ctx.t('avatarNoBanner'), flags: 64 });

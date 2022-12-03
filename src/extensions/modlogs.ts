@@ -1,15 +1,16 @@
 import {
   Guild,
   Member,
-  MemberPartial,
-  GuildAuditLogEntry,
   User,
   PossiblyUncachedMessage,
+  TextChannel,
+  AuditLogEntry,
   Message,
-  OldMessage,
-  OldMember,
   Invite,
-} from 'eris';
+  Uncached,
+  JSONMessage,
+  JSONMember,
+} from 'oceanic.js';
 import { ZeoliteExtension, Embed } from 'zeolitecore';
 import Modlogs from '../dbModels/Modlogs';
 
@@ -34,101 +35,107 @@ export default class ModlogsExtension extends ZeoliteExtension {
     return channel;
   }
 
-  async onGuildMemberAdd(guild: Guild, member: Member) {
+  async onGuildMemberAdd(member: Member) {
     const channel = await self.getModlogsChannel(member.guild.id);
     if (!channel) return;
 
-    const createdDays = Math.floor((Date.now() - member.createdAt) / (1000 * 86400));
+    const createdDays = Math.floor((Date.now() - member.createdAt.getTime()) / (1000 * 86400));
 
     const embed = new Embed()
       .setAuthor({
         name: `${member.user.username}#${member.user.discriminator} joined the server`,
-        icon_url: member.avatarURL,
+        iconURL: member.avatarURL(),
       })
       .setColor(0x57f287)
-      .addField('Registered at', `<t:${Math.floor((member.createdAt as number) / 1000)}> (${createdDays} days ago)`)
+      .addField('Registered at', `<t:${Math.floor(member.createdAt.getTime() / 1000)}> (${createdDays} days ago)`)
       .setFooter({ text: `ID: ${member.user.id}` })
       .setTimestamp(new Date().toISOString());
 
     if (member.user.bot) {
       embed.setAuthor({
         name: `${member.user.username}#${member.user.discriminator} has been added to this server`,
-        icon_url: member.avatarURL,
+        iconURL: member.avatarURL(),
       });
-      if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
-        const entry = await guild.getAuditLog({ actionType: 28 }).then((a) => a.entries[0]);
+      if (member.guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) {
+        const entry = await member.guild.getAuditLog({ actionType: 28 }).then((a) => a.entries[0]);
 
-        embed.addField('Added by', `${entry.user.username}#${entry.user.discriminator} (${entry.user.id})`);
+        embed.addField('Added by', `${entry.user?.tag} (${entry.user?.id})`);
       }
     }
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+    await this.client.getChannel<TextChannel>(channel)
+      ?.createMessage({ embeds: [embed] })
+      .catch(() => {});
   }
 
-  async onGuildMemberRemove(guild: Guild, member: Member | MemberPartial) {
+  async onGuildMemberRemove(member: Member | User, guild: Guild) {
     const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    let entry: GuildAuditLogEntry | undefined;
-    if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
+    let entry: AuditLogEntry | undefined;
+    if (guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) {
       entry = await guild.getAuditLog().then((l) => l.entries.find((e) => e.actionType == 20 || e.actionType == 22));
     }
 
     const embed = new Embed()
       .setAuthor({
-        name: `${member.user.username}#${member.user.discriminator} left the server`,
-        icon_url: member.user.avatarURL,
+        name: `${member.tag} left the server`,
+        iconURL: member.avatarURL(),
       })
       .setColor(0xed4245)
-      .setFooter({ text: `ID: ${member.user.id}` })
+      .setFooter({ text: `ID: ${member.id}` })
       .setTimestamp(new Date().toISOString());
 
     if (entry) {
       if (entry.actionType == 20) {
         embed
           .setAuthor({
-            name: `${member.user.username}#${member.user.discriminator} was kicked`,
-            icon_url: member.user.avatarURL,
+            name: `${member.tag} was kicked`,
+            iconURL: member.avatarURL(),
           })
           .setDescription(`Reason: ${entry.reason || 'None'}`)
-          .addField('Kicked by', `${entry.user.username}#${entry.user.discriminator}`);
+          .addField('Kicked by', `${entry.user?.tag}`);
       } else if (entry.actionType == 22) {
         embed
           .setAuthor({
-            name: `${member.user.username}#${member.user.discriminator} was banned`,
-            icon_url: member.user.avatarURL,
+            name: `${member.tag} was banned`,
+            iconURL: member.avatarURL(),
           })
           .setDescription(`Reason: ${entry.reason || 'None'}`)
-          .addField('Banned by', `${entry.user.username}#${entry.user.discriminator}`);
+          .addField('Banned by', `${entry.user?.tag}`);
       }
     }
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+    await this.client.getChannel<TextChannel>(channel)
+      ?.createMessage({ embeds: [embed] })
+      .catch(() => {});
   }
 
   async onGuildBanRemove(guild: Guild, user: User) {
     const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    let entry: GuildAuditLogEntry | undefined;
-    if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
+    let entry: AuditLogEntry | undefined;
+    if (guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) {
       entry = await guild.getAuditLog({ actionType: 23 }).then((l) => l.entries[0]);
     }
 
     const embed = new Embed()
       .setAuthor({
-        name: `${user.username}#${user.discriminator} was unbanned`,
-        icon_url: user.avatarURL,
+        name: `${user.tag} was unbanned`,
+        iconURL: user.avatarURL(),
       })
       .setColor(0xf1c40f)
       .setFooter({ text: `ID: ${user.id} ` })
       .setTimestamp(new Date().toISOString());
 
     if (entry) {
-      embed.addField('Unbanned by', `${entry.user.username}#${entry.user.discriminator}`);
+      embed.addField('Unbanned by', `${entry.user?.tag}`);
     }
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+    await this.client.getChannel<TextChannel>(channel)
+      ?.createMessage({ embeds: [embed] })
+      .catch(() => {});
   }
 
   async onMessageDelete(msg: Message) {
@@ -136,23 +143,23 @@ export default class ModlogsExtension extends ZeoliteExtension {
     const channel = await self.getModlogsChannel(msg.guildID);
     if (!channel) return;
 
-    if (!msg.author) return;
-    if (msg.author.bot) return;
-    if (!msg.content) return;
+    if (!msg.author || !msg.content || msg.author.bot) return;
 
     const embed = new Embed()
       .setTitle('Message deleted')
       .setDescription(msg.content)
       .setColor(0xed4245)
       .addField('Author', `${msg.author.username}#${msg.author.discriminator} (${msg.author.mention})`)
-      .addField('Channel', `${msg.channel.mention}`)
+      .addField('Channel', `${msg.channel?.mention}`)
       .setFooter({ text: `Message ID: ${msg.id}` })
       .setTimestamp(new Date().toISOString());
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+    await this.client.getChannel<TextChannel>(channel)
+      ?.createMessage({ embeds: [embed] })
+      .catch(() => {});
   }
 
-  async onMessageUpdate(msg: Message, oldMsg: OldMessage) {
+  async onMessageUpdate(msg: Message, oldMsg: JSONMessage) {
     if (!oldMsg || !msg.guildID) return;
     const channel = await self.getModlogsChannel(msg.guildID);
     if (!channel) return;
@@ -168,17 +175,19 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .addField('Old content', oldMsg.content)
       .addField('New content', msg.content!)
       .addField('Author', `${msg.author.username}#${msg.author.discriminator} (${msg.author.mention})`)
-      .addField('Channel', `${msg.channel.mention}`)
+      .addField('Channel', `${msg.channel?.mention}`)
       .setFooter({ text: `Message ID: ${msg.id}` })
       .setTimestamp(new Date().toISOString());
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+    await this.client.getChannel<TextChannel>(channel)
+      ?.createMessage({ embeds: [embed] })
+      .catch(() => {});
   }
 
-  async onGuildMemberUpdate(guild: Guild, member: Member, oldMember: OldMember | null) {
+  async onGuildMemberUpdate(member: Member, oldMember: JSONMember) {
     if (!oldMember) return;
 
-    const channel = await self.getModlogsChannel(guild.id);
+    const channel = await self.getModlogsChannel(member.guild.id);
     if (!channel) return;
 
     const embed = new Embed();
@@ -187,7 +196,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       embed
         .setAuthor({
           name: `${member.username}#${member.discriminator}`,
-          icon_url: member.avatarURL,
+          iconURL: member.avatarURL(),
         })
         .setTitle('Nickname changed')
         .setColor(0xf1c40f)
@@ -196,11 +205,11 @@ export default class ModlogsExtension extends ZeoliteExtension {
         .setFooter({ text: `Member ID: ${member.user.id}` })
         .setTimestamp(new Date().toISOString());
 
-      if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) {
-        const entry = await guild.getAuditLog({ actionType: 24 }).then((a) => a.entries[0]);
+      if (member.guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) {
+        const entry = await member.guild.getAuditLog({ actionType: 24 }).then((a) => a.entries[0]);
 
-        if (entry?.target?.id == member.id) {
-          embed.addField('Changed by', `${entry.user.username}#${entry.user.discriminator}`);
+        if (entry?.targetID == member.id) {
+          embed.addField('Changed by', `${entry.user?.tag}`);
         }
       }
     } else {
@@ -213,7 +222,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       embed
         .setAuthor({
           name: `${member.username}#${member.discriminator}`,
-          icon_url: member.avatarURL,
+          iconURL: member.avatarURL(),
         })
         .setTitle('Member roles changed')
         .setColor(0xf1c40f)
@@ -222,7 +231,9 @@ export default class ModlogsExtension extends ZeoliteExtension {
         .setTimestamp(new Date().toISOString());
     }
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+    await this.client.getChannel<TextChannel>(channel)
+      ?.createMessage({ embeds: [embed] })
+      .catch(() => {});
   }
 
   async onInviteCreate(guild: Guild, invite: Invite) {
@@ -232,31 +243,35 @@ export default class ModlogsExtension extends ZeoliteExtension {
     const embed = new Embed()
       .setAuthor({
         name: `${invite.inviter?.username}#${invite.inviter?.discriminator} created an invite ${invite.code}`,
-        icon_url: invite.inviter?.avatarURL,
+        iconURL: invite.inviter?.avatarURL(),
       })
-      .setDescription(`Channel: #${invite.channel.name}`)
+      .setDescription(`Channel: #${invite.channel?.name}`)
       .setColor(0x57f287)
       .setTimestamp(new Date().toISOString());
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+    await this.client.getChannel<TextChannel>(channel)
+      ?.createMessage({ embeds: [embed] })
+      .catch(() => {});
   }
 
   async onInviteDelete(guild: Guild, invite: Invite) {
     const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
 
-    if (guild.members.get(self.client.user.id)?.permissions.has('viewAuditLog')) return;
+    if (guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) return;
     const entry = await guild.getAuditLog({ actionType: 42 }).then((a) => a.entries[0]);
 
     const embed = new Embed()
       .setAuthor({
-        name: `${entry.user.username}#${entry.user.discriminator} deleted an invite ${invite.code}`,
-        icon_url: entry.user.avatarURL,
+        name: `${entry.user?.tag} deleted an invite ${invite.code}`,
+        iconURL: entry.user?.avatarURL(),
       })
       .setColor(0xed4245)
       .setTimestamp(new Date().toISOString());
 
-    await self.client.createMessage(channel, { embeds: [embed] }).catch(() => {});
+      await this.client.getChannel<TextChannel>(channel)
+        ?.createMessage({ embeds: [embed] })
+        .catch(() => {});
   }
 
   public onLoad() {

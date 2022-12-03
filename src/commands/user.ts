@@ -1,5 +1,5 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
-import { User, Constants } from 'eris';
+import { User, Constants } from 'oceanic.js';
 
 export default class UserCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -35,22 +35,22 @@ export default class UserCommand extends ZeoliteCommand {
   };
 
   public async run(ctx: ZeoliteContext) {
-    const user = (await ctx.options.getUser('user')) || ctx.user;
-    const member = await ctx.guild?.getRESTMember(user?.id!).catch(() => {});
+    const user = ctx.options.getUser('user') || ctx.user;
+    const member = await ctx.guild?.getMember(user.id);
 
-    const registeredDays = Math.floor((Date.now() - user!.createdAt) / (1000 * 86400));
+    const registeredDays = Math.floor((Date.now() - user.createdAt.getTime()) / (1000 * 86400));
 
     const embed = new Embed()
       .setAuthor({ name: `${user?.username}#${user?.discriminator}` })
-      .setThumbnail(member ? member.avatarURL : user?.avatarURL!)
+      .setThumbnail(member ? member.avatarURL() : user.avatarURL())
       .setColor(ctx.get('embColor'))
-      .addField(ctx.t('userBadges'), this.getUserBadges(user!) || ctx.t('userBadgesNone'))
+//      .addField(ctx.t('userBadges'), this.getUserBadges(user) || ctx.t('userBadgesNone'))
       .setFooter({ text: ctx.t('userFooter', user!.id, registeredDays) })
       .setTimestamp(new Date(user!.createdAt).toISOString());
 
     if (member) {
       embed
-        .addField(ctx.t('userJoinDate'), `<t:${Math.floor((member.joinedAt as number) / 1000)}>`)
+        .addField(ctx.t('userJoinDate'), `<t:${Math.floor((member.joinedAt!.getTime()) / 1000)}>`)
         .addField(ctx.t('userRoles'), member.roles.map((r) => `<@&${r}>`).join(', ') || ctx.t('userBadgesNone'));
     }
 
@@ -70,9 +70,8 @@ export default class UserCommand extends ZeoliteCommand {
 
     for (const flag in Constants.UserFlags) {
       if (
-        !!((user.publicFlags as number) & Constants.UserFlags[flag as keyof Constants['UserFlags']]) &&
-        (flag as keyof Constants['UserFlags']) != 'TEAM_USER' &&
-        (flag as keyof Constants['UserFlags']) != 'TEAM_PSEUDO_USER'
+        !!(user.publicFlags & Constants.UserFlags[flag as keyof typeof Constants.UserFlags]) &&
+        (flag as keyof typeof Constants.UserFlags) != 'PSEUDO_TEAM_USER'
       ) {
         badges.push(this.badgeEmojis[flag]);
       }

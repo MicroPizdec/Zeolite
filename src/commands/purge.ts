@@ -1,4 +1,4 @@
-import { TextChannel } from 'eris';
+import { TextChannel } from 'oceanic.js';
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
 
 export default class PurgeCommand extends ZeoliteCommand {
@@ -19,18 +19,18 @@ export default class PurgeCommand extends ZeoliteCommand {
         },
       ],
       guildOnly: true,
-      requiredPermissions: ['manageMessages'],
+      requiredPermissions: ['MANAGE_MESSAGES'],
     });
   }
 
   async run(ctx: ZeoliteContext) {
     const channel = ctx.channel as TextChannel;
-    if (!channel.permissionsOf(ctx.guild!.members.get(this.client.user.id)!).has('manageMessages')) {
+    if (!channel.permissionsOf(ctx.guild!.members.get(this.client.user.id)!).has('MANAGE_MESSAGES')) {
       await ctx.reply({ content: ctx.t('purgeNoBotPerms'), flags: 64 });
       return;
     }
 
-    if (!channel.permissionsOf(ctx.member!).has('manageMessages')) {
+    if (!channel.permissionsOf(ctx.member!).has('MANAGE_MESSAGES')) {
       this.client.emit('noPermissions', ctx, ['manageMessages']);
       return;
     }
@@ -43,6 +43,6 @@ export default class PurgeCommand extends ZeoliteCommand {
     }
 
     await channel.purge({ limit: amount });
-    await ctx.reply(ctx.t('purgeSuccess', amount));
+    await ctx.reply({ content: ctx.t('purgeSuccess', amount) });
   }
 }

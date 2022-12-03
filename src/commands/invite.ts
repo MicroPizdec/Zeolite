@@ -1,5 +1,5 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
-import { Invite, InviteChannel, Constants } from 'eris';
+import { Invite, InviteChannel, Constants } from 'oceanic.js';
 
 export default class InviteCommand extends ZeoliteCommand {
   private inviteRegex: RegExp = /discord(?:(?:app)?\.com\/invite|\.gg(?:\/invite)?)\/([\w-]{2,255})/gi;
@@ -23,10 +23,10 @@ export default class InviteCommand extends ZeoliteCommand {
   public async run(ctx: ZeoliteContext) {
     const url = ctx.options.getString('invite')!;
 
-    let invite: Invite<'withCount', InviteChannel> | undefined;
+    let invite: Invite<'withMetadata', InviteChannel> | undefined;
     try {
       const code = this.getInviteCodeFromURL(url);
-      invite = await this.client.getInvite(code, true);
+      invite = await this.client.rest.channels.getInvite(code, {});
     } catch {
       await ctx.reply({ content: ctx.t('invalidInvite'), flags: 64 });
       return;
@@ -34,15 +34,15 @@ export default class InviteCommand extends ZeoliteCommand {
 
     const embed = new Embed()
       .setTitle(invite.guild!.name)
-      .setThumbnail(invite.guild?.iconURL!)
+      .setThumbnail(invite.guild?.iconURL()!)
       .setColor(ctx.get('embColor'))
-      .addField(ctx.t('serverMembers'), ctx.t('inviteMembersCount', invite.memberCount, invite.presenceCount))
+      .addField(ctx.t('serverMembers'), ctx.t('inviteMembersCount', invite.approximateMemberCount, invite.approximatePresenceCount))
       .addField(
         ctx.t('serverVerificationLevel'),
         ctx.t(Object.keys(Constants.VerificationLevels)[invite.guild!.verificationLevel]),
       )
       .addField('ID', invite.guild!.id)
-      .addField(ctx.t('inviteChannel'), `#${invite.channel.name} (ID: ${invite.channel.id})`)
+      .addField(ctx.t('inviteChannel'), `#${invite.channel?.name} (ID: ${invite.channel?.id})`)
       .setFooter({ text: ctx.t('inviteFooter') })
       .setTimestamp(new Date(invite.guild!.createdAt).toISOString());
 

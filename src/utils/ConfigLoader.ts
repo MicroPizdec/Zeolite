@@ -1,16 +1,15 @@
-import { ZeoliteLogger, LoggerLevel } from 'zeolitecore';
 import fs from 'fs';
 import { load } from 'js-yaml';
+import { getLogger } from 'log4js';
 
 export default class ConfigLoader {
-  private logger = new ZeoliteLogger(LoggerLevel.Info, 'ConfigLoader');
-
-  public loadConfig(cfgPath: string): Config {
+  public static loadConfig(cfgPath: string): Config {
+    const logger = getLogger("ConfigLoader");
     try {
-      this.logger.info('Loading config...');
+      logger.info('Loading config...');
       return load(fs.readFileSync(cfgPath, { encoding: 'utf-8' })) as Config;
     } catch (err) {
-      this.logger.error('Config file invalid or does not exist. Exiting...');
+      logger.error('Config file invalid or does not exist. Exiting...');
       console.log(err);
       process.exit(1);
     }

@@ -1,4 +1,5 @@
-import { ZeoliteExtension, ZeoliteLogger, LoggerLevel } from 'zeolitecore';
+import { getLogger, Logger } from 'log4js';
+import { ZeoliteExtension } from 'zeolitecore';
 import ZetCoins from '../dbModels/ZetCoins';
 
 let self: DepositHandlerExtension;
@@ -6,7 +7,7 @@ let self: DepositHandlerExtension;
 export default class DepositHandlerExtension extends ZeoliteExtension {
   name = 'depositHandler';
   private timer: NodeJS.Timer;
-  public logger: ZeoliteLogger = new ZeoliteLogger(LoggerLevel.Info, 'DepositHandler');
+  public logger: Logger;
 
   private async handleDeposits() {
     const bals = await ZetCoins.findAll();
@@ -22,6 +23,8 @@ export default class DepositHandlerExtension extends ZeoliteExtension {
   }
 
   public onLoad() {
+    this.logger = getLogger('DepositHandler');
+  
     self = this;
     this.timer = setInterval(this.handleDeposits, 4 * 3600 * 1000);
   }

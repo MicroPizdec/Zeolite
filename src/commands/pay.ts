@@ -72,7 +72,7 @@ export default class PayCommand extends ZeoliteCommand {
         type: 2,
         label: ctx.t('payYes'),
         style: 3,
-        custom_id: 'yes',
+        customID: 'yes',
         emoji: {
           name: 'success',
           id: '933053645078007839',
@@ -82,7 +82,7 @@ export default class PayCommand extends ZeoliteCommand {
         type: 2,
         label: ctx.t('payNo'),
         style: 4,
-        custom_id: 'no',
+        customID: 'no',
         emoji: {
           name: 'fail',
           id: '933053644948004954',
@@ -91,7 +91,7 @@ export default class PayCommand extends ZeoliteCommand {
     );
 
     await ctx.reply({ embeds: [confirmEmbed], components: [actionRow] });
-    const message = await ctx.interaction.getOriginalMessage();
+    const message = await ctx.interaction.getOriginal();
 
     const component = await ctx.collectButton({
       filter: (i) => (i.member || i.user!).id == ctx.user?.id,
@@ -107,14 +107,14 @@ export default class PayCommand extends ZeoliteCommand {
 
     const button = component?.data;
 
-    if (button?.custom_id == 'yes') {
+    if (button?.customID == 'yes') {
       await userBal.update({ balance: userBal.balance + amount });
       await authorBal.update({ balance: authorBal.balance - amount });
       const successEmbed = new Embed()
         .setTitle(ctx.t('paySuccessfullySent', amount, settings?.icon, `${user.username}#${user.discriminator}`))
         .setAuthor({
           name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-          icon_url: ctx.user?.avatarURL,
+          iconURL: ctx.user?.avatarURL(),
         })
         .setColor(0x57f287);
 
@@ -124,7 +124,7 @@ export default class PayCommand extends ZeoliteCommand {
         .setTitle(ctx.t('payCancelled'))
         .setAuthor({
           name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-          icon_url: ctx.user?.avatarURL,
+          iconURL: ctx.user?.avatarURL(),
         })
         .setColor(0xed4245);
 

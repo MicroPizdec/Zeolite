@@ -1,4 +1,4 @@
-import { Guild } from 'eris';
+import { Guild } from 'oceanic.js';
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import Warns from '../dbModels/Warns';
 
@@ -60,12 +60,12 @@ export default class WarnCommand extends ZeoliteCommand {
   }
 
   async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'add': {
-        if (!ctx.member!.permissions.has('kickMembers')) {
-          this.client.emit('noPermissions', ctx, ['kickMembers']);
+        if (!ctx.member!.permissions.has('KICK_MEMBERS')) {
+          this.client.emit('noPermissions', ctx, ['KICK_MEMBERS']);
           return;
         }
 
@@ -114,7 +114,7 @@ export default class WarnCommand extends ZeoliteCommand {
         const embed = new Embed()
           .setAuthor({
             name: ctx.t('warnAdded', `${member.username}#${member.discriminator}`),
-            icon_url: member.avatarURL,
+            iconURL: member.avatarURL(),
           })
           .setDescription(ctx.t('reason', reason || ctx.t('reasonNone')))
           .setFooter({ text: ctx.t('warnID', warn.id) })
@@ -126,8 +126,8 @@ export default class WarnCommand extends ZeoliteCommand {
       }
 
       case 'delete': {
-        if (!ctx.member!.permissions.has('kickMembers')) {
-          this.client.emit('noPermissions', ctx, ['kickMembers']);
+        if (!ctx.member!.permissions.has('KICK_MEMBERS')) {
+          this.client.emit('noPermissions', ctx, ['KICK_MEMBERS']);
           return;
         }
 
@@ -161,13 +161,13 @@ export default class WarnCommand extends ZeoliteCommand {
         const embed = new Embed()
           .setAuthor({
             name: ctx.t('warnList', `${member!.username}#${member!.discriminator}`),
-            icon_url: member!.avatarURL,
+            iconURL: member!.avatarURL(),
           })
           .setColor(ctx.get('embColor'))
           .setFooter({ text: ctx.t('warnCount', warnlist.length) });
 
         for (const warn of warnlist) {
-          const mod = await (this.client.users.get(warn.moderatorID) || this.client.getRESTUser(warn.moderatorID));
+          const mod = await (this.client.users.get(warn.moderatorID) || this.client.rest.users.get(warn.moderatorID));
 
           embed.addField(
             ctx.t('warnField', warn.id, `${mod.username}#${mod.discriminator}`),

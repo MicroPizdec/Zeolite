@@ -27,6 +27,7 @@ export default {
   statsCommandsUsed: 'Команд использовано',
   statsPlatform: 'Платформа',
   statsBuildDate: 'Дата сборки',
+  statsPackages: 'Пакеты',
 
   userBadges: 'Значки',
   userBadgesNone: 'Нет',
@@ -37,7 +38,7 @@ export default {
 
   infoTitle: 'О боте',
   infoDesc:
-    '**Пусть ваше путешествие начнётся.**\nПростой в плане экономики, модерации и много чего бот, написанный на TypeScript с использованием библиотеки discord.js.',
+    '**Пусть ваше путешествие начнётся.**\nПростой в плане экономики, модерации и много чего бот, написанный на TypeScript с использованием библиотеки Oceanic.js.',
   infoLinks: 'Ссылки',
   infoInvite: 'Добавить на сервер',
   infoSupportServer: 'Сервер поддержки',

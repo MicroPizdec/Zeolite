@@ -13,8 +13,8 @@ export default class LoopCommand extends ZeoliteCommand {
 
   public async run(ctx: ZeoliteContext) {
     if (
-      !ctx.member!.voiceState.channelID ||
-      ctx.member!.voiceState.channelID != ctx.guild!.members.get(this.client.user.id)?.voiceState.channelID
+      !ctx.member!.voiceState?.channelID ||
+      ctx.member!.voiceState.channelID != ctx.guild!.members.get(this.client.user.id)?.voiceState?.channelID
     ) {
       await ctx.reply({
         content: ctx.t('playNotInVoiceChannel'),
@@ -32,6 +32,6 @@ export default class LoopCommand extends ZeoliteCommand {
 
     player.setTrackRepeat(!player.trackRepeat);
 
-    await ctx.reply(player.trackRepeat ? ctx.t('loopEnabled') : ctx.t('loopDisabled'));
+    await ctx.reply({ content: player.trackRepeat ? ctx.t('loopEnabled') : ctx.t('loopDisabled') });
   }
 }

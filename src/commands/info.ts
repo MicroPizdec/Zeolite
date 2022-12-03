@@ -1,5 +1,5 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from 'zeolitecore';
-import { User } from 'eris';
+import { User } from 'oceanic.js';
 
 export default class InfoCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -18,7 +18,7 @@ export default class InfoCommand extends ZeoliteCommand {
     for (const id of devIds) {
       const user = this.client.users.has(id)
         ? this.client.users.get(id)
-        : await this.client.getRESTUser(id).catch(() => {});
+        : await this.client.rest.users.get(id).catch(() => {});
 
       if (user) devs.push(user);
     }

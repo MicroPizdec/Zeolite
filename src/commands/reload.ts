@@ -50,14 +50,14 @@ export default class ReloadCommand extends ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'command': {
         const name = ctx.options.getString('name')!;
         const update = ctx.options.getBoolean('update');
 
-        if (!this.client.commands.has(name)) {
+        if (!this.client.commandsManager.commands.has(name)) {
           await ctx.reply({
             content: ctx.t('reloadCommandDoesntExist'),
             flags: 64,
@@ -65,7 +65,7 @@ export default class ReloadCommand extends ZeoliteCommand {
           return;
         }
 
-        const cmd = this.client.reloadCommand(name);
+        const cmd = this.client.commandsManager.reloadCommand(name);
 
         if (update) await cmd.update();
 
@@ -75,7 +75,7 @@ export default class ReloadCommand extends ZeoliteCommand {
       case 'extension': {
         const name = ctx.options.getString('name')!;
 
-        if (!this.client.extensions.has(name)) {
+        if (!this.client.extensionsManager.extensions.has(name)) {
           await ctx.reply({
             content: ctx.t('reloadExtensionDoesntExist'),
             flags: 64,
@@ -83,7 +83,7 @@ export default class ReloadCommand extends ZeoliteCommand {
           return;
         }
 
-        this.client.reloadExtension(name);
+        this.client.extensionsManager.reloadExtension(name);
 
         await ctx.reply({
           content: ctx.t('reloadExtensionSuccess', name),
@@ -92,7 +92,7 @@ export default class ReloadCommand extends ZeoliteCommand {
         break;
       }
       case 'languages': {
-        this.client.localization.reloadLanguages();
+        this.client.localizationManager.reloadLanguages();
 
         await ctx.reply({
           content: ctx.t('reloadLanguagesSuccess'),

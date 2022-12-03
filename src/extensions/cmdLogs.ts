@@ -1,17 +1,18 @@
-import { ZeoliteExtension, ZeoliteLogger, LoggerLevel, Embed, ZeoliteContext } from 'zeolitecore';
-import { GuildChannel, InteractionDataOptionsSubCommand, InteractionDataOptionsWithValue, Guild } from 'eris';
+import { ZeoliteExtension, LoggerLevel, Embed, ZeoliteContext } from 'zeolitecore';
+import { Guild, GuildChannel } from 'oceanic.js';
+import { getLogger, Logger } from 'log4js'
 
 let self: CmdLogsExtension;
 
 export default class CmdLogsExtension extends ZeoliteExtension {
   name = 'cmdLogs';
-  public logger: ZeoliteLogger = new ZeoliteLogger(LoggerLevel.Info, 'CmdLogs');
+  public logger: Logger = getLogger("CmdLogs");
 
   private parseOptions(ctx: ZeoliteContext): string {
     // я мажу жопу костылями
     let options: string[] = [];
 
-    const subcommand = ctx.options.getSubcommand();
+    /*const subcommand = ctx.options.getSubcommand();
     if (subcommand) {
       options.push(subcommand);
       if (!(ctx.interaction.data.options as InteractionDataOptionsSubCommand[] | undefined)?.[0].options)
@@ -25,7 +26,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       options = ((ctx.interaction.data.options as InteractionDataOptionsWithValue[] | undefined) || [])?.map(
         (opt) => `${opt.name}: ${opt.value}`,
       );
-    }
+    }*/
 
     return options.join(' ');
   }
@@ -61,7 +62,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setColor(0xed4245)
       .setFooter({
         text: 'Zeolite © Fishyrene',
-        icon_url: self.client.user.avatarURL,
+        iconURL: self.client.user.avatarURL(),
       });
 
     if (ctx.interaction.acknowledged) {
@@ -83,10 +84,10 @@ export default class CmdLogsExtension extends ZeoliteExtension {
 
     await self.client.executeWebhook(config.webhookID!, config.webhookToken!, {
       embeds: [embed],
-      file: {
+      files: [{
         name: 'error.txt',
-        file: Buffer.from(error.stack, 'utf-8'),
-      },
+        contents: Buffer.from(error.stack, 'utf-8'),
+      }],
     });
   }
 
@@ -99,7 +100,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setTitle('New server:')
       .setDescription(`${guild.name} (ID: ${guild.id})`)
       .setColor(config.defaultColor || 0x9f00ff)
-      .setThumbnail(guild.iconURL as string);
+      .setThumbnail(guild.iconURL()!);
 
     await self.client.executeWebhook(config.webhookID!, config.webhookToken!, {
       embeds: [embed],
@@ -115,7 +116,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setTitle('Removed from server:')
       .setDescription(`${guild.name} (ID: ${guild.id})`)
       .setColor(config.defaultColor || 0x9f00ff)
-      .setThumbnail(guild.iconURL as string);
+      .setThumbnail(guild.iconURL()!);
 
     await self.client.executeWebhook(config.webhookID!, config.webhookToken!, {
       embeds: [embed],

@@ -33,12 +33,12 @@ export default class VolumeCommand extends ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
     const manager: Manager = ctx.get('manager');
     const player = manager.players.get(ctx.guild!.id);
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'get': {
         if (!player) {
           await ctx.reply({ content: ctx.t('notPlaying'), flags: 64 });
@@ -64,7 +64,7 @@ export default class VolumeCommand extends ZeoliteCommand {
 
         player.setVolume(volumeNumber);
 
-        await ctx.reply(ctx.t('volumeChanged', volumeNumber));
+        await ctx.reply({ content: ctx.t('volumeChanged', volumeNumber) });
         break;
       }
     }

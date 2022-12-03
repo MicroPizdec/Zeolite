@@ -28,18 +28,18 @@ export default class SetCurrencyCommand extends ZeoliteCommand {
           description: 'Resets the currency icon',
         },
       ],
-      requiredPermissions: ['administrator'],
+      requiredPermissions: ['ADMINISTRATOR'],
     });
   }
 
   public async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
     const settings = await ZetCoinsSettings.findOrCreate({
       where: { guildID: ctx.guild?.id },
     }).then((s) => s[0]);
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'icon': {
         const icon = ctx.options.getString('icon')!;
 
@@ -50,7 +50,7 @@ export default class SetCurrencyCommand extends ZeoliteCommand {
 
         await settings.update({ icon });
 
-        await ctx.reply(ctx.t('setcurrencySuccess', icon));
+        await ctx.reply({ content: ctx.t('setcurrencySuccess', icon) });
         break;
       }
       case 'reset': {

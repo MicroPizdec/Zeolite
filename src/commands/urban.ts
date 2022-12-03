@@ -37,12 +37,12 @@ export default class UrbanCommand extends ZeoliteCommand {
     const data = response.list[0];
 
     if (!data) {
-      await ctx.editReply(ctx.t('urbanWordNotFound'));
+      await ctx.editReply({ content: ctx.t('urbanWordNotFound') });
       return;
     }
 
     if (!data.definition?.length || data.definition.length > 3920 || data.example.length > 1000) {
-      await ctx.editReply(ctx.t('urbanCantShowDefinition', data.permalink));
+      await ctx.editReply({ content: ctx.t('urbanCantShowDefinition', data.permalink) });
       return;
     }
     const embed = new Embed()

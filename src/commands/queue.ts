@@ -8,7 +8,7 @@ import {
   ZeoliteInteractionCollector,
 } from 'zeolitecore';
 import Utils from '../utils/Utils';
-import { ComponentInteraction, User } from 'eris';
+import { ComponentInteraction, User } from 'oceanic.js';
 
 export default class QueueCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -69,19 +69,19 @@ export default class QueueCommand extends ZeoliteCommand {
         {
           type: 2,
           label: ctx.t('back'),
-          custom_id: 'back',
+          customID: 'back',
           style: 1,
         },
         {
           type: 2,
           label: ctx.t('forward'),
-          custom_id: 'forward',
+          customID: 'forward',
           style: 1,
         },
         {
           type: 2,
           label: ctx.t('close'),
-          custom_id: 'close',
+          customID: 'close',
           style: 4,
         },
       );
@@ -89,13 +89,13 @@ export default class QueueCommand extends ZeoliteCommand {
       await ctx.reply({ embeds: [embed], components: [actionRow] });
 
       const collector = new ZeoliteInteractionCollector(this.client, {
-        message: await ctx.interaction.getOriginalMessage(),
+        message: await ctx.interaction.getOriginal(),
         filter: (i) => (i.member || i.user!).id == ctx.user.id,
         time: 600000,
       });
 
       collector.on('collect', (interaction: ComponentInteraction) => {
-        switch (interaction.data.custom_id) {
+        switch (interaction.data.customID) {
           case 'back': {
             if (pageNum == 0) return;
             pageNum--;

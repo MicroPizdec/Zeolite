@@ -33,14 +33,14 @@ export default class BalanceCommand extends ZeoliteCommand {
     const embed = new Embed()
       .setAuthor({
         name: `${user.username}#${user.discriminator}`,
-        icon_url: user.avatarURL,
+        iconURL: user.avatarURL(),
       })
       .setDescription(`${userBalance.balance} ${settings?.icon}`)
       .setColor(ctx.get('embColor'))
       .addField(ctx.t('balanceDeposit'), `${userBalance.depositBal} ${settings.icon}`)
       .setFooter({
         text: 'Zeolite © Fishyrene',
-        icon_url: this.client.user.avatarURL,
+        iconURL: this.client.user.avatarURL(),
       });
 
     await ctx.reply({ embeds: [embed] });

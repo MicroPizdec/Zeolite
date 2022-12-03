@@ -20,7 +20,7 @@ export default class PlayCommand extends ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    if (!ctx.member?.voiceState.channelID) {
+    if (!ctx.member?.voiceState?.channelID) {
       await ctx.reply({
         content: ctx.t('playNotInVoiceChannel'),
         flags: 64,
@@ -62,7 +62,7 @@ export default class PlayCommand extends ZeoliteCommand {
     if (!player.get('lang'))
       player.set(
         'lang',
-        this.client.localization.languageStrings[this.client.localization.userLanguages[ctx.user.id] as string],
+        this.client.localizationManager.languageStrings[this.client.localizationManager.userLanguages[ctx.user.id] as string],
       );
 
     if (!player.playing && !player.paused && !player.queue.size) {

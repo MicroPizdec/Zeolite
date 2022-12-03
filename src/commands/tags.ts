@@ -7,7 +7,7 @@ import {
   ZeoliteInteractionCollector,
 } from 'zeolitecore';
 import Tags from '../dbModels/Tags';
-import { ComponentInteraction } from 'eris';
+import { ComponentInteraction } from 'oceanic.js';
 
 export default class TagsCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -148,9 +148,9 @@ export default class TagsCommand extends ZeoliteCommand {
   }
 
   public async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'add': {
         const name = ctx.options.getString('name')!;
         const content = ctx.options.getString('content')!;
@@ -181,7 +181,7 @@ export default class TagsCommand extends ZeoliteCommand {
           content,
         });
 
-        await ctx.reply(ctx.t('tagAddSuccess', name));
+        await ctx.reply({ content: ctx.t('tagAddSuccess', name) });
         break;
       }
 
@@ -215,7 +215,7 @@ export default class TagsCommand extends ZeoliteCommand {
 
         await tag.update({ content });
 
-        await ctx.reply(ctx.t('tagEditSuccess', name));
+        await ctx.reply({ content: ctx.t('tagEditSuccess', name) });
         break;
       }
 
@@ -245,7 +245,7 @@ export default class TagsCommand extends ZeoliteCommand {
         }
 
         await tag.update({ name: newName });
-        await ctx.reply(ctx.t('tagRenameSuccess', name, newName));
+        await ctx.reply({ content: ctx.t('tagRenameSuccess', name, newName) });
         break;
       }
 
@@ -271,7 +271,7 @@ export default class TagsCommand extends ZeoliteCommand {
 
         await tag.update({ userID: newOwner.id });
 
-        await ctx.reply(ctx.t('tagTransferSuccess', name, `${newOwner.username}#${newOwner.discriminator}`));
+        await ctx.reply({ content: ctx.t('tagTransferSuccess', name, newOwner.tag) });
         break;
       }
 
@@ -286,9 +286,9 @@ export default class TagsCommand extends ZeoliteCommand {
           return;
         }
 
-        const owner = await (this.client.users.get(tag.userID) || this.client.getRESTUser(tag.userID));
+        const owner = await (this.client.users.get(tag.userID) || this.client.rest.users.get(tag.userID));
 
-        await ctx.reply(ctx.t('tagOwnerInfo', name, `${owner.username}#${owner.discriminator}`));
+        await ctx.reply({ content: ctx.t('tagOwnerInfo', name, owner.tag) });
         break;
       }
 
@@ -304,7 +304,7 @@ export default class TagsCommand extends ZeoliteCommand {
         }
 
         await tag.destroy();
-        await ctx.reply(ctx.t('tagDeleted', name));
+        await ctx.reply({ content: ctx.t('tagDeleted', name) });
         break;
       }
 
@@ -342,25 +342,25 @@ export default class TagsCommand extends ZeoliteCommand {
             {
               type: 2,
               label: ctx.t('back'),
-              custom_id: 'back',
+              customID: 'back',
               style: 1,
             },
             {
               type: 2,
               label: ctx.t('forward'),
-              custom_id: 'forward',
+              customID: 'forward',
               style: 1,
             },
             {
               type: 2,
               label: ctx.t('close'),
-              custom_id: 'close',
+              customID: 'close',
               style: 4,
             },
           );
 
           await ctx.reply({ embeds: [embed], components: [actionRow] });
-          const msg = await ctx.interaction.getOriginalMessage();
+          const msg = await ctx.interaction.getOriginal();
 
           const collector = new ZeoliteInteractionCollector(this.client, {
             filter: (i) => i.member!.id == ctx.user!.id,
@@ -369,7 +369,7 @@ export default class TagsCommand extends ZeoliteCommand {
           });
 
           collector.on('collect', (interaction: ComponentInteraction) => {
-            switch (interaction.data.custom_id) {
+            switch (interaction.data.customID) {
               case 'back': {
                 if (pageNum == 0) return;
                 pageNum--;

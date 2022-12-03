@@ -1,45 +1,48 @@
 // на этой ноте передаю привет котфиксу
 import { ZeoliteClient } from 'zeolitecore';
+import { ActivityTypes } from 'oceanic.js';
 import path from 'path';
 import ConfigLoader, { Config } from './utils/ConfigLoader';
+import log4js from "log4js";
 
 declare global {
   var config: Config;
   var commandsUsed: number;
 }
 
-global.config = new ConfigLoader().loadConfig(path.join(__dirname, '..', 'config.yml'));
+log4js.configure({
+  appenders: { out: { type: "stdout" } },
+  categories: { default: { appenders: ["out"], level: "info" } },
+});
 
-const client = new ZeoliteClient(config.token, {
-  cmdDirPath: path.join(__dirname, 'commands'),
-  extDirPath: path.join(__dirname, 'extensions'),
-  langsDirPath: path.join(__dirname, 'languages'),
-  intents: ['guilds', 'guildMembers', 'guildMessages', 'guildVoiceStates', 'guildInvites', 'guildBans'],
+global.config = ConfigLoader.loadConfig(path.join(__dirname, '..', 'config.yml'));
+log4js.getLogger().level = config.debug ? "debug" : "info";
+
+const client = new ZeoliteClient({
+  auth: `Bot ${config.token}`,
+  gateway: {
+    intents: [ 'GUILDS', 'GUILD_MEMBERS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_INVITES', 'GUILD_BANS' ],
+    presence: {
+      status: "online",
+      activities: [{ type: ActivityTypes.GAME, name: 'use /help' }],
+    },
+    getAllUsers: true,
+  },
   owners: config.owners,
-  debug: config.debug,
-  restMode: true,
-  getAllUsers: true,
   defaultImageSize: 2048,
 });
 
-client.loadAllCommands();
-client.loadAllExtensions();
-client.localization.loadLanguages();
+client.commandsManager.setCommandsDir(path.join(__dirname, "commands"))
+  .loadAllCommands();
 
-// this will be moved to ZeoliteCore
-/*сlient.on('commandError', (ctx, error) => {
-  console.log(error);
-});
-client.on('warn', (msg) => client.logger.warn(msg));
-client.on('error', (err, id) => {
-  console.log(err);
-}); */
+client.extensionsManager.setExtensionsDir(path.join(__dirname, "extensions"))
+  .loadAllExtensions();
+
+client.localizationManager.setLangsDir(path.join(__dirname, "languages"))
+  .loadLanguages();
 
 global.commandsUsed = 0;
 client.on('commandSuccess', () => void commandsUsed++);
-client.on('ready', async () => {
-  await client.editStatus('online', { type: 1, name: 'use /help' });
-});
 
 process.on('uncaughtException', (error) => console.error(error));
 process.on('unhandledRejection', (error) => console.error(error));

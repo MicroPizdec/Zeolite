@@ -24,14 +24,14 @@ export default class HelpCommand extends ZeoliteCommand {
       .setColor(ctx.get('embColor'))
       .setFooter({
         text: 'Zeolite © Fishyrene',
-        icon_url: this.client.user.avatarURL,
+        iconURL: this.client.user.avatarURL(),
       });
 
     await ctx.reply({ embeds: [embed] });
   }
 
   private mapCommandsByGroup(groupName: string): string {
-    return [...this.client.commands.values()]
+    return [...this.client.commandsManager.commands.values()]
       .filter((c) => c.group == groupName)
       .map((c) => `\`${c.name}\``)
       .join(', ');

@@ -47,7 +47,7 @@ export default class ColorCommand extends ZeoliteCommand {
       .addField(ctx.t('colorNumber'), colorNum.toString())
       .setFooter({
         text: 'Zeolite © Fishyrene',
-        icon_url: this.client.user?.avatarURL,
+        iconURL: this.client.user?.avatarURL(),
       });
 
     await ctx.reply({ embeds: [embed] });

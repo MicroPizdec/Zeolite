@@ -34,7 +34,7 @@ export default class ModlogsCommand extends ZeoliteCommand {
         },
       ],
       guildOnly: true,
-      requiredPermissions: ['manageGuild'],
+      requiredPermissions: ['MANAGE_GUILD'],
     });
   }
 
@@ -43,7 +43,7 @@ export default class ModlogsCommand extends ZeoliteCommand {
       where: { guildID: ctx.guild?.id },
     }).then((m) => m[0]);
 
-    switch (ctx.options.getSubcommand()) {
+    switch (ctx.options.getSubCommand()![0]) {
       case 'get': {
         const embed = new Embed()
           .setDescription(modlogs.channelID ? ctx.t('modlogsEnabled', modlogs.channelID) : ctx.t('modlogsDisabled'))
@@ -67,7 +67,7 @@ export default class ModlogsCommand extends ZeoliteCommand {
 
         const botMember = ctx.guild!.members.get(this.client.user.id)!;
         const botPerms = ctx.guild?.channels.get(channel.id)?.permissionsOf(botMember);
-        if (!botPerms?.has('sendMessages') || !botPerms?.has('embedLinks')) {
+        if (!botPerms?.has('SEND_MESSAGES') || !botPerms?.has('EMBED_LINKS')) {
           await ctx.reply({
             content: ctx.t('modlogsNoPermsForBot'),
             flags: 64,
@@ -76,7 +76,7 @@ export default class ModlogsCommand extends ZeoliteCommand {
         }
 
         await modlogs.update({ channelID: channel.id });
-        (this.client.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!] = channel.id;
+        (this.client.extensionsManager.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!] = channel.id;
         await ctx.reply({
           content: ctx.t('modlogsSuccess', `<@#${channel.id}>`),
         });
@@ -85,7 +85,7 @@ export default class ModlogsCommand extends ZeoliteCommand {
 
       case 'disable': {
         await modlogs.destroy();
-        delete (this.client.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!];
+        delete (this.client.extensionsManager.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!];
 
         await ctx.reply({ content: ctx.t('modlogsDisableSuccess') });
         break;

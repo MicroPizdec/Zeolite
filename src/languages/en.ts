@@ -27,6 +27,7 @@ export default {
   statsCommandsUsed: 'Commands used',
   statsPlatform: 'Platform',
   statsBuildDate: 'Build date',
+  statsPackages: 'Packages',
 
   userBadges: 'Badges',
   userBadgesNone: 'None',
@@ -37,7 +38,7 @@ export default {
 
   infoTitle: 'About bot',
   infoDesc:
-    '**Let your journey begin.**\nA multipurpose bot that simple in terms of economy, moderation, and more, written on TypeScript with discord.js library.',
+    '**Let your journey begin.**\nA multipurpose bot that simple in terms of economy, moderation, and more, written on TypeScript with Oceanic.js library.',
   infoLinks: 'Links',
   infoInvite: 'Add to your server',
   infoSupportServer: 'Support server',

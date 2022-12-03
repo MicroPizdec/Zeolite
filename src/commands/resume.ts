@@ -13,8 +13,8 @@ export default class ResumeCommand extends ZeoliteCommand {
 
   async run(ctx: ZeoliteContext) {
     if (
-      !ctx.member!.voiceState.channelID ||
-      ctx.member!.voiceState.channelID != ctx.guild!.members.get(this.client.user.id)?.voiceState.channelID
+      !ctx.member!.voiceState?.channelID ||
+      ctx.member!.voiceState.channelID != ctx.guild!.members.get(this.client.user.id)?.voiceState?.channelID
     ) {
       await ctx.reply({
         content: ctx.t('playNotInVoiceChannel'),
@@ -37,6 +37,6 @@ export default class ResumeCommand extends ZeoliteCommand {
 
     player.pause(false);
 
-    await ctx.reply(ctx.t('resumed'));
+    await ctx.reply({ content: ctx.t('resumed') });
   }
 }

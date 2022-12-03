@@ -43,13 +43,13 @@ export default class EmbedcolorCommand extends ZeoliteCommand {
   }
 
   async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
     const color = await EmbedColors.findOrCreate({
       where: { userID: ctx.user!.id },
     }).then((c) => c[0]);
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'get': {
         const embed = new Embed()
           .setTitle(ctx.t('embedcolorYourColor'))

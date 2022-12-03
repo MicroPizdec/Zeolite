@@ -34,10 +34,10 @@ export default class ExecCommand extends ZeoliteCommand {
 
     exec(code, (err, stdout, stderr) => {
       if (err) {
-        ctx.editReply(`\`\`\`${err}\`\`\``);
+        ctx.editReply({ content: `\`\`\`${err}\`\`\`` });
         return;
       }
-      ctx.editReply(`Stdout:\n\`\`\`${stdout || 'Empty'}\`\`\`\n\nStderr:\n\`\`\`${stderr || 'Empty'}\`\`\``);
+      ctx.editReply({ content: `Stdout:\n\`\`\`${stdout || 'Empty'}\`\`\`\n\nStderr:\n\`\`\`${stderr || 'Empty'}\`\`\`` });
     });
   }
 }

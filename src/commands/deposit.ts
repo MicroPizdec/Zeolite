@@ -46,7 +46,7 @@ export default class DepositCommand extends ZeoliteCommand {
   }
 
   async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
     const settings = await ZetCoinsSettings.findOrCreate({
       where: { guildID: ctx.guild?.id },
@@ -55,7 +55,7 @@ export default class DepositCommand extends ZeoliteCommand {
       where: { guildID: ctx.guild?.id, userID: ctx.user?.id },
     }).then((b) => b[0]);
 
-    switch (subcommand) {
+    switch (subcommand[0]) {
       case 'info': {
         const embed = new Embed()
           .setTitle(ctx.t('depositInfo'))
@@ -63,7 +63,7 @@ export default class DepositCommand extends ZeoliteCommand {
           .setColor(ctx.get('embColor'))
           .setFooter({
             text: 'Zeolite © Fishyrene',
-            icon_url: this.client.user.avatarURL,
+            iconURL: this.client.user.avatarURL(),
           });
 
         await ctx.reply({ embeds: [embed] });
@@ -89,7 +89,7 @@ export default class DepositCommand extends ZeoliteCommand {
         const embed = new Embed()
           .setAuthor({
             name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-            icon_url: ctx.user?.avatarURL,
+            iconURL: ctx.user?.avatarURL(),
           })
           .setDescription(
             ctx.t(
@@ -127,7 +127,7 @@ export default class DepositCommand extends ZeoliteCommand {
         const embed = new Embed()
           .setAuthor({
             name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-            icon_url: ctx.user?.avatarURL,
+            iconURL: ctx.user?.avatarURL(),
           })
           .setDescription(
             ctx.t(

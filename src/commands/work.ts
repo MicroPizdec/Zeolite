@@ -27,7 +27,7 @@ export default class WorkCommand extends ZeoliteCommand {
         .setDescription(ctx.t('workCooldown', minsLeft))
         .setAuthor({
           name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-          icon_url: ctx.user?.avatarURL,
+          iconURL: ctx.user?.avatarURL(),
         })
         .setColor(ctx.get('embColor'));
 
@@ -55,7 +55,7 @@ export default class WorkCommand extends ZeoliteCommand {
       .setDescription(ctx.t('workDesc', amount, settings.icon, userBal.balance, settings.icon))
       .setAuthor({
         name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-        icon_url: ctx.user?.avatarURL,
+        iconURL: ctx.user?.avatarURL(),
       })
       .setColor(ctx.get('embColor'));
 

@@ -13,8 +13,8 @@ export default class PauseCommand extends ZeoliteCommand {
 
   public async run(ctx: ZeoliteContext) {
     if (
-      !ctx.member!.voiceState.channelID ||
-      ctx.member!.voiceState.channelID != ctx.guild!.members.get(this.client.user.id)?.voiceState.channelID
+      !ctx.member!.voiceState?.channelID ||
+      ctx.member!.voiceState.channelID != ctx.guild!.members.get(this.client.user.id)?.voiceState?.channelID
     ) {
       await ctx.reply({
         content: ctx.t('playNotInVoiceChannel'),
@@ -37,6 +37,6 @@ export default class PauseCommand extends ZeoliteCommand {
 
     player.pause(true);
 
-    await ctx.reply(ctx.t('paused'));
+    await ctx.reply({ content: ctx.t('paused') });
   }
 }

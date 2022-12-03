@@ -1,4 +1,4 @@
-import * as QRCode from 'qrcode';
+import QRCode from 'qrcode';
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 
 export default class QrCommand extends ZeoliteCommand {
@@ -32,6 +32,6 @@ export default class QrCommand extends ZeoliteCommand {
       .setImage('attachment://qr.png')
       .setFooter({ text: ctx.t('generationTime', finishTime) });
 
-    await ctx.editReply({ embeds: [embed] }, { file: Buffer.from(qr, 'base64'), name: 'qr.png' });
+    await ctx.editReply({ embeds: [embed], files: [{ name: "qr.png", contents: Buffer.from(qr, "base64") }] });
   }
 }

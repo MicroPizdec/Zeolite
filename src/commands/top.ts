@@ -37,7 +37,7 @@ export default class TopCommand extends ZeoliteCommand {
       .setDescription(description.length ? description.join('\n') : ctx.t('topEmpty'))
       .setFooter({
         text: authorPos ? ctx.t('topFooter', authorPos, authorBal.balance) : ctx.t('topFooterNonTop'),
-        icon_url: ctx.user?.avatarURL,
+        iconURL: ctx.user?.avatarURL(),
       })
       .setColor(ctx.get('embColor'));
 

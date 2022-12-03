@@ -56,7 +56,7 @@ export default class DiceCommand extends ZeoliteCommand {
       .setDescription(ctx.t('diceWinDesc', amount, settings.icon, userBal.balance + amount, settings.icon))
       .setAuthor({
         name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-        icon_url: ctx.user?.avatarURL,
+        iconURL: ctx.user?.avatarURL(),
       })
       .setColor(0x57f287);
 
@@ -65,7 +65,7 @@ export default class DiceCommand extends ZeoliteCommand {
       .setDescription(ctx.t('diceLossDesc', amount, settings.icon, userBal.balance - amount, settings.icon))
       .setAuthor({
         name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-        icon_url: ctx.user?.avatarURL,
+        iconURL: ctx.user?.avatarURL(),
       })
       .setColor(0xed4245);
 

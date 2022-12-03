@@ -1,6 +1,7 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import os from 'os';
 import fs from 'fs/promises';
+import { VERSION as oceanicVersion } from 'oceanic.js';
 
 export default class StatsCommand extends ZeoliteCommand {
   private buildDate: number;
@@ -34,9 +35,10 @@ export default class StatsCommand extends ZeoliteCommand {
       .addField(ctx.t('statsPlatform'), `${this.getPlatform()} ${os.release()}`)
       .addField(ctx.t('statsCpu'), `\`${cpu ? cpu.model : ctx.t('unableToGetCpuInfo')}\``)
       .addField(ctx.t('statsBuildDate'), `<t:${Math.floor(this.buildDate / 1000)}>`)
+      .addField(ctx.t('statsPackages'), `Node.js: ${process.version}\nOceanic.js: ${oceanicVersion}`)
       .setFooter({
         text: `Zeolite v${process.env.npm_package_version} © Fishyrene`,
-        icon_url: this.client.user.avatarURL,
+        iconURL: this.client.user.avatarURL(),
       });
 
     await ctx.reply({ embeds: [embed] });

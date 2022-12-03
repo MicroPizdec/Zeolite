@@ -31,19 +31,19 @@ export default class LanguageCommand extends ZeoliteCommand {
   }
 
   async run(ctx: ZeoliteContext) {
-    const subcommand = ctx.options.getSubcommand();
+    const subcommand = ctx.options.getSubCommand()!;
 
     const dbLang = await Languages.findOne({ where: { userID: ctx.user?.id } });
 
-    if (subcommand == 'get') {
-      const availableLangs = Object.keys(this.client.localization.languageStrings);
+    if (subcommand[0] == 'get') {
+      const availableLangs = Object.keys(this.client.localizationManager.languageStrings);
 
       const embed = new Embed()
         .setTitle(ctx.t('langAvailableLanguages'))
         .setDescription(availableLangs.map((l) => `\`${l}\``).join(', '))
         .setAuthor({
           name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-          icon_url: ctx.user?.avatarURL,
+          iconURL: ctx.user?.avatarURL(),
         })
         .addField(ctx.t('langYourLanguage'), `\`${dbLang?.language}\``)
         .setColor(ctx.get('embColor'));
@@ -52,12 +52,12 @@ export default class LanguageCommand extends ZeoliteCommand {
     } else {
       const language = ctx.options.getString('lang')!;
 
-      if (!Object.keys(this.client.localization.languageStrings).includes(language)) {
+      if (!Object.keys(this.client.localizationManager.languageStrings).includes(language)) {
         await ctx.reply({ content: ctx.t('langInvalid'), flags: 64 });
       }
 
       await dbLang?.update({ language });
-      this.client.localization.userLanguages[ctx.user!.id] = language;
+      this.client.localizationManager.userLanguages[ctx.user!.id] = language;
       await ctx.reply({ content: ctx.t('langSuccess', language), flags: 64 });
     }
   }
