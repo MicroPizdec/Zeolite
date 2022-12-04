@@ -36,7 +36,10 @@ export default class InviteCommand extends ZeoliteCommand {
       .setTitle(invite.guild!.name)
       .setThumbnail(invite.guild?.iconURL()!)
       .setColor(ctx.get('embColor'))
-      .addField(ctx.t('serverMembers'), ctx.t('inviteMembersCount', invite.approximateMemberCount, invite.approximatePresenceCount))
+      .addField(
+        ctx.t('serverMembers'),
+        ctx.t('inviteMembersCount', invite.approximateMemberCount, invite.approximatePresenceCount),
+      )
       .addField(
         ctx.t('serverVerificationLevel'),
         ctx.t(Object.keys(Constants.VerificationLevels)[invite.guild!.verificationLevel]),

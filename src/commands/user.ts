@@ -44,13 +44,13 @@ export default class UserCommand extends ZeoliteCommand {
       .setAuthor({ name: `${user?.username}#${user?.discriminator}` })
       .setThumbnail(member ? member.avatarURL() : user.avatarURL())
       .setColor(ctx.get('embColor'))
-//      .addField(ctx.t('userBadges'), this.getUserBadges(user) || ctx.t('userBadgesNone'))
+      //      .addField(ctx.t('userBadges'), this.getUserBadges(user) || ctx.t('userBadgesNone'))
       .setFooter({ text: ctx.t('userFooter', user!.id, registeredDays) })
       .setTimestamp(new Date(user!.createdAt).toISOString());
 
     if (member) {
       embed
-        .addField(ctx.t('userJoinDate'), `<t:${Math.floor((member.joinedAt!.getTime()) / 1000)}>`)
+        .addField(ctx.t('userJoinDate'), `<t:${Math.floor(member.joinedAt!.getTime() / 1000)}>`)
         .addField(ctx.t('userRoles'), member.roles.map((r) => `<@&${r}>`).join(', ') || ctx.t('userBadgesNone'));
     }
 

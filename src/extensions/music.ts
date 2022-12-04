@@ -16,7 +16,7 @@ export default class MusicExtension extends ZeoliteExtension {
 
     if (!config.lavalinkNodes) return;
 
-    const logger = getLogger("Music");
+    const logger = getLogger('Music');
 
     this.manager = new Manager({
       nodes: config.lavalinkNodes,
@@ -52,7 +52,8 @@ export default class MusicExtension extends ZeoliteExtension {
         .addField(lang.duration, Utils.parseTime(Math.floor(track.duration / 1000)))
         .setFooter({ text: util.format(lang.playAuthor, track.author) });
 
-      await this.client.getChannel<TextChannel>(player.textChannel!)
+      await this.client
+        .getChannel<TextChannel>(player.textChannel!)
         ?.createMessage({ embeds: [embed] })
         .catch(() => {});
     });
@@ -61,8 +62,7 @@ export default class MusicExtension extends ZeoliteExtension {
       const lang: any = player.get('lang');
       logger.debug(`Queue ended for channel ${player.voiceChannel}`);
 
-      await this.client.getChannel<TextChannel>(player.textChannel!)
-        ?.createMessage({ content: lang.allTracksPlayed });
+      await this.client.getChannel<TextChannel>(player.textChannel!)?.createMessage({ content: lang.allTracksPlayed });
       await player.disconnect();
       await player.destroy();
     });
@@ -72,7 +72,8 @@ export default class MusicExtension extends ZeoliteExtension {
       logger.debug(`Player moved from channel ${oldChannel} to ${newChannel}`);
 
       if (!newChannel) {
-        await this.client.getChannel<TextChannel>(player.textChannel!)
+        await this.client
+          .getChannel<TextChannel>(player.textChannel!)
           ?.createMessage({ content: lang.allTracksPlayed });
         await player.disconnect();
         await player.destroy();
@@ -85,7 +86,8 @@ export default class MusicExtension extends ZeoliteExtension {
       if (payload.error == 'Track information is unavailable.') {
         const embed = new Embed().setTitle(lang.playFailed).setDescription(lang.playFailedDesc).setColor(0xed4245);
 
-        await this.client.getChannel<TextChannel>(player.textChannel!)
+        await this.client
+          .getChannel<TextChannel>(player.textChannel!)
           ?.createMessage({ embeds: [embed] })
           .catch(() => {});
       } else {

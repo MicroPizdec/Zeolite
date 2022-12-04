@@ -4,7 +4,7 @@ import { getLogger } from 'log4js';
 
 export default class ConfigLoader {
   public static loadConfig(cfgPath: string): Config {
-    const logger = getLogger("ConfigLoader");
+    const logger = getLogger('ConfigLoader');
     try {
       logger.info('Loading config...');
       return load(fs.readFileSync(cfgPath, { encoding: 'utf-8' })) as Config;

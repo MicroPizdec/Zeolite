@@ -76,7 +76,8 @@ export default class ModlogsCommand extends ZeoliteCommand {
         }
 
         await modlogs.update({ channelID: channel.id });
-        (this.client.extensionsManager.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!] = channel.id;
+        (this.client.extensionsManager.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!] =
+          channel.id;
         await ctx.reply({
           content: ctx.t('modlogsSuccess', `<@#${channel.id}>`),
         });
@@ -85,7 +86,9 @@ export default class ModlogsCommand extends ZeoliteCommand {
 
       case 'disable': {
         await modlogs.destroy();
-        delete (this.client.extensionsManager.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!];
+        delete (this.client.extensionsManager.extensions.get('modlogs') as ModlogsExtension).channelsCache[
+          ctx.guild?.id!
+        ];
 
         await ctx.reply({ content: ctx.t('modlogsDisableSuccess') });
         break;

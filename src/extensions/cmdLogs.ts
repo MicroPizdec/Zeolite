@@ -1,16 +1,30 @@
 import { ZeoliteExtension, LoggerLevel, Embed, ZeoliteContext } from 'zeolitecore';
-import { Guild, GuildChannel } from 'oceanic.js';
-import { getLogger, Logger } from 'log4js'
+import { Guild, GuildChannel, InteractionOptionsSubCommand, InteractionOptionsWithValue } from 'oceanic.js';
+import { getLogger, Logger } from 'log4js';
 
 let self: CmdLogsExtension;
 
 export default class CmdLogsExtension extends ZeoliteExtension {
   name = 'cmdLogs';
-  public logger: Logger = getLogger("CmdLogs");
+  public logger: Logger = getLogger('CmdLogs');
 
   private parseOptions(ctx: ZeoliteContext): string {
     // я мажу жопу костылями
     let options: string[] = [];
+
+    const subcommand = ctx.options.getSubCommand()?.[0];
+    if (subcommand) {
+      options.push(subcommand);
+      if (!(ctx.options.raw as InteractionOptionsSubCommand[])[0].options?.length) {
+        return options.join(' ');
+      }
+
+      for (const opt of (ctx.options.raw as InteractionOptionsSubCommand[])[0].options!) {
+        options.push(`${opt.name}: ${opt.value}`);
+      }
+    } else {
+      options = (ctx.options.raw as InteractionOptionsWithValue[]).map((opt) => `${opt.name}: ${opt.value}`);
+    }
 
     /*const subcommand = ctx.options.getSubcommand();
     if (subcommand) {
@@ -84,10 +98,12 @@ export default class CmdLogsExtension extends ZeoliteExtension {
 
     await self.client.executeWebhook(config.webhookID!, config.webhookToken!, {
       embeds: [embed],
-      files: [{
-        name: 'error.txt',
-        contents: Buffer.from(error.stack, 'utf-8'),
-      }],
+      files: [
+        {
+          name: 'error.txt',
+          contents: Buffer.from(error.stack, 'utf-8'),
+        },
+      ],
     });
   }
 

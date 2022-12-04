@@ -32,6 +32,6 @@ export default class QrCommand extends ZeoliteCommand {
       .setImage('attachment://qr.png')
       .setFooter({ text: ctx.t('generationTime', finishTime) });
 
-    await ctx.editReply({ embeds: [embed], files: [{ name: "qr.png", contents: Buffer.from(qr, "base64") }] });
+    await ctx.editReply({ embeds: [embed], files: [{ name: 'qr.png', contents: Buffer.from(qr, 'base64') }] });
   }
 }

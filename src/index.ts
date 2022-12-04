@@ -1,9 +1,9 @@
-// на этой ноте передаю привет котфиксу
+// вы не понимаете, это другое
 import { ZeoliteClient } from 'zeolitecore';
 import { ActivityTypes } from 'oceanic.js';
 import path from 'path';
 import ConfigLoader, { Config } from './utils/ConfigLoader';
-import log4js from "log4js";
+import log4js from 'log4js';
 
 declare global {
   var config: Config;
@@ -11,19 +11,19 @@ declare global {
 }
 
 log4js.configure({
-  appenders: { out: { type: "stdout" } },
-  categories: { default: { appenders: ["out"], level: "info" } },
+  appenders: { out: { type: 'stdout' } },
+  categories: { default: { appenders: ['out'], level: 'info' } },
 });
 
 global.config = ConfigLoader.loadConfig(path.join(__dirname, '..', 'config.yml'));
-log4js.getLogger().level = config.debug ? "debug" : "info";
+log4js.getLogger().level = config.debug ? 'debug' : 'info';
 
 const client = new ZeoliteClient({
   auth: `Bot ${config.token}`,
   gateway: {
-    intents: [ 'GUILDS', 'GUILD_MEMBERS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_INVITES', 'GUILD_BANS' ],
+    intents: ['GUILDS', 'GUILD_MEMBERS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_INVITES', 'GUILD_BANS'],
     presence: {
-      status: "online",
+      status: 'online',
       activities: [{ type: ActivityTypes.GAME, name: 'use /help' }],
     },
     getAllUsers: true,
@@ -31,14 +31,11 @@ const client = new ZeoliteClient({
   owners: config.owners,
 });
 
-client.commandsManager.setCommandsDir(path.join(__dirname, "commands"))
-  .loadAllCommands();
+client.commandsManager.setCommandsDir(path.join(__dirname, 'commands')).loadAllCommands();
 
-client.extensionsManager.setExtensionsDir(path.join(__dirname, "extensions"))
-  .loadAllExtensions();
+client.extensionsManager.setExtensionsDir(path.join(__dirname, 'extensions')).loadAllExtensions();
 
-client.localizationManager.setLangsDir(path.join(__dirname, "languages"))
-  .loadLanguages();
+client.localizationManager.setLangsDir(path.join(__dirname, 'languages')).loadLanguages();
 
 global.commandsUsed = 0;
 client.on('commandSuccess', () => void commandsUsed++);

@@ -37,7 +37,9 @@ export default class ExecCommand extends ZeoliteCommand {
         ctx.editReply({ content: `\`\`\`${err}\`\`\`` });
         return;
       }
-      ctx.editReply({ content: `Stdout:\n\`\`\`${stdout || 'Empty'}\`\`\`\n\nStderr:\n\`\`\`${stderr || 'Empty'}\`\`\`` });
+      ctx.editReply({
+        content: `Stdout:\n\`\`\`${stdout || 'Empty'}\`\`\`\n\nStderr:\n\`\`\`${stderr || 'Empty'}\`\`\``,
+      });
     });
   }
 }

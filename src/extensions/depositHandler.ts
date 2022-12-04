@@ -24,7 +24,7 @@ export default class DepositHandlerExtension extends ZeoliteExtension {
 
   public onLoad() {
     this.logger = getLogger('DepositHandler');
-  
+
     self = this;
     this.timer = setInterval(this.handleDeposits, 4 * 3600 * 1000);
   }

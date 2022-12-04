@@ -27,7 +27,10 @@ export default class RoleCommand extends ZeoliteCommand {
       .setTitle(role.name)
       .setColor(role.color || ctx.get('embColor'))
       .addField('ID', role.id)
-      .addField(ctx.t('roleCreatedAt'), `<t:${Math.floor(role.createdAt.getTime() / 1000)}> ${ctx.t('daysAgo', createdDays)}`)
+      .addField(
+        ctx.t('roleCreatedAt'),
+        `<t:${Math.floor(role.createdAt.getTime() / 1000)}> ${ctx.t('daysAgo', createdDays)}`,
+      )
       .addField(ctx.t('roleHoisted'), role.hoist ? ctx.t('payYes') : ctx.t('payNo'))
       .addField(ctx.t('roleManaged'), role.managed ? ctx.t('payYes') : ctx.t('payNo'))
       .addField(ctx.t('roleColor'), role.color ? `#${Utils.intToHex(role.color)}` : ctx.t('roleColorDefault'))
