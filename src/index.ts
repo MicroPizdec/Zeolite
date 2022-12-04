@@ -29,7 +29,6 @@ const client = new ZeoliteClient({
     getAllUsers: true,
   },
   owners: config.owners,
-  defaultImageSize: 2048,
 });
 
 client.commandsManager.setCommandsDir(path.join(__dirname, "commands"))

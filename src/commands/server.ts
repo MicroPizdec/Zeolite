@@ -1,5 +1,5 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
-import { Constants } from 'eris';
+import { Constants } from 'oceanic.js';
 
 enum BoostLevels {
   TIER_1 = 1,
