@@ -15,8 +15,11 @@ log4js.configure({
   categories: { default: { appenders: ['out'], level: 'info' } },
 });
 
+const logger = log4js.getLogger("Main");
+logger.info("Starting Zeolite...");
+
 global.config = ConfigLoader.loadConfig(path.join(__dirname, '..', 'config.yml'));
-log4js.getLogger().level = config.debug ? 'debug' : 'info';
+log4js.getLogger().level = config.debug ? 'trace' : 'info';
 
 const client = new ZeoliteClient({
   auth: `Bot ${config.token}`,
@@ -32,15 +35,17 @@ const client = new ZeoliteClient({
 });
 
 client.commandsManager.setCommandsDir(path.join(__dirname, 'commands')).loadAllCommands();
-
 client.extensionsManager.setExtensionsDir(path.join(__dirname, 'extensions')).loadAllExtensions();
-
 client.localizationManager.setLangsDir(path.join(__dirname, 'languages')).loadLanguages();
 
 global.commandsUsed = 0;
 client.on('commandSuccess', () => void commandsUsed++);
 
-process.on('uncaughtException', (error) => console.error(error));
-process.on('unhandledRejection', (error) => console.error(error));
+process.on('uncaughtException', (error) => logger.warn(`Uncaught exception:\n${error.stack}`));
+process.on('unhandledRejection', (error: Error) => logger.warn(`Unhandled rejection:\n${error.stack}`));
 
-client.connect();
+client.connect().catch(err => {
+  console.error(err);
+  logger.fatal(`Failed to login. Is token correct?`);
+  process.exit(1);
+});

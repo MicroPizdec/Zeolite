@@ -62,7 +62,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
 
     if (ctx.guild) embed.addField('Guild', `${ctx.guild.name} (ID: ${ctx.guild.id})`);
 
-    await self.client.executeWebhook(config.webhookID, config.webhookToken, {
+    await self.client.rest.webhooks.execute(config.webhookID, config.webhookToken, {
       embeds: [embed],
     });
   }
@@ -79,7 +79,8 @@ export default class CmdLogsExtension extends ZeoliteExtension {
         iconURL: self.client.user.avatarURL(),
       });
 
-    if (ctx.interaction.acknowledged) {
+    self.logger.trace(`ctx.interaction.acknowledged = ${ctx.interaction.acknowledged}`);
+    if (ctx.acknowledged) {
       await ctx.editReply({ embeds: [errEmbed] });
     } else {
       await ctx.reply({ embeds: [errEmbed], flags: 64 });
@@ -96,7 +97,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .addField('Channel', `${(ctx.channel as GuildChannel)?.name} (ID: ${ctx.channel?.id})`)
       .addField('Guild', `${ctx.guild?.name} (ID: ${ctx.guild?.id})`);
 
-    await self.client.executeWebhook(config.webhookID!, config.webhookToken!, {
+    await self.client.rest.webhooks.execute(config.webhookID!, config.webhookToken!, {
       embeds: [embed],
       files: [
         {
@@ -118,7 +119,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setColor(config.defaultColor || 0x9f00ff)
       .setThumbnail(guild.iconURL()!);
 
-    await self.client.executeWebhook(config.webhookID!, config.webhookToken!, {
+    await self.client.rest.webhooks.execute(config.webhookID!, config.webhookToken!, {
       embeds: [embed],
     });
   }
@@ -134,7 +135,7 @@ export default class CmdLogsExtension extends ZeoliteExtension {
       .setColor(config.defaultColor || 0x9f00ff)
       .setThumbnail(guild.iconURL()!);
 
-    await self.client.executeWebhook(config.webhookID!, config.webhookToken!, {
+    await self.client.rest.webhooks.execute(config.webhookID!, config.webhookToken!, {
       embeds: [embed],
     });
   }
