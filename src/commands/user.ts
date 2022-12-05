@@ -75,7 +75,6 @@ export default class UserCommand extends ZeoliteCommand {
         (flag as keyof typeof Constants.UserFlags) != 'PSEUDO_TEAM_USER'
       ) {
         badges.push(this.badgeEmojis[flag]);
-        console.log(`pushed badge ${flag}`);
       }
     }
 
