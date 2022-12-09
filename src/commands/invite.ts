@@ -1,5 +1,6 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import { Invite, InviteChannel, Constants } from 'oceanic.js';
+import { getLogger } from 'log4js';
 
 export default class InviteCommand extends ZeoliteCommand {
   private inviteRegex: RegExp = /discord(?:(?:app)?\.com\/invite|\.gg(?:\/invite)?)\/([\w-]{2,255})/gi;
@@ -23,11 +24,12 @@ export default class InviteCommand extends ZeoliteCommand {
   public async run(ctx: ZeoliteContext) {
     const url = ctx.options.getString('invite')!;
 
-    let invite: Invite<'withMetadata', InviteChannel> | undefined;
+    let invite: Invite<'withCounts', InviteChannel> | undefined;
     try {
       const code = this.getInviteCodeFromURL(url);
-      invite = await this.client.rest.channels.getInvite(code, {});
-    } catch {
+      invite = await this.client.rest.channels.getInvite(code, { withCounts: true });
+    } catch (e: any) {
+      getLogger("InviteCommand").error(`Failed to get invite:\n${e.stack}`);
       await ctx.reply({ content: ctx.t('invalidInvite'), flags: 64 });
       return;
     }

@@ -5,9 +5,12 @@ export default class Languages extends Model {
   @Column(DataType.STRING)
   userID: string;
 
-  @Column({
-    type: DataType.STRING,
-    defaultValue: 'en',
-  })
+  @Column(DataType.STRING)
   language: string;
+
+  @Column({
+    type: DataType.BOOLEAN,
+    defaultValue: false,
+  })
+  langChanged: boolean;
 }

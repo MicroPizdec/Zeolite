@@ -2,6 +2,7 @@ import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecor
 import os from 'os';
 import fs from 'fs/promises';
 import { VERSION as oceanicVersion } from 'oceanic.js';
+import { version } from '../version';
 
 export default class StatsCommand extends ZeoliteCommand {
   private buildDate: number;
@@ -37,7 +38,7 @@ export default class StatsCommand extends ZeoliteCommand {
       .addField(ctx.t('statsBuildDate'), `<t:${Math.floor(this.buildDate / 1000)}>`)
       .addField(ctx.t('statsPackages'), `Node.js: ${process.version}\nOceanic.js: ${oceanicVersion}`)
       .setFooter({
-        text: `Zeolite v${process.env.npm_package_version} © Fishyrene`,
+        text: `Zeolite v${version} © Fishyrene`,
         iconURL: this.client.user.avatarURL(),
       });
 

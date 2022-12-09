@@ -1,3 +1,5 @@
+import { Embed, type ZeoliteContext } from "zeolitecore";
+
 export default class Utils {
   static parseTime(num: number): string {
     // yeah i know that this is a shitcode, but at least it works

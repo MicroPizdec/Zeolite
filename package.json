@@ -1,11 +1,12 @@
 {
   "name": "zeolite",
-  "version": "4.1.1",
+  "version": "4.2",
   "description": "Discord bot",
   "main": "./dist/index.js",
   "scripts": {
     "start": "node --enable-source-maps .",
     "start:dev": "npx ts-node src/index",
+    "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
     "build": "tsc",
     "postbuild": "node scripts/generateBuildDate.js",
     "format": "prettier --write \"src/**/*.ts\""

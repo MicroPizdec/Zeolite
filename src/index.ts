@@ -4,6 +4,7 @@ import { ActivityTypes } from 'oceanic.js';
 import path from 'path';
 import ConfigLoader, { Config } from './utils/ConfigLoader';
 import log4js from 'log4js';
+import { version } from "./version";
 
 declare global {
   var config: Config;
@@ -16,7 +17,7 @@ log4js.configure({
 });
 
 const logger = log4js.getLogger("Main");
-logger.info("Starting Zeolite...");
+logger.info(`Starting Zeolite v${version}...`);
 
 global.config = ConfigLoader.loadConfig(path.join(__dirname, '..', 'config.yml'));
 log4js.getLogger().level = config.debug ? 'trace' : 'info';

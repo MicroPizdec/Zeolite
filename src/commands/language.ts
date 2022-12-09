@@ -26,6 +26,11 @@ export default class LanguageCommand extends ZeoliteCommand {
             },
           ],
         },
+        {
+          type: 1,
+          name: 'reset',
+          description: 'Resets your language to default',
+        },
       ],
     });
   }
@@ -35,30 +40,43 @@ export default class LanguageCommand extends ZeoliteCommand {
 
     const dbLang = await Languages.findOne({ where: { userID: ctx.user?.id } });
 
-    if (subcommand[0] == 'get') {
-      const availableLangs = Object.keys(this.client.localizationManager.languageStrings);
+    switch (subcommand[0]) {
+      case "get": {
+        const availableLangs = Object.keys(this.client.localizationManager.languageStrings);
 
-      const embed = new Embed()
-        .setTitle(ctx.t('langAvailableLanguages'))
-        .setDescription(availableLangs.map((l) => `\`${l}\``).join(', '))
-        .setAuthor({
-          name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
-          iconURL: ctx.user?.avatarURL(),
-        })
-        .addField(ctx.t('langYourLanguage'), `\`${dbLang?.language}\``)
-        .setColor(ctx.get('embColor'));
+        const embed = new Embed()
+          .setTitle(ctx.t('langAvailableLanguages'))
+          .setDescription(availableLangs.map((l) => `\`${l}\``).join(', '))
+          .setAuthor({
+            name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
+            iconURL: ctx.user?.avatarURL(),
+          })
+          .addField(ctx.t('langYourLanguage'), `\`${dbLang?.language || ctx.t('langDefault')}\``)
+          .setColor(ctx.get('embColor'));
 
-      await ctx.reply({ embeds: [embed], flags: 64 });
-    } else {
-      const language = ctx.options.getString('lang')!;
-
-      if (!Object.keys(this.client.localizationManager.languageStrings).includes(language)) {
-        await ctx.reply({ content: ctx.t('langInvalid'), flags: 64 });
+        await ctx.reply({ embeds: [embed], flags: 64 });
+        break;
       }
 
-      await dbLang?.update({ language });
-      this.client.localizationManager.userLanguages[ctx.user!.id] = language;
-      await ctx.reply({ content: ctx.t('langSuccess', language), flags: 64 });
+      case "set": {
+        const language = ctx.options.getString('lang')!;
+
+        if (!Object.keys(this.client.localizationManager.languageStrings).includes(language)) {
+          return ctx.reply({ content: ctx.t('langInvalid'), flags: 64 });
+        }
+
+        await dbLang?.update({ language, langChanged: true });
+        this.client.localizationManager.userLanguages[ctx.user!.id] = language;
+        await ctx.reply({ content: ctx.t('langSuccess', language), flags: 64 });
+        break;
+      }
+
+      case "reset": {
+        await dbLang?.update({ language: null, langChanged: false });
+        this.client.localizationManager.userLanguages[ctx.user.id] = ctx.locale;
+        await ctx.reply({ content: ctx.t('langSuccess', ctx.t('langDefault')), flags: 64 });
+        break;
+      }
     }
   }
 }
