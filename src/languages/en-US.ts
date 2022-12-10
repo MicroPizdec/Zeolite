@@ -1,5 +1,5 @@
 export default {
-  langName: 'en',
+  langName: 'en-US',
   notBotOwner: "> :x: You aren't the bot owner!",
   guildOnlyCommand: "> :x: You can't use this command in PM!",
   noPermissions: "> :x: You don't have permissions to use this command. Required permissions: `%s`",
@@ -64,8 +64,10 @@ export default {
   HIGH: 'High',
   VERY_HIGH: 'Very high',
 
-  demotivatorInvalidURL: '> :x: Invalid image URL provided.',
+  demotivatorInvalidURL: '> :x: Invalid image provided.',
   demotivatorCreator: 'Created by %s',
+  demotivatorInvalidAttachment: '> :x: You should provide a correct image.',
+  demotivatorFailedToLoadImage: '> :x: Failed to load image.',
 
   embedInvalidJSON: '> :x: Invalid JSON string provided.',
 

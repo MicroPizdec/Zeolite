@@ -10,3 +10,4 @@ lavalinkNodes:
   - host: localhost
     port: 2333
     password: "youshallnotpass"
+githubApiKey: insert your github api key here

@@ -64,8 +64,10 @@ export default {
   HIGH: 'Высокий',
   VERY_HIGH: 'Очень высокий',
 
-  demotivatorInvalidURL: '> :x: Предоставлена неверная ссылка на изображение.',
+  demotivatorInvalidURL: '> :x: Invalid image provided.',
   demotivatorCreator: 'Создано %s',
+  demotivatorInvalidAttachment: '> :x: Вы должны предоставить корректное изображение.',
+  demotivatorFailedToLoadImage: '> :x: Не удалось загрузить изображение.',
 
   embedInvalidJSON: '> :x: Предоставлена неверная JSON-строка.',
 

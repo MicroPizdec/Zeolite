@@ -14,12 +14,15 @@ export default class ServerCommand extends ZeoliteCommand {
       description: 'Shows server info',
       group: 'general',
       guildOnly: true,
+      descriptionLocalizations: {
+        ru: 'Показывает информацию о сервере',
+      },
     });
   }
 
   public async run(ctx: ZeoliteContext) {
     const createdDays = Math.floor((Date.now() - ctx.guild!.createdAt.getTime()) / (1000 * 86400));
-    const owner = await this.client.rest.users.get(ctx.guild?.ownerID!);
+    const owner = ctx.guild!.owner || await this.client.rest.users.get(ctx.guild!.ownerID);
 
     const textChannels = ctx.guild!.channels.filter((c) => c.type == 0).length;
     const voiceChannels = ctx.guild!.channels.filter((c) => c.type == 2).length;
@@ -31,7 +34,7 @@ export default class ServerCommand extends ZeoliteCommand {
       .setAuthor({ name: ctx.guild!.name })
       .setThumbnail(ctx.guild?.iconURL()!)
       .setColor(ctx.get('embColor'))
-      .addField(ctx.t('serverOwner'), `${owner.username}#${owner.discriminator}`)
+      .addField(ctx.t('serverOwner'), owner.tag)
       .addField(
         ctx.t('serverVerificationLevel'),
         ctx.t(Object.keys(Constants.VerificationLevels)[ctx.guild!.verificationLevel]),
@@ -51,11 +54,9 @@ export default class ServerCommand extends ZeoliteCommand {
         .addField(ctx.t('serverBoosts'), ctx.guild!.premiumSubscriptionCount!.toString(), true);
     }
 
-    // this will be released in future
-    /* if (ctx.guild!.features.length) {
-      const features = ctx.guild!.features.map(f => `\`${ctx.t(f)}\``).join(", ");
-      embed.addField(ctx.t("serverFeatures"), features);
-    } */
+    if (ctx.guild!.features.length) {
+      embed.addField(ctx.t('serverFeatures'), ctx.guild!.features.map(f => `\`${f}\``).join(", "))
+    }
 
     await ctx.reply({ embeds: [embed] });
   }
