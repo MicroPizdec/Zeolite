@@ -22,7 +22,7 @@ export default class ServerCommand extends ZeoliteCommand {
 
   public async run(ctx: ZeoliteContext) {
     const createdDays = Math.floor((Date.now() - ctx.guild!.createdAt.getTime()) / (1000 * 86400));
-    const owner = ctx.guild!.owner || await this.client.rest.users.get(ctx.guild!.ownerID);
+    const owner = ctx.guild!.owner || (await this.client.rest.users.get(ctx.guild!.ownerID));
 
     const textChannels = ctx.guild!.channels.filter((c) => c.type == 0).length;
     const voiceChannels = ctx.guild!.channels.filter((c) => c.type == 2).length;
@@ -55,7 +55,7 @@ export default class ServerCommand extends ZeoliteCommand {
     }
 
     if (ctx.guild!.features.length) {
-      embed.addField(ctx.t('serverFeatures'), ctx.guild!.features.map(f => `\`${f}\``).join(", "))
+      embed.addField(ctx.t('serverFeatures'), ctx.guild!.features.map((f) => `\`${f}\``).join(', '));
     }
 
     await ctx.reply({ embeds: [embed] });

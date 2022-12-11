@@ -57,6 +57,7 @@ export default {
   serverFooter: 'ID: %s\nCreated %d days ago',
   serverBoostLevel: 'Boost level',
   serverBoosts: 'Boosts',
+  serverFeatures: 'Features',
 
   NONE: 'None',
   LOW: 'Low',
@@ -88,6 +89,7 @@ export default {
   langYourLanguage: 'Your language',
   langInvalid: '> :x: Invalid language provided.',
   langSuccess: '> :white_check_mark: Your language has been changed to `%s`',
+  langDefault: 'default',
 
   embedcolorYourColor: 'Your embed color',
   embedcolorRandom: 'random',

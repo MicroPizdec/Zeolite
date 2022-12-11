@@ -17,7 +17,7 @@ export default class DatabaseExtension extends ZeoliteExtension {
     this.logger = getLogger('Database');
 
     this.sequelize = new Sequelize(config.dbUri || 'sqlite:bot.db', {
-      logging: msg => this.logger.debug(msg),
+      logging: (msg) => this.logger.trace(msg),
     });
     this.sequelize.addModels([path.join(__dirname, '..', 'dbModels')]);
 
@@ -27,7 +27,10 @@ export default class DatabaseExtension extends ZeoliteExtension {
       .catch((err) => this.logger.error(`Failed to connect to DB:\n${err.stack}`));
 
     this.client.addMiddleware(async (ctx, next) => {
-      if (!this.client.localizationManager.userLanguages[ctx.user.id] || this.userLocalesCache[ctx.user.id] != ctx.interaction.locale) {
+      if (
+        !this.client.localizationManager.userLanguages[ctx.user.id] ||
+        this.userLocalesCache[ctx.user.id] != ctx.interaction.locale
+      ) {
         this.userLocalesCache[ctx.user.id] = ctx.interaction.locale;
         const lang = await this.sequelize.models.Languages.findOrCreate({
           where: { userID: ctx.user.id },

@@ -29,7 +29,7 @@ export default class InviteCommand extends ZeoliteCommand {
       const code = this.getInviteCodeFromURL(url);
       invite = await this.client.rest.channels.getInvite(code, { withCounts: true });
     } catch (e: any) {
-      getLogger("InviteCommand").error(`Failed to get invite:\n${e.stack}`);
+      getLogger('InviteCommand').error(`Failed to get invite:\n${e.stack}`);
       await ctx.reply({ content: ctx.t('invalidInvite'), flags: 64 });
       return;
     }

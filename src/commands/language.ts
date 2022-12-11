@@ -23,6 +23,16 @@ export default class LanguageCommand extends ZeoliteCommand {
               name: 'lang',
               description: 'Language',
               required: true,
+              choices: [
+                {
+                  name: 'English (US)',
+                  value: 'en-US',
+                },
+                {
+                  name: 'Russian',
+                  value: 'ru',
+                },
+              ],
             },
           ],
         },
@@ -41,7 +51,7 @@ export default class LanguageCommand extends ZeoliteCommand {
     const dbLang = await Languages.findOne({ where: { userID: ctx.user?.id } });
 
     switch (subcommand[0]) {
-      case "get": {
+      case 'get': {
         const availableLangs = Object.keys(this.client.localizationManager.languageStrings);
 
         const embed = new Embed()
@@ -58,7 +68,7 @@ export default class LanguageCommand extends ZeoliteCommand {
         break;
       }
 
-      case "set": {
+      case 'set': {
         const language = ctx.options.getString('lang')!;
 
         if (!Object.keys(this.client.localizationManager.languageStrings).includes(language)) {
@@ -71,7 +81,7 @@ export default class LanguageCommand extends ZeoliteCommand {
         break;
       }
 
-      case "reset": {
+      case 'reset': {
         await dbLang?.update({ language: null, langChanged: false });
         this.client.localizationManager.userLanguages[ctx.user.id] = ctx.locale;
         await ctx.reply({ content: ctx.t('langSuccess', ctx.t('langDefault')), flags: 64 });

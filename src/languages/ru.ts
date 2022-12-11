@@ -57,6 +57,7 @@ export default {
   serverFooter: 'ID: %s\nСоздан %d дней назад',
   serverBoostLevel: 'Уровень бустов',
   serverBoosts: 'Бусты',
+  serverFeatures: 'Функции',
 
   NONE: 'Отсутствует',
   LOW: 'Низкий',
@@ -88,6 +89,7 @@ export default {
   langYourLanguage: 'Ваш язык',
   langInvalid: '> :x: Указан неверный язык.',
   langSuccess: '> :white_check_mark: Ваш язык изменён на `%s`',
+  langDefault: 'по умолчанию',
 
   embedcolorYourColor: 'Ваш цвет эмбедов',
   embedcolorRandom: 'случайный',
