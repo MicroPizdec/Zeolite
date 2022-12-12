@@ -273,4 +273,9 @@ export default {
   emojiNotFound: '> :x: Emoji not found.',
   emojiAnimated: 'Animated',
   emojiLink: 'Emoji URL',
+
+  coinflipTitle: 'The coin is landed on:',
+  coinflipSideways: 'Sideways',
+  coinflipHeads: 'Heads',
+  coinflipTails: 'Tails',
 };

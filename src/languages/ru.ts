@@ -273,4 +273,9 @@ export default {
   emojiNotFound: '> :x: Эмодзи не найдено.',
   emojiAnimated: 'Анимировано',
   emojiLink: 'Ссылка на эмодзи',
+
+  coinflipTitle: 'Монетка приземлилась:',
+  coinflipSideways: 'Боком',
+  coinflipHeads: 'Орлом',
+  coinflipTails: 'Решкой',
 };

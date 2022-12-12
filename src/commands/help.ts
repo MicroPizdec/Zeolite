@@ -16,7 +16,7 @@ export default class HelpCommand extends ZeoliteCommand {
       .addField(ctx.t('generalGroup'), this.mapCommandsByGroup('general'))
       .addField(ctx.t('economyGroup'), this.mapCommandsByGroup('economy'))
       .addField(ctx.t('musicGroup'), this.mapCommandsByGroup('music'))
-      .addField(ctx.t("funGroup"), this.mapCommandsByGroup('fun'))
+      .addField(ctx.t('funGroup'), this.mapCommandsByGroup('fun'))
       .addField(ctx.t('otherGroup'), this.mapCommandsByGroup('other'))
       .addField(ctx.t('moderationGroup'), this.mapCommandsByGroup('moderation'))
       .addField(ctx.t('settingsGroup'), this.mapCommandsByGroup('settings'))
