@@ -92,7 +92,7 @@ export default class ReloadCommand extends ZeoliteCommand {
         break;
       }
       case 'languages': {
-        this.client.localizationManager.reloadLanguages();
+        await this.client.localizationManager.reloadLanguages();
 
         await ctx.reply({
           content: ctx.t('reloadLanguagesSuccess'),

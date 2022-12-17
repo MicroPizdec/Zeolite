@@ -7,7 +7,7 @@
     "start": "node --enable-source-maps .",
     "start:dev": "npx ts-node src/index",
     "prebuild": "node -p \"'export const version = ' + JSON.stringify(require('./package.json').version) + ';'\" > src/version.ts",
-    "build": "tsc",
+    "build": "tsc --build --verbose",
     "postbuild": "node scripts/generateBuildDate.js",
     "format": "prettier --write \"src/**/*.ts\""
   },

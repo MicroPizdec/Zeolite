@@ -4,12 +4,10 @@ import { getLogger } from 'log4js';
 
 export default class ConfigLoader {
   public static loadConfig(cfgPath: string): Config {
-    const logger = getLogger('ConfigLoader');
     try {
-      logger.info('Loading config...');
       return load(fs.readFileSync(cfgPath, { encoding: 'utf-8' })) as Config;
     } catch (err) {
-      logger.error('Config file invalid or does not exist. Exiting...');
+      console.error('Config file not found or invalid. Exiting.');
       console.log(err);
       process.exit(1);
     }
