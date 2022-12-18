@@ -35,7 +35,7 @@ export default class MusicExtension extends ZeoliteExtension {
       await next();
     });
 
-    this.client.on('rawWS', (d: any) => self.manager.updateVoiceState(d));
+    this.client.on('packet', (d: any) => self.manager.updateVoiceState(d));
 
     this.manager.on('nodeConnect', (node) => logger.info(`Connected to node ${node.options.identifier}`));
     this.manager.on('nodeError', (node, error) =>
