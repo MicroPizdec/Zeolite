@@ -1,4 +1,3 @@
-// вы не понимаете, это другое
 import { ZeoliteClient } from 'zeolitecore';
 import { ActivityTypes } from 'oceanic.js';
 import path from 'path';
@@ -32,21 +31,16 @@ const client = new ZeoliteClient({
   owners: config.owners,
 });
 
-// костыли, но зато асинхронно)))
 (async () => {
-  try {
-    await client.commandsManager.setCommandsDir(path.join(__dirname, 'commands')).loadAllCommands();
-    await client.extensionsManager.setExtensionsDir(path.join(__dirname, 'extensions')).loadAllExtensions();
-    await client.localizationManager.setLangsDir(path.join(__dirname, 'languages')).loadLanguages();
+  await client.commandsManager.setCommandsDir(path.join(__dirname, 'commands')).loadAllCommands();
+  await client.extensionsManager.setExtensionsDir(path.join(__dirname, 'extensions')).loadAllExtensions();
+  await client.localizationManager.setLangsDir(path.join(__dirname, 'languages')).loadLanguages();
 
-    await client.connect().catch((err) => {
-      console.error(err);
-      logger.fatal(`Failed to login. Is token correct?`);
-      process.exit(1);
-    });
-  } catch (e: any) {
+  await client.connect().catch((err) => {
+    console.error(err);
+    logger.fatal(`Failed to login. Is token correct?`);
     process.exit(1);
-  }
+  });
 })();
 
 global.commandsUsed = 0;
