@@ -65,9 +65,7 @@ export default class PlayCommand extends ZeoliteCommand {
     if (!player.get('lang'))
       player.set(
         'lang',
-        this.client.localizationManager.languageStrings[
-          this.client.localizationManager.userLanguages[ctx.user.id] as string
-        ],
+        this.client.localizationManager.getLanguage(this.client.localizationManager.userLanguages[ctx.user.id]!)
       );
 
     if (!player.playing && !player.paused && !player.queue.size) {
