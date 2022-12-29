@@ -1,4 +1,4 @@
-import { ZeoliteExtension, LoggerLevel, Embed, ZeoliteContext } from 'zeolitecore';
+import { ZeoliteExtension, Embed, ZeoliteContext } from 'zeolitecore';
 import { Guild, GuildChannel, InteractionOptionsSubCommand, InteractionOptionsWithValue } from 'oceanic.js';
 import { getLogger, Logger } from 'log4js';
 

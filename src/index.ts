@@ -4,6 +4,7 @@ import path from 'path';
 import ConfigLoader, { Config } from './utils/ConfigLoader';
 import log4js from 'log4js';
 import { version } from './version';
+import LanguageProvider from './LanguageProvider';
 
 declare global {
   var config: Config;
@@ -34,7 +35,9 @@ const client = new ZeoliteClient({
 (async () => {
   await client.commandsManager.setCommandsDir(path.join(__dirname, 'commands')).loadAllCommands();
   await client.extensionsManager.setExtensionsDir(path.join(__dirname, 'extensions')).loadAllExtensions();
-  await client.localizationManager.setLangsDir(path.join(__dirname, 'languages')).loadLanguages();
+  await client.localizationManager.setLangsDir(path.join(__dirname, 'languages'))
+    .setLanguageProvider(new LanguageProvider())
+    .loadLanguages();
 
   await client.connect().catch((err) => {
     console.error(err);

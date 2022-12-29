@@ -75,14 +75,14 @@ export default class LanguageCommand extends ZeoliteCommand {
           return ctx.reply({ content: ctx.t('langInvalid'), flags: 64 });
         }
 
-        await dbLang?.update({ language, langChanged: true });
+        await this.client.localizationManager.langProvider?.updateUserLanguage(ctx.user.id, language);
         this.client.localizationManager.userLanguages[ctx.user!.id] = language;
         await ctx.reply({ content: ctx.t('langSuccess', language), flags: 64 });
         break;
       }
 
       case 'reset': {
-        await dbLang?.update({ language: null, langChanged: false });
+        await this.client.localizationManager.langProvider?.deleteUserLanguage(ctx.user.id);
         this.client.localizationManager.userLanguages[ctx.user.id] = ctx.locale;
         await ctx.reply({ content: ctx.t('langSuccess', ctx.t('langDefault')), flags: 64 });
         break;

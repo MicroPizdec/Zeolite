@@ -8,7 +8,7 @@ export default class MiddlewaresExtension extends ZeoliteExtension {
   private colorsCache: Record<string, string> = {};
 
   public async onLoad(): Promise<void> {
-    this.client.addMiddleware(async (ctx, next) => {
+    /*this.client.addMiddleware(async (ctx, next) => {
       if (
         !this.client.localizationManager.userLanguages[ctx.user.id] ||
         this.userLocalesCache[ctx.user.id] != ctx.interaction.locale
@@ -25,7 +25,7 @@ export default class MiddlewaresExtension extends ZeoliteExtension {
       }
 
       await next();
-    });
+    });*/
 
     this.client.addMiddleware(async (ctx, next) => {
       const color = await EmbedColors.findOne({ where: { userID: ctx.user.id } });
