@@ -22,7 +22,7 @@ export default class UserCommand extends ZeoliteCommand {
     STAFF: '<:discordEmployee:822406071497916446>',
     PARTNER: '<:partneredServerOwner:822406071531864075>',
     HYPESQUAD: '<:hypesquadEvents:822406071750492200>',
-    BUGHUNTER_LEVEL_1: '<:bugHunterLvl1:822406071024222209>',
+    BUG_HUNTER_LEVEL_1: '<:bugHunterLvl1:822406071024222209>',
     HYPESQUAD_BRAVERY: '<:hypesquadBravery:822406071603560508>',
     HYPESQUAD_BRILLIANCE: '<:hypesquadBrilliance:822406071468949504>',
     HYPESQUAD_BALANCE: '<:hypesquadBalance:822406071355703297>',
@@ -55,9 +55,9 @@ export default class UserCommand extends ZeoliteCommand {
         .addField(ctx.t('userRoles'), member.roles.map((r) => `<@&${r}>`).join(', ') || ctx.t('userBadgesNone'));
     }
 
-    /*if (member?.voice.channelId) {
-      embed.addField(ctx.t("userVoiceChannel"), `<#${member?.voice.channelId}>`);
-    }*/
+    if (member?.voiceState?.channelID) {
+      embed.addField(ctx.t("userVoiceChannel"), `<#${member?.voiceState.channelID}>`);
+    }
 
     await ctx.reply({ embeds: [embed] });
   }

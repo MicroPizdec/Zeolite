@@ -47,7 +47,7 @@ export default class DemotivatorCommand extends ZeoliteCommand {
     const white = ctx.options.getBoolean('white') || false;
 
     if (!attachment.contentType?.startsWith('image')) {
-      await ctx.reply({ content: ctx.t('demotivatorInvalidAttachment') });
+      await ctx.reply({ content: ctx.t('demotivatorInvalidAttachment'), flags: 64 });
       return;
     }
 
