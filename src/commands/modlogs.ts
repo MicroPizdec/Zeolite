@@ -79,7 +79,7 @@ export default class ModlogsCommand extends ZeoliteCommand {
         (this.client.extensionsManager.extensions.get('modlogs') as ModlogsExtension).channelsCache[ctx.guild?.id!] =
           channel.id;
         await ctx.reply({
-          content: ctx.t('modlogsSuccess', `<@#${channel.id}>`),
+          content: ctx.t('modlogsSuccess', `<#${channel.id}>`),
         });
         break;
       }

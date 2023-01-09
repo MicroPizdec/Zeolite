@@ -63,7 +63,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       }
     }
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
@@ -107,7 +107,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       }
     }
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
@@ -135,7 +135,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       embed.addField('Unbanned by', `${entry.user?.tag}`);
     }
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
@@ -157,7 +157,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .setFooter({ text: `Message ID: ${msg.id}` })
       .setTimestamp(new Date().toISOString());
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
@@ -183,7 +183,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .setFooter({ text: `Message ID: ${msg.id}` })
       .setTimestamp(new Date().toISOString());
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
@@ -236,7 +236,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
         .setTimestamp(new Date().toISOString());
     }
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
@@ -255,7 +255,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .setColor(0x57f287)
       .setTimestamp(new Date().toISOString());
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
@@ -276,7 +276,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .setColor(0xed4245)
       .setTimestamp(new Date().toISOString());
 
-    await this.client
+    await self.client
       .getChannel<TextChannel>(channel)
       ?.createMessage({ embeds: [embed] })
       .catch(() => {});
