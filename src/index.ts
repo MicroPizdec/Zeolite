@@ -13,8 +13,10 @@ declare global {
 
 global.config = ConfigLoader.loadConfig(path.join(__dirname, '..', 'config.yml'));
 log4js.configure({
-  appenders: { out: { type: 'stdout' } },
-  categories: { default: { appenders: ['out'], level: config.debug ? 'trace' : 'info' } },
+  appenders: {
+    out: { type: 'stdout', layout: { type: 'pattern', pattern: '%[[%p] %c -%] %m' } },
+  },
+  categories: { default: { appenders: ['out'], level: config.debug ? 'trace' : 'info', enableCallStack: true } },
 });
 const logger = log4js.getLogger('Main');
 logger.info(`Starting Zeolite v${version}...`);
