@@ -24,7 +24,7 @@ logger.info(`Starting Zeolite v${version}...`);
 const client = new ZeoliteClient({
   auth: `Bot ${config.token}`,
   gateway: {
-    intents: ['GUILDS', 'GUILD_MEMBERS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_INVITES', 'GUILD_BANS', 'MESSAGE_CONTENT' ],
+    intents: ['GUILDS', 'GUILD_MEMBERS', 'GUILD_MESSAGES', 'GUILD_VOICE_STATES', 'GUILD_INVITES', 'GUILD_BANS', /*'MESSAGE_CONTENT'*/ ],
     presence: {
       status: 'online',
       activities: [{ type: ActivityTypes.GAME, name: 'use /help' }],
