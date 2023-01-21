@@ -38,6 +38,6 @@
     "sequelize": "^6.11.0",
     "sequelize-typescript": "^2.1.1",
     "sqlite3": "^5.0.2",
-    "zeolitecore": "^1.0.0"
+    "zeolitecore": "^1.0.1-p1"
   }
 }
