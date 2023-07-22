@@ -31,7 +31,7 @@ export default class PurgeCommand extends ZeoliteCommand {
     }
 
     if (!channel.permissionsOf(ctx.member!).has('MANAGE_MESSAGES')) {
-      this.client.emit('noPermissions', ctx, ['manageMessages']);
+      this.client.emit('noPermissions', ctx, ['MANAGE_MESSAGES']);
       return;
     }
 

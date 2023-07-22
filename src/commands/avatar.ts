@@ -1,4 +1,5 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed, ActionRow } from 'zeolitecore';
+import Utils from '../utils/Utils';
 
 export default class AvatarCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -45,7 +46,7 @@ export default class AvatarCommand extends ZeoliteCommand {
 
     switch (subcommand[0]) {
       case 'user': {
-        const user = (await ctx.options.getUser('user')) || ctx.user;
+        const user = ctx.options.getUser('user') || ctx.user;
         const member = await ctx.guild?.members.get(user!.id);
         const forceUserAvatar = ctx.options.getBoolean('forceuseravatar') || false;
 
@@ -69,7 +70,7 @@ export default class AvatarCommand extends ZeoliteCommand {
 
         const embed = new Embed()
           .setAuthor({
-            name: ctx.t('avatarTitle', `${user?.username}#${user?.discriminator}`),
+            name: ctx.t('avatarTitle', Utils.getUserTag(user)),
           })
           .setColor(ctx.get('embColor'))
           .setImage(url!);

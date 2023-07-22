@@ -1,4 +1,5 @@
 import { Embed, type ZeoliteContext } from 'zeolitecore';
+import { User } from 'oceanic.js';
 
 export default class Utils {
   static parseTime(num: number): string {
@@ -19,5 +20,9 @@ export default class Utils {
 
   static randInt(min: number, max: number): number {
     return Math.floor(Math.random() * (max - min + 1)) + min;
+  }
+
+  static getUserTag(user: User): string {
+    return `${user.username}${user.discriminator != "0" ? "#" + user.discriminator : ""}`;
   }
 }

@@ -10,6 +10,7 @@ import {
   Uncached,
   JSONMessage,
   JSONMember,
+  PossiblyUncachedInvite,
 } from 'oceanic.js';
 import { ZeoliteExtension, Embed } from 'zeolitecore';
 import Modlogs from '../dbModels/Modlogs';
@@ -69,9 +70,10 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  async onGuildMemberRemove(member: Member | User, guild: Guild) {
+  async onGuildMemberRemove(member: Member | User, guild: Guild | Uncached) {
     const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
+    if (!(guild instanceof Guild)) return;
 
     let entry: AuditLogEntry | undefined;
     if (guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) {
@@ -113,9 +115,10 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  async onGuildBanRemove(guild: Guild, user: User) {
+  async onGuildBanRemove(guild: Guild | Uncached, user: User) {
     const channel = await self.getModlogsChannel(guild.id);
     if (!channel) return;
+    if (!(guild instanceof Guild)) return;
 
     let entry: AuditLogEntry | undefined;
     if (guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) {
@@ -141,10 +144,11 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  async onMessageDelete(msg: Message) {
+  async onMessageDelete(msg: PossiblyUncachedMessage) {
     if (!msg.guildID) return;
     const channel = await self.getModlogsChannel(msg.guildID);
     if (!channel) return;
+    if (!(msg instanceof Message)) return;
 
     if (!msg.author || !msg.content || msg.author.bot) return;
 
@@ -163,10 +167,11 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  async onMessageUpdate(msg: Message, oldMsg: JSONMessage) {
+  async onMessageUpdate(msg: Message, oldMsg: JSONMessage | null) {
     if (!oldMsg || !msg.guildID) return;
     const channel = await self.getModlogsChannel(msg.guildID);
     if (!channel) return;
+    if (!(msg instanceof Message)) return;
 
     if (!msg.author) return;
     if (msg.author.bot) return;
@@ -189,7 +194,7 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  async onGuildMemberUpdate(member: Member, oldMember: JSONMember) {
+  async onGuildMemberUpdate(member: Member, oldMember: JSONMember | null) {
     if (!oldMember) return;
 
     const channel = await self.getModlogsChannel(member.guild.id);
@@ -242,8 +247,9 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  async onInviteCreate(guild: Guild, invite: Invite) {
-    const channel = await self.getModlogsChannel(guild.id);
+  async onInviteCreate(invite: Invite) {
+    if (!invite.guild) return;
+    const channel = await self.getModlogsChannel(invite.guild.id);
     if (!channel) return;
 
     const embed = new Embed()
@@ -261,17 +267,20 @@ export default class ModlogsExtension extends ZeoliteExtension {
       .catch(() => {});
   }
 
-  async onInviteDelete(guild: Guild, invite: Invite) {
-    const channel = await self.getModlogsChannel(guild.id);
+  async onInviteDelete(invite: PossiblyUncachedInvite) {
+    if (!invite.guild) return;
+    if (!(invite instanceof Invite)) return;
+    const channel = await self.getModlogsChannel(invite.guild.id);
     if (!channel) return;
 
-    if (guild.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) return;
-    const entry = await guild.getAuditLog({ actionType: 42 }).then((a) => a.entries[0]);
+    const guild = this.client.guilds.get(invite.guildID!);
+    if (guild?.members.get(self.client.user.id)?.permissions.has('VIEW_AUDIT_LOG')) return;
+    const entry = await guild?.getAuditLog({ actionType: 42 }).then((a) => a.entries[0]);
 
     const embed = new Embed()
       .setAuthor({
-        name: `${entry.user?.tag} deleted an invite ${invite.code}`,
-        iconURL: entry.user?.avatarURL(),
+        name: `${entry?.user?.tag} deleted an invite ${invite.code}`,
+        iconURL: entry?.user?.avatarURL(),
       })
       .setColor(0xed4245)
       .setTimestamp(new Date().toISOString());

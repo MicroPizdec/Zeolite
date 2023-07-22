@@ -1,5 +1,6 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import { User, Constants } from 'oceanic.js';
+import Utils from '../utils/Utils';
 
 export default class UserCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -42,9 +43,10 @@ export default class UserCommand extends ZeoliteCommand {
     const registeredDays = Math.floor((Date.now() - user.createdAt.getTime()) / (1000 * 86400));
 
     const embed = new Embed()
-      .setAuthor({ name: `${user?.username}#${user?.discriminator}` })
+      .setAuthor({ name: user.globalName || user.username })
       .setThumbnail(member ? member.avatarURL() : user.avatarURL())
       .setColor(ctx.get('embColor'))
+      .addField(ctx.t('userUsername'), Utils.getUserTag(user))
       .addField(ctx.t('userBadges'), this.getUserBadges(user) || ctx.t('userBadgesNone'))
       .setFooter({ text: ctx.t('userFooter', user.id, registeredDays) })
       .setTimestamp(user.createdAt.toISOString());

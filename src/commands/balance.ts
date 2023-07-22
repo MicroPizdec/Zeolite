@@ -1,6 +1,7 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import ZetCoins from '../dbModels/ZetCoins';
 import ZetCoinsSettings from '../dbModels/ZetCoinsSettings';
+import Utils from '../utils/Utils';
 
 export default class BalanceCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -32,7 +33,7 @@ export default class BalanceCommand extends ZeoliteCommand {
 
     const embed = new Embed()
       .setAuthor({
-        name: `${user.username}#${user.discriminator}`,
+        name: Utils.getUserTag(user),
         iconURL: user.avatarURL(),
       })
       .setDescription(`${userBalance.balance} ${settings?.icon}`)

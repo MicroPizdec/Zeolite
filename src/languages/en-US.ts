@@ -35,6 +35,7 @@ export default {
   userJoinDate: 'Join date',
   userRoles: 'Roles',
   userVoiceChannel: 'Voice channel',
+  userUsername: 'Username',
 
   infoTitle: 'About bot',
   infoDesc:

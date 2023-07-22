@@ -43,7 +43,7 @@ export default class QueueCommand extends ZeoliteCommand {
         value: ctx.t(
           'durationRequestedBy',
           Utils.parseTime(Math.floor(track.duration! / 1000)),
-          `${(track.requester as User).username}#${(track.requester as User).discriminator}`,
+          Utils.getUserTag(track.requester as User),
         ),
       });
     }

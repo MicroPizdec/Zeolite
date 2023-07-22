@@ -1,5 +1,5 @@
 import { ZeoliteExtension, Embed, ZeoliteContext } from 'zeolitecore';
-import { Guild, GuildChannel, InteractionOptionsSubCommand, InteractionOptionsWithValue } from 'oceanic.js';
+import { Guild, GuildChannel, InteractionOptionsSubCommand, InteractionOptionsWithValue, Uncached } from 'oceanic.js';
 import { getLogger, Logger } from 'log4js';
 
 let self: CmdLogsExtension;
@@ -124,7 +124,8 @@ export default class CmdLogsExtension extends ZeoliteExtension {
     });
   }
 
-  private async onGuildDelete(guild: Guild) {
+  private async onGuildDelete(guild: Guild | Uncached) {
+    if (!("name" in guild)) return;
     self.logger.info(`Removed from server: ${guild.name} (ID: ${guild.id})`);
 
     if (!config.webhookID || !config.webhookToken) return;

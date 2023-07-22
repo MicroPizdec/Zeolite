@@ -1,5 +1,6 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import Languages from '../dbModels/Languages';
+import Utils from '../utils/Utils';
 
 export default class LanguageCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -58,7 +59,7 @@ export default class LanguageCommand extends ZeoliteCommand {
           .setTitle(ctx.t('langAvailableLanguages'))
           .setDescription(availableLangs.map((l) => `\`${l}\``).join(', '))
           .setAuthor({
-            name: `${ctx.user?.username}#${ctx.user?.discriminator}`,
+            name: Utils.getUserTag(ctx.user),
             iconURL: ctx.user?.avatarURL(),
           })
           .addField(ctx.t('langYourLanguage'), `\`${dbLang?.language || ctx.t('langDefault')}\``)

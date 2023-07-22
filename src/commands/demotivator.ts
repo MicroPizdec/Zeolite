@@ -1,6 +1,6 @@
 import { ApplicationCommandOptionTypes } from 'oceanic.js';
 import { Embed, ZeoliteClient, ZeoliteCommand, ZeoliteContext } from 'zeolitecore';
-import Canvas from 'canvas';
+//import Canvas from 'canvas';
 
 export default class DemotivatorCommand extends ZeoliteCommand {
   public constructor(client: ZeoliteClient) {
@@ -36,12 +36,16 @@ export default class DemotivatorCommand extends ZeoliteCommand {
       ],
     });
 
-    Canvas.registerFont('./assets/times.ttf', { family: 'Times New Roman' });
-    Canvas.registerFont('./assets/arial.ttf', { family: 'Arial' });
+    //Canvas.registerFont('./assets/times.ttf', { family: 'Times New Roman' });
+    //Canvas.registerFont('./assets/arial.ttf', { family: 'Arial' });
+  }
+
+  public preLoad(): boolean {
+    return false;
   }
 
   public async run(ctx: ZeoliteContext) {
-    const text = ctx.options.getString('text', true);
+    /*const text = ctx.options.getString('text', true);
     const bottomText = ctx.options.getString('bottomtext', true);
     const attachment = ctx.options.getAttachment('image', true);
     const white = ctx.options.getBoolean('white') || false;
@@ -90,6 +94,6 @@ export default class DemotivatorCommand extends ZeoliteCommand {
       .setColor(ctx.get('embColor'))
       .setFooter({ text: ctx.t('generationTime', finishTime) });
 
-    await ctx.editReply({ embeds: [embed], files: [{ name: 'demotivator.png', contents: buffer }] });
+    await ctx.editReply({ embeds: [embed], files: [{ name: 'demotivator.png', contents: buffer }] });*/
   }
 }

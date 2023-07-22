@@ -35,6 +35,7 @@ export default {
   userJoinDate: 'Дата входа на сервер',
   userRoles: 'Роли',
   userVoiceChannel: 'Голосовой канал',
+  userUsername: 'Имя пользователя',
 
   infoTitle: 'О боте',
   infoDesc:

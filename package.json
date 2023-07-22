@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "axios": "^0.24.0",
-    "canvas": "^2.10.2",
     "color-convert": "^2.0.1",
     "common-tags": "^1.8.2",
     "emoji-regex": "^10.0.0",
@@ -38,6 +37,6 @@
     "sequelize": "^6.11.0",
     "sequelize-typescript": "^2.1.1",
     "sqlite3": "^5.0.2",
-    "zeolitecore": "^1.0.1-p1"
+    "zeolitecore": "^1.0.4"
   }
 }

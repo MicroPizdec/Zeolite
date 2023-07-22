@@ -1,5 +1,6 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
 import { Constants } from 'oceanic.js';
+import Utils from '../utils/Utils';
 
 enum BoostLevels {
   TIER_1 = 1,
@@ -22,7 +23,7 @@ export default class ServerCommand extends ZeoliteCommand {
 
   public async run(ctx: ZeoliteContext) {
     const createdDays = Math.floor((Date.now() - ctx.guild!.createdAt.getTime()) / (1000 * 86400));
-    const owner = ctx.guild!.owner || (await this.client.rest.users.get(ctx.guild!.ownerID));
+    const owner = ctx.guild!.owner || (await this.client.rest.users.get(ctx.guild!.ownerID!));
 
     const textChannels = ctx.guild!.channels.filter((c) => c.type == 0).length;
     const voiceChannels = ctx.guild!.channels.filter((c) => c.type == 2).length;
@@ -34,7 +35,7 @@ export default class ServerCommand extends ZeoliteCommand {
       .setAuthor({ name: ctx.guild!.name })
       .setThumbnail(ctx.guild?.iconURL()!)
       .setColor(ctx.get('embColor'))
-      .addField(ctx.t('serverOwner'), owner.tag)
+      .addField(ctx.t('serverOwner'), Utils.getUserTag(owner))
       .addField(
         ctx.t('serverVerificationLevel'),
         ctx.t(Object.keys(Constants.VerificationLevels)[ctx.guild!.verificationLevel]),

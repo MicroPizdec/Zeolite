@@ -1,6 +1,7 @@
 import { ZeoliteClient, ZeoliteCommand, ZeoliteContext, Embed } from 'zeolitecore';
-import { Invite, InviteChannel, Constants } from 'oceanic.js';
+import { Invite, AnyInviteChannel, Constants } from 'oceanic.js';
 import { getLogger } from 'log4js';
+import Utils from '../utils/Utils';
 
 export default class InviteCommand extends ZeoliteCommand {
   private inviteRegex: RegExp = /discord(?:(?:app)?\.com\/invite|\.gg(?:\/invite)?)\/([\w-]{2,255})/gi;
@@ -24,7 +25,7 @@ export default class InviteCommand extends ZeoliteCommand {
   public async run(ctx: ZeoliteContext) {
     const url = ctx.options.getString('invite')!;
 
-    let invite: Invite<'withCounts', InviteChannel> | undefined;
+    let invite: Invite<'withCounts', AnyInviteChannel> | undefined;
     try {
       const code = this.getInviteCodeFromURL(url);
       invite = await this.client.rest.channels.getInvite(code, { withCounts: true });
@@ -58,7 +59,7 @@ export default class InviteCommand extends ZeoliteCommand {
     if (invite.inviter) {
       embed.addField(
         ctx.t('inviteInviter'),
-        `${invite.inviter.username}#${invite.inviter.discriminator} (ID: ${invite.inviter.id})`,
+        `${Utils.getUserTag(invite.inviter)} (ID: ${invite.inviter.id})`,
       );
     }
 
